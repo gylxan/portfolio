@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --white: #fff;
+  --dark-blue: #141c34;
+  --red: #e91e63;
+
+  --background: var(--white);
+  --primary: var(--dark-blue);
+  --secondary: var(--red);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: var(--dark-blue);
+    --primary: var(--white);
+  }
+}
+
 html,
 body {
   padding: 0;
@@ -17,4 +34,27 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+#__next {
+  @apply min-h-screen bg-background dark:text-primary;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    'header'
+    'main'
+    'footer';
+}
+
+#__next > header {
+  grid-area: header;
+}
+
+#__next > main {
+  grid-area: main;
+  overflow: auto;
+}
+
+#__next > footer {
+  grid-area: footer;
 }
