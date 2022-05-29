@@ -16,7 +16,7 @@ const Home: NextPage = () => {
 
       <div className="container flex justify-center gap-4">
         <div className={styles.container}>
-          <AnimatedTitle title="Guido Lange" subTitle="Frontend Engineer" />
+          <AnimatedTitle title="Guido Lange" subTitle="Frontend Developer" />
         </div>
       </div>
     </Page>

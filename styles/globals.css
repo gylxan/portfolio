@@ -12,11 +12,9 @@
   --secondary: var(--red);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: var(--dark-blue);
-    --primary: var(--white);
-  }
+[data-theme='dark'] {
+  --background: var(--dark-blue);
+  --primary: var(--white);
 }
 
 html,
@@ -37,7 +35,7 @@ a {
 }
 
 #__next {
-  @apply min-h-screen bg-background dark:text-primary;
+  @apply min-h-screen bg-background dark:text-primary transition-colors duration-300;
   display: grid;
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
