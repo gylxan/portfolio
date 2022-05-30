@@ -1,10 +1,11 @@
 import Link from '../Link/Link'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
-import { Routes } from '../../constants/routes'
-import { Theme } from '../../constants/theme'
-import { useTheme } from 'next-themes'
-import { useEffect, useState } from 'react'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faMoon, faSun} from '@fortawesome/free-solid-svg-icons'
+import {Routes} from '../../constants/routes'
+import {Theme} from '../../constants/theme'
+import {useTheme} from 'next-themes'
+import {useEffect, useState} from 'react'
+import Image from 'next/image'
 
 const Header = () => {
   const { theme, setTheme, systemTheme } = useTheme()
@@ -16,19 +17,19 @@ const Header = () => {
 
   function toggleTheme() {
     setTheme(darkTheme ? Theme.Light : Theme.Dark)
-    setDarkTheme(!darkTheme);
+    setDarkTheme(!darkTheme)
   }
 
   return (
     <header className="flex h-16 w-full grow items-center justify-between gap-4 px-4 text-center">
       <Link
         href={Routes.Home}
-        data-testid="header-home"
-        className="w-10 rounded-full bg-secondary p-2 text-white hover:text-white"
+        data-testid="logo"
+        className="w-10 h-10 p-2 text-white hover:text-white relative "
         underlined={false}
         coloredHover={false}
       >
-        GL
+        <Image src="/icon.png" alt="logo" layout="fill" />
       </Link>
 
       <div className="flex items-center gap-4">

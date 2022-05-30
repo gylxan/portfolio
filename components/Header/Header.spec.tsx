@@ -1,6 +1,6 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import {fireEvent, render, screen} from '@testing-library/react'
 import Header from './Header'
-import { Theme } from '../../constants/theme'
+import {Theme} from '../../constants/theme'
 
 const mockTheme = {
   theme: Theme.Light,
@@ -18,6 +18,12 @@ describe('<Header />', function () {
 
   afterAll(() => {
     jest.resetAllMocks()
+  })
+
+  it('renders', async () => {
+    render(<Header />)
+
+    expect(screen.getByRole('img')).toBeInTheDocument()
   })
 
   it('toggles theme on icon click', async () => {
