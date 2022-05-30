@@ -36,6 +36,7 @@ const Header = () => {
           icon={theme === Theme.Light ? faMoon : faSun}
           onClick={toggleTheme}
           data-testid="theme-switch"
+          size="lg"
         />
       </div>
     </header>
