@@ -4,12 +4,19 @@ import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 import { Routes } from '../../constants/routes'
 import { Theme } from '../../constants/theme'
 import { useTheme } from 'next-themes'
+import { useEffect, useState } from 'react'
 
 const Header = () => {
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme, systemTheme } = useTheme()
+  const [darkTheme, setDarkTheme] = useState(false)
+
+  useEffect(() => {
+    setDarkTheme(systemTheme === Theme.Dark || theme === Theme.Dark)
+  }, [systemTheme])
 
   function toggleTheme() {
-    setTheme(theme === Theme.Light ? Theme.Dark : Theme.Light)
+    setTheme(darkTheme ? Theme.Light : Theme.Dark)
+    setDarkTheme(!darkTheme);
   }
 
   return (
@@ -32,8 +39,9 @@ const Header = () => {
           Projects
         </Link>
         <FontAwesomeIcon
+          id="theme-switch-icon"
           className="cursor-pointer"
-          icon={theme === Theme.Light ? faMoon : faSun}
+          icon={darkTheme ? faSun : faMoon}
           onClick={toggleTheme}
           data-testid="theme-switch"
           size="lg"

@@ -1,6 +1,6 @@
 import React from 'react'
-import {Cloud, renderSimpleIcon,} from 'react-icon-cloud'
-import {cloudProps, icons} from '../../constants/tagcloud'
+import { Cloud, renderSimpleIcon } from 'react-icon-cloud'
+import { cloudProps, icons } from '../../constants/tagcloud'
 
 const TagCloud = () => {
   const tagIcons = icons.map((icon) =>
