@@ -1,0 +1,40 @@
+.intro {
+  @apply absolute top-0 flex h-full w-full items-center justify-center bg-background;
+  animation: fadeIn 0.1s linear, fadeOut 0.1s linear;
+  animation-delay: 0.2s, 3s;
+  z-index: 1;
+  animation-fill-mode: forwards;
+}
+
+.logo {
+  animation: zoomIn 2s linear;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

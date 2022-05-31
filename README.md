@@ -1,4 +1,4 @@
-# portfolio
+# Portfolio
 My portfolio website with Next.js and Tailwind CSS
 
 ## Getting Started
