@@ -7,14 +7,7 @@ import styles from '../styles/404.module.css'
 
 const FourOhFour: NextPage = () => {
   return (
-    <Page fullHeight>
-      <Head>
-        <title>Portfolio</title>
-        <meta name="description" content="Portfolio of Guido Lange" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="manifest" href="/manifest.json" />
-      </Head>
-
+    <Page fullHeight title="404" description="Page not found">
       <div className="container flex flex-col items-center gap-4">
         <h1 className={styles.title} title="404">
           404

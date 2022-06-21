@@ -7,14 +7,7 @@ import Link from '../components/Link/Link'
 
 const About: NextPage = () => {
   return (
-    <Page>
-      <Head>
-        <title>About</title>
-        <meta name="description" content="About me" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="manifest" href="/manifest.json" />
-      </Head>
-
+    <Page title="About" description="About me">
       <AnimatedTitle title="Me, Myself and I" />
       <div className="container mt-8 flex flex-col items-center gap-4 lg:flex-row lg:justify-between">
         <div className="flex flex-col gap-4">
