@@ -12,6 +12,7 @@ const FourOhFour: NextPage = () => {
         <title>Portfolio</title>
         <meta name="description" content="Portfolio of Guido Lange" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="manifest" href="/manifest.json" />
       </Head>
 
       <div className="container flex flex-col items-center gap-4">

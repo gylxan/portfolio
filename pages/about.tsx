@@ -12,6 +12,7 @@ const About: NextPage = () => {
         <title>About</title>
         <meta name="description" content="About me" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="manifest" href="/manifest.json" />
       </Head>
 
       <AnimatedTitle title="Me, Myself and I" />
