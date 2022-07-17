@@ -1,0 +1,29 @@
+{
+  "about": {
+    "slugs": [
+      "react",
+      "javascript",
+      "typescript",
+      "jest",
+      "webstorm",
+      "nextdotjs",
+      "redux",
+      "vercel",
+      "sass",
+      "tailwindcss",
+      "cypress",
+      "nodedotjs",
+      "capacitor",
+      "webdriverio",
+      "git",
+      "ionic"
+    ],
+    "paragraphs": [
+      "I&apos;m a passionated frontend developer currently working for <a href=\"https://thalia-drs.de\">Thalia drs</a>.",
+      "After graduating in 2012 with a Bachelor&apos;s Degree in Applied Computer Sciences, I moved to Berlin and spent the years afterwards working as frontend developer as part of multiple teams in various companies.",
+      "Since 2020 I work as Web Frontend Tech Lead to gain and share more of my technical knowledge, be a consultant to our clients and product owners and keep our teams on track.",
+      "I spend my free time reading, cooking, working in my garden spot and going on travel adventures whenever I&apos;m not writing code.",
+      "Haven&apos;t heard enough of me? <a href='mailto:\"Guido Lange\"<guidolange90@gmail.com>' target=\"_blank\">Contact me!</a>"
+    ]
+  }
+}

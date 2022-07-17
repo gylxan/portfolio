@@ -19,6 +19,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
+    "html-react-parser": "^3.0.1",
     "next": "12.1.4",
     "next-themes": "^0.2.0",
     "react": "18.0.0",
