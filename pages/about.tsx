@@ -1,11 +1,14 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Page from '../components/Page/Page'
-import TagCloud from '../components/TagCloud/TagCloud'
-import AnimatedTitle from '../components/AnimatedTitle/AnimatedTitle'
-import Link from '../components/Link/Link'
+import type { NextPage } from 'next';
+import Page from '../components/Page/Page';
+import TagCloud from '../components/TagCloud/TagCloud';
+import AnimatedTitle from '../components/AnimatedTitle/AnimatedTitle';
+import Link from '../components/Link/Link';
 
-const About: NextPage = () => {
+interface AboutProps {
+  slugs: string[];
+}
+
+const About: NextPage<AboutProps> = ({ slugs }) => {
   return (
     <Page title="About" description="About me">
       <AnimatedTitle title="Me, Myself and I" />
@@ -47,10 +50,20 @@ const About: NextPage = () => {
             </Link>
           </p>
         </div>
-        <TagCloud />
+        <TagCloud tags={slugs} />
       </div>
     </Page>
-  )
-}
+  );
+};
 
-export default About
+export const getStaticProps = () => {
+  const slugString = process.env.SLUGS || '';
+
+  return {
+    props: {
+      slugs: slugString.split(','),
+    },
+  };
+};
+
+export default About;

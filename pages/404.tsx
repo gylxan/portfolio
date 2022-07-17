@@ -1,9 +1,8 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Page from '../components/Page/Page'
-import { Routes } from '../constants/routes'
-import Link from '../components/Link/Link'
-import styles from '../styles/404.module.css'
+import type { NextPage } from 'next';
+import Page from '../components/Page/Page';
+import { Routes } from '../constants/routes';
+import Link from '../components/Link/Link';
+import styles from '../styles/404.module.css';
 
 const FourOhFour: NextPage = () => {
   return (
@@ -16,7 +15,7 @@ const FourOhFour: NextPage = () => {
         <Link href={Routes.Home}>Go back to home</Link>
       </div>
     </Page>
-  )
-}
+  );
+};
 
-export default FourOhFour
+export default FourOhFour;

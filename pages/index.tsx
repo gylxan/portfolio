@@ -1,9 +1,8 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Page from '../components/Page/Page'
+import type { NextPage } from 'next';
+import Page from '../components/Page/Page';
 
-import styles from '../styles/Home.module.css'
-import AnimatedTitle from '../components/AnimatedTitle/AnimatedTitle'
+import styles from '../styles/Home.module.css';
+import AnimatedTitle from '../components/AnimatedTitle/AnimatedTitle';
 
 const Home: NextPage = () => {
   return (
@@ -14,7 +13,7 @@ const Home: NextPage = () => {
         </div>
       </div>
     </Page>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
