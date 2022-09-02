@@ -1,7 +1,38 @@
 # portfolio
 My portfolio website with Next.js and Tailwind CSS
 
-## Getting Started
+
+# Portfolio configuration
+Create a `config.json` file in the root of your project.
+
+Example: 
+```
+{
+  "about": {
+    "slugs": [
+      "react",
+      "javascript",
+      "nodedotjs",
+      "webdriverio",
+      "ionic"
+    ],
+    "paragraphs": [
+      "Hi, I&quot; a developer",
+      "And I live in Berlin"
+    ]
+  }
+}
+
+```
+
+The JSON file can contain following configurations:
+
+| Key name         | Description                            | Example            |
+|------------------|----------------------------------------|--------------------|
+| about.slugs      | List of slugs used to create Tag cloud | `['react', 'git']` |
+| about.paragraphs | List of paragraphs for the about page  ||
+
+## Start developing
 
 First, run the development server:
 
@@ -10,6 +41,7 @@ npm run dev
 # or
 yarn dev
 ```
+
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
