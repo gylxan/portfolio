@@ -3,8 +3,8 @@ import Page from '../components/Page/Page';
 import TagCloud from '../components/TagCloud/TagCloud';
 import AnimatedTitle from '../components/AnimatedTitle/AnimatedTitle';
 
-import config from '../config.json';
 import { parseHtml } from '../utils/htmlParse';
+import { ConfigKey, Format, getConfig } from '../utils/config';
 
 interface AboutProps {
   slugs: string[];
@@ -30,8 +30,8 @@ const About: NextPage<AboutProps> = ({ slugs, aboutParagraphs }) => {
 export const getStaticProps = () => {
   return {
     props: {
-      slugs: config.about.slugs,
-      aboutParagraphs: config.about.paragraphs,
+      slugs: getConfig(ConfigKey.ABOUT_SLUGS, [], Format.JSON),
+      aboutParagraphs: getConfig(ConfigKey.ABOUT_PARAGRAPHS, [], Format.JSON),
     },
   };
 };

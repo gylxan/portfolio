@@ -3,34 +3,21 @@ My portfolio website with Next.js and Tailwind CSS
 
 
 # Portfolio configuration
-Create a `config.json` file in the root of your project.
+Create a `.env.local` file in the root of your project.
 
 Example: 
 ```
-{
-  "about": {
-    "slugs": [
-      "react",
-      "javascript",
-      "nodedotjs",
-      "webdriverio",
-      "ionic"
-    ],
-    "paragraphs": [
-      "Hi, I&quot; a developer",
-      "And I live in Berlin"
-    ]
-  }
-}
+ABOUT_SLUGS=["react","javascript","typescript","webdriverio","ionic"]
+ABOUT_PARAGRAPHS=["Hi, I&quot; a developer","And I live in Berlin"]
 
 ```
 
-The JSON file can contain following configurations:
+The `.env` file can contain following configurations:
 
-| Key name         | Description                            | Example            |
-|------------------|----------------------------------------|--------------------|
-| about.slugs      | List of slugs used to create Tag cloud | `['react', 'git']` |
-| about.paragraphs | List of paragraphs for the about page  ||
+| Key name         | Description                                              | Example            |
+|------------------|----------------------------------------------------------|--------------------|
+| ABOUT_SLUGS      | List of slugs used to create Tag cloud                   | `["react", "git"]` |
+| ABOUT_PARAGRAPHS | List of paragraphs for the about page. Can contain HTML. ||
 
 ## Start developing
 
