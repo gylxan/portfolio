@@ -7,14 +7,9 @@
   --dark-blue: #141c34;
   --red: #e91e63;
 
-  --background: var(--white);
-  --primary: var(--dark-blue);
-  --secondary: var(--red);
-}
-
-[data-theme='dark'] {
   --background: var(--dark-blue);
   --primary: var(--white);
+  --secondary: var(--red);
 }
 
 html,
