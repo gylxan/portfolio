@@ -1,7 +1,7 @@
 name: CI
 on: [push]
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -11,3 +11,5 @@ jobs:
       run: npm run lint
     - name: Run tests
       run: npm test
+    - name: Run build
+      run: npx next build
