@@ -30,7 +30,7 @@ a {
 }
 
 #__next {
-  @apply min-h-screen bg-background dark:text-primary transition-colors duration-300;
+  @apply min-h-screen bg-background text-primary transition-colors duration-300;
   display: grid;
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
