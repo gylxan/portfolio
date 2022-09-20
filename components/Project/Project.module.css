@@ -1,0 +1,20 @@
+.project {
+  @apply container relative top-0 left-0 z-0 flex h-full w-full flex-col gap-2 rounded-md transition-opacity delay-150 duration-300 p-3 overflow-hidden;
+  transition: top ease 250ms;
+}
+
+.project:hover {
+  @apply -top-2;
+}
+
+.image {
+  @apply absolute top-0 left-0 w-full h-full opacity-20 -z-[1] rounded-md;
+}
+
+.description {
+  @apply my-4 text-tertiary overflow-hidden;
+  height: 3rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}

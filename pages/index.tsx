@@ -1,14 +1,13 @@
 import type { NextPage } from 'next';
 import Page from '../components/Page/Page';
 
-import styles from '../styles/Home.module.css';
 import AnimatedTitle from '../components/AnimatedTitle/AnimatedTitle';
 
 const Home: NextPage = () => {
   return (
     <Page title="Portfolio" description="Portfolio of Guido Lange">
       <div className="container flex justify-center gap-4">
-        <div className={styles.container}>
+        <div className="flex w-full items-center justify-center">
           <AnimatedTitle title="Guido Lange" subTitle="Frontend Developer" />
         </div>
       </div>

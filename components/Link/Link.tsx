@@ -1,8 +1,9 @@
-import { HTMLProps } from 'react'
+import { HTMLProps } from 'react';
+import clsx from 'clsx';
 
 interface Props extends HTMLProps<HTMLAnchorElement> {
-  underlined?: boolean
-  coloredHover?: boolean
+  underlined?: boolean;
+  coloredHover?: boolean;
 }
 const Link = ({
   className,
@@ -12,13 +13,13 @@ const Link = ({
 }: Props) => (
   <a
     {...props}
-    className={
-      'hover:underline ' +
-      (underlined ? ' underline' : '') +
-      (coloredHover ? ' hover:text-secondary' : '') +
-      (className ? ` ${className}` : '')
-    }
+    className={clsx([
+      'hover:underline',
+      underlined && 'underline',
+      coloredHover && 'hover:text-secondary',
+      className,
+    ])}
   />
-)
+);
 
-export default Link
+export default Link;
