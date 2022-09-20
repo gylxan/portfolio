@@ -12,7 +12,7 @@ const Header = () => {
         underlined={false}
         coloredHover={false}
       >
-        <Image src="/icons/icon-72x72.png" alt="logo" layout="fill" />
+        <Image src="/icons/icon-72x72.png" alt="logo" layout="fill" priority />
       </Link>
 
       <div className="flex items-center gap-4">
