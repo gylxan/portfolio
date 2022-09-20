@@ -1,11 +1,13 @@
 # portfolio
+
 My portfolio website with Next.js and Tailwind CSS
 
-
 # Portfolio configuration
+
 Create a `.env.local` file in the root of your project.
 
-Example: 
+Example:
+
 ```
 ABOUT_SLUGS=["react","javascript","typescript","webdriverio","ionic"]
 ABOUT_PARAGRAPHS=["Hi, I&quot; a developer","And I live in Berlin"]
@@ -14,10 +16,13 @@ ABOUT_PARAGRAPHS=["Hi, I&quot; a developer","And I live in Berlin"]
 
 The `.env` file can contain following configurations:
 
-| Key name         | Description                                              | Example            |
-|------------------|----------------------------------------------------------|--------------------|
-| ABOUT_SLUGS      | List of slugs used to create Tag cloud                   | `["react", "git"]` |
-| ABOUT_PARAGRAPHS | List of paragraphs for the about page. Can contain HTML. ||
+| Key name         | Description                                                  | Example                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+|------------------|--------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ABOUT_SLUGS      | List of slugs used to create Tag cloud                       | `["react", "git"]`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| ABOUT_PARAGRAPHS | List of paragraphs for the about page. Can contain HTML.     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| PROJECTS         | A list of projects, which will be shown on the projects page | <pre> [<br/>&emsp;&emsp;{ <br>&emsp;&emsp;&emsp; "name": "Project name",<br>&emsp;&emsp;&emsp; "description": "Project description",<br>&emsp;&emsp;&emsp; "private": "true" (private or work project), <br>&emsp;&emsp;&emsp; "slugs": ["HTML", "CSS", "Javascript"],<br>&emsp;&emsp;&emsp; "githubUrl": "https://github.com/user/my-repo" (optional),<br>&emsp;&emsp;&emsp; "imageUrl": "https://public-image-url" (optional),<br>&emsp;&emsp;&emsp; "previewUrl": "https://my-project.com" (optional),<br>&emsp;&emsp;}<br>]</pre> |
+
+
 
 ## Start developing
 
@@ -28,7 +33,6 @@ npm run dev
 # or
 yarn dev
 ```
-
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
