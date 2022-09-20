@@ -9,16 +9,16 @@ const AnimatedTitle = ({ title, subTitle }: Props) => {
     <div className={styles.box}>
       <div className={styles.title}>
         <span className={styles.block}></span>
-        <h1>
+        <h1 className={styles.blockTitle}>
           {title}
-          <span></span>
+          <span className={styles.dot} />
         </h1>
       </div>
 
       {subTitle && (
         <div className={styles.subtitle}>
           <div className={styles.subBlock}></div>
-          <p>{subTitle}</p>
+          <p className={styles.subBlockTitle}>{subTitle}</p>
         </div>
       )}
     </div>

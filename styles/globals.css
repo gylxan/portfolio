@@ -2,14 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
   --white: #fff;
   --dark-blue: #141c34;
   --red: #e91e63;
+  --grey: #ffffff7f;
 
   --background: var(--dark-blue);
   --primary: var(--white);
   --secondary: var(--red);
+  --tertiary: var(--grey);
 }
 
 html,
