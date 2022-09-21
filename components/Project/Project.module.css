@@ -12,7 +12,7 @@
 }
 
 .description {
-  @apply my-4 text-tertiary overflow-hidden;
+  @apply my-4 overflow-hidden;
   height: 3rem;
   display: -webkit-box;
   -webkit-line-clamp: 2;

@@ -68,7 +68,7 @@ const Project: React.FC<ProjectProps> = ({
         )}
       </h3>
       <p className={styles.description}>{description}</p>
-      <div className="mt-auto flex flex-wrap gap-1">
+      <div className="mt-auto flex flex-wrap gap-1 text-tertiary">
         {slugs.map((slug) => (
           <span
             key={slug}
