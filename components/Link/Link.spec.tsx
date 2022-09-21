@@ -7,7 +7,8 @@ describe('<Link />', () => {
 
     expect(screen.getByRole('link')).toBeInTheDocument()
     const classNames = screen.getByRole('link').className.split(' ')
-    expect(classNames).toContain('underline')
+    expect(classNames).toContain('link')
+    expect(classNames).toContain('underlined')
     expect(classNames).toContain('hover:text-secondary')
   })
 

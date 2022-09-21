@@ -72,7 +72,7 @@ const Project: React.FC<ProjectProps> = ({
         {slugs.map((slug) => (
           <span
             key={slug}
-            className="rounded-2xl bg-secondary p-1 pr-3 pl-3 text-xs"
+            className="font-mono rounded-2xl bg-secondary p-1 pr-3 pl-3 text-xs"
           >
             {slug}
           </span>
@@ -82,12 +82,12 @@ const Project: React.FC<ProjectProps> = ({
         className={clsx(['flex', 'gap-4', !githubUrl && !previewUrl && 'h-6'])}
       >
         {githubUrl && (
-          <Link href={githubUrl} target="_blank">
+          <Link href={githubUrl} target="_blank" underlined={false}>
             <FontAwesomeIcon icon={faGithub} size="lg" />
           </Link>
         )}
         {previewUrl && (
-          <Link href={previewUrl} target="_blank">
+          <Link href={previewUrl} target="_blank" underlined={false}>
             <FontAwesomeIcon icon={faExternalLink} size="lg" />
           </Link>
         )}
