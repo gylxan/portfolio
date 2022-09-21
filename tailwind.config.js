@@ -12,6 +12,7 @@ module.exports = {
       background: 'var(--background)',
       white: 'var(--white)',
       darkblue: 'var(--dark-blue)',
+      'secondary-ghost': 'var(--secondary-ghost)',
     },
   },
   plugins: [],

@@ -1,6 +1,8 @@
 import { HTMLProps } from 'react';
 import clsx from 'clsx';
 
+import styles from './Link.module.css';
+
 interface Props extends HTMLProps<HTMLAnchorElement> {
   underlined?: boolean;
   coloredHover?: boolean;
@@ -14,8 +16,8 @@ const Link = ({
   <a
     {...props}
     className={clsx([
-      'hover:underline',
-      underlined && 'underline',
+      styles.link,
+      underlined && styles.underlined,
       coloredHover && 'hover:text-secondary',
       className,
     ])}

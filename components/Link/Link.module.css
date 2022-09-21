@@ -1,0 +1,17 @@
+.link {
+  @apply transition-colors duration-[250ms];
+  display: inline-block;
+  text-decoration-skip-ink: auto;
+}
+
+.underlined {
+  @apply text-secondary;
+}
+.underlined:after {
+  @apply bg-secondary block w-0 h-[1px] relative opacity-50 transition-all duration-300;
+  content: "";
+}
+
+.underlined:hover:after {
+  @apply w-full;
+}

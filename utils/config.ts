@@ -1,7 +1,10 @@
 export enum ConfigKey {
   ABOUT_SLUGS = 'ABOUT_SLUGS',
   ABOUT_PARAGRAPHS = 'ABOUT_PARAGRAPHS',
+  NAME = 'NAME',
   PROJECTS = 'PROJECTS',
+  PROFILE_IMAGE_URL = 'PROFILE_IMAGE_URL',
+  START_PARAGRAPHS = 'START_PARAGRAPHS',
 }
 
 export enum Format {
@@ -10,8 +13,8 @@ export enum Format {
 
 export const getConfig = (
   name: ConfigKey,
-  defaultValue: null | string[] = null,
-  format: null | Format = null,
+  defaultValue: null | string | string[] = null,
+  parseFormat: null | Format = null,
 ) => {
   const environment = process.env;
   const value = environment[name];
@@ -20,7 +23,7 @@ export const getConfig = (
     return defaultValue;
   }
 
-  if (format === Format.JSON) {
+  if (parseFormat === Format.JSON) {
     return JSON.parse(value);
   }
   return value;

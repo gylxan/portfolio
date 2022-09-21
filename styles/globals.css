@@ -2,17 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
   --white: #fff;
   --dark-blue: #141c34;
   --red: #e91e63;
-  --grey: #ffffff7f;
+  --red-ghost: rgba(233, 30, 99, 0.1);
+  --grey: rgb(171, 175, 185);
 
   --background: var(--dark-blue);
-  --primary: var(--white);
+  --primary: var(--grey);
   --secondary: var(--red);
-  --tertiary: var(--grey);
+  --secondary-ghost: var(--red-ghost);
+  --tertiary: var(--white);
+
+  --transition: all 250ms cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 html,
@@ -53,4 +56,10 @@ a {
 
 #__next > footer {
   grid-area: footer;
+}
+
+h1,
+h2,
+h3 {
+  @apply text-tertiary;
 }
