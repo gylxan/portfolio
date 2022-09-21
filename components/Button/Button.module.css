@@ -1,0 +1,4 @@
+.button {
+  @apply rounded border-2 p-2 hover:no-underline text-secondary hover:bg-secondary-ghost focus:bg-secondary-ghost;
+  transition: var(--transition);
+}
