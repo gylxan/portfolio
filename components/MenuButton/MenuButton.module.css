@@ -1,0 +1,49 @@
+.menuButton {
+  @apply relative cursor-pointer w-[36px] h-[36px];
+  transform: rotate(0deg);
+  transition: 0.5s ease-in-out;
+}
+
+.lineBox {
+  @apply w-[36px] h-[20px];
+  position: relative;
+}
+
+.line {
+  @apply absolute left-0 block h-0.5 w-full rounded-full bg-secondary opacity-100;
+  transform: rotate(0deg);
+  transition: 0.25s ease-in-out;
+}
+
+.line:nth-child(1) {
+  margin: 0 5px;
+  top: 0;
+  width: 26px;
+  transform-origin: left center;
+}
+
+.line:nth-child(2) {
+  top: 9px;
+  transform-origin: left center;
+}
+
+.line:nth-child(3) {
+  margin: 0 5px;
+  top: 18px;
+  width: 26px;
+  transform-origin: left center;
+}
+
+.open .line:nth-child(1) {
+  transform: rotate(45deg);
+  left: 3px;
+}
+
+.open .line:nth-child(2) {
+  @apply w-0 opacity-0;
+}
+
+.open .line:nth-child(3) {
+  transform: rotate(-45deg);
+  left: 3px;
+}
