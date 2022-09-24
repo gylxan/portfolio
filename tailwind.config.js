@@ -4,7 +4,11 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      translate: {
+        'screen-w' : "100vw"
+      }
+    },
     colors: {
       primary: 'var(--primary)',
       secondary: 'var(--secondary)',

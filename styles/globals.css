@@ -26,6 +26,18 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+body.menu-open {
+  overflow: hidden;
+}
+
+body.menu-open main,
+body.menu-open footer {
+  filter: blur(5px) brightness(0.7);
+  transition: var(--transition);
+  pointer-events: none;
+  user-select: none;
+}
+
 a {
   color: inherit;
   text-decoration: none;
