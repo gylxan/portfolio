@@ -1,6 +1,7 @@
 import Link from '../Link/Link';
 import { Routes } from '../../constants/routes';
 import Image from 'next/image';
+import Menu from '../Menu/Menu';
 
 const Header = () => {
   return (
@@ -15,14 +16,7 @@ const Header = () => {
         <Image src="/icons/icon-72x72.png" alt="logo" layout="fill" priority />
       </Link>
 
-      <div className="flex items-center gap-4">
-        <Link href={Routes.About} underlined={false}>
-          About
-        </Link>
-        <Link href={Routes.Projects} underlined={false}>
-          Projects
-        </Link>
-      </div>
+      <Menu />
     </header>
   );
 };

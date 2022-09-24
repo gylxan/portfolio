@@ -1,6 +1,5 @@
 .link {
-  @apply transition-colors duration-[250ms];
-  display: inline-block;
+  @apply transition-colors duration-300 inline-block;
   text-decoration-skip-ink: auto;
 }
 
@@ -8,8 +7,7 @@
   @apply text-secondary;
 }
 .underlined:after {
-  @apply bg-secondary block w-0 h-[1px] relative opacity-50 transition-all duration-300;
-  content: "";
+  @apply bg-secondary block w-0 h-[1px] relative opacity-50 transition-all duration-300 content-[''];
 }
 
 .underlined:hover:after {

@@ -19,6 +19,7 @@ const Link = ({
       styles.link,
       underlined && styles.underlined,
       coloredHover && 'hover:text-secondary',
+      coloredHover && 'active:text-secondary',
       className,
     ])}
   />

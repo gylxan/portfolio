@@ -1,0 +1,25 @@
+.menuButton {
+  @apply z-10 md:hidden;
+}
+
+.list {
+  @apply hidden items-center gap-4 md:flex;
+}
+
+.burgerMenu {
+  @apply invisible fixed top-0 bottom-0 right-0 z-[9] flex h-screen items-center justify-center bg-background p-0 px-4 py-12 outline-0 transition-all duration-300 translate-x-screen-w md:hidden;
+  box-shadow: -10px 0 30px -15px var(--background);
+  width: min(75vw, 400px);
+}
+
+.burgerMenu.open {
+  @apply visible translate-x-0;
+}
+
+.burgerMenuList {
+  @apply relative z-10 flex flex-col gap-8;
+}
+
+.burgerMenuListItem {
+  @apply text-2xl;
+}

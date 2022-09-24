@@ -16,8 +16,8 @@
 }
 
 .line:nth-child(1) {
+  @apply top-0;
   margin: 0 5px;
-  top: 0;
   width: 26px;
   transform-origin: left center;
 }
@@ -36,7 +36,7 @@
 
 .open .line:nth-child(1) {
   transform: rotate(45deg);
-  left: 3px;
+  left: 4px;
 }
 
 .open .line:nth-child(2) {
@@ -45,5 +45,5 @@
 
 .open .line:nth-child(3) {
   transform: rotate(-45deg);
-  left: 3px;
+  left: 4px;
 }
