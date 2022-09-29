@@ -3,20 +3,21 @@ import useOutsideClick from '../useOutsideClick';
 import { RefObject } from 'react';
 
 describe('useOutsideClick', () => {
-  let clickListener: any = null;
+  let clickListener: null | EventListenerOrEventListenerObject = null;
   const addEventListenerSpy = jest
     .spyOn(document, 'addEventListener')
     .mockImplementation((_, handler) => (clickListener = handler));
   const removeEventListenerSpy = jest.spyOn(document, 'removeEventListener');
   const callback = jest.fn();
-  const refContains = jest.fn()
+  const refContains = jest.fn();
   const ref = { current: { contains: refContains } } as RefObject<any>;
   const stopPropagationSpy = jest.fn();
-  const event = { stopPropagation: stopPropagationSpy };
+  const event = { stopPropagation: stopPropagationSpy } as unknown as Event;
 
   afterEach(() => {
     clickListener = null;
     addEventListenerSpy.mockClear();
+    removeEventListenerSpy.mockClear();
     stopPropagationSpy.mockClear();
     refContains.mockReturnValue(true);
     jest.clearAllMocks();
@@ -32,7 +33,6 @@ describe('useOutsideClick', () => {
     expect(addEventListenerSpy).toHaveBeenCalledWith(
       'click',
       expect.anything(),
-      true,
     );
   });
 
@@ -46,7 +46,6 @@ describe('useOutsideClick', () => {
     expect(removeEventListenerSpy).toHaveBeenCalledWith(
       'click',
       expect.anything(),
-      true,
     );
   });
 
@@ -61,7 +60,6 @@ describe('useOutsideClick', () => {
     expect(removeEventListenerSpy).toHaveBeenCalledWith(
       'click',
       expect.anything(),
-      true,
     );
   });
 
@@ -71,16 +69,15 @@ describe('useOutsideClick', () => {
     expect(removeEventListenerSpy).toHaveBeenCalledWith(
       'click',
       expect.anything(),
-      true,
     );
   });
 
   describe('clickHandler', () => {
     it('should call callback, when ref does not contain element which has been clicked on', () => {
-      refContains.mockReturnValue(false)
+      refContains.mockReturnValue(false);
       renderHook(() => useOutsideClick({ active: true, callback, ref }));
 
-      clickListener(event);
+      (clickListener as EventListener)(event);
 
       expect(stopPropagationSpy).toHaveBeenCalled();
       expect(callback).toHaveBeenCalled();
@@ -89,7 +86,7 @@ describe('useOutsideClick', () => {
     it('should not call callback, when ref contains element which has been clicked on', () => {
       renderHook(() => useOutsideClick({ active: true, callback, ref }));
 
-      clickListener(event);
+      (clickListener as EventListener)(event);
 
       expect(stopPropagationSpy).not.toHaveBeenCalled();
       expect(callback).not.toHaveBeenCalled();

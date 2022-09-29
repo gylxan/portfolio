@@ -18,13 +18,13 @@ const useOutsideClick = ({ active, ref, callback }: OnOutsideClickProps) => {
 
   useEffect(() => {
     if (!active) {
-      document.removeEventListener('click', handleClickOutside, true);
+      document.removeEventListener('click', handleClickOutside);
       return;
     }
 
-    document.addEventListener('click', handleClickOutside, true);
+    document.addEventListener('click', handleClickOutside);
     return () => {
-      document.removeEventListener('click', handleClickOutside, true);
+      document.removeEventListener('click', handleClickOutside);
     };
   }, [active, handleClickOutside]);
 };
