@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, MouseEvent } from 'react';
 import Link from '../Link/Link';
 import { menu } from '../../constants/routes';
 import clsx from 'clsx';
@@ -31,7 +31,8 @@ const Menu = () => {
     }
   }
 
-  function handleMenuButtonClick() {
+  function handleMenuButtonClick(event: MouseEvent<HTMLButtonElement>) {
+    event.stopPropagation();
     toggleMenu();
   }
 
