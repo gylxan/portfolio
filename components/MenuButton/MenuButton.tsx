@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { HTMLProps } from 'react';
 import clsx from 'clsx';
 import styles from './MenuButton.module.css';
 
-interface MenuButtonProps extends React.HTMLProps<HTMLButtonElement> {
+interface MenuButtonProps extends HTMLProps<HTMLButtonElement> {
   open: boolean;
 }
 

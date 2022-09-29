@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Link from '../Link/Link';
 import { menu } from '../../constants/routes';
 import clsx from 'clsx';
 import MenuButton from '../MenuButton/MenuButton';
 import styles from './Menu.module.css';
+import useOutsideClick from '../../hooks/useOutsideClick';
+import useResize from '../../hooks/useResize';
 
 export const MD_WIDTH = 768;
 
@@ -11,6 +13,14 @@ const menuOpenClass = 'menu-open';
 
 const Menu = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const ref = useRef(null);
+
+  useOutsideClick({
+    active: isMenuOpen,
+    ref,
+    callback: () => toggleMenu(false),
+  });
+  useResize({ callback: handleResize });
 
   function handleResize() {
     const body = document.querySelector('body');
@@ -21,16 +31,12 @@ const Menu = () => {
     }
   }
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isMenuOpen]);
+  function handleMenuButtonClick() {
+    toggleMenu();
+  }
 
-  function toggleMenu() {
-    const newState = !isMenuOpen;
+  function toggleMenu(state?: boolean) {
+    const newState = state ?? !isMenuOpen;
     setMenuOpen(newState);
     handleBodyOverflow(newState);
   }
@@ -65,13 +71,14 @@ const Menu = () => {
       {renderMenu(styles.list)}
       <MenuButton
         open={isMenuOpen}
-        onClick={toggleMenu}
+        onClick={handleMenuButtonClick}
         className={styles.menuButton}
       />
       <aside
         aria-hidden={isMenuOpen}
         tabIndex={-1}
         className={clsx([styles.burgerMenu, isMenuOpen && styles.open])}
+        ref={ref}
       >
         <nav>
           {renderMenu(styles.burgerMenuList, styles.burgerMenuListItem)}
