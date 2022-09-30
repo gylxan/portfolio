@@ -19,7 +19,7 @@ const Page = ({ fullHeight, title, description, ...props }: PageProps) => (
       {...props}
       className={
         'container mx-auto px-4' +
-        (fullHeight ? ' flex h-full flex-col justify-center' : ' mt-20')
+        (fullHeight ? ' flex h-full flex-col justify-center' : ' mt-20 mb-6')
       }
     />
   </>
