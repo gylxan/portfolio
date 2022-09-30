@@ -1,27 +1,51 @@
 import type { NextPage } from 'next';
 import Page from '../components/Page/Page';
-import TagCloud from '../components/TagCloud/TagCloud';
 import AnimatedTitle from '../components/AnimatedTitle/AnimatedTitle';
 
 import { parseHtml } from '../utils/htmlParse';
 import { ConfigKey, Format, getConfig } from '../utils/config';
+import ProgressBar from '../components/ProgresBar/ProgressBar';
 
+interface Slug {
+  name: string;
+  percentage: number;
+}
 interface AboutProps {
-  slugs: string[];
+  slugs: Slug[];
   aboutParagraphs: string[];
 }
 
+const removeWhiteSpaces = (text: string): string => text.replace(/ /g, '');
+
 const About: NextPage<AboutProps> = ({ slugs, aboutParagraphs }) => {
+  function renderSlug(slug: Slug, index: number) {
+    const id = removeWhiteSpaces(slug.name.toLowerCase());
+    return (
+      <div className="flex flex-col gap-2" key={id}>
+        <label className="text-tertiary" htmlFor={`progress-${id}`}>
+          {slug.name}
+        </label>
+        <ProgressBar
+          progress={slug.percentage}
+          id={`progress-${id}`}
+          delay={200 + index * 100}
+        />
+      </div>
+    );
+  }
+
   return (
     <Page title="About" description="About me">
       <AnimatedTitle title="Me, Myself and I" />
-      <div className="container mt-8 flex flex-col items-center gap-4 lg:flex-row lg:justify-between">
+      <div className="container mt-8 flex flex-col gap-10 lg:flex-row lg:justify-between">
         <div className="flex flex-col gap-4">
           {aboutParagraphs.map((paragraph) => (
             <p key={paragraph}>{parseHtml(paragraph)}</p>
           ))}
         </div>
-        <TagCloud tags={slugs} />
+        <div className="container flex flex-col gap-6">
+          {slugs.map(renderSlug)}
+        </div>
       </div>
     </Page>
   );
