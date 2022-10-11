@@ -8,7 +8,7 @@ import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 import styles from './Project.module.css';
 import animationStyles from '../../styles/animations.module.css';
 import clsx from 'clsx';
-import Image from "next/image";
+import Image from 'next/image';
 
 export interface ProjectProps {
   name: string;
@@ -50,18 +50,20 @@ const Project: React.FC<ProjectProps> = ({
       style={{ animationDelay: `${delay}ms` }}
     >
       {imageUrl && (
-        <Image className={styles.image} src={imageUrl} alt="background-image" layout="fill" />
+        <div className={styles.image}>
+          <Image
+            src={imageUrl}
+            alt="background-image"
+            layout="fill"
+          />
+        </div>
       )}
       <span className="text-secondary">
         {isPrivate ? 'Private' : 'Work'} Project
       </span>
       <h3 className="text-xl font-bold">
         {url ? (
-          <Link
-            href={url}
-            underlined={false}
-            target="_blank"
-          >
+          <Link href={url} underlined={false} target="_blank">
             {name}
           </Link>
         ) : (
