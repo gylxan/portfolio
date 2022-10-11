@@ -8,6 +8,7 @@ import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 import styles from './Project.module.css';
 import animationStyles from '../../styles/animations.module.css';
 import clsx from 'clsx';
+import Image from "next/image";
 
 export interface ProjectProps {
   name: string;
@@ -39,7 +40,7 @@ const Project: React.FC<ProjectProps> = ({
     !imageUrl && 'shadow-[0px_0px_0px_1px_rgba(255,255,255)_inset]',
   ]);
 
-  const hasLink = githubUrl || previewUrl;
+  const url = githubUrl || previewUrl;
 
   return (
     <div
@@ -49,15 +50,15 @@ const Project: React.FC<ProjectProps> = ({
       style={{ animationDelay: `${delay}ms` }}
     >
       {imageUrl && (
-        <img className={styles.image} src={imageUrl} alt="background-image" />
+        <Image className={styles.image} src={imageUrl} alt="background-image" layout="fill" />
       )}
       <span className="text-secondary">
         {isPrivate ? 'Private' : 'Work'} Project
       </span>
       <h3 className="text-xl font-bold">
-        {hasLink ? (
+        {url ? (
           <Link
-            href={previewUrl || githubUrl}
+            href={url}
             underlined={false}
             target="_blank"
           >
@@ -72,7 +73,7 @@ const Project: React.FC<ProjectProps> = ({
         {slugs.map((slug) => (
           <span
             key={slug}
-            className="font-mono rounded-2xl bg-secondary p-1 pr-3 pl-3 text-xs"
+            className="rounded-2xl bg-secondary p-1 pr-3 pl-3 font-mono text-xs"
           >
             {slug}
           </span>
