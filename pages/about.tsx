@@ -22,13 +22,18 @@ const About: NextPage<AboutProps> = ({ slugs, aboutParagraphs }) => {
     const id = removeWhiteSpaces(slug.name.toLowerCase());
     return (
       <div className="flex flex-col gap-2" key={id}>
-        <label className="text-tertiary" htmlFor={`progress-${id}`}>
+        <label
+          id={`progressbar-label-${id}`}
+          className="text-tertiary"
+          htmlFor={`progressbar-${id}`}
+        >
           {slug.name}
         </label>
         <ProgressBar
           progress={slug.percentage}
-          id={`progress-${id}`}
+          id={`progressbar-${id}`}
           delay={200 + index * 100}
+          aria-labelledby={`progressbar-label-${id}`}
         />
       </div>
     );

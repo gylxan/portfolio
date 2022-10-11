@@ -13,17 +13,18 @@ const Footer = () => (
         href="https://linkedin.com/in/guido-lange-1217a71b8/"
         target="_blank"
         underlined={false}
+        aria-label="Link to LinkedIn account"
       >
         <FontAwesomeIcon icon={faLinkedin} size="lg" />
       </Link>
-      <Link href="https://github.com/gylxan" target="_blank" underlined={false}>
+      <Link href="https://github.com/gylxan" target="_blank" underlined={false} aria-label="Link to Github account">
         <FontAwesomeIcon icon={faGithub} size="lg" />
-
       </Link>
       <Link
         href="https://open.spotify.com/user/gerynix?si=2c87a1e95b83421e"
         target="_blank"
         underlined={false}
+        aria-label="Link to Spotify account"
       >
         <FontAwesomeIcon icon={faSpotify} size="lg" />
       </Link>
