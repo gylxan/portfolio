@@ -1,19 +1,17 @@
-import { HTMLProps } from 'react'
-import Head from 'next/head'
+import { HTMLProps } from 'react';
+import Head from 'next/head';
 
 interface PageProps extends HTMLProps<HTMLDivElement> {
-  title: string
-  description: string
-  fullHeight?: boolean
+  title: string;
+  fullHeight?: boolean;
 }
 
-const Page = ({ fullHeight, title, description, ...props }: PageProps) => (
+const Page = ({ fullHeight, title, ...props }: PageProps) => (
   <>
     <Head>
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      <link rel="icon" href="/favicon.ico" />
-      <link rel="manifest" href="/manifest.json" />
+      <title>
+        {process.env.NEXT_PUBLIC_NAME} - {title}
+      </title>
     </Head>
     <div
       {...props}
@@ -23,6 +21,6 @@ const Page = ({ fullHeight, title, description, ...props }: PageProps) => (
       }
     />
   </>
-)
+);
 
-export default Page
+export default Page;

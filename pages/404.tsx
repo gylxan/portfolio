@@ -6,7 +6,7 @@ import styles from '../styles/404.module.css';
 
 const FourOhFour: NextPage = () => {
   return (
-    <Page fullHeight title="404" description="Page not found">
+    <Page fullHeight title="404">
       <div className="container flex flex-col items-center gap-4">
         <h1 className={styles.title} title="404">
           404
