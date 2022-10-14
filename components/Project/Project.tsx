@@ -37,7 +37,7 @@ const Project: React.FC<ProjectProps> = ({
     styles.project,
     animationStyles.animatedFadeInUp,
     inView && animationStyles.fadeInUp,
-    !imageUrl && 'shadow-[0px_0px_0px_1px_rgba(255,255,255)_inset]',
+    'shadow-[0px_0px_0px_1px_rgba(255,255,255)_inset]',
   ]);
 
   const url = githubUrl || previewUrl;
