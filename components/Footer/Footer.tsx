@@ -9,25 +9,36 @@ import {
 const Footer = () => (
   <footer className="flex h-16 grow items-center justify-between px-4">
     <div className="flex gap-4">
-      <Link
-        href="https://linkedin.com/in/guido-lange-1217a71b8/"
-        target="_blank"
-        underlined={false}
-        aria-label="Link to LinkedIn account"
-      >
-        <FontAwesomeIcon icon={faLinkedin} size="lg" />
-      </Link>
-      <Link href="https://github.com/gylxan" target="_blank" underlined={false} aria-label="Link to Github account">
-        <FontAwesomeIcon icon={faGithub} size="lg" />
-      </Link>
-      <Link
-        href="https://open.spotify.com/user/gerynix?si=2c87a1e95b83421e"
-        target="_blank"
-        underlined={false}
-        aria-label="Link to Spotify account"
-      >
-        <FontAwesomeIcon icon={faSpotify} size="lg" />
-      </Link>
+      {process.env.NEXT_PUBLIC_LINKEDIN_URL && (
+        <Link
+          href={process.env.NEXT_PUBLIC_LINKEDIN_URL}
+          target="_blank"
+          underlined={false}
+          aria-label="Link to LinkedIn account"
+        >
+          <FontAwesomeIcon icon={faLinkedin} size="lg" />
+        </Link>
+      )}
+      {process.env.NEXT_PUBLIC_GITHUB_URL && (
+        <Link
+          href={process.env.NEXT_PUBLIC_GITHUB_URL}
+          target="_blank"
+          underlined={false}
+          aria-label="Link to Github account"
+        >
+          <FontAwesomeIcon icon={faGithub} size="lg" />
+        </Link>
+      )}
+      {process.env.NEXT_PUBLIC_SPOTIFY_URL && (
+        <Link
+          href={process.env.NEXT_PUBLIC_SPOTIFY_URL}
+          target="_blank"
+          underlined={false}
+          aria-label="Link to Spotify account"
+        >
+          <FontAwesomeIcon icon={faSpotify} size="lg" />
+        </Link>
+      )}
     </div>
     <div data-testid="location-and-year">Berlin@{new Date().getFullYear()}</div>
   </footer>
