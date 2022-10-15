@@ -41,6 +41,8 @@ const Project: React.FC<ProjectProps> = ({
   ]);
 
   const url = githubUrl || previewUrl;
+  const blurImageUrl =
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPcum1nPQAG8QKl/SZJzwAAAABJRU5ErkJggg==';
 
   return (
     <div
@@ -51,7 +53,13 @@ const Project: React.FC<ProjectProps> = ({
     >
       {imageUrl && (
         <div className={styles.image}>
-          <Image src={imageUrl} alt="background-image" layout="fill" />
+          <Image
+            src={imageUrl}
+            alt="background-image"
+            layout="fill"
+            placeholder="blur"
+            blurDataURL={blurImageUrl}
+          />
         </div>
       )}
       <span className="text-secondary">
@@ -91,7 +99,12 @@ const Project: React.FC<ProjectProps> = ({
           </Link>
         )}
         {previewUrl && (
-          <Link href={previewUrl} target="_blank" underlined={false} aria-label={`Link to a Preview of ${name}`}>
+          <Link
+            href={previewUrl}
+            target="_blank"
+            underlined={false}
+            aria-label={`Link to a Preview of ${name}`}
+          >
             <FontAwesomeIcon icon={faExternalLink} size="lg" />
           </Link>
         )}
