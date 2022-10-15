@@ -3,5 +3,5 @@
 }
 
 .progress {
-  @apply flex rounded bg-secondary transition-all duration-1000;
+  @apply flex rounded bg-secondary transition-[width] duration-1000;
 }
