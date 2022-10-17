@@ -1,10 +1,11 @@
-import Badge from './Badge'
-import { render, screen } from '@testing-library/react'
+import Badge from './Badge';
+import { render, screen } from '@testing-library/react';
 
 describe('<Badge />', () => {
   it('should render badge', () => {
-    render(<Badge />)
+    render(<Badge>text</Badge>);
 
-    expect(screen.findByTestId('badge')).not.toBeNull()
-  })
-})
+    expect(screen.findByTestId('badge')).not.toBeNull();
+    expect(screen.findByText('text')).not.toBeNull();
+  });
+});
