@@ -20,7 +20,7 @@ export default function Document() {
         <meta name="og:image" content={process.env.NEXT_PUBLIC_LOGO_URL} />
         <link rel="icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#141c34" />
+        <meta name="theme-color" content="#11182C" />
       </Head>
       <body>
         <Main />
