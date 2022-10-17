@@ -1,11 +1,50 @@
-import { queryAllByRole, queryByTestId, render } from '@testing-library/react'
-import Footer from './Footer'
+import {
+  queryAllByRole,
+  queryByTestId,
+  render,
+  screen,
+} from '@testing-library/react';
+import Footer from './Footer';
 
 describe('<Footer />', () => {
-  it('should render links and location and year', () => {
-    const { container } = render(<Footer />)
+  const originalProcess = process.env;
 
-    expect(queryAllByRole(container, 'link').length).toBe(3)
-    expect(queryByTestId(container, 'location-and-year')).toBeInTheDocument()
-  })
-})
+  afterEach(() => {
+    process.env = originalProcess;
+  });
+
+  it('should render links and location and year', () => {
+    const { container } = render(<Footer />);
+
+    expect(queryAllByRole(container, 'link').length).toBe(0);
+    expect(queryByTestId(container, 'location-and-year')).toBeInTheDocument();
+  });
+
+  it('should render LinkedIn URL, when env var is set', () => {
+    process.env.NEXT_PUBLIC_LINKEDIN_URL = 'https://example.com';
+
+    render(<Footer />);
+
+    expect(
+      screen.getByLabelText('Link to LinkedIn account'),
+    ).toBeInTheDocument();
+  });
+
+  it('should render Github URL, when env var is set', () => {
+    process.env.NEXT_PUBLIC_GITHUB_URL = 'https://example.com';
+
+    render(<Footer />);
+
+    expect(screen.getByLabelText('Link to Github account')).toBeInTheDocument();
+  });
+
+  it('should render Github URL, when env var is set', () => {
+    process.env.NEXT_PUBLIC_SPOTIFY_URL = 'https://example.com';
+
+    render(<Footer />);
+
+    expect(
+      screen.getByLabelText('Link to Spotify account'),
+    ).toBeInTheDocument();
+  });
+});
