@@ -4,9 +4,9 @@
 
 :root {
   --white: #fff;
-  --dark-blue: #141c34;
-  --red: #e91e63;
-  --red-ghost: rgba(233, 30, 99, 0.1);
+  --dark-blue: #11182C;
+  --red: #FF8080;
+  --red-ghost: rgba(255, 128, 128, 0.1);
   --grey: rgb(171, 175, 185);
 
   --background: var(--dark-blue);
