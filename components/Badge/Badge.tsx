@@ -1,4 +1,4 @@
-import { HTMLProps } from 'react'
+import React, { HTMLProps } from 'react'
 
 type BadgeProps = HTMLProps<HTMLSpanElement>
 
@@ -6,7 +6,7 @@ const Badge = (props: BadgeProps) => (
   <span
     {...props}
     data-testid="badge"
-    className="bg-indigo-600 text-white rounded px-4 py-1 font-bold uppercase"
+    className="text-background rounded-2xl bg-secondary p-1 px-3 font-mono text-xs"
   />
 )
 

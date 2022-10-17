@@ -4,11 +4,11 @@ import Link from '../Link/Link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
-
-import styles from './Project.module.css';
-import animationStyles from '../../styles/animations.module.css';
 import clsx from 'clsx';
 import Image from 'next/image';
+import Badge from '../Badge/Badge';
+import animationStyles from '../../styles/animations.module.css';
+import styles from './Project.module.css';
 
 export interface ProjectProps {
   name: string;
@@ -50,6 +50,7 @@ const Project: React.FC<ProjectProps> = ({
       ref={ref}
       className={className}
       style={{ animationDelay: `${delay}ms` }}
+      data-testid="project"
     >
       {imageUrl && (
         <div className={styles.image}>
@@ -67,7 +68,12 @@ const Project: React.FC<ProjectProps> = ({
       </span>
       <h2 className="text-xl font-bold">
         {url ? (
-          <Link href={url} underlined={false} target="_blank">
+          <Link
+            href={url}
+            underlined={false}
+            target="_blank"
+            aria-label="Link to the Github repository or preview of the project"
+          >
             {name}
           </Link>
         ) : (
@@ -75,14 +81,9 @@ const Project: React.FC<ProjectProps> = ({
         )}
       </h2>
       <p className={styles.description}>{description}</p>
-      <div className="mt-auto flex flex-wrap gap-1 text-tertiary">
+      <div className="mt-auto flex flex-wrap gap-1">
         {slugs.map((slug) => (
-          <span
-            key={slug}
-            className="rounded-2xl bg-secondary p-1 pr-3 pl-3 font-mono text-xs"
-          >
-            {slug}
-          </span>
+          <Badge key={slug}>{slug}</Badge>
         ))}
       </div>
       <div
