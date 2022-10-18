@@ -19,8 +19,11 @@ export default function Document() {
         <meta name="og:url" content={process.env.NEXT_PUBLIC_URL} />
         <meta name="og:type" content="website" />
         <meta name="og:image" content={process.env.NEXT_PUBLIC_LOGO_URL} />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+        <link rel="icon" sizes="32x32" href="/icons/icon-32x32.png" />
+        <link rel="icon" sizes="16x16" href="/icons/icon-16x16.png" />
         <link rel="manifest" href="/manifest.json" />
+        <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#ff8080" />
         <meta name="theme-color" content={manifest.theme_color} />
       </Head>
       <body>
