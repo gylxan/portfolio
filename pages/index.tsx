@@ -12,7 +12,7 @@ const Home = () => {
   const blurImageUrl =
     'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPcum1nPQAG8QKl/SZJzwAAAABJRU5ErkJggg==';
   return (
-    <Page title="Home">
+    <Page>
       <div className="container flex flex-col items-center justify-center gap-4">
         <div className="flex w-full items-center justify-center">
           <AnimatedTitle title={name} subTitle="Frontend Developer" />

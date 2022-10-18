@@ -2,7 +2,7 @@ import { HTMLProps } from 'react';
 import Head from 'next/head';
 
 interface PageProps extends HTMLProps<HTMLDivElement> {
-  title: string;
+  title?: string;
   fullHeight?: boolean;
 }
 
@@ -10,7 +10,8 @@ const Page = ({ fullHeight, title, ...props }: PageProps) => (
   <>
     <Head>
       <title>
-        {process.env.NEXT_PUBLIC_NAME} - {title}
+        {process.env.NEXT_PUBLIC_NAME}
+        {title && ` - ${title}`}
       </title>
     </Head>
     <div
