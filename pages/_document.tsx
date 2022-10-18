@@ -1,4 +1,5 @@
 import { Head, Html, Main, NextScript } from 'next/document';
+import manifest from '../public/manifest.json';
 
 export default function Document() {
   return (
@@ -10,7 +11,7 @@ export default function Document() {
           name="description"
           content={process.env.NEXT_PUBLIC_DESCRIPTION}
         />
-        <meta name="og:title" content={process.env.NEXT_PUBLIC_URL} />
+        <meta name="og:title" content={process.env.NEXT_PUBLIC_NAME} />
         <meta
           name="og:description"
           content={process.env.NEXT_PUBLIC_DESCRIPTION}
@@ -20,7 +21,7 @@ export default function Document() {
         <meta name="og:image" content={process.env.NEXT_PUBLIC_LOGO_URL} />
         <link rel="icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#11182C" />
+        <meta name="theme-color" content={manifest.theme_color} />
       </Head>
       <body>
         <Main />
