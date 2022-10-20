@@ -40,7 +40,9 @@ const Footer = () => (
         </Link>
       )}
     </div>
-    <div data-testid="location-and-year">Berlin@{new Date().getFullYear()}</div>
+    {process.env.NEXT_PUBLIC_COPYRIGHT && (
+      <div data-testid="copyright" className="text-sm">{process.env.NEXT_PUBLIC_COPYRIGHT}</div>
+    )}
   </footer>
 );
 

@@ -5,6 +5,7 @@ import {
   screen,
 } from '@testing-library/react';
 import Footer from './Footer';
+import exp from 'constants';
 
 describe('<Footer />', () => {
   const originalProcess = process.env;
@@ -46,5 +47,14 @@ describe('<Footer />', () => {
     expect(
       screen.getByLabelText('Link to Spotify account'),
     ).toBeInTheDocument();
+  });
+
+  it('should render the copyright, when set per env var', () => {
+    process.env.NEXT_PUBLIC_COPYRIGHT = '(c) By me';
+
+    render(<Footer />);
+
+    expect(screen.getByTestId('copyright')).toBeInTheDocument();
+    expect(screen.getByTestId('copyright').textContent).toBe(process.env.NEXT_PUBLIC_COPYRIGHT);
   });
 });
