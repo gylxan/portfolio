@@ -5,7 +5,6 @@ import {
   screen,
 } from '@testing-library/react';
 import Footer from './Footer';
-import exp from 'constants';
 
 describe('<Footer />', () => {
   const originalProcess = process.env;
@@ -18,7 +17,7 @@ describe('<Footer />', () => {
     const { container } = render(<Footer />);
 
     expect(queryAllByRole(container, 'link').length).toBe(0);
-    expect(queryByTestId(container, 'location-and-year')).toBeInTheDocument();
+    expect(queryByTestId(container, 'copyright')).not.toBeInTheDocument();
   });
 
   it('should render LinkedIn URL, when env var is set', () => {
