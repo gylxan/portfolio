@@ -10,8 +10,7 @@ const Page = ({ fullHeight, title, ...props }: PageProps) => (
   <>
     <Head>
       <title>
-        {process.env.NEXT_PUBLIC_NAME}
-        {title && ` - ${title}`}
+        {`${process.env.NEXT_PUBLIC_NAME}${title ? ` - ${title}` : ''}`}
       </title>
     </Head>
     <div

@@ -8,14 +8,13 @@ import { parseHtml } from '../utils/htmlParse';
 import { parseJSON } from '../utils/json';
 
 const Home = () => {
-  const name = process.env.NEXT_PUBLIC_NAME ?? '';
   const blurImageUrl =
     'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPcum1nPQAG8QKl/SZJzwAAAABJRU5ErkJggg==';
   return (
     <Page>
       <div className="container flex flex-col items-center justify-center gap-4">
         <div className="flex w-full items-center justify-center">
-          <AnimatedTitle title={name} subTitle="Frontend Developer" />
+          <AnimatedTitle title={process.env.NEXT_PUBLIC_NAME ?? ''} subTitle={process.env.NEXT_PUBLIC_JOB_TITLE} />
         </div>
         <Link
           href="/about"
@@ -37,7 +36,7 @@ const Home = () => {
         </Link>
 
         <p className="text-secondary">Hi, my name is</p>
-        <h2 className="text-3xl font-medium md:text-4xl lg:text-5xl">{name}</h2>
+        <h2 className="text-3xl font-medium md:text-4xl lg:text-5xl">{process.env.NEXT_PUBLIC_NAME}</h2>
         {parseJSON<string[]>(process.env.NEXT_PUBLIC_START_PARAGRAPHS, []).map(
           (intro) => (
             <p key={intro}>{parseHtml(intro)}</p>

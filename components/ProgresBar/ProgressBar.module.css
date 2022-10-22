@@ -1,7 +1,0 @@
-.progressBar {
-  @apply flex w-full h-2 bg-primary rounded;
-}
-
-.progress {
-  @apply flex rounded bg-secondary transition-[width] duration-1000;
-}

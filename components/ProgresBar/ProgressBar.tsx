@@ -1,8 +1,5 @@
 import React, { HTMLProps, useEffect } from 'react';
 
-import styles from './ProgressBar.module.css';
-import clsx from 'clsx';
-
 export interface ProgressBarProps extends HTMLProps<HTMLDivElement> {
   progress: number;
   delay?: number;
@@ -22,14 +19,14 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   return (
     <div
       {...otherProps}
-      className={styles.progressBar}
+      className="flex h-2 w-full rounded bg-primary"
       role="progressbar"
       aria-valuemin={0}
       aria-valuemax={100}
       aria-valuenow={progress}
     >
       <div
-        className={clsx([styles.progress])}
+        className="progress flex rounded bg-secondary transition-[width] duration-1000"
         style={{
           width: `${width}%`,
           transitionDelay: delay ? `${delay}ms` : undefined,

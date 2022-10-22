@@ -63,52 +63,60 @@ const Project: React.FC<ProjectProps> = ({
           />
         </div>
       )}
-      <span className="text-secondary">
-        {isPrivate ? 'Private' : 'Work'} Project
-      </span>
-      <h2 className="text-xl font-bold">
-        {url ? (
-          <Link
-            href={url}
-            underlined={false}
-            target="_blank"
-            aria-label="Link to the Github repository or preview of the project"
-          >
-            {name}
-          </Link>
-        ) : (
-          name
-        )}
-      </h2>
+      <div className="flex flex-row justify-between justify-items-start">
+        <div>
+          <span className="text-secondary">
+            {isPrivate ? 'Private' : 'Work'} Project
+          </span>
+          <h2 className="text-xl font-bold">
+            {url ? (
+              <Link
+                href={url}
+                underlined={false}
+                target="_blank"
+                aria-label="Link to the Github repository or preview of the project"
+              >
+                {name}
+              </Link>
+            ) : (
+              name
+            )}
+          </h2>
+        </div>
+        <div
+          className={clsx([
+            'flex',
+            'gap-4',
+            !githubUrl && !previewUrl && 'h-6',
+          ])}
+        >
+          {githubUrl && (
+            <Link
+              href={githubUrl}
+              target="_blank"
+              underlined={false}
+              aria-label={`Link to Github repository of ${name}`}
+            >
+              <FontAwesomeIcon icon={faGithub} size="lg" />
+            </Link>
+          )}
+          {previewUrl && (
+            <Link
+              href={previewUrl}
+              target="_blank"
+              underlined={false}
+              aria-label={`Link to a Preview of ${name}`}
+            >
+              <FontAwesomeIcon icon={faExternalLink} size="lg" />
+            </Link>
+          )}
+        </div>
+      </div>
       <p className={styles.description}>{description}</p>
       <div className="mt-auto flex flex-wrap gap-1">
         {slugs.map((slug) => (
           <Badge key={slug}>{slug}</Badge>
         ))}
-      </div>
-      <div
-        className={clsx(['flex', 'gap-4', !githubUrl && !previewUrl && 'h-6'])}
-      >
-        {githubUrl && (
-          <Link
-            href={githubUrl}
-            target="_blank"
-            underlined={false}
-            aria-label={`Link to Github repository of ${name}`}
-          >
-            <FontAwesomeIcon icon={faGithub} size="lg" />
-          </Link>
-        )}
-        {previewUrl && (
-          <Link
-            href={previewUrl}
-            target="_blank"
-            underlined={false}
-            aria-label={`Link to a Preview of ${name}`}
-          >
-            <FontAwesomeIcon icon={faExternalLink} size="lg" />
-          </Link>
-        )}
       </div>
     </div>
   );

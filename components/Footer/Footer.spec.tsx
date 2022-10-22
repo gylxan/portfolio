@@ -17,7 +17,7 @@ describe('<Footer />', () => {
     const { container } = render(<Footer />);
 
     expect(queryAllByRole(container, 'link').length).toBe(0);
-    expect(queryByTestId(container, 'location-and-year')).toBeInTheDocument();
+    expect(queryByTestId(container, 'copyright')).not.toBeInTheDocument();
   });
 
   it('should render LinkedIn URL, when env var is set', () => {
@@ -46,5 +46,14 @@ describe('<Footer />', () => {
     expect(
       screen.getByLabelText('Link to Spotify account'),
     ).toBeInTheDocument();
+  });
+
+  it('should render the copyright, when set per env var', () => {
+    process.env.NEXT_PUBLIC_COPYRIGHT = '(c) By me';
+
+    render(<Footer />);
+
+    expect(screen.getByTestId('copyright')).toBeInTheDocument();
+    expect(screen.getByTestId('copyright').textContent).toBe(process.env.NEXT_PUBLIC_COPYRIGHT);
   });
 });
