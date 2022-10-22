@@ -26,7 +26,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
       aria-valuenow={progress}
     >
       <div
-        className="flex rounded bg-secondary transition-[width] duration-1000"
+        className="progress flex rounded bg-secondary transition-[width] duration-1000"
         style={{
           width: `${width}%`,
           transitionDelay: delay ? `${delay}ms` : undefined,
