@@ -3,7 +3,7 @@ import AnimatedTitle from '../components/AnimatedTitle/AnimatedTitle';
 import { parseJSON } from '../utils/json';
 import Link from '../components/Link/Link';
 import Tabs from '../components/Tabs/Tabs';
-import Tab from '../components/Tabs/Tab';
+import Tab from '../components/Tabs/Tab/Tab';
 
 export interface ExperienceProps {
   company: string;

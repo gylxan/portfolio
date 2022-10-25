@@ -1,6 +1,6 @@
 import React, { createRef, HTMLProps, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import { TabProps } from './Tab';
+import { TabProps } from './Tab/Tab';
 import clsx from 'clsx';
 import Button from '../Button/Button';
 
