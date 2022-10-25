@@ -16,7 +16,7 @@ const MenuButton: React.FC<MenuButtonProps> = ({
       {...otherProps}
       type="button"
       aria-label="menu"
-      className={clsx([styles.menuButton, open && styles.open, className])}
+      className={clsx(styles.menuButton, open && styles.open, className)}
     >
       <div className={styles.lineBox}>
         <span className={styles.line} />

@@ -1,0 +1,32 @@
+.fade {
+  @apply hidden;
+}
+
+.fadeEnter {
+  @apply flex opacity-0;
+}
+
+.fadeEnterActive {
+  @apply opacity-100 transition-opacity duration-300 ease-in;
+}
+
+.fadeEnterDone {
+  @apply flex opacity-100;
+}
+
+.fadeExit {
+  @apply hidden opacity-100;
+}
+
+.fadeExitActive {
+  @apply hidden opacity-0 transition-opacity duration-300 ease-in;
+}
+
+.fadeExitDone {
+  @apply hidden opacity-0;
+}
+
+.appear,
+.appearDone{
+  @apply flex opacity-100;
+}

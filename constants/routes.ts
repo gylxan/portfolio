@@ -1,7 +1,8 @@
 export enum Routes {
   Home = '/',
-  Projects = '/projects',
   About = '/about',
+  Projects = '/projects',
+  Experience = '/experience',
 }
 
 export const menu = [
@@ -12,5 +13,9 @@ export const menu = [
   {
     href: Routes.Projects,
     name: 'Projects',
+  },
+  {
+    href: Routes.Experience,
+    name: 'Experience',
   },
 ];

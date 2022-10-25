@@ -6,7 +6,7 @@
   --white: #fff;
   --dark-blue: #11182C;
   --red: #FF8080;
-  --red-ghost: rgba(255, 128, 128, 0.1);
+  --red-ghost: rgba(255, 128, 128, 0.025);
   --grey: rgb(171, 175, 185);
 
   --background: var(--dark-blue);
@@ -74,4 +74,17 @@ h1,
 h2,
 h3 {
   @apply text-tertiary;
+}
+
+::-webkit-scrollbar {
+   width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded-full bg-primary;
+  border: 3px solid var(--background);
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
 }

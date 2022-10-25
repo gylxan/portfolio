@@ -6,8 +6,11 @@ module.exports = {
   theme: {
     extend: {
       translate: {
-        'screen-w' : "100vw"
-      }
+        'screen-w': '100vw',
+      },
+      screens: {
+        '-sm': { max: '639px' },
+      },
     },
     colors: {
       primary: 'var(--primary)',
@@ -20,4 +23,4 @@ module.exports = {
     },
   },
   plugins: [],
-}
+};

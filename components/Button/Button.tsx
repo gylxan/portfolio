@@ -1,22 +1,29 @@
-import { AnchorHTMLAttributes, ButtonHTMLAttributes, FC, HTMLProps, PropsWithChildren, } from 'react';
+import {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  FC,
+  HTMLProps,
+  PropsWithChildren,
+} from 'react';
 import Link from '../Link/Link';
+import clsx from 'clsx';
 
-type ButtonProps = HTMLProps<
+export type ButtonProps = HTMLProps<
   | AnchorHTMLAttributes<HTMLAnchorElement>
   | ButtonHTMLAttributes<HTMLButtonElement>
 >;
 
 const Button: FC<PropsWithChildren<ButtonProps>> = (props) => {
-  const { children } = props;
-  const className =
-    'font-mono rounded border-2 p-2 hover:no-underline text-secondary hover:bg-secondary-ghost focus:bg-secondary-ghost transition-all transition-[250ms]';
+  const { children, className } = props;
+  const defaultClassName =
+    'font-mono text-sm rounded border-2 p-2 hover:no-underline text-secondary hover:bg-secondary-ghost hover:text-secondary focus:bg-secondary-ghost transition-colors duration-[250ms]';
   if ('href' in props) {
     return (
       <Link
         {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)}
         underlined={false}
         coloredHover={false}
-        className={className}
+        className={clsx(defaultClassName, className)}
       >
         {children}
       </Link>
@@ -25,7 +32,7 @@ const Button: FC<PropsWithChildren<ButtonProps>> = (props) => {
   return (
     <button
       {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}
-      className={className}
+      className={clsx(defaultClassName, className)}
     >
       {children}
     </button>
