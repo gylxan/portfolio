@@ -26,7 +26,7 @@ const Experience = () => {
       <div className="container mt-8">
         <Tabs aria-label="Job Tabs" className="justify-center">
           {experiences.map(({ company, url, positions }) => (
-            <Tab key={company} title={company} className="flex flex-col">
+            <Tab key={company} title={company}>
               <h2 className="mb-3 text-[24px]">
                 <Link href={url} target="_blank">
                   {company}
@@ -36,7 +36,7 @@ const Experience = () => {
                 {positions.map(({ name, startDate, endDate, tasks }) => (
                   <div key={name}>
                     <h3 className="mb-1 text-xl">{name}</h3>
-                    <p className="mb-1">
+                    <p className="mb-4">
                       {startDate} - {endDate ? endDate : 'Present'}
                     </p>
                     <ul>

@@ -1,0 +1,43 @@
+.tabs {
+  @apply flex flex-col gap-8 md:flex-row;
+}
+
+.tabList {
+  @apply flex flex-row items-start md:flex-col -sm:overflow-x-auto;
+}
+
+.button {
+  @apply whitespace-nowrap rounded-none border-0 border-b-2 px-8 py-2 text-left md:w-full md:border-l-2 md:border-b-0 md:px-4 md:py-4 text-primary;
+
+}
+
+.button.active {
+  @apply border-l-secondary text-secondary;
+}
+
+.fade,
+.exitDone {
+  @apply hidden opacity-0;
+}
+
+.enter {
+  @apply flex flex-col opacity-0;
+}
+
+.enterActive {
+  @apply flex flex-col opacity-100 transition-opacity duration-300 ease-in;
+}
+
+.exit {
+  @apply hidden opacity-100;
+}
+
+.exitActive {
+  @apply hidden opacity-0 transition-opacity duration-300 ease-in;
+}
+
+.appear,
+.appearDone,
+.enterDone {
+  @apply flex flex-col  opacity-100;
+}
