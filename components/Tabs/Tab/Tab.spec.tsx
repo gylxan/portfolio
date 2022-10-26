@@ -17,11 +17,4 @@ describe('<Tab />', () => {
 
     expect(screen.queryByRole('tabpanel')).not.toBeInTheDocument();
   });
-
-  it('forwards ref', () => {
-    const setRef = jest.fn();
-    render(<Tab ref={setRef}>test</Tab>);
-
-    expect(setRef).toHaveBeenCalled();
-  });
 });

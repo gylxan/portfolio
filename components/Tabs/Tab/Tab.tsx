@@ -1,21 +1,39 @@
-import React, { forwardRef, HTMLProps } from 'react';
+import React, { HTMLProps, useRef } from 'react';
+import { CSSTransition } from 'react-transition-group';
+import styles from './Tab.module.css';
+import clsx from 'clsx';
 
 export interface TabProps
-  extends React.PropsWithChildren,
-    HTMLProps<HTMLDivElement> {
-  hidden?: boolean;
+  extends React.PropsWithChildren<HTMLProps<HTMLDivElement>> {
+  active?: boolean;
 }
 
-export const Tab = forwardRef<HTMLDivElement, TabProps>(
-  ({ hidden = false, children, ...props }: TabProps, ref) => {
-    return (
-      <div {...props} ref={ref} role="tabpanel" aria-hidden={hidden}>
+export const Tab = ({
+  active = true,
+  children,
+  className,
+  ...props
+}: TabProps) => {
+  const ref = useRef<HTMLDivElement>(null);
+  return (
+    <CSSTransition
+      timeout={300}
+      classNames={{ ...styles }}
+      in={active}
+      appear={true}
+      nodeRef={ref}
+    >
+      <div
+        {...props}
+        ref={ref}
+        className={clsx(styles.fade, className)}
+        role="tabpanel"
+        aria-hidden={!active}
+      >
         {children}
       </div>
-    );
-  },
-);
-
-Tab.displayName = 'Tab';
+    </CSSTransition>
+  );
+};
 
 export default Tab;

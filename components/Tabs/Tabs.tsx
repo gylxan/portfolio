@@ -1,5 +1,4 @@
-import React, { createRef, HTMLProps, useState } from 'react';
-import { CSSTransition } from 'react-transition-group';
+import React, { HTMLProps, useState } from 'react';
 import { TabProps } from './Tab/Tab';
 import clsx from 'clsx';
 import Button from '../Button/Button';
@@ -12,9 +11,6 @@ interface TabsProps extends HTMLProps<HTMLDivElement> {
 
 export const Tabs = ({ children, className, ...props }: TabsProps) => {
   const [activeTab, setActiveTab] = useState('0');
-  const [refs] = useState(() =>
-    React.Children.map(children, () => createRef<HTMLDivElement>()),
-  );
 
   function handleTabClick(
     event: React.MouseEvent<
@@ -59,29 +55,16 @@ export const Tabs = ({ children, className, ...props }: TabsProps) => {
       </div>
       <div>
         {React.Children.map(children, (child, index) => {
-          const isActive = isTabActive(index);
-          return (
-            <CSSTransition
-              key={index}
-              timeout={300}
-              classNames={{ ...styles }}
-              in={isActive}
-              appear={true}
-              nodeRef={refs[index]}
-            >
-              {React.cloneElement(
-                child,
-                {
-                  ...child.props,
-                  className: styles.fade,
-                  id: getPanelId(index),
-                  'aria-labelledby': getTabId(index),
-                  ref: refs[index],
-                  hidden: !isActive,
-                },
-                child.props.children,
-              )}
-            </CSSTransition>
+          return React.cloneElement(
+            child,
+            {
+              ...child.props,
+              className: styles.fade,
+              id: getPanelId(index),
+              'aria-labelledby': getTabId(index),
+              active: isTabActive(index),
+            },
+            child.props.children,
           );
         })}
       </div>
