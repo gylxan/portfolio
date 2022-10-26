@@ -17,7 +17,7 @@ const Page = ({ fullHeight, title, ...props }: PageProps) => (
       {...props}
       className={
         'container mx-auto px-4' +
-        (fullHeight ? ' flex h-full flex-col justify-center' : ' m-10 mb-6')
+        (fullHeight ? ' flex h-full flex-col justify-center' : ' mt-10 mb-6')
       }
     />
   </>
