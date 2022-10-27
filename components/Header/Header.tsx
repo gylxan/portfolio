@@ -5,7 +5,7 @@ import Menu from '../Menu/Menu';
 
 const Header = () => {
   return (
-    <header className="flex h-16 w-full grow items-center justify-between gap-4 px-4 text-center">
+    <header className="flex h-24 w-full grow items-center justify-between gap-4 px-4 md:px-8 text-center">
       <Link
         href={Routes.Home}
         data-testid="logo"

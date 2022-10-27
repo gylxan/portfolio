@@ -78,7 +78,7 @@ const Menu = () => {
       <aside
         aria-hidden={isMenuOpen}
         tabIndex={-1}
-        className={clsx([styles.burgerMenu, isMenuOpen && styles.open])}
+        className={clsx(styles.burgerMenu, isMenuOpen && styles.open)}
         ref={ref}
       >
         <nav>

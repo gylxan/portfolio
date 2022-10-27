@@ -25,7 +25,7 @@ describe('<Page />', () => {
     const { container } = render(<Page {...props}>{mockChild}</Page>);
 
     expect(container.querySelector('div')).toHaveClass(
-      'container mx-auto px-4 mt-20',
+      'container mx-auto px-4 mt-4',
     );
     expect(screen.getByTestId('test-child')).toBeInTheDocument();
   });

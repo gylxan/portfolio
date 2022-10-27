@@ -15,13 +15,13 @@ const Link = ({
 }: Props) => (
   <a
     {...props}
-    className={clsx([
+    className={clsx(
       styles.link,
       underlined && styles.underlined,
       coloredHover && 'hover:text-secondary',
       coloredHover && 'active:text-secondary',
       className,
-    ])}
+    )}
   />
 );
 

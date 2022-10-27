@@ -7,7 +7,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 
 const Footer = () => (
-  <footer className="flex h-16 grow items-center justify-between px-4">
+  <footer className="flex h-16 grow items-center justify-between px-4 md:px-8">
     <div className="flex gap-4">
       {process.env.NEXT_PUBLIC_LINKEDIN_URL && (
         <Link
@@ -15,6 +15,7 @@ const Footer = () => (
           target="_blank"
           underlined={false}
           aria-label="Link to LinkedIn account"
+          className="hover:trans"
         >
           <FontAwesomeIcon icon={faLinkedin} size="lg" />
         </Link>

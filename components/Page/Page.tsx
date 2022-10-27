@@ -1,5 +1,6 @@
 import { HTMLProps } from 'react';
 import Head from 'next/head';
+import clsx from 'clsx';
 
 interface PageProps extends HTMLProps<HTMLDivElement> {
   title?: string;
@@ -15,10 +16,10 @@ const Page = ({ fullHeight, title, ...props }: PageProps) => (
     </Head>
     <div
       {...props}
-      className={
-        'container mx-auto px-4' +
-        (fullHeight ? ' flex h-full flex-col justify-center' : ' mt-20 mb-6')
-      }
+      className={clsx(
+        'container mx-auto px-4 md:px-8',
+        fullHeight ? ' flex h-full flex-col justify-center' : ' mt-4 md:mt-12 mb-6',
+      )}
     />
   </>
 );

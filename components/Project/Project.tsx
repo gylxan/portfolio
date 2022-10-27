@@ -33,12 +33,12 @@ const Project: React.FC<ProjectProps> = ({
 }) => {
   const { ref, inView } = useInView({ triggerOnce: true });
 
-  const className = clsx([
+  const className = clsx(
     styles.project,
     animationStyles.animatedFadeInUp,
     inView && animationStyles.fadeInUp,
     'shadow-[0px_0px_0px_1px_rgba(255,255,255)_inset]',
-  ]);
+  );
 
   const url = githubUrl || previewUrl;
   const blurImageUrl =
@@ -84,11 +84,7 @@ const Project: React.FC<ProjectProps> = ({
           </h2>
         </div>
         <div
-          className={clsx([
-            'flex',
-            'gap-4',
-            !githubUrl && !previewUrl && 'h-6',
-          ])}
+          className={clsx('flex', 'gap-4', !githubUrl && !previewUrl && 'h-6')}
         >
           {githubUrl && (
             <Link
