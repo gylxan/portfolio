@@ -1,7 +1,6 @@
 import React, { HTMLProps, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import styles from './Tab.module.css';
-import clsx from 'clsx';
 
 export interface TabProps
   extends React.PropsWithChildren<HTMLProps<HTMLDivElement>> {

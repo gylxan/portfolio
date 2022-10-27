@@ -13,7 +13,7 @@ describe('<Tab />', () => {
   });
 
   it('sets hidden properly', () => {
-    render(<Tab hidden>test</Tab>);
+    render(<Tab active={false}>test</Tab>);
 
     expect(screen.queryByRole('tabpanel')).not.toBeInTheDocument();
   });
