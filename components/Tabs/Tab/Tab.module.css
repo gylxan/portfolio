@@ -1,14 +1,10 @@
-.fade,
-.exitDone {
-  @apply h-0 flex flex-col opacity-0;
-}
-
 .enter {
   @apply opacity-0;
 }
 
 .enterActive {
   @apply opacity-100 transition-opacity duration-300 ease-in;
+
 }
 
 .exit {
@@ -16,11 +12,10 @@
 }
 
 .exitActive {
-  @apply h-0 opacity-0 transition-opacity duration-300 ease-in;
+  @apply opacity-0 transition-opacity duration-300 ease-in;
+
+
+
 }
 
-.appear,
-.appearDone,
-.enterDone {
-  @apply opacity-100;
-}
+

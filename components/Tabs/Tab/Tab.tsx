@@ -26,9 +26,10 @@ export const Tab = ({
       <div
         {...props}
         ref={ref}
-        className={clsx(styles.fade, className)}
+        className={className}
         role="tabpanel"
         aria-hidden={!active}
+        hidden={!active}
       >
         {children}
       </div>

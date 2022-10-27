@@ -23,8 +23,8 @@ const Experience = () => {
   return (
     <Page title="Experience">
       <AnimatedTitle title="Experience" />
-      <div className="container mt-8">
-        <Tabs aria-label="Job Tabs" className="justify-center">
+      <div className="container mt-8 flex justify-center">
+        <Tabs aria-label="Job Tabs" className="max-w-3xl">
           {experiences.map(({ company, url, positions }) => (
             <Tab key={company} title={company}>
               <h2 className="mb-3 text-[24px]">
