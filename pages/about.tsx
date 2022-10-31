@@ -2,41 +2,44 @@ import Page from '../components/Page/Page';
 import AnimatedTitle from '../components/AnimatedTitle/AnimatedTitle';
 
 import { parseHtml } from '../utils/htmlParse';
-import ProgressBar from '../components/ProgresBar/ProgressBar';
 import { parseJSON } from '../utils/json';
+import simpleIcons from 'simple-icons';
 
 interface Slug {
   name: string;
-  percentage: number;
+  url?: string;
 }
-const removeWhiteSpaces = (text: string): string => text.replace(/ /g, '');
-
 const About = () => {
   const slugs = parseJSON<Slug[]>(process.env.NEXT_PUBLIC_ABOUT_SLUGS, []);
+  const otherToolsSlugs = parseJSON<Slug[]>(
+    process.env.NEXT_PUBLIC_ABOUT_SLUGS_OTHER_TOOLS,
+    [],
+  );
   const paragraphs = parseJSON<string[]>(
     process.env.NEXT_PUBLIC_ABOUT_PARAGRAPHS,
     [],
   );
-  function renderSlug(slug: Slug, index: number) {
-    const id = removeWhiteSpaces(slug.name.toLowerCase());
-    return (
-      <div className="flex flex-col gap-2" key={id}>
-        <label
-          id={`progressbar-label-${id}`}
-          className="text-tertiary"
-          htmlFor={`progressbar-${id}`}
-        >
-          {slug.name}
-        </label>
-        <ProgressBar
-          progress={slug.percentage}
-          id={`progressbar-${id}`}
-          delay={200 + index * 100}
-          aria-labelledby={`progressbar-label-${id}`}
-        />
-      </div>
+  function renderSlug(slug: Slug) {
+    const image = simpleIcons[slug.name.toLowerCase()];
+    if (!image) {
+      return null;
+    }
+
+    const svg = (
+      <svg
+        key={image.title}
+        viewBox="0 0 24 24"
+        role="img"
+        className={`w-12 fill-secondary transition-all duration-300 hover:scale-125 hover:fill-[#${image.hex}]`}
+        aria-label={`${image.title} slug`}
+      >
+        <path d={image.path} />
+      </svg>
     );
+    return slug.url ? <a href={slug.url}>{svg}</a> : svg;
   }
+
+  console.warn(simpleIcons);
 
   return (
     <Page title="About">
@@ -47,8 +50,19 @@ const About = () => {
             <p key={paragraph}>{parseHtml(paragraph)}</p>
           ))}
         </div>
-        <div className="container flex flex-col gap-6">
-          {slugs.map(renderSlug)}
+        <div className="container flex flex-col gap-10">
+          <div className="flex flex-col gap-4">
+            <h2 className="text-xl font-bold">My Skills and Tech I use</h2>
+            <div className="flex flex-row flex-wrap gap-6">
+              {slugs.map(renderSlug)}
+            </div>
+          </div>
+          <div className="flex flex-col gap-4">
+            <h2 className="text-xl font-bold">Other tools I use</h2>
+            <div className="flex flex-row flex-wrap gap-6">
+              {otherToolsSlugs.map(renderSlug)}
+            </div>
+          </div>
         </div>
       </div>
     </Page>
