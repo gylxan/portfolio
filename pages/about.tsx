@@ -30,7 +30,7 @@ const About = () => {
         key={image.title}
         viewBox="0 0 24 24"
         role="img"
-        className={`w-12 fill-secondary transition-all duration-300 hover:scale-125 hover:fill-[#${image.hex}]`}
+        className={`w-12 fill-secondary transition-all duration-300 hover:scale-125`}
         aria-label={`${image.title} slug`}
       >
         <path d={image.path} />
