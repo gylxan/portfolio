@@ -35,6 +35,14 @@ describe('<SlugIcon />', () => {
     expect(screen.getByRole('img').getAttribute('fill')).toStrictEqual(
       `#${simpleIconMocks[props.name].hex}`,
     );
+
+    act(() => {
+      fireEvent.mouseOut(screen.getByRole('img'));
+    });
+
+    expect(screen.getByRole('img').getAttribute('fill')).toStrictEqual(
+      'var(--secondary)',
+    );
   });
 
   it('should show primary color on hover, when Icon color is too dark', () => {
@@ -47,5 +55,19 @@ describe('<SlugIcon />', () => {
     expect(screen.getByRole('img').getAttribute('fill')).toStrictEqual(
       'var(--primary)',
     );
+
+    act(() => {
+      fireEvent.mouseOut(screen.getByRole('img'));
+    });
+
+    expect(screen.getByRole('img').getAttribute('fill')).toStrictEqual(
+      'var(--secondary)',
+    );
+  });
+
+  it('should render nothing, when simple icon can not be found', () => {
+    render(<SlugIcon {...props} name="somethingtotallyrandom" />);
+
+    expect(screen.queryByRole('img')).not.toBeInTheDocument();
   });
 });
