@@ -1,10 +1,5 @@
 .box {
-  max-width: 250px;
-  max-height: 250px;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+  @apply max-w-lg max-h-32 relative flex justify-center flex-col;
 }
 
 .title {
@@ -138,8 +133,7 @@
 
 @keyframes icon {
   0% {
-    @apply opacity-0;
-    transform: scale(0);
+    @apply opacity-0 scale-0;
   }
 
   50% {
