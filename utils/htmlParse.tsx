@@ -2,7 +2,7 @@ import parse, {
   DOMNode,
   Element,
   HTMLReactParserOptions,
-  domToReact
+  domToReact,
 } from 'html-react-parser';
 import Link from '../components/Link/Link';
 
@@ -14,6 +14,7 @@ const options: HTMLReactParserOptions = {
           <Link
             href={domNode.attribs.href}
             target={domNode.attribs.target ?? '_blank'}
+            aria-label={domNode.attribs['aria-label'] ?? undefined}
           >
             {domToReact(domNode.children)}
           </Link>
