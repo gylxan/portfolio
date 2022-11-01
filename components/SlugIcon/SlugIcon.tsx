@@ -1,28 +1,34 @@
-import simpleIcons from 'simple-icons';
 import { useState } from 'react';
 import { isTooDark } from '../../utils/color';
 
-interface Props {
+export interface Slug {
   name: string;
   url?: string;
 }
 
-const SlugIcon = ({ name, url }: Props) => {
+export interface SlugExtended extends Slug {
+  path: string;
+  hex: string;
+  title: string;
+}
+export type Props = SlugExtended;
+
+const SlugIcon = ({ url, path, hex, title }: Props) => {
   const [isHovered, setHovered] = useState(false);
-  const image = simpleIcons[name.toLowerCase()];
-  if (!image) {
+  if (!path) {
     return null;
   }
-  const hexColor = `#${image.hex}`;
+
+  const hexColor = `#${hex}`;
   const color = isHovered
     ? isTooDark(hexColor, 40)
-      ? 'var(--primary)'
+      ? 'var(--tertiary)'
       : hexColor
-    : 'var(--secondary)';
+    : 'var(--primary)';
 
   const svg = (
     <svg
-      key={image.title}
+      key={title}
       viewBox="0 0 24 24"
       role="img"
       className="w-12 transition-all duration-300 hover:scale-125"
@@ -30,12 +36,11 @@ const SlugIcon = ({ name, url }: Props) => {
       onMouseOver={() => setHovered(true)}
       onMouseOut={() => setHovered(false)}
     >
-      <path d={image.path} />
+      <path d={path} />
     </svg>
   );
-
   return url ? (
-    <a href={url} aria-label={`Link to slug ${image.title}`}>
+    <a href={url} aria-label={`Link to slug ${title}`}>
       {svg}
     </a>
   ) : (
