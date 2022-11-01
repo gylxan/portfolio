@@ -3,22 +3,31 @@ import AnimatedTitle from '../components/AnimatedTitle/AnimatedTitle';
 
 import { parseHtml } from '../utils/htmlParse';
 import { parseJSON } from '../utils/json';
-import SlugIcon from '../components/SlugIcon/SlugIcon';
+import SlugIcon, { Slug, SlugExtended } from '../components/SlugIcon/SlugIcon';
+import simpleIcons from 'simple-icons';
 
-interface Slug {
-  name: string;
-  url?: string;
+interface Props {
+  skillSlugs: SlugExtended[];
+  toolSlugs: SlugExtended[];
 }
-const About = () => {
-  const slugs = parseJSON<Slug[]>(process.env.NEXT_PUBLIC_ABOUT_SLUGS, []);
-  const otherToolsSlugs = parseJSON<Slug[]>(
-    process.env.NEXT_PUBLIC_ABOUT_SLUGS_OTHER_TOOLS,
-    [],
-  );
+const About = ({ skillSlugs, toolSlugs }: Props) => {
   const paragraphs = parseJSON<string[]>(
     process.env.NEXT_PUBLIC_ABOUT_PARAGRAPHS,
     [],
   );
+
+  function renderSlugSection(title: string, slugs: SlugExtended[]) {
+    return (
+      <div className="flex flex-col gap-4">
+        <h2 className="text-xl">{title}</h2>
+        <div className="flex flex-row flex-wrap gap-6">
+          {slugs.map((slug) => (
+            <SlugIcon key={slug.title} {...slug} />
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <Page title="About">
@@ -30,26 +39,38 @@ const About = () => {
           ))}
         </div>
         <div className="container flex flex-col gap-10">
-          <div className="flex flex-col gap-4">
-            <h2 className="text-xl font-bold">My Skills and Tech I use</h2>
-            <div className="flex flex-row flex-wrap gap-6">
-              {slugs.map((slug) => (
-                <SlugIcon key={slug.name} {...slug} />
-              ))}
-            </div>
-          </div>
-          <div className="flex flex-col gap-4">
-            <h2 className="text-xl font-bold">Other tools I use</h2>
-            <div className="flex flex-row flex-wrap gap-6">
-              {otherToolsSlugs.map((slug) => (
-                <SlugIcon key={slug.name} {...slug} />
-              ))}
-            </div>
-          </div>
+          {renderSlugSection('My Skills and Tech I use', skillSlugs)}
+          {renderSlugSection('Other tools I use', toolSlugs)}
         </div>
       </div>
     </Page>
   );
 };
+
+function getSlugData(slug: Slug) {
+  const slugName = slug.name.toLowerCase();
+  return {
+    ...slug,
+    path: simpleIcons[slugName].path,
+    hex: simpleIcons[slugName].hex,
+    title: simpleIcons[slugName].title,
+  };
+}
+
+
+export async function getStaticProps() {
+  /**
+   * Get the icons while building, so that the import of simpleIcons can be removed afterwards and
+   * the bundle size will be decreased again
+   */
+  const skillSlugs = parseJSON<Slug[]>(process.env.NEXT_PUBLIC_SKILL_SLUGS, []);
+  const toolSlugs = parseJSON<Slug[]>(process.env.NEXT_PUBLIC_TOOL_SLUGS, []);
+  return {
+    props: {
+      skillSlugs: skillSlugs.map(getSlugData),
+      toolSlugs: toolSlugs.map(getSlugData),
+    },
+  };
+}
 
 export default About;
