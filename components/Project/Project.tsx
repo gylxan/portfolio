@@ -68,7 +68,7 @@ const Project: React.FC<ProjectProps> = ({
           <span className="text-secondary">
             {isPrivate ? 'Private' : 'Work'} Project
           </span>
-          <h2 className="text-xl font-bold">
+          <h2 className="text-xl">
             {url ? (
               <Link
                 href={url}
