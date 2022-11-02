@@ -39,7 +39,7 @@ const About = ({ skillSlugs, toolSlugs }: Props) => {
           ))}
         </div>
         <div className="container flex flex-col gap-10">
-          {renderSlugSection('My Skills and Tech I use', skillSlugs)}
+          {renderSlugSection('My tech stack and skills', skillSlugs)}
           {renderSlugSection('Other tools I use', toolSlugs)}
         </div>
       </div>
