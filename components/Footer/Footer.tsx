@@ -7,7 +7,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 
 const Footer = () => (
-  <footer className="flex h-16 grow items-center justify-between px-4 md:px-8">
+  <footer className="flex flex-col grow items-center justify-between py-5 gap-4 px-4 sm:flex-row md:px-8">
     <div className="flex gap-4">
       {process.env.NEXT_PUBLIC_LINKEDIN_URL && (
         <Link
