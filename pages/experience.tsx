@@ -26,7 +26,7 @@ const Experience = () => {
       <div className="container mt-8">
         <Tabs aria-label="Job Tabs" className="max-w-3xl mx-auto">
           {experiences.map(({ company, url, positions }) => (
-            <Tab key={company}>
+            <Tab key={company} title={company}>
               <h2 className="mb-3 text-xl">
                 <Link href={url} target="_blank">
                   {company}

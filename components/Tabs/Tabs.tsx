@@ -59,6 +59,7 @@ export const Tabs = ({ children, className, ...props }: TabsProps) => {
             child,
             {
               ...child.props,
+              title: undefined,
               className: styles.fade,
               id: getPanelId(index),
               'aria-labelledby': getTabId(index),
