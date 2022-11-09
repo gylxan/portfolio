@@ -1,8 +1,7 @@
-import Page from '../components/Page/Page';
 import { Routes } from '../constants/routes';
 import Link from '../components/Link/Link';
 import styles from '../styles/404.module.css';
-import FullHeightPageLayout from '../components/FullHeightPageLayout/FullHeightPageLayout';
+import FullHeightLayout from '../components/layouts/FullHeightLayout/FullHeightLayout';
 import Title from '../components/Title/Title';
 
 const FourOhFour = () => {
@@ -20,6 +19,6 @@ const FourOhFour = () => {
   );
 };
 
-FourOhFour.layout = FullHeightPageLayout;
+FourOhFour.layout = FullHeightLayout;
 
 export default FourOhFour;
