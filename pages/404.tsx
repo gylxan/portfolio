@@ -12,7 +12,7 @@ const FourOhFour = () => {
         <h1 className={styles.title} title="404">
           404
         </h1>
-        <h2>Ooops, seems like you are wrong here</h2>
+        <p>Ooops, seems like you are wrong here</p>
         <Link href={Routes.Home}>Go back to home</Link>
       </div>
     </>
