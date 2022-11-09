@@ -5,6 +5,7 @@ import { parseHtml } from '../utils/htmlParse';
 import { parseJSON } from '../utils/json';
 import SlugIcon, { Slug, SlugExtended } from '../components/SlugIcon/SlugIcon';
 import simpleIcons from 'simple-icons';
+import Title from '../components/Title/Title';
 
 interface Props {
   skillSlugs: SlugExtended[];
@@ -30,8 +31,8 @@ const About = ({ skillSlugs, toolSlugs }: Props) => {
   }
 
   return (
-    <Page title="About">
-      <AnimatedTitle title="Me, Myself and I" />
+    <>
+      <Title title="About" animatedTitle="Me, Myself and I" />
       <div className="container mt-8 flex flex-col gap-10 lg:flex-row lg:justify-between">
         <div className="flex flex-col gap-4">
           {paragraphs.map((paragraph) => (
@@ -43,7 +44,7 @@ const About = ({ skillSlugs, toolSlugs }: Props) => {
           {renderSlugSection('Other tools I use', toolSlugs)}
         </div>
       </div>
-    </Page>
+    </>
   );
 };
 
@@ -56,7 +57,6 @@ function getSlugData(slug: Slug) {
     title: simpleIcons[slugName].title,
   };
 }
-
 
 export async function getStaticProps() {
   /**

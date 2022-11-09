@@ -11,7 +11,7 @@ const Home = () => {
   const blurImageUrl =
     'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPcum1nPQAG8QKl/SZJzwAAAABJRU5ErkJggg==';
   return (
-    <Page>
+    <>
       <div className="container flex flex-col items-center justify-center gap-4">
         <div className="flex w-full items-center justify-center">
           <AnimatedTitle title={process.env.NEXT_PUBLIC_NAME ?? ''} subTitle={process.env.NEXT_PUBLIC_JOB_TITLE} />
@@ -44,7 +44,7 @@ const Home = () => {
         )}
         <Button href="/about">Check me out!</Button>
       </div>
-    </Page>
+    </>
   );
 };
 

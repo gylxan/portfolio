@@ -1,21 +1,20 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
-import Footer from '../components/Footer/Footer';
-import Header from '../components/Header/Header';
 
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
+import PageLayout from '../components/PageLayout/PageLayout';
+import { Page } from "../types/page";
 
 config.autoAddCss = false;
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps }: AppProps & { Component: Page }) {
+  // Use the layout defined at the page level, if available
+  const Layout = Component.layout || PageLayout;
+
   return (
-    <>
-      <Header />
-      <main>
-        <Component {...pageProps} />
-      </main>
-      <Footer />
-    </>
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
   );
 }
