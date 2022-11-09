@@ -3,7 +3,7 @@ import { PropsWithChildren } from 'react';
 
 const DefaultLayout = ({ children }: PropsWithChildren) => {
   return (
-    <Layout className="container mx-auto flex h-full flex-col justify-center px-4 md:px-8">
+    <Layout className="container mx-auto mt-4 mb-6 px-4 md:mt-12 md:px-8">
       {children}
     </Layout>
   );
