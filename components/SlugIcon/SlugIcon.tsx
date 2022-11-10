@@ -11,9 +11,9 @@ export interface SlugExtended extends Slug {
   hex: string;
   title: string;
 }
-export type Props = SlugExtended;
+export type SlugIconProps = SlugExtended;
 
-const SlugIcon = ({ url, path, hex, title }: Props) => {
+const SlugIcon = ({ url, path, hex, title }: SlugIconProps) => {
   const [isHovered, setHovered] = useState(false);
   if (!path) {
     return null;
