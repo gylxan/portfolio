@@ -11,5 +11,11 @@ jobs:
       run: npm run lint
     - name: Run tests
       run: npm test
-    - name: Run build
-      run: npx next build
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install modules
+        run: npm install
+      - name: Run build
+        run: npx next build
