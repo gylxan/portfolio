@@ -12,7 +12,7 @@ import { blurImageUrl } from '../constants/image';
 interface Props {
   name: string;
   jobTitle: string;
-  profileImageUrl?: string;
+  profileImageUrl: string;
   paragraphs: string[];
 }
 const Home = ({ name, jobTitle, profileImageUrl, paragraphs }: Props) => {
@@ -57,7 +57,7 @@ export const getStaticProps: GetStaticProps<Props> = () => {
     props: {
       name: process.env.NEXT_PUBLIC_NAME ?? '',
       jobTitle: process.env.NEXT_PUBLIC_JOB_TITLE ?? '',
-      profileImageUrl: process.env.NEXT_PUBLIC_PROFILE_IMAGE_URL,
+      profileImageUrl: process.env.NEXT_PUBLIC_PROFILE_IMAGE_URL ?? '',
       paragraphs: parseJSON<string[]>(
         process.env.NEXT_PUBLIC_START_PARAGRAPHS,
         [],
