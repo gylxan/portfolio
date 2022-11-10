@@ -10,17 +10,9 @@ import Badge from '../Badge/Badge';
 import animationStyles from '../../styles/animations.module.css';
 import { blurImageUrl } from '../../constants/image';
 import styles from './Project.module.css';
+import { Project as IProject } from "../../types/project";
 
-export interface ProjectProps {
-  name: string;
-  description: string;
-  private: boolean;
-  previewUrl?: string;
-  githubUrl?: string;
-  slugs: string[];
-  imageUrl?: string;
-  delay?: number;
-}
+export type ProjectProps = IProject;
 
 const Project: React.FC<ProjectProps> = ({
   name,
