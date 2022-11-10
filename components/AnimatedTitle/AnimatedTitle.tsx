@@ -1,10 +1,10 @@
 import styles from './AnimatedTitle.module.css'
 
-export interface Props {
+export interface AnimatedTitleProps {
   title: string
   subTitle?: string
 }
-const AnimatedTitle = ({ title, subTitle }: Props) => {
+const AnimatedTitle = ({ title, subTitle }: AnimatedTitleProps) => {
   return (
     <div className={styles.box}>
       <div className={styles.title}>

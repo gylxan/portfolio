@@ -8,18 +8,11 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import Badge from '../Badge/Badge';
 import animationStyles from '../../styles/animations.module.css';
+import { blurImageUrl } from '../../constants/image';
 import styles from './Project.module.css';
+import { Project as IProject } from "../../types/project";
 
-export interface ProjectProps {
-  name: string;
-  description: string;
-  private: boolean;
-  previewUrl?: string;
-  githubUrl?: string;
-  slugs: string[];
-  imageUrl?: string;
-  delay?: number;
-}
+export type ProjectProps = IProject;
 
 const Project: React.FC<ProjectProps> = ({
   name,
@@ -41,9 +34,6 @@ const Project: React.FC<ProjectProps> = ({
   );
 
   const url = githubUrl || previewUrl;
-  const blurImageUrl =
-    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPcum1nPQAG8QKl/SZJzwAAAABJRU5ErkJggg==';
-
   return (
     <div
       key={name}

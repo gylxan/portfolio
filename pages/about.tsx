@@ -6,16 +6,12 @@ import { parseJSON } from '../utils/json';
 import SlugIcon, { Slug, SlugExtended } from '../components/SlugIcon/SlugIcon';
 import simpleIcons from 'simple-icons';
 
-interface Props {
+interface AboutProps {
   skillSlugs: SlugExtended[];
   toolSlugs: SlugExtended[];
+  paragraphs: string[];
 }
-const About = ({ skillSlugs, toolSlugs }: Props) => {
-  const paragraphs = parseJSON<string[]>(
-    process.env.NEXT_PUBLIC_ABOUT_PARAGRAPHS,
-    [],
-  );
-
+const About = ({ skillSlugs, toolSlugs, paragraphs }: AboutProps) => {
   function renderSlugSection(title: string, slugs: SlugExtended[]) {
     return (
       <div className="flex flex-col gap-4">
@@ -57,7 +53,6 @@ function getSlugData(slug: Slug) {
   };
 }
 
-
 export async function getStaticProps() {
   /**
    * Get the icons while building, so that the import of simpleIcons can be removed afterwards and
@@ -69,6 +64,10 @@ export async function getStaticProps() {
     props: {
       skillSlugs: skillSlugs.map(getSlugData),
       toolSlugs: toolSlugs.map(getSlugData),
+      paragraphs: parseJSON<string[]>(
+        process.env.NEXT_PUBLIC_ABOUT_PARAGRAPHS,
+        [],
+      ),
     },
   };
 }

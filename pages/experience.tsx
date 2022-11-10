@@ -4,27 +4,19 @@ import { parseJSON } from '../utils/json';
 import Link from '../components/Link/Link';
 import Tabs from '../components/Tabs/Tabs';
 import Tab from '../components/Tabs/Tab/Tab';
+import { GetStaticProps } from 'next';
+import { Experience as IExperience } from '../types/experience';
 
-export interface ExperienceProps {
-  company: string;
-  url: string;
-  positions: {
-    name: string;
-    startDate: string;
-    endDate: string;
-    tasks: string[];
-  }[];
+interface ExperienceProps {
+  experiences: IExperience[];
 }
-const Experience = () => {
-  const experiences = parseJSON<ExperienceProps[]>(
-    process.env.NEXT_PUBLIC_EXPERIENCES,
-    [],
-  );
+
+const Experience = ({ experiences }: ExperienceProps) => {
   return (
     <Page title="Experience">
       <AnimatedTitle title="Experience" />
       <div className="container mt-8">
-        <Tabs aria-label="Job Tabs" className="max-w-3xl mx-auto">
+        <Tabs aria-label="Job Tabs" className="mx-auto max-w-3xl">
           {experiences.map(({ company, url, positions }) => (
             <Tab key={company} title={company}>
               <h2 className="mb-3 text-xl">
@@ -58,6 +50,17 @@ const Experience = () => {
       </div>
     </Page>
   );
+};
+
+export const getStaticProps: GetStaticProps<ExperienceProps> = () => {
+  return {
+    props: {
+      experiences: parseJSON<IExperience[]>(
+        process.env.NEXT_PUBLIC_EXPERIENCES,
+        [],
+      ),
+    },
+  };
 };
 
 export default Experience;

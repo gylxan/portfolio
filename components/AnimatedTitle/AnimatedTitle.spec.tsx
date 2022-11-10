@@ -1,8 +1,8 @@
-import AnimatedTitle, {Props} from './AnimatedTitle'
+import AnimatedTitle, {AnimatedTitleProps} from './AnimatedTitle'
 import {render} from '@testing-library/react'
 
 describe('<AnimatedTitle />', () => {
-  const props: Props = {
+  const props: AnimatedTitleProps = {
     title: 'My title',
   }
 

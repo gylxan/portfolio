@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 import styles from './Link.module.css';
 
-interface Props extends HTMLProps<HTMLAnchorElement> {
+interface LinkProps extends HTMLProps<HTMLAnchorElement> {
   underlined?: boolean;
   coloredHover?: boolean;
 }
@@ -12,7 +12,7 @@ const Link = ({
   underlined = true,
   coloredHover = true,
   ...props
-}: Props) => (
+}: LinkProps) => (
   <a
     {...props}
     className={clsx(
