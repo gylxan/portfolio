@@ -1,7 +1,7 @@
 {
   "name": "portfolio",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "author": {
     "name": "Guido Lange",
     "url": "https://github.com/gylxan"
