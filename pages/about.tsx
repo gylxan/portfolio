@@ -35,8 +35,8 @@ const About = ({ skillSlugs, toolSlugs, paragraphs }: AboutProps) => {
           ))}
         </div>
         <div className="container flex flex-col gap-10">
-          {renderSlugSection('My tech stack and skills', skillSlugs)}
-          {renderSlugSection('Other tools I use', toolSlugs)}
+          {skillSlugs.length && renderSlugSection('My tech stack and skills', skillSlugs)}
+          {toolSlugs.length && renderSlugSection('Other tools I use', toolSlugs)}
         </div>
       </div>
     </Page>
