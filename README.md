@@ -1,28 +1,40 @@
 # portfolio
 
-My portfolio website with Next.js and Tailwind CSS
+My portfolio website with Next.js and Tailwind CSS.
 
-# Portfolio configuration
+![Tests](https://github.com/gylxan/portfolio/actions/workflows/main.yml/badge.svg)
 
-Create a `.env.local` file in the root of your project.
+# Configuration
 
-Example:
-
-```
-ABOUT_SLUGS=["react","javascript","typescript","webdriverio","ionic"]
-ABOUT_PARAGRAPHS=["Hi, I&quot; a developer","And I live in Berlin"]
-
-```
+## Environment
+Most parts of the portfolio can be configured by environment variables.
+Create a `.env.local` file in the root of your project to configure.
 
 The `.env` file can contain following configurations:
 
-| Key name         | Description                                                  | Example                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-|------------------|--------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ABOUT_SLUGS      | List of slugs used to create Tag cloud                       | `["react", "git"]`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| ABOUT_PARAGRAPHS | List of paragraphs for the about page. Can contain HTML.     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| PROJECTS         | A list of projects, which will be shown on the projects page | <pre> [<br/>&emsp;&emsp;{ <br>&emsp;&emsp;&emsp; "name": "Project name",<br>&emsp;&emsp;&emsp; "description": "Project description",<br>&emsp;&emsp;&emsp; "private": "true" (private or work project), <br>&emsp;&emsp;&emsp; "slugs": ["HTML", "CSS", "Javascript"],<br>&emsp;&emsp;&emsp; "githubUrl": "https://github.com/user/my-repo" (optional),<br>&emsp;&emsp;&emsp; "imageUrl": "https://public-image-url" (optional),<br>&emsp;&emsp;&emsp; "previewUrl": "https://my-project.com" (optional),<br>&emsp;&emsp;}<br>]</pre> |
+| Key name                      | Description                                                                                                                    | Example                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+|-------------------------------|--------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| NEXT_PUBLIC_NAME              | Your full name                                                                                                                 | `Guido Lange`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| NEXT_PUBLIC_JOB_TITLE         | Your job title                                                                                                                 | `Frontend Developer`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| NEXT_PUBLIC_DESCRIPTION       | Description about you. Will be used in description meta tag of the portfolio                                                   | `I'm a frontend developer specialized in building digital products`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| NEXT_PUBLIC_KEYWORDS          | Keywords for the meta tags                                                                                                     | `HTML,CSS,JavaScript,TypeScript,React`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| NEXT_PUBLIC_URL               | Public URL of the portfolio for the `og:url` meta tag                                                                          | `https://guidolange.dev`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| NEXT_PUBLIC_PROFILE_IMAGE_URL | URL to your profile image. The domain of the URL must also be configured in `next.config.js`.                                  | `https://guidolange.dev/myprofileimage.png`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| NEXT_PUBLIC_LOGO_URL          | URL to your logo image. The domain of the URL must also be configured in `next.config.js`.                                     | `https://guidolange.dev/logo.png`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| NEXT_PUBLIC_GITHUB_URL        | URL to your github profile.                                                                                                    | `https://github.com/gylxan`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| NEXT_PUBLIC_LINKEDIN_URL      | URL to your LinkedIn profile.                                                                                                  | `https://linkedin.com/in/guido-lange-1217a71b8/`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| NEXT_PUBLIC_SPOTIFY_URL       | URL to your Spotify profile.                                                                                                   | `https://open.spotify.com/user/gerynix?si=2c87a1e95b83421e`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| NEXT_PUBLIC_COPYRIGHT         | Copyright for your portfolio.                                                                                                  | `© 2022 Designed and developed by me`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| NEXT_PUBLIC_START_PARAGRAPHS  | List of paragraphs to describe yourself on the start page.                                                                     | `["I'm a passionate frontend developer<br/> and build nice products.", "Feel free to contact me!"]`                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| NEXT_PUBLIC_ABOUT_PARAGRAPHS  | List of paragraphs to describe yourself on the about page.                                                                     | `["I'm a passionate frontend developer<br/> and build nice products.", "Feel free to contact me!"]`                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| NEXT_PUBLIC_SKILL_SLUGS       | List of skill slug objects. A slug contains a name and a URL. The project uses simple-icons to determine icons for your slugs. | `[{"name":"TypeScript","url":"https://www.typescriptlang.org/"},{"name":"JavaScript","url":"https://developer.mozilla.org/en-US/docs/Web/JavaScript"}]`                                                                                                                                                                                                                                                                                                                                                                                                         |
+| NEXT_PUBLIC_TOOL_SLUGS        | List of tool slug objects. A slug contains a name and a URL. The project uses simple-icons to determine icons for your slugs.  | `[{"name":"TypeScript","url":"https://www.typescriptlang.org/"},{"name":"JavaScript","url":"https://developer.mozilla.org/en-US/docs/Web/JavaScript"}]`                                                                                                                                                                                                                                                                                                                                                                                                         |
+| NEXT_PUBLIC_PROJECTS          | List of private and work projects you have worked on. All URLs are optional.                                                   | `[{"name":"Douglas Customer App","private":false,"description":"Douglas Customer App for iOS and Android. ","previewUrl":"https://www.douglas.de/de/cp/douglas-app/douglas-app","slugs":["TypeScript","React","Ionic","Capacitor","SASS"]},{"name":"Home Dashboard","description":"A client/server application with a dashboard for your home","private":true,"githubUrl":"https://github.com/gylxan/home-dashboard","imageUrl":"https://background.image-url.png","previewUrl":"https://myhome.onthewifi.com/","slugs":["TypeScript","React","CSS modules"]}]` |
+| NEXT_PUBLIC_EXPERIENCES       | List of experiences at companies and positions shown on the experiences page                                                   | `[{"company":"Company","url":"https://company-url.com","positions":[{"name":"Frontend Developer","startDate":"January 2020", "endData": "January 2023 (optional)", "tasks":["Develop this","Another task"]}]}]`                                                                                                                                                                                                                                                                                                                                                 |
 
-
+## Colors
+All colors can be changed in the `globals.css` for your own design.
+We use three main colors for styling the elements (`--primary`, `--secondary(-ghost)` and `--tertiary`) and a color for the background (`--background`).
 
 ## Start developing
 
@@ -41,6 +53,35 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
 [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+
+
+## Run linting and tests
+
+Linting and tests can be run with
+```bash
+npm run lint
+# or
+yarn lint
+```
+
+and with
+
+```bash
+npm run test
+# or
+yarn test
+```
+
+## Building
+
+The portfolio can be building by simply triggering
+```bash
+npm run build
+# or
+yarn build
+```
+
+After building the portfolio, we also create a sitemap for the portfolio with `next-sitemap`.
 
 ## Learn More
 
