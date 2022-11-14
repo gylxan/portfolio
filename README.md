@@ -36,6 +36,8 @@ The `.env` file can contain following configurations:
 All colors can be changed in the `globals.css` for your own design.
 We use three main colors for styling the elements (`--primary`, `--secondary(-ghost)` and `--tertiary`) and a color for the background (`--background`).
 
+When you change the colors in the `globals.css` you have to adjust them in the `manifest.json`, too.
+
 ## Start developing
 
 First, run the development server:
