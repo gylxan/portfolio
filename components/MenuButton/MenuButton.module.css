@@ -1,6 +1,5 @@
 .menuButton {
-  @apply relative cursor-pointer w-[36px] h-[36px];
-  transform: rotate(0deg);
+  @apply relative cursor-pointer w-[36px] h-[36px] rotate-0;
   transition: 0.5s ease-in-out;
 }
 
@@ -10,8 +9,7 @@
 }
 
 .line {
-  @apply absolute left-0 block h-0.5 w-full rounded-full bg-secondary opacity-100;
-  transform: rotate(0deg);
+  @apply absolute left-0 block h-0.5 w-full rounded-full bg-secondary opacity-100 rotate-0;
   transition: 0.25s ease-in-out;
 }
 
@@ -35,8 +33,7 @@
 }
 
 .open .line:nth-child(1) {
-  transform: rotate(45deg);
-  left: 4px;
+  @apply rotate-45 left-[4px];
 }
 
 .open .line:nth-child(2) {
@@ -44,6 +41,5 @@
 }
 
 .open .line:nth-child(3) {
-  transform: rotate(-45deg);
-  left: 4px;
+  @apply -rotate-45 left-[4px];
 }

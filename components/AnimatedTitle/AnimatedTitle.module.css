@@ -7,8 +7,7 @@
 }
 
 .block {
-  @apply absolute flex h-[inherit] w-0 bg-secondary;
-  animation: mainBlock 2s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
+  @apply absolute flex h-[inherit] w-0 bg-secondary animate-shift-in-left;
 }
 
 .subtitle {
@@ -17,131 +16,21 @@
 }
 
 .subBlock {
-  @apply absolute flex h-[inherit] w-0 bg-secondary;
-  animation: secBlock 2s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
+  @apply absolute flex h-[inherit] w-0 bg-secondary animate-shift-in-left;
   animation-delay: 2s;
 }
 
 .subBlockTitle {
-  @apply text-xs font-normal uppercase tracking-[5px] opacity-0;
-  animation: secFadeIn 2s forwards;
+  @apply text-xs font-normal uppercase text-primary tracking-[5px] opacity-0 animate-fade-in;
   animation-delay: 3.2s;
 }
 
 .blockTitle {
-  @apply relative flex items-baseline text-[32px] opacity-0;
-  animation: mainFadeIn 2s forwards;
+  @apply relative flex items-baseline text-[32px] opacity-0 animate-fade-in;
   animation-delay: 1.6s;
 }
 
 .dot {
-  @apply absolute bottom-[9px] right-[-12px] ml-[5px] mt-[-10px] h-0 w-0 rounded bg-secondary;
-  animation: popIn 0.8s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
+  @apply absolute bottom-[9px] right-[-12px] ml-[5px] mt-[-10px] h-0 w-0 rounded bg-secondary animate-pop-in;
   animation-delay: 2s;
-}
-
-@keyframes mainBlock {
-  0% {
-    width: 0;
-    left: 0;
-  }
-  50% {
-    width: 100%;
-    left: 0;
-  }
-  100% {
-    width: 0;
-    left: 100%;
-  }
-}
-
-@keyframes secBlock {
-  0% {
-    width: 0;
-    left: 0;
-  }
-  50% {
-    width: 100%;
-    left: 0;
-  }
-  100% {
-    width: 0;
-    left: 100%;
-  }
-}
-
-@keyframes mainFadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes popIn {
-  0% {
-    @apply bg-secondary;
-    width: 0;
-    height: 0;
-    border: 0 solid #ddd;
-    opacity: 0;
-  }
-  50% {
-    @apply bg-secondary;
-    width: 10px;
-    height: 10px;
-    opacity: 1;
-    bottom: 45px;
-  }
-  65% {
-    height: 7px;
-    bottom: 0;
-    width: 15px;
-  }
-  80% {
-    width: 10px;
-    height: 10px;
-    bottom: 20px;
-  }
-  100% {
-    @apply bg-secondary;
-    width: 7px;
-    height: 7px;
-    border: 0 solid #222;
-    bottom: 11px;
-  }
-}
-
-@keyframes secFadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0.5;
-  }
-}
-
-@keyframes top {
-  0% {
-    @apply opacity-0 bottom-[-80px];
-  }
-  100% {
-    @apply opacity-100 bottom-0;
-  }
-}
-
-@keyframes icon {
-  0% {
-    @apply opacity-0 scale-0;
-  }
-
-  50% {
-    @apply opacity-100;
-    transform: scale(1.3) rotate(-02deg);
-  }
-
-  100% {
-    @apply bottom-0 opacity-100;
-  }
 }
