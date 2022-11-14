@@ -7,8 +7,12 @@
   @apply -top-2;
 }
 
-.image {
+.imageContainer {
   @apply absolute top-0 left-0 w-full h-full opacity-20 -z-[1] rounded-md;
+}
+
+.image {
+  @apply object-cover;
 }
 
 .description {

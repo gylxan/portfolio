@@ -10,7 +10,7 @@ import Badge from '../Badge/Badge';
 import animationStyles from '../../styles/animations.module.css';
 import { blurImageUrl } from '../../constants/image';
 import styles from './Project.module.css';
-import { Project as IProject } from "../../types/project";
+import { Project as IProject } from '../../types/project';
 
 export type ProjectProps = IProject;
 
@@ -43,9 +43,10 @@ const Project: React.FC<ProjectProps> = ({
       data-testid="project"
     >
       {imageUrl && (
-        <div className={styles.image}>
+        <div className={styles.imageContainer}>
           <Image
             src={imageUrl}
+            className={styles.image}
             alt="background-image"
             layout="fill"
             placeholder="blur"
