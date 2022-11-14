@@ -1,9 +1,9 @@
 {
-  "name": "Guidos Portfolio",
+  "name": "Portfolio",
   "short_name": "Portfolio",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#fff",
+  "background_color": "#11182C",
   "theme_color": "#11182C",
   "orientation": "portrait-primary",
   "icons": [
