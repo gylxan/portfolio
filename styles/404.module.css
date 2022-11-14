@@ -1,52 +1,8 @@
 .title {
-  @apply text-9xl font-extrabold;
+  @apply text-9xl font-extrabold animate-glitch;
   font-size: 96px;
-  animation: glitch 1s linear infinite;
   letter-spacing: -7px;
 }
-
-@keyframes glitch {
-  2%,
-  64% {
-    transform: translate(2px, 0) skew(0deg);
-  }
-  4%,
-  60% {
-    transform: translate(-2px, 0) skew(0deg);
-  }
-  62% {
-    transform: translate(0, 0) skew(5deg);
-  }
-}
-
-@keyframes glitchTop {
-  2%,
-  64% {
-    transform: translate(2px, -2px);
-  }
-  4%,
-  60% {
-    transform: translate(-2px, 2px);
-  }
-  62% {
-    transform: translate(13px, -1px) skew(-13deg);
-  }
-}
-
-@keyframes glitchBottom {
-  2%,
-  64% {
-    transform: translate(-2px, 0);
-  }
-  4%,
-  60% {
-    transform: translate(-2px, 0);
-  }
-  62% {
-    transform: translate(-22px, 5px) skew(21deg);
-  }
-}
-
 
 .title:before,
 .title:after {
@@ -56,13 +12,13 @@
 }
 
 .title:before {
-  animation: glitchTop 1s linear infinite;
+  @apply animate-glitch-top;
   clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
 }
 
 
 
 .title:after {
-  animation: glitchBottom 1.5s linear infinite;
+  @apply animate-glitch-bottom;
   clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
 }

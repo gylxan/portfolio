@@ -7,10 +7,9 @@ import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 import clsx from 'clsx';
 import Image from 'next/image';
 import Badge from '../Badge/Badge';
-import animationStyles from '../../styles/animations.module.css';
 import { blurImageUrl } from '../../constants/image';
-import styles from './Project.module.css';
 import { Project as IProject } from '../../types/project';
+import styles from './Project.module.css';
 
 export type ProjectProps = IProject;
 
@@ -22,15 +21,12 @@ const Project: React.FC<ProjectProps> = ({
   githubUrl,
   slugs,
   imageUrl,
-  delay = 0,
 }) => {
-  const { ref, inView } = useInView({ triggerOnce: true });
+  const { ref, inView } = useInView({ triggerOnce: true, delay: 300 });
 
   const className = clsx(
     styles.project,
-    animationStyles.animatedFadeInUp,
-    inView && animationStyles.fadeInUp,
-    'shadow-[0px_0px_0px_1px_rgba(255,255,255)_inset]',
+    inView && 'animate-fade-in-up',
   );
 
   const url = githubUrl || previewUrl;
@@ -39,7 +35,6 @@ const Project: React.FC<ProjectProps> = ({
       key={name}
       ref={ref}
       className={className}
-      style={{ animationDelay: `${delay}ms` }}
       data-testid="project"
     >
       {imageUrl && (
