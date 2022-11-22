@@ -2,12 +2,15 @@ import { render, screen } from '@testing-library/react';
 import Header from './Header';
 
 describe('<Header />', function () {
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
+  const originalProcess = process.env;
 
-  afterAll(() => {
-    jest.resetAllMocks();
+
+  beforeEach(() => {
+    process.env.NEXT_PUBLIC_LOGO_URL = "https://myurl/logo.png"
+  })
+
+  afterEach(() => {
+    process.env = originalProcess;
   });
 
   it('renders', async () => {
