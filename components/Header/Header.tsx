@@ -13,7 +13,7 @@ const Header = () => {
         underlined={false}
         coloredHover={false}
       >
-        <Image src="/icons/icon-72x72.png" alt="logo" layout="fill" priority />
+        <Image src={process.env.NEXT_PUBLIC_LOGO_URL || ''} alt="logo" layout="fill" priority />
       </Link>
 
       <Menu />
