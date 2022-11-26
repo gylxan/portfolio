@@ -7,6 +7,7 @@ My portfolio website with Next.js and Tailwind CSS.
 # Configuration
 
 ## Environment
+
 Most parts of the portfolio can be configured by environment variables.
 Create a `.env.local` file in the root of your project to configure.
 
@@ -34,13 +35,16 @@ The `.env` file can contain following configurations:
 | NEXT_PUBLIC_EXPERIENCES       | List of experiences at companies and positions shown on the experiences page                                                                           | `[{"company":"Company","url":"https://company-url.com","positions":[{"name":"Frontend Developer","startDate":"January 2020", "endData": "January 2023 (optional)", "tasks":["Develop this","Another task"]}]}]`                                                                                                                                                                                                                                                                                                                                                 |
 
 ## Colors
+
 All colors can be changed in the `globals.css` for your own design.
 We use three main colors for styling the elements (`--primary`, `--secondary(-ghost)` and `--tertiary`) and a color for the background (`--background`).
 
 When you change the colors in the `globals.css` you have to adjust them in the `manifest.json`, too.
 
 ## Manifest
-To customize the portfolio for your needs, 
+
+To customize the portfolio for your needs, you have to adjust the `manifest.json` and define your icons and colors there.
+Check also the `_document.tsx` for your customizations.
 
 ## Start developing
 
@@ -60,10 +64,10 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-
 ## Run linting and tests
 
 Linting and tests can be run with
+
 ```bash
 npm run lint
 # or
@@ -81,6 +85,7 @@ yarn test
 ## Building
 
 The portfolio can be building by simply triggering
+
 ```bash
 npm run build
 # or
