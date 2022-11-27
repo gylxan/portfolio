@@ -1,9 +1,8 @@
-import React, { HTMLProps, useRef } from 'react';
+import { HTMLProps, PropsWithChildren, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import styles from './Tab.module.css';
 
-export interface TabProps
-  extends React.PropsWithChildren<HTMLProps<HTMLDivElement>> {
+export interface TabProps extends PropsWithChildren<HTMLProps<HTMLDivElement>> {
   active?: boolean;
 }
 

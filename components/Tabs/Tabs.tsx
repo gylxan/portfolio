@@ -1,7 +1,7 @@
 import React, { HTMLProps, useState } from 'react';
-import { TabProps } from './Tab/Tab';
+import type { TabProps } from './Tab/Tab';
 import clsx from 'clsx';
-import Button from '../Button/Button';
+import { Button } from '../';
 
 import styles from './Tabs.module.css';
 

@@ -1,11 +1,10 @@
-import Page from '../components/Page/Page';
-import AnimatedTitle from '../components/AnimatedTitle/AnimatedTitle';
+import { Page, AnimatedTitle, SlugIcon } from '../components';
 
 import { parseHtml } from '../utils/htmlParse';
 import { parseJSON } from '../utils/json';
-import SlugIcon, { Slug, SlugExtended } from '../components/SlugIcon/SlugIcon';
+import type { Slug, SlugExtended } from '../components/SlugIcon/SlugIcon';
 import * as simpleIcons from 'simple-icons/icons';
-import { SimpleIcon } from 'simple-icons';
+import type { SimpleIcon } from 'simple-icons';
 
 interface AboutProps {
   skillSlugs: SlugExtended[];

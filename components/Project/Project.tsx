@@ -1,19 +1,17 @@
-import React from 'react';
 import { useInView } from 'react-intersection-observer';
-import Link from '../Link/Link';
+import { Badge, Link } from '../';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 import clsx from 'clsx';
 import Image from 'next/image';
-import Badge from '../Badge/Badge';
 import { blurImageUrl } from '../../constants/image';
-import { Project as IProject } from '../../types/project';
+import type { Project as IProject } from '../../types/project';
 import styles from './Project.module.css';
 
 export type ProjectProps = IProject;
 
-const Project: React.FC<ProjectProps> = ({
+const Project = ({
   name,
   description,
   private: isPrivate,
@@ -21,7 +19,7 @@ const Project: React.FC<ProjectProps> = ({
   githubUrl,
   slugs,
   imageUrl,
-}) => {
+}: ProjectProps) => {
   const { ref, inView } = useInView({ triggerOnce: true, delay: 300 });
 
   const className = clsx(styles.project, inView && 'animate-fade-in-up');
@@ -37,7 +35,9 @@ const Project: React.FC<ProjectProps> = ({
             alt={`Background image of ${name} project`}
             placeholder="blur"
             blurDataURL={blurImageUrl}
-            sizes={"(min-width: 1555px) 500px, (min-width: 1024px) 400px, (min-width: 768px) 340px, 600px"}
+            sizes={
+              '(min-width: 1555px) 500px, (min-width: 1024px) 400px, (min-width: 768px) 340px, 600px'
+            }
             fill
           />
         </div>

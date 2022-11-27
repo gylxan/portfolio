@@ -1,13 +1,9 @@
-import Link from '../Link/Link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faGithub,
-  faLinkedin,
-  faSpotify,
-} from '@fortawesome/free-brands-svg-icons';
+import { faGithub, faLinkedin, faSpotify, } from '@fortawesome/free-brands-svg-icons';
+import { Link } from '../';
 
 const Footer = () => (
-  <footer className="flex flex-col grow items-center justify-between py-5 gap-4 px-4 sm:flex-row md:px-8">
+  <footer className="flex grow flex-col items-center justify-between gap-4 py-5 px-4 sm:flex-row md:px-8">
     <div className="flex gap-4">
       {process.env.NEXT_PUBLIC_LINKEDIN_URL && (
         <Link
@@ -42,7 +38,9 @@ const Footer = () => (
       )}
     </div>
     {process.env.NEXT_PUBLIC_COPYRIGHT && (
-      <div data-testid="copyright" className="text-sm">{process.env.NEXT_PUBLIC_COPYRIGHT}</div>
+      <div data-testid="copyright" className="text-sm">
+        {process.env.NEXT_PUBLIC_COPYRIGHT}
+      </div>
     )}
   </footer>
 );

@@ -1,7 +1,6 @@
-import Link from '../Link/Link';
 import { Routes } from '../../constants/routes';
 import Image from 'next/image';
-import Menu from '../Menu/Menu';
+import { Link, Menu } from '../';
 
 const Header = () => {
   return (

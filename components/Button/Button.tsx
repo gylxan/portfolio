@@ -1,12 +1,6 @@
-import {
-  AnchorHTMLAttributes,
-  ButtonHTMLAttributes,
-  FC,
-  HTMLProps,
-  PropsWithChildren,
-} from 'react';
-import Link from '../Link/Link';
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes, FC, HTMLProps, PropsWithChildren, } from 'react';
 import clsx from 'clsx';
+import { Link } from '../';
 
 export type ButtonProps = HTMLProps<
   | AnchorHTMLAttributes<HTMLAnchorElement>
