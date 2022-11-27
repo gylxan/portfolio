@@ -6,7 +6,7 @@
   --white: #fff;
   --dark-blue: #11182C;
   --red: #FF8080;
-  --red-ghost: rgba(255, 128, 128, 0.025);
+  --red-ghost: rgba(255, 128, 128, 0.1);
   --grey: rgb(171, 175, 185);
 
   --background: var(--dark-blue);
