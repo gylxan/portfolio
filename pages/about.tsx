@@ -4,7 +4,8 @@ import AnimatedTitle from '../components/AnimatedTitle/AnimatedTitle';
 import { parseHtml } from '../utils/htmlParse';
 import { parseJSON } from '../utils/json';
 import SlugIcon, { Slug, SlugExtended } from '../components/SlugIcon/SlugIcon';
-import simpleIcons from 'simple-icons';
+import * as simpleIcons from 'simple-icons/icons';
+import { SimpleIcon } from 'simple-icons';
 
 interface AboutProps {
   skillSlugs: SlugExtended[];
@@ -35,8 +36,10 @@ const About = ({ skillSlugs, toolSlugs, paragraphs }: AboutProps) => {
           ))}
         </div>
         <div className="container flex flex-col gap-10">
-          {skillSlugs.length && renderSlugSection('My tech stack and skills', skillSlugs)}
-          {toolSlugs.length && renderSlugSection('Other tools I use', toolSlugs)}
+          {skillSlugs.length &&
+            renderSlugSection('My tech stack and skills', skillSlugs)}
+          {toolSlugs.length &&
+            renderSlugSection('Other tools I use', toolSlugs)}
         </div>
       </div>
     </Page>
@@ -44,12 +47,15 @@ const About = ({ skillSlugs, toolSlugs, paragraphs }: AboutProps) => {
 };
 
 function getSlugData(slug: Slug) {
-  const slugName = slug.name.toLowerCase();
+  const slugName = `si${slug.name.charAt(0).toUpperCase()}${slug.name
+    .slice(1)
+    .toLowerCase()}`;
+  const icons = simpleIcons as Record<string, SimpleIcon>;
   return {
     ...slug,
-    path: simpleIcons[slugName].path,
-    hex: simpleIcons[slugName].hex,
-    title: simpleIcons[slugName].title,
+    path: icons[slugName].path,
+    hex: icons[slugName].hex,
+    title: icons[slugName].title,
   };
 }
 
