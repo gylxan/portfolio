@@ -4,12 +4,13 @@ import clsx from 'clsx';
 
 import styles from './Link.module.css';
 
-interface LinkProps
-  extends Omit<
-      React.AnchorHTMLAttributes<HTMLAnchorElement>,
-      keyof NextLinkProps
-    >,
-    NextLinkProps {
+export type LinkType = Omit<
+  React.AnchorHTMLAttributes<HTMLAnchorElement>,
+  keyof NextLinkProps
+> &
+  NextLinkProps;
+
+interface LinkProps extends LinkType {
   underlined?: boolean;
   coloredHover?: boolean;
 }
