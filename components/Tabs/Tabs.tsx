@@ -1,23 +1,26 @@
-import React, { HTMLProps, useState } from 'react';
+import {
+  Children,
+  cloneElement,
+  HTMLProps,
+  MouseEvent,
+  ReactElement,
+  useState,
+} from 'react';
 import type { TabProps } from './Tab/Tab';
 import clsx from 'clsx';
 import { Button } from '../';
+import type { LinkOrButtonType } from '../Button/Button';
 
 import styles from './Tabs.module.css';
 
 interface TabsProps extends HTMLProps<HTMLDivElement> {
-  children: React.ReactElement<TabProps> | React.ReactElement<TabProps>[];
+  children: ReactElement<TabProps> | ReactElement<TabProps>[];
 }
 
 export const Tabs = ({ children, className, ...props }: TabsProps) => {
   const [activeTab, setActiveTab] = useState('0');
 
-  function handleTabClick(
-    event: React.MouseEvent<
-      | React.AnchorHTMLAttributes<HTMLAnchorElement>
-      | React.ButtonHTMLAttributes<HTMLButtonElement>
-    >,
-  ) {
+  function handleTabClick(event: MouseEvent<LinkOrButtonType>) {
     setActiveTab((event.currentTarget.id ?? '-').split('-')[1]);
   }
 
@@ -36,7 +39,7 @@ export const Tabs = ({ children, className, ...props }: TabsProps) => {
   return (
     <div className={clsx(className, styles.tabs)}>
       <div {...props} className={styles.tabList} role="tablist">
-        {React.Children.map(children, (child, index) => {
+        {Children.map(children, (child, index) => {
           const isActive = isTabActive(index);
           return (
             <Button
@@ -54,8 +57,8 @@ export const Tabs = ({ children, className, ...props }: TabsProps) => {
         })}
       </div>
       <div>
-        {React.Children.map(children, (child, index) => {
-          return React.cloneElement(
+        {Children.map(children, (child, index) => {
+          return cloneElement(
             child,
             {
               ...child.props,

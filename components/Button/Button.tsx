@@ -8,9 +8,11 @@ import clsx from 'clsx';
 import { Link } from '../';
 import type { LinkType } from '../Link/Link';
 
-export type ButtonProps = HTMLProps<
-  LinkType | ButtonHTMLAttributes<HTMLButtonElement>
->;
+export type LinkOrButtonType =
+  | LinkType
+  | ButtonHTMLAttributes<HTMLButtonElement>;
+
+export type ButtonProps = HTMLProps<LinkOrButtonType>;
 
 const Button: FC<PropsWithChildren<ButtonProps>> = (props) => {
   const { children, className } = props;
