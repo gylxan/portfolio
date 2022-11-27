@@ -1,9 +1,15 @@
-import type { HTMLProps } from 'react';
+import React from 'react';
+import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 import clsx from 'clsx';
 
 import styles from './Link.module.css';
 
-interface LinkProps extends HTMLProps<HTMLAnchorElement> {
+interface LinkProps
+  extends Omit<
+      React.AnchorHTMLAttributes<HTMLAnchorElement>,
+      keyof NextLinkProps
+    >,
+    NextLinkProps {
   underlined?: boolean;
   coloredHover?: boolean;
 }
@@ -13,7 +19,7 @@ const Link = ({
   coloredHover = true,
   ...props
 }: LinkProps) => (
-  <a
+  <NextLink
     {...props}
     className={clsx(
       styles.link,
