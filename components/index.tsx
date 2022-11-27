@@ -11,4 +11,3 @@ export { default as Project } from './Project/Project';
 export { default as SlugIcon } from './SlugIcon/SlugIcon';
 export { default as Tabs } from './Tabs/Tabs';
 export { default as Tab } from './Tabs/Tab/Tab';
-export { default as Title } from './Tile/Tile';
