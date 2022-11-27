@@ -70,4 +70,14 @@ describe('<Menu />', () => {
 
     expect(document.querySelector('body')).toHaveClass('menu-open');
   });
+
+  it('closes the burger menu and redirects on click on link in burger menu', () => {
+    render(<Menu />);
+    fireEvent.click(screen.getByRole('button'));
+
+    fireEvent.click(document.querySelectorAll('.burgerMenuListItem a')[0]);
+
+    expect(document.querySelector('body')).not.toHaveClass('menu-open');
+    expect(document.querySelector('.burgerMenu')).not.toHaveClass('open');
+  });
 });

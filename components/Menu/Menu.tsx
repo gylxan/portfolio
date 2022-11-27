@@ -30,6 +30,10 @@ const Menu = () => {
     }
   }
 
+  function handleLinkClick() {
+    toggleMenu(false);
+  }
+
   function handleMenuButtonClick(event: MouseEvent<HTMLButtonElement>) {
     event.stopPropagation();
     toggleMenu();
@@ -50,13 +54,17 @@ const Menu = () => {
     }
   }
 
-  function renderMenu(listClassname: string, listItemClassname?: string) {
+  function renderMenu(
+    listClassname: string,
+    listItemClassname?: string,
+    linkClickHandler?: () => void,
+  ) {
     return (
       <ol className={listClassname}>
         {menu.map(({ href, name }) => {
           return (
             <li key={href} className={listItemClassname}>
-              <Link href={href} underlined={false}>
+              <Link href={href} underlined={false} onClick={linkClickHandler}>
                 {name}
               </Link>
             </li>
@@ -81,7 +89,7 @@ const Menu = () => {
         ref={ref}
       >
         <nav>
-          {renderMenu(styles.burgerMenuList, styles.burgerMenuListItem)}
+          {renderMenu(styles.burgerMenuList, styles.burgerMenuListItem, handleLinkClick)}
         </nav>
       </aside>
     </div>
