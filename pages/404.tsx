@@ -1,7 +1,6 @@
 import type { NextPage } from 'next';
-import Page from '../components/Page/Page';
+import { Page, Link } from '../components';
 import { Routes } from '../constants/routes';
-import Link from '../components/Link/Link';
 import styles from '../styles/404.module.css';
 
 const FourOhFour: NextPage = () => {

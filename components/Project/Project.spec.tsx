@@ -41,7 +41,7 @@ describe('<Project />', () => {
     const imageUrl = 'http://myimageurl';
     render(<Project {...props} imageUrl={imageUrl} />);
 
-    expect(screen.getByAltText('background-image')).toBeInTheDocument();
+    expect(screen.getByAltText(`Background image of ${props.name} project`)).toBeInTheDocument();
   });
 
   it('should render as private project, when private is true', () => {

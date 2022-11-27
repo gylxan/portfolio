@@ -1,12 +1,9 @@
-import Page from '../components/Page/Page';
+import { AnimatedTitle, Button, Link, Page } from '../components';
 
-import AnimatedTitle from '../components/AnimatedTitle/AnimatedTitle';
-import Button from '../components/Button/Button';
 import Image from 'next/image';
-import Link from '../components/Link/Link';
 import { parseHtml } from '../utils/htmlParse';
 import { parseJSON } from '../utils/json';
-import { GetStaticProps } from 'next';
+import type { GetStaticProps } from 'next';
 import { blurImageUrl } from '../constants/image';
 
 interface Props {

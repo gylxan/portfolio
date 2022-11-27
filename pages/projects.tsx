@@ -1,8 +1,7 @@
-import Page from '../components/Page/Page';
-import AnimatedTitle from '../components/AnimatedTitle/AnimatedTitle';
-import Project, { ProjectProps } from '../components/Project/Project';
+import { AnimatedTitle, Page, Project } from '../components';
+import type { ProjectProps } from '../components/Project/Project';
 import { parseJSON } from '../utils/json';
-import { GetStaticProps } from 'next';
+import type { GetStaticProps } from 'next';
 
 interface Props {
   projects: ProjectProps[];

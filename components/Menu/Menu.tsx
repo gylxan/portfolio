@@ -1,8 +1,7 @@
-import React, { MouseEvent, useRef, useState } from 'react';
-import Link from '../Link/Link';
+import { MouseEvent, useRef, useState } from 'react';
+import { Link, MenuButton } from '../';
 import { menu } from '../../constants/routes';
 import clsx from 'clsx';
-import MenuButton from '../MenuButton/MenuButton';
 import useOutsideClick from '../../hooks/useOutsideClick';
 import useResize from '../../hooks/useResize';
 import styles from './Menu.module.css';

@@ -1,4 +1,4 @@
-import React, { HTMLProps } from 'react';
+import type { HTMLProps } from 'react';
 import clsx from 'clsx';
 import styles from './MenuButton.module.css';
 
@@ -6,11 +6,7 @@ interface MenuButtonProps extends HTMLProps<HTMLButtonElement> {
   open: boolean;
 }
 
-const MenuButton: React.FC<MenuButtonProps> = ({
-  open,
-  className,
-  ...otherProps
-}) => {
+const MenuButton = ({ open, className, ...otherProps }: MenuButtonProps) => {
   return (
     <button
       {...otherProps}

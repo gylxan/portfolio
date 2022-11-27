@@ -1,17 +1,18 @@
-import {
-  AnchorHTMLAttributes,
+import type {
   ButtonHTMLAttributes,
   FC,
   HTMLProps,
   PropsWithChildren,
 } from 'react';
-import Link from '../Link/Link';
 import clsx from 'clsx';
+import { Link } from '../';
+import type { LinkType } from '../Link/Link';
 
-export type ButtonProps = HTMLProps<
-  | AnchorHTMLAttributes<HTMLAnchorElement>
-  | ButtonHTMLAttributes<HTMLButtonElement>
->;
+export type LinkOrButtonType =
+  | LinkType
+  | ButtonHTMLAttributes<HTMLButtonElement>;
+
+export type ButtonProps = HTMLProps<LinkOrButtonType>;
 
 const Button: FC<PropsWithChildren<ButtonProps>> = (props) => {
   const { children, className } = props;
@@ -20,7 +21,7 @@ const Button: FC<PropsWithChildren<ButtonProps>> = (props) => {
   if ('href' in props) {
     return (
       <Link
-        {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)}
+        {...(props as LinkType)}
         underlined={false}
         coloredHover={false}
         className={clsx(defaultClassName, className)}

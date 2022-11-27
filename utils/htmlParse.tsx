@@ -1,10 +1,10 @@
 import parse, {
   DOMNode,
+  domToReact,
   Element,
   HTMLReactParserOptions,
-  domToReact,
 } from 'html-react-parser';
-import Link from '../components/Link/Link';
+import { Link } from '../components';
 
 const options: HTMLReactParserOptions = {
   replace: (domNode: DOMNode) => {

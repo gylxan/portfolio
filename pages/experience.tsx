@@ -1,11 +1,7 @@
-import Page from '../components/Page/Page';
-import AnimatedTitle from '../components/AnimatedTitle/AnimatedTitle';
+import { AnimatedTitle, Link, Page, Tab, Tabs } from '../components';
 import { parseJSON } from '../utils/json';
-import Link from '../components/Link/Link';
-import Tabs from '../components/Tabs/Tabs';
-import Tab from '../components/Tabs/Tab/Tab';
-import { GetStaticProps } from 'next';
-import { Experience as IExperience } from '../types/experience';
+import type { GetStaticProps } from 'next';
+import type { Experience as IExperience } from '../types/experience';
 
 interface ExperienceProps {
   experiences: IExperience[];

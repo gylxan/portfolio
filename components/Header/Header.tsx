@@ -1,11 +1,10 @@
-import Link from '../Link/Link';
 import { Routes } from '../../constants/routes';
 import Image from 'next/image';
-import Menu from '../Menu/Menu';
+import { Link, Menu } from '../';
 
 const Header = () => {
   return (
-    <header className="flex h-24 w-full grow items-center justify-between gap-4 px-4 md:px-8 text-center">
+    <header className="flex h-24 w-full grow items-center justify-between gap-4 px-4 text-center md:px-8">
       <Link
         href={Routes.Home}
         data-testid="logo"
@@ -13,7 +12,13 @@ const Header = () => {
         underlined={false}
         coloredHover={false}
       >
-        <Image src={process.env.NEXT_PUBLIC_LOGO_URL || ''} alt="logo" layout="fill" priority />
+        <Image
+          src={process.env.NEXT_PUBLIC_LOGO_URL || ''}
+          alt="logo"
+          sizes="40px"
+          fill
+          priority
+        />
       </Link>
 
       <Menu />
