@@ -24,28 +24,21 @@ const Project: React.FC<ProjectProps> = ({
 }) => {
   const { ref, inView } = useInView({ triggerOnce: true, delay: 300 });
 
-  const className = clsx(
-    styles.project,
-    inView && 'animate-fade-in-up',
-  );
+  const className = clsx(styles.project, inView && 'animate-fade-in-up');
 
   const url = githubUrl || previewUrl;
   return (
-    <div
-      key={name}
-      ref={ref}
-      className={className}
-      data-testid="project"
-    >
+    <div key={name} ref={ref} className={className} data-testid="project">
       {imageUrl && (
         <div className={styles.imageContainer}>
           <Image
             src={imageUrl}
             className={styles.image}
-            alt="background-image"
-            layout="fill"
+            alt={`Background image of ${name} project`}
             placeholder="blur"
             blurDataURL={blurImageUrl}
+            sizes={"(min-width: 1555px) 500px, (min-width: 1024px) 400px, (min-width: 768px) 340px, 600px"}
+            fill
           />
         </div>
       )}
