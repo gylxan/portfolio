@@ -5,6 +5,7 @@ import { parseHtml } from '../utils/htmlParse';
 import { parseJSON } from '../utils/json';
 import type { GetStaticProps } from 'next';
 import { blurImageUrl } from '../constants/image';
+import { Routes } from '../constants/routes';
 
 interface Props {
   name: string;
@@ -43,7 +44,7 @@ const Home = ({ name, jobTitle, profileImageUrl, paragraphs }: Props) => {
         {paragraphs.map((intro) => (
           <p key={intro}>{parseHtml(intro)}</p>
         ))}
-        <Button href="/about">Check me out!</Button>
+        <Button href={Routes.About}>Check me out!</Button>
       </div>
     </Page>
   );
