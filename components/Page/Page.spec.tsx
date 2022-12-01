@@ -63,4 +63,14 @@ describe('<Page />', () => {
       'container mx-auto px-4 flex h-full flex-col justify-center',
     );
   });
+
+  it('should render with given className', () => {
+    const { container } = render(
+      <Page {...props} className="MyClass">
+        {mockChild}
+      </Page>,
+    );
+
+    expect(container.querySelector('div')).toHaveClass('MyClass');
+  });
 });
