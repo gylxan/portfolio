@@ -1,5 +1,5 @@
 import { Post } from '../../types/post';
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import PostList from './PostList';
 import * as hooks from '../../hooks/useSanityImage';
 
@@ -16,8 +16,8 @@ const mockPosts: Post[] = [
       asset: {
         _ref: '123',
         metadata: {
-          lqid: '12324'
-        }
+          lqid: '12324',
+        },
       },
     },
     categories: [
@@ -41,8 +41,8 @@ const mockPosts: Post[] = [
       asset: {
         _ref: '234',
         metadata: {
-          lqid: '4343211'
-        }
+          lqid: '4343211',
+        },
       },
     },
     categories: [
@@ -77,9 +77,11 @@ describe('<PostList/>', () => {
     jest.resetAllMocks();
   });
 
-  it('should render', () => {
-    render(<PostList posts={mockPosts} />);
+  it('should render', async () => {
+    await act(() => {
+      render(<PostList posts={mockPosts} />);
+    });
 
-    expect(screen.getAllByRole('link')).toHaveLength(2)
+    expect(screen.getAllByRole('link')).toHaveLength(2);
   });
 });
