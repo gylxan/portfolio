@@ -1,4 +1,4 @@
-import richtextEditor from './objects/richtextEditor';
+import richtextEditor from './objects/richtextEditor.jsx';
 
 export default {
   name: 'post',
@@ -30,9 +30,13 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
-      name: "mainImage",
+      name: 'mainImage',
       type: 'image',
-      title: "Main Image"
+      title: 'Main Image',
+      options: {
+        hotspot: true,
+        metadata: ['lqip', ''],
+      },
     },
     {
       name: 'categories',

@@ -1,12 +1,12 @@
 // RichTextEditor.js
-import link from './link';
-import React from 'react';
+import link from './link.js';
 
 import {
   AiOutlineAlignRight,
   AiOutlineAlignLeft,
   AiOutlineAlignCenter,
 } from 'react-icons/ai';
+import React from "react";
 
 const alignLeftRender = (props) => (
   <span style={{ display: 'flex', justifyContent: 'start' }}>
@@ -29,7 +29,16 @@ export default {
   title: 'Content',
   type: 'array',
   of: [
-    { type: 'image' },
+    {
+      type: 'image',
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative text',
+        },
+      ],
+    },
     { type: 'code' },
     {
       type: 'block',

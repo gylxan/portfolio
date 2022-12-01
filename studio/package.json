@@ -4,7 +4,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "package.json",
-  "author": "Guido Lange <guidolange90@gmail.com>",
+  "author": {
+    "name": "Guido Lange",
+    "url": "https://github.com/gylxan"
+  },
   "license": "UNLICENSED",
   "scripts": {
     "start": "sanity start",
@@ -20,17 +23,15 @@
     "@sanity/default-layout": "^2.35.2",
     "@sanity/default-login": "^2.35.2",
     "@sanity/desk-tool": "^2.35.2",
-    "@sanity/eslint-config-studio": "^2.0.1",
     "@sanity/vision": "^2.35.2",
     "eslint": "^8.6.0",
-    "prettier": "^2.8.0",
     "prop-types": "^15.7",
-    "react": "^17.0",
+    "react": "^17.0.2",
     "react-dom": "^17.0",
     "react-icons": "^4.6.0",
     "styled-components": "^5.2.0"
   },
   "devDependencies": {
-    "typescript": "^4.9.3"
+    "@sanity/eslint-config-studio": "^2.0.1"
   }
 }
