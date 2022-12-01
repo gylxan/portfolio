@@ -1,7 +1,7 @@
 import { groq } from 'next-sanity';
 
 export const allPostQuery = groq`
-*[_type == "post"] | order(publishedAt desc, _createdAt desc) {
+*[_type == "post"] | order(_createdAt desc) {
   ...,
   'slug': slug.current,
   categories[]->,
@@ -23,6 +23,18 @@ export const singlePostQuery = groq`
       ...,
       metadata
     }
+  },
+  "content": content[]{
+    ...,
+    ...select(
+      _type == "image" => {
+        ...,
+        "asset": asset-> {
+          ...,
+          metadata
+        }
+      } 
+    )
   },
   "estReadingTime": round(length(pt::text(content)) / 5 / 180 )
 }
