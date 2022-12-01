@@ -113,6 +113,9 @@ module.exports = {
       screens: {
         '-sm': { max: '639px' },
       },
+      transitionProperty: {
+        top: 'top',
+      },
       translate: {
         'screen-w': '100vw',
       },
