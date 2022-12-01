@@ -18,6 +18,6 @@ interface Category {
   description: string;
 }
 
-interface SanityImage extends SanityImageObject {
+export interface SanityImage extends SanityImageObject {
   asset: SanityReference & SanityAsset;
 }
