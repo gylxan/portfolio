@@ -10,7 +10,7 @@ export type NextLinkType = Omit<
 > &
   NextLinkProps;
 
-type LinkProps = (
+export type LinkProps = (
   | NextLinkType
   | React.AnchorHTMLAttributes<HTMLAnchorElement>
 ) & {
