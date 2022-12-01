@@ -17,7 +17,7 @@ const Page = ({ fullHeight, title, className, ...props }: PageProps) => (
     <div
       {...props}
       className={clsx(
-        'container mx-auto px-4 md:px-8',
+        'container mx-auto px-4 md:px-8 max-w-screen-lg',
         fullHeight
           ? 'flex h-full flex-col justify-center'
           : 'mt-4 mb-6 md:mt-12',
