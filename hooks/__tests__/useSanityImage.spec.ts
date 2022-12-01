@@ -3,13 +3,6 @@ import useSanityImage from '../useSanityImage';
 import { SanityImageObject } from '@sanity/image-url/lib/types/types';
 import { useNextSanityImage } from 'next-sanity-image';
 
-jest.mock('../../utils/sanity', () => {
-  return {
-    __esModule: true,
-    default: {},
-  };
-});
-
 jest.mock('next-sanity-image', () => ({
   useNextSanityImage: jest.fn(),
 }));
@@ -22,6 +15,7 @@ describe('useSanityImage', () => {
   beforeEach(() => {
     useNextSanityImageMock.mockReturnValue(imageProps);
   });
+
   afterEach(() => {
     jest.clearAllMocks();
   });
