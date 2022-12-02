@@ -1,5 +1,5 @@
 .box {
-  @apply max-w-[260px] max-h-32 relative flex justify-center flex-col;
+  @apply max-w-fit max-h-32 relative flex justify-center flex-col ;
 }
 
 .title {
