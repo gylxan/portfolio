@@ -61,4 +61,19 @@ describe('<Image />', () => {
 
     expect(screen.queryByRole('img')).not.toBeInTheDocument();
   });
+
+  it('should render with default values', async () => {
+    await act(() => {
+      render(
+        <SanityImage
+          {...props}
+          value={{ ...value, alt: '', asset: { ...value.asset, metadata: {} } }}
+        />,
+      );
+    });
+
+    expect(screen.getByRole('img')).toBeInTheDocument();
+    expect(screen.getByRole('img').getAttribute('alt')).toBe(' ');
+    expect(screen.getByRole('img').getAttribute('loading')).toBe('lazy');
+  });
 });
