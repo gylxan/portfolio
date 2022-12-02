@@ -5,7 +5,7 @@ import {
   AiOutlineAlignLeft,
   AiOutlineAlignCenter,
 } from 'react-icons/ai';
-import React from "react";
+import React from 'react';
 
 const alignLeftRender = (props) => (
   <span style={{ display: 'flex', justifyContent: 'start' }}>
