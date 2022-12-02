@@ -38,3 +38,7 @@ yarn-error.log*
 
 # studio output
 /public/studio
+
+# service worker (auto-generated)
+/public/sw.js
+/public/workbox-*.js
