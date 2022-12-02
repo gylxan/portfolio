@@ -1,16 +1,16 @@
 import { blurImageUrl } from '../../../constants/image';
 import NextImage from 'next/image';
 import { PortableTextTypeComponentProps } from '@portabletext/react/src';
-import { SanityImage } from '../../../types/post';
+import type { SanityImage as ISanityImage } from '../../../types/post';
 import useSanityImage from "../../../hooks/useSanityImage";
 
-interface ImageValue extends SanityImage {
+interface ImageValue extends ISanityImage {
   alt: string;
 }
 
 export type ImageProps = PortableTextTypeComponentProps<ImageValue>;
 
-const Image = ({ value }: ImageProps) => {
+const SanityImage = ({ value }: ImageProps) => {
   const imageProps = useSanityImage(value);
   if (!imageProps) {
     return null;
@@ -28,4 +28,4 @@ const Image = ({ value }: ImageProps) => {
   );
 };
 
-export default Image;
+export default SanityImage;

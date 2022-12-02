@@ -1,5 +1,5 @@
 import { act, render, screen } from '@testing-library/react';
-import Image, { ImageProps } from '../../types/Image';
+import SanityImage, { ImageProps } from '../../types/SanityImage';
 import * as hooks from '../../../../hooks/useSanityImage';
 
 jest.mock('../../../../hooks/useSanityImage');
@@ -45,7 +45,7 @@ describe('<Image />', () => {
 
   it('should render', async () => {
     await act(() => {
-      render(<Image {...props} />);
+      render(<SanityImage {...props} />);
     });
 
     expect(screen.getByRole('img')).toBeInTheDocument();
@@ -56,7 +56,7 @@ describe('<Image />', () => {
   it('should render null, when imageProps are null', async () => {
     useSanityMock.mockReturnValue(null);
     await act(() => {
-      render(<Image {...props} />);
+      render(<SanityImage {...props} />);
     });
 
     expect(screen.queryByRole('img')).not.toBeInTheDocument();

@@ -3,13 +3,13 @@ import {
   PortableTextMarkComponentProps,
   PortableTextProps,
 } from '@portabletext/react';
-import Image from './types/Image';
+import SanityImage from './types/SanityImage';
 import Code from './types/Code';
 import Link from './marks/Link';
 
 const components = {
   types: {
-    image: Image,
+    image: SanityImage,
     code: Code,
   },
   marks: {
