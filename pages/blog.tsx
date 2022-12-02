@@ -13,7 +13,9 @@ const Blog = ({ posts }: BlogProps) => {
     <Page title="Blog">
       <AnimatedTitle title="Blog" />
       <div className="container mt-8">
-        <span className="mb-4 flex justify-end">{posts.length} Posts</span>
+        <span className="mb-4 flex justify-end">
+          {posts.length} {posts.length === 1 ? 'Post' : 'Posts'}
+        </span>
         <PostList posts={posts} />
       </div>
     </Page>
@@ -27,7 +29,7 @@ export const getStaticProps: GetStaticProps<BlogProps> = async () => {
     props: {
       posts,
     },
-    revalidate: 60
+    revalidate: 60,
   };
 };
 
