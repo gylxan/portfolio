@@ -3,6 +3,7 @@ import PostListItem from './PostListItem';
 import { act, render, screen } from '@testing-library/react';
 import * as hooks from '../../hooks/useSanityImage';
 import { getFormattedPostDate } from '../../utils/date';
+import { ImageLoader } from "next/image";
 
 jest.mock('../../hooks/useSanityImage');
 
@@ -42,7 +43,7 @@ describe('<PostListItem />', () => {
   };
 
   const useSanityMock = jest.spyOn(hooks, 'default').mockReturnValue({
-    loader: jest.fn(),
+    loader: undefined as unknown as ImageLoader,
     src: 'http://url/image.png',
     width: 123,
     height: 123,

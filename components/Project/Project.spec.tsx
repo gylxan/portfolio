@@ -38,7 +38,7 @@ describe('<Project />', () => {
   });
 
   it('should render background image, when specified', () => {
-    const imageUrl = 'http://myimageurl';
+    const imageUrl = 'http://myimageurl/image.png';
     render(<Project {...props} imageUrl={imageUrl} />);
 
     expect(screen.getByAltText(`Background image of ${props.name} project`)).toBeInTheDocument();

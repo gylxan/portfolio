@@ -4,6 +4,7 @@ import { getFormattedPostDate } from '../../utils/date';
 import Image from 'next/image';
 import useSanityImage from '../../hooks/useSanityImage';
 import { blurImageUrl } from '../../constants/image';
+import styles from './PostListItem.module.css';
 
 export interface PostListItemProps {
   post: Post;
@@ -21,7 +22,7 @@ const PostListItem = ({ post }: PostListItemProps) => {
       className="relative top-0 flex flex-col gap-2 rounded-md p-3 p-0 transition-top"
     >
       {imageProps && (
-        <div className="relative aspect-square overflow-hidden transition-transform hover:scale-105">
+        <div className={styles.imageContainer}>
           <Image
             src={imageProps.src}
             loader={imageProps.loader}
@@ -32,6 +33,7 @@ const PostListItem = ({ post }: PostListItemProps) => {
             className="rounded-md object-cover"
             fill
           />
+
         </div>
       )}
       <h2 className="mt-4 text-xl">{title}</h2>
