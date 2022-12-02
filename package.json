@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "prebuild": "echo 'Building Sanity to public/studio' && cd studio && npm i && npx @sanity/cli build ../public/studio -y && echo 'Done building Sanity'",
+    "prebuild": "echo 'Building Sanity to public/studio' && cd studio && yarn && npx @sanity/cli build ../public/studio -y && echo 'Done building Sanity'",
     "build": "next build && next export",
     "postbuild": "next-sitemap",
     "start": "next start",
