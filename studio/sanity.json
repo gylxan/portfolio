@@ -1,7 +1,8 @@
 {
   "root": true,
   "project": {
-    "name": "magenta-sardine"
+    "name": "magenta-sardine",
+    "basePath": "/studio"
   },
   "api": {
     "projectId": "",
