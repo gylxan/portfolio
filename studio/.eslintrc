@@ -1,3 +1,4 @@
 {
-  "extends": "@sanity/eslint-config-studio"
+  "env": { "node": true, "browser": true },
+  "extends": ["sanity/react"]
 }

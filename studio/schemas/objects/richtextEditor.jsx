@@ -1,4 +1,3 @@
-// RichTextEditor.js
 import link from './link.js';
 
 import {
