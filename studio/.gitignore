@@ -28,5 +28,4 @@ yarn-error.log*
 *.tsbuildinfo
 
 /.idea
-package-lock.json
 /dist
