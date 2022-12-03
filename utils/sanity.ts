@@ -20,8 +20,6 @@ const config = {
   useCdn: process.env.NODE_ENV === 'production',
 };
 
-export const imageBuilder = createImageUrlBuilder(config);
-
 export const getBlurDataUrl = (image: SanityImage | null) =>
   image?.asset?.metadata?.lqip || blurImageUrl;
 
