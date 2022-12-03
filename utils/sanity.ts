@@ -1,6 +1,12 @@
 import { createClient } from 'next-sanity';
 import createImageUrlBuilder from '@sanity/image-url';
-import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import type {
+  SanityAsset,
+  SanityImageObject,
+  SanityImageSource,
+} from '@sanity/image-url/lib/types/types';
+import { blurImageUrl } from '../constants/image';
+import { SanityImage } from '../types/post';
 
 const config = {
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
@@ -16,8 +22,8 @@ const config = {
 
 export const imageBuilder = createImageUrlBuilder(config);
 
-export const urlForImage = (source: SanityImageSource) =>
-  imageBuilder.image(source).auto('format').fit('max');
+export const getBlurDataUrl = (image: SanityImage | null) =>
+  image?.asset?.metadata?.lqip || blurImageUrl;
 
 export const client = createClient(config);
 

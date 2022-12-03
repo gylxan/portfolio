@@ -3,8 +3,8 @@ import { Badge, Link } from '../../components';
 import { getFormattedPostDate } from '../../utils/date';
 import Image from 'next/image';
 import useSanityImage from '../../hooks/useSanityImage';
-import { blurImageUrl } from '../../constants/image';
 import styles from './PostListItem.module.css';
+import { getBlurDataUrl } from "../../utils/sanity";
 
 export interface PostListItemProps {
   post: Post;
@@ -28,7 +28,7 @@ const PostListItem = ({ post }: PostListItemProps) => {
             loader={imageProps.loader}
             alt={`Cover Image for ${title}`}
             placeholder="blur"
-            blurDataURL={mainImage.asset.metadata.lqid || blurImageUrl}
+            blurDataURL={getBlurDataUrl(mainImage)}
             sizes="(max-width: 640px) 90vw, 480px"
             className="rounded-md object-cover"
             fill
