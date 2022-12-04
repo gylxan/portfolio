@@ -9,17 +9,13 @@ import { Routes } from '../constants/routes';
 
 interface Props {
   name: string;
-  jobTitle: string;
   profileImageUrl: string;
   paragraphs: string[];
 }
-const Home = ({ name, jobTitle, profileImageUrl, paragraphs }: Props) => {
+const Home = ({ name, profileImageUrl, paragraphs }: Props) => {
   return (
     <Page>
       <div className="container flex flex-col items-center justify-center gap-4">
-        <div className="flex w-full items-center justify-center">
-          <AnimatedTitle title={name} subTitle={jobTitle} />
-        </div>
         <Link
           href="/about"
           coloredHover={false}
@@ -40,7 +36,7 @@ const Home = ({ name, jobTitle, profileImageUrl, paragraphs }: Props) => {
         </Link>
 
         <p className="text-secondary">Hi, my name is</p>
-        <h2 className="text-3xl font-medium md:text-4xl lg:text-5xl">{name}</h2>
+        <AnimatedTitle title={name} />
         {paragraphs.map((intro) => (
           <p key={intro}>{parseHtml(intro)}</p>
         ))}
@@ -54,7 +50,6 @@ export const getStaticProps: GetStaticProps<Props> = () => {
   return {
     props: {
       name: process.env.NEXT_PUBLIC_NAME ?? '',
-      jobTitle: process.env.NEXT_PUBLIC_JOB_TITLE ?? '',
       profileImageUrl: process.env.NEXT_PUBLIC_PROFILE_IMAGE_URL ?? '',
       paragraphs: parseJSON<string[]>(
         process.env.NEXT_PUBLIC_START_PARAGRAPHS,
