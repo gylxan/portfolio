@@ -1,9 +1,22 @@
-# Sanity Clean Content Studio
+# Sanity Studio
 
-Congratulations, you have now installed the Sanity Content Studio, an open source real-time content editing environment connected to the Sanity backend.
+## Configuration
+Create an `.env.development` file in the root folder with the following entries.
 
-Now you can do the following things:
+| Key                          | Description                                       | Example    |
+|------------------------------|---------------------------------------------------|------------|
+| SANITY_STUDIO_API_PROJECT_ID | ID of your Sanity project                         | 1w2l44us   |       |
+| SANITY_STUDIO_API_DATASET    | Dataset you want to use (Default is `production`) | production |       |
 
-- [Read “getting started” in the docs](https://www.sanity.io/docs/introduction/getting-started?utm_source=readme)
-- [Join the community Slack](https://slack.sanity.io/?utm_source=readme)
-- [Extend and build plugins](https://www.sanity.io/docs/content-studio/extending?utm_source=readme)
+
+## Commands
+### Start sanity
+To run sanity studio local just start:
+`npm run sanity`
+
+### Build sanity
+`npm run build` builds sanity studio
+
+### Deploy sanity
+To deploy sanity studio to your account execute:
+`npm run deploy`
