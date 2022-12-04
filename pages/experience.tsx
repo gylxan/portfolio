@@ -10,7 +10,7 @@ interface ExperienceProps {
 const Experience = ({ experiences }: ExperienceProps) => {
   return (
     <Page title="Experience">
-      <AnimatedTitle title="Experience" />
+      <AnimatedTitle>Experience</AnimatedTitle>
       <div className="container mt-8">
         <Tabs aria-label="Job Tabs" className="mx-auto max-w-3xl">
           {experiences.map(({ company, url, positions }) => (

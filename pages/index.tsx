@@ -36,7 +36,7 @@ const Home = ({ name, profileImageUrl, paragraphs }: Props) => {
         </Link>
 
         <p className="text-secondary">Hi, my name is</p>
-        <AnimatedTitle title={name} />
+        <AnimatedTitle>{name}</AnimatedTitle>
         {paragraphs.map((intro) => (
           <p key={intro}>{parseHtml(intro)}</p>
         ))}

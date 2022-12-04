@@ -1,4 +1,10 @@
-import { AnimatedTitle, Badge, Link, Page, PortableText } from '../../components';
+import {
+  AnimatedTitle,
+  Badge,
+  Link,
+  Page,
+  PortableText,
+} from '../../components';
 import type { GetStaticProps } from 'next';
 import client from '../../utils/sanity';
 import { pathPostQuery, singlePostQuery } from '../../constants/groq';
@@ -7,7 +13,7 @@ import { getFormattedPostDate } from '../../utils/date';
 import Image from 'next/image';
 import useSanityImage from '../../hooks/useSanityImage';
 import { blurImageUrl } from '../../constants/image';
-import { Routes } from "../../constants/routes";
+import { Routes } from '../../constants/routes';
 
 interface PostProps {
   post: IPost;
@@ -19,7 +25,7 @@ const Post = ({ post }: PostProps) => {
   const imageProps = useSanityImage(mainImage);
   return (
     <Page title={title} className="flex flex-col items-center">
-      <AnimatedTitle title={title} />
+      <AnimatedTitle>{title}</AnimatedTitle>
       <div className="container mt-4 flex max-w-screen-lg flex-col items-center gap-4">
         <div>
           <time>{getFormattedPostDate(_createdAt)}</time>
@@ -45,12 +51,10 @@ const Post = ({ post }: PostProps) => {
             />
           )}
         </div>
-        <article className="max-w-screen-sm w-full [&>p:first-child]:mt-0 [&>p]:my-4">
+        <article className="w-full max-w-screen-sm [&>p:first-child]:mt-0 [&>p]:my-4">
           <PortableText value={content} />
         </article>
-        <Link href={Routes.Blog}>
-          ← View all posts
-        </Link>
+        <Link href={Routes.Blog}>← View all posts</Link>
       </div>
     </Page>
   );

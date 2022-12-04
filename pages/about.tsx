@@ -27,7 +27,7 @@ const About = ({ skillSlugs, toolSlugs, paragraphs }: AboutProps) => {
 
   return (
     <Page title="About">
-      <AnimatedTitle title="Me, Myself and I" />
+      <AnimatedTitle>Me, Myself and I</AnimatedTitle>
       <div className="container mt-8 flex flex-col gap-10 lg:flex-row lg:justify-between">
         <div className="flex flex-col gap-4">
           {paragraphs.map((paragraph) => (

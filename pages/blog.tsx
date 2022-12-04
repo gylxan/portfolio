@@ -11,7 +11,7 @@ interface BlogProps {
 const Blog = ({ posts }: BlogProps) => {
   return (
     <Page title="Blog">
-      <AnimatedTitle title="Blog" />
+      <AnimatedTitle>Blog</AnimatedTitle>
       <div className="container mt-8">
         <span className="mb-4 flex justify-end">
           {posts.length} {posts.length === 1 ? 'Post' : 'Posts'}
