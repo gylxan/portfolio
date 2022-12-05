@@ -1,15 +1,10 @@
-import type {
-  ButtonHTMLAttributes,
-  FC,
-  HTMLProps,
-  PropsWithChildren,
-} from 'react';
+import type { ButtonHTMLAttributes, FC, HTMLProps, PropsWithChildren, } from 'react';
 import clsx from 'clsx';
 import { Link } from '../';
-import type { LinkType } from '../Link/Link';
+import type { LinkProps } from '../Link/Link';
 
 export type LinkOrButtonType =
-  | LinkType
+  | LinkProps
   | ButtonHTMLAttributes<HTMLButtonElement>;
 
 export type ButtonProps = HTMLProps<LinkOrButtonType>;
@@ -21,7 +16,7 @@ const Button: FC<PropsWithChildren<ButtonProps>> = (props) => {
   if ('href' in props) {
     return (
       <Link
-        {...(props as LinkType)}
+        {...(props as LinkProps)}
         underlined={false}
         coloredHover={false}
         className={clsx(defaultClassName, className)}

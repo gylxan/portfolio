@@ -1,6 +1,5 @@
 .project {
-  @apply container relative top-0 left-0 z-0 flex h-full w-full flex-col gap-2 rounded-md p-3 overflow-hidden opacity-0 duration-300 border-2;
-  transition: top ease 250ms;
+  @apply container relative top-0 left-0 z-0 flex h-full w-full flex-col gap-2 rounded-md p-3 overflow-hidden opacity-0 duration-300 border-2 transition-top;
 }
 
 .project:hover {

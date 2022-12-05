@@ -35,3 +35,10 @@ yarn-error.log*
 *.tsbuildinfo
 
 /.idea
+
+# studio output
+/public/studio
+
+# service worker (auto-generated)
+/public/sw.js
+/public/workbox-*.js

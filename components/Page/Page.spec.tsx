@@ -25,7 +25,7 @@ describe('<Page />', () => {
     const { container } = render(<Page {...props}>{mockChild}</Page>);
 
     expect(container.querySelector('div')).toHaveClass(
-      'container mx-auto px-4 mt-4',
+      'container mx-auto px-4 mt-4 max-w-screen-lg',
     );
     expect(screen.getByTestId('test-child')).toBeInTheDocument();
   });
@@ -62,5 +62,15 @@ describe('<Page />', () => {
     expect(container.querySelector('div')).toHaveClass(
       'container mx-auto px-4 flex h-full flex-col justify-center',
     );
+  });
+
+  it('should render with given className', () => {
+    const { container } = render(
+      <Page {...props} className="MyClass">
+        {mockChild}
+      </Page>,
+    );
+
+    expect(container.querySelector('div')).toHaveClass('MyClass');
   });
 });

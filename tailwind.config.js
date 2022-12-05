@@ -11,9 +11,7 @@ module.exports = {
         glitch: 'glitch 1s linear infinite',
         'glitch-bottom': 'glitch-bottom 1.5s linear infinite',
         'glitch-top': 'glitch-top 1s linear infinite',
-        'pop-in': 'pop-in 0.8s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards',
-        'shift-in-left':
-          'shift-in-left 2s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards',
+        'pop-in': 'pop-in 1.5s linear forwards',
       },
       keyframes: {
         'fade-in': {
@@ -68,50 +66,43 @@ module.exports = {
           },
         },
         'pop-in': {
+          'from,20%,40%,60%,80%,to': {
+            animationTimingFunction: 'cubic-bezier(0.215, 0.61, 0.355, 1)',
+          },
+
           '0%': {
-            width: 0,
-            height: 0,
             opacity: 0,
+            transform: 'scale3d(0.3, 0.3, 0.3)',
           },
-          '50%': {
-            width: '10px',
-            height: '10px',
-            opacity: '1',
-            bottom: '45px',
+
+          '20%': {
+            transform: 'scale3d(1.5, 1.5, 1.5)',
           },
-          '65%': {
-            height: '7px',
-            bottom: 0,
-            width: '15px',
+
+          '40%': {
+            transform: 'scale3d(0.9, 0.9, 0.9)',
           },
+
+          '60%': {
+            opacity: 1,
+            transform: 'scale3d(1.03, 1.03, 1.03)',
+          },
+
           '80%': {
-            width: '10px',
-            height: '10px',
-            bottom: '20px',
+            transform: 'scale3d(0.97, 0.97, 0.9)',
           },
-          '100%': {
-            width: '7px',
-            height: '7px',
-            bottom: '11px',
-          },
-        },
-        'shift-in-left': {
-          '0%': {
-            width: 0,
-            left: 0,
-          },
-          '50%': {
-            width: '100%',
-            left: 0,
-          },
-          '100%': {
-            width: 0,
-            left: '100%',
+
+          to: {
+            opacity: 1,
+            transform: 'scale3d(1, 1, 1)',
           },
         },
       },
       screens: {
         '-sm': { max: '639px' },
+      },
+      transitionProperty: {
+        top: 'top',
       },
       translate: {
         'screen-w': '100vw',

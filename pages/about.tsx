@@ -1,4 +1,4 @@
-import { Page, AnimatedTitle, SlugIcon } from '../components';
+import { Page, Title, SlugIcon } from '../components';
 
 import { parseHtml } from '../utils/htmlParse';
 import { parseJSON } from '../utils/json';
@@ -27,7 +27,7 @@ const About = ({ skillSlugs, toolSlugs, paragraphs }: AboutProps) => {
 
   return (
     <Page title="About">
-      <AnimatedTitle title="Me, Myself and I" />
+      <Title>Me, Myself and I</Title>
       <div className="container mt-8 flex flex-col gap-10 lg:flex-row lg:justify-between">
         <div className="flex flex-col gap-4">
           {paragraphs.map((paragraph) => (

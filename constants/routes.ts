@@ -3,6 +3,7 @@ export enum Routes {
   About = '/about',
   Projects = '/projects',
   Experience = '/experience',
+  Blog = '/blog',
 }
 
 export const menu = [
@@ -17,5 +18,9 @@ export const menu = [
   {
     href: Routes.Experience,
     name: 'Experience',
+  },
+  {
+    href: Routes.Blog,
+    name: 'Blog',
   },
 ];

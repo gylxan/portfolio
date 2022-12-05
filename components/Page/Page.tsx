@@ -7,7 +7,7 @@ interface PageProps extends HTMLProps<HTMLDivElement> {
   fullHeight?: boolean;
 }
 
-const Page = ({ fullHeight, title, ...props }: PageProps) => (
+const Page = ({ fullHeight, title, className, ...props }: PageProps) => (
   <>
     <Head>
       <title>
@@ -17,8 +17,11 @@ const Page = ({ fullHeight, title, ...props }: PageProps) => (
     <div
       {...props}
       className={clsx(
-        'container mx-auto px-4 md:px-8',
-        fullHeight ? ' flex h-full flex-col justify-center' : ' mt-4 md:mt-12 mb-6',
+        'container mx-auto px-4 md:px-8 max-w-screen-lg',
+        fullHeight
+          ? 'flex h-full flex-col justify-center'
+          : 'mt-4 mb-6 md:mt-12',
+        className,
       )}
     />
   </>

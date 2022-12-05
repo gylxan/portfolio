@@ -1,5 +1,4 @@
 .link {
-  @apply transition-colors duration-300 inline-block;
   text-decoration-skip-ink: auto;
 }
 
