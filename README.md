@@ -1,6 +1,6 @@
 # portfolio
 
-My portfolio website with Next.js and Tailwind CSS.
+My portfolio website with Next.js, Tailwind CSS and [Sanity](https://sanity.io/) as CMS.
 
 ![Tests](https://github.com/gylxan/portfolio/actions/workflows/main.yml/badge.svg)
 
