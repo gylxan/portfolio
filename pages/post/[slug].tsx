@@ -1,5 +1,5 @@
 import {
-  AnimatedTitle,
+  Title,
   Badge,
   Link,
   Page,
@@ -25,7 +25,7 @@ const Post = ({ post }: PostProps) => {
   const imageProps = useSanityImage(mainImage);
   return (
     <Page title={title} className="flex flex-col items-center">
-      <AnimatedTitle>{title}</AnimatedTitle>
+      <Title animated={false}>{title}</Title>
       <div className="container mt-4 flex max-w-screen-lg flex-col items-center gap-4">
         <div>
           <time>{getFormattedPostDate(_createdAt)}</time>

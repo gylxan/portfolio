@@ -1,4 +1,4 @@
-import { AnimatedTitle, Page, PostList } from '../components';
+import { Title, Page, PostList } from '../components';
 import type { GetStaticProps } from 'next';
 import client from '../utils/sanity';
 import { allPostQuery } from '../constants/groq';
@@ -11,7 +11,7 @@ interface BlogProps {
 const Blog = ({ posts }: BlogProps) => {
   return (
     <Page title="Blog">
-      <AnimatedTitle>Blog</AnimatedTitle>
+      <Title>Blog</Title>
       <div className="container mt-8">
         <span className="mb-4 flex justify-end">
           {posts.length} {posts.length === 1 ? 'Post' : 'Posts'}

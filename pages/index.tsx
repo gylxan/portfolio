@@ -1,4 +1,4 @@
-import { AnimatedTitle, Button, Link, Page } from '../components';
+import { Title, Button, Link, Page } from '../components';
 
 import Image from 'next/image';
 import { parseHtml } from '../utils/htmlParse';
@@ -36,7 +36,7 @@ const Home = ({ name, profileImageUrl, paragraphs }: Props) => {
         </Link>
 
         <p className="text-secondary">Hi, my name is</p>
-        <AnimatedTitle>{name}</AnimatedTitle>
+        <Title>{name}</Title>
         {paragraphs.map((intro) => (
           <p key={intro}>{parseHtml(intro)}</p>
         ))}

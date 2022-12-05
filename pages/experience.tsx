@@ -1,4 +1,4 @@
-import { AnimatedTitle, Link, Page, Tab, Tabs } from '../components';
+import { Title, Link, Page, Tab, Tabs } from '../components';
 import { parseJSON } from '../utils/json';
 import type { GetStaticProps } from 'next';
 import type { Experience as IExperience } from '../types/experience';
@@ -10,7 +10,7 @@ interface ExperienceProps {
 const Experience = ({ experiences }: ExperienceProps) => {
   return (
     <Page title="Experience">
-      <AnimatedTitle>Experience</AnimatedTitle>
+      <Title>Experience</Title>
       <div className="container mt-8">
         <Tabs aria-label="Job Tabs" className="mx-auto max-w-3xl">
           {experiences.map(({ company, url, positions }) => (

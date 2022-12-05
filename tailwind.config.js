@@ -8,10 +8,10 @@ module.exports = {
       animation: {
         'fade-in': 'fade-in 2s forwards',
         'fade-in-up': 'fade-in-up 1s ease forwards',
-        'fade-in-down': 'fade-in-down 1s ease forwards',
         glitch: 'glitch 1s linear infinite',
         'glitch-bottom': 'glitch-bottom 1.5s linear infinite',
         'glitch-top': 'glitch-top 1s linear infinite',
+        'pop-in': 'pop-in 350ms linear forwards',
       },
       keyframes: {
         'fade-in': {
@@ -26,16 +26,6 @@ module.exports = {
           '0%': {
             opacity: 0,
             transform: 'translateY(40px)',
-          },
-          '100%': {
-            opacity: 1,
-            transform: 'translateY(0px)',
-          },
-        },
-        'fade-in-down': {
-          '0%': {
-            opacity: 0,
-            transform: 'translateY(-25px)',
           },
           '100%': {
             opacity: 1,
@@ -73,6 +63,38 @@ module.exports = {
           },
           '62%': {
             transform: 'translate(-22px, 5px) skew(21deg)',
+          },
+        },
+        'pop-in': {
+          'from,20%,40%,60%,80%,to': {
+            animationTimingFunction: 'cubic-bezier(0.215, 0.61, 0.355, 1)',
+          },
+
+          '0%': {
+            opacity: 0,
+            transform: 'scale3d(0.3, 0.3, 0.3)',
+          },
+
+          '20%': {
+            transform: 'scale3d(1.1, 1.1, 1.1)',
+          },
+
+          '40%': {
+            transform: 'scale3d(0.9, 0.9, 0.9)',
+          },
+
+          '60%': {
+            opacity: 1,
+            transform: 'scale3d(1.03, 1.03, 1.03)',
+          },
+
+          '80%': {
+            transform: 'scale3d(0.97, 0.97, 0.9)',
+          },
+
+          to: {
+            opacity: 1,
+            transform: 'scale3d(1, 1, 1)',
           },
         },
       },
