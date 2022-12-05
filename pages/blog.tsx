@@ -13,7 +13,7 @@ const Blog = ({ posts }: BlogProps) => {
     <Page title="Blog">
       <Title>Blog</Title>
       <div className="container mt-8">
-        {posts.length < 0 ? (
+        {posts.length > 0 ? (
           <>
             <span className="mb-4 flex justify-end">
               {posts.length} {posts.length === 1 ? 'Post' : 'Posts'}
