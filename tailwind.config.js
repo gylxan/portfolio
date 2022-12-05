@@ -11,7 +11,7 @@ module.exports = {
         glitch: 'glitch 1s linear infinite',
         'glitch-bottom': 'glitch-bottom 1.5s linear infinite',
         'glitch-top': 'glitch-top 1s linear infinite',
-        'pop-in': 'pop-in 350ms linear forwards',
+        'pop-in': 'pop-in 1.5s linear forwards',
       },
       keyframes: {
         'fade-in': {
@@ -76,7 +76,7 @@ module.exports = {
           },
 
           '20%': {
-            transform: 'scale3d(1.1, 1.1, 1.1)',
+            transform: 'scale3d(1.5, 1.5, 1.5)',
           },
 
           '40%': {
