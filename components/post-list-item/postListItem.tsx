@@ -4,7 +4,6 @@ import { getFormattedPostDate } from 'utils/date';
 import Image from 'next/image';
 import useSanityImage from 'hooks/useSanityImage';
 import { getBlurDataUrl } from 'utils/sanity';
-import styles from 'components/post-list-item/postListItem.module.css';
 
 export interface PostListItemProps {
   post: Post;

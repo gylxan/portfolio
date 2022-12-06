@@ -5,6 +5,7 @@ import * as process from 'process';
 import useSanityImage from 'hooks/useSanityImage';
 import { SanityImageObject } from '@sanity/image-url/lib/types/types';
 import { useRouter } from 'next/router';
+import { ogImages } from "constants/seo";
 
 interface PageProps extends HTMLProps<HTMLDivElement> {
   title?: string;
@@ -45,8 +46,9 @@ const Page = ({
                   width: 800,
                   alt: title,
                 },
+              ...ogImages
               ]
-            : undefined,
+            : ogImages,
           siteName: title,
         }}
       />

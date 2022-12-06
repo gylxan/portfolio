@@ -1,6 +1,19 @@
 import process from 'process';
 import manifest from 'public/manifest.json';
 
+export const ogImages = [
+  ...(process.env.NEXT_PUBLIC_OG_IMAGE_URL
+    ? [
+        {
+          url: process.env.NEXT_PUBLIC_OG_IMAGE_URL,
+          alt: 'Og Image Alt',
+          width: 800,
+          height: 600,
+        },
+      ]
+    : []),
+];
+
 const nextSeoConfig = {
   titleTemplate: process.env.NEXT_PUBLIC_NAME + ' - %s',
   defaultTitle: process.env.NEXT_PUBLIC_NAME,
@@ -10,18 +23,6 @@ const nextSeoConfig = {
     description: process.env.NEXT_PUBLIC_DESCRIPTION,
     url: process.env.NEXT_PUBLIC_URL,
     locale: 'en_US',
-    images: [
-      ...(process.env.NEXT_PUBLIC_OG_IMAGE_URL
-        ? [
-            {
-              url: process.env.NEXT_PUBLIC_OG_IMAGE_URL,
-              alt: 'Og Image Alt',
-              width: 800,
-              height: 600
-            },
-          ]
-        : []),
-    ],
     type: 'website',
   },
   themeColor: manifest.theme_color,
