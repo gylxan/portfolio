@@ -14,7 +14,7 @@ const PostListItem = ({ post }: PostListItemProps) => {
 
   return (
     <Link
-      href={`/post/${slug}`}
+      href={`/post/${slug.current}`}
       underlined={false}
       coloredHover={false}
       key={title}
