@@ -6,10 +6,10 @@ import {
   ReactElement,
   useState,
 } from 'react';
-import type { TabProps } from './Tab/Tab';
+import type { TabProps } from 'components/Tabs/Tab/Tab';
 import clsx from 'clsx';
-import { Button } from '../';
-import type { LinkOrButtonType } from '../Button/Button';
+import { Button } from 'components';
+import type { LinkOrButtonType } from 'components/Button/Button';
 
 import styles from './Tabs.module.css';
 

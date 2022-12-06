@@ -1,8 +1,8 @@
 import NextImage from 'next/image';
 import { PortableTextTypeComponentProps } from '@portabletext/react/src';
-import type { SanityImage as ISanityImage } from '../../../types/post';
-import useSanityImage from '../../../hooks/useSanityImage';
-import { getBlurDataUrl } from '../../../utils/sanity';
+import type { SanityImage as ISanityImage } from 'types/post';
+import useSanityImage from 'hooks/useSanityImage';
+import { getBlurDataUrl } from 'utils/sanity';
 
 interface ImageValue extends ISanityImage {
   alt: string;

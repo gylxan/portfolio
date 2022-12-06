@@ -3,9 +3,9 @@ import {
   PortableTextMarkComponentProps,
   PortableTextProps,
 } from '@portabletext/react';
-import SanityImage from './types/SanityImage';
-import Code from './types/Code';
-import Link from './marks/Link';
+import SanityImage from 'components/PortableText/types/SanityImage';
+import Code from 'components/PortableText/types/Code';
+import Link from 'components/PortableText/marks/Link';
 
 const components = {
   types: {
@@ -27,7 +27,7 @@ const components = {
 };
 
 const PortableText = (props: PortableTextProps) => {
-  return <PortableTextComponent components={components} {...props}  />;
+  return <PortableTextComponent components={components} {...props} />;
 };
 
 export default PortableText;

@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import Code, { CodeProps } from '../../types/Code';
+import Code, { CodeProps } from 'components/PortableText/types/Code';
 
 describe('<Code />', () => {
   const value = {

@@ -1,5 +1,5 @@
-import type { Post } from '../../types/post';
-import { PostListItem } from '../../components';
+import type { Post } from 'types/post';
+import { PostListItem } from 'components';
 
 interface PostListProps {
   posts: Post[];

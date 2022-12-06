@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import PortableText from '../PortableText';
+import PortableText from 'components/PortableText/PortableText';
 
 describe('<PortableText />', () => {
   const value = [

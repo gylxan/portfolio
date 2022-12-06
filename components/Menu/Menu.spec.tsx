@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import Menu, { MD_WIDTH } from './Menu';
+import Menu, { MD_WIDTH } from 'components/Menu/Menu';
 
 describe('<Menu />', () => {
   const originalInnerWidth = global.innerWidth;

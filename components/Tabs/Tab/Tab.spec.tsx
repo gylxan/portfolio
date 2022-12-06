@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Tab from './Tab';
+import Tab from 'components/Tabs/Tab/Tab';
 
 describe('<Tab />', () => {
   it('should render', () => {

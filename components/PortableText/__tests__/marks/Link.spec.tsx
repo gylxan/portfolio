@@ -1,4 +1,4 @@
-import Link, { LinkProps } from '../../marks/Link';
+import Link, { LinkProps } from 'components/PortableText/marks/Link';
 import { render, screen } from '@testing-library/react';
 
 describe('<Link />', () => {

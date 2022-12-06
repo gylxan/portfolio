@@ -1,5 +1,5 @@
 import { useNextSanityImage } from 'next-sanity-image';
-import client from '../utils/sanity';
+import client from 'utils/sanity';
 import type { SanityImageObject } from '@sanity/image-url/lib/types/types';
 
 const useSanityImage = (image: SanityImageObject | null) => {

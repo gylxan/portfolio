@@ -1,10 +1,10 @@
-import { Post } from '../../types/post';
+import { Post } from 'types/post';
 import { act, render, screen } from '@testing-library/react';
-import PostList from './PostList';
-import * as hooks from '../../hooks/useSanityImage';
+import PostList from 'components/PostList/PostList';
+import * as hooks from 'hooks/useSanityImage';
 import { ImageLoader } from "next/image";
 
-jest.mock('../../hooks/useSanityImage');
+jest.mock('hooks/useSanityImage');
 
 const mockPosts: Post[] = [
   {

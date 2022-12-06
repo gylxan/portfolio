@@ -1,4 +1,4 @@
-import SlugIcon, { SlugIconProps } from './SlugIcon';
+import SlugIcon, { SlugIconProps } from 'components/SlugIcon/SlugIcon';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 
 describe('<SlugIcon />', () => {

@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import Tabs from './Tabs';
-import Tab from './Tab/Tab';
+import Tabs from 'components/Tabs/Tabs';
+import Tab from 'components/Tabs/Tab/Tab';
 
 describe('<Tabs />', () => {
   const renderTabs = () =>

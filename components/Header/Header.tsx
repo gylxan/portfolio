@@ -1,6 +1,6 @@
-import { Routes } from '../../constants/routes';
+import { Routes } from 'constants/routes';
 import Image from 'next/image';
-import { Link, Menu } from '../';
+import { Link, Menu } from 'components';
 
 const Header = () => {
   return (

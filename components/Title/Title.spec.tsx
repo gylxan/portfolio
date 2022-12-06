@@ -1,4 +1,4 @@
-import Title, { AnimatedTitleProps } from './Title';
+import Title, { AnimatedTitleProps } from 'components/Title/Title';
 import { render, screen } from '@testing-library/react';
 
 describe('<Title />', () => {

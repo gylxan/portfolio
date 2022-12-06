@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Project from './Project';
+import Project from 'components/Project/Project';
 
 jest.mock('react-intersection-observer', () => {
   const actual = jest.requireActual('react-intersection-observer');

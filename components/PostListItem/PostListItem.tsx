@@ -1,10 +1,10 @@
-import type { Post } from '../../types/post';
-import { Badge, Link } from '../../components';
-import { getFormattedPostDate } from '../../utils/date';
+import type { Post } from 'types/post';
+import { Badge, Link } from 'components';
+import { getFormattedPostDate } from 'utils/date';
 import Image from 'next/image';
-import useSanityImage from '../../hooks/useSanityImage';
-import styles from './PostListItem.module.css';
-import { getBlurDataUrl } from "../../utils/sanity";
+import useSanityImage from 'hooks/useSanityImage';
+import { getBlurDataUrl } from 'utils/sanity';
+import styles from 'components/PostListItem/PostListItem.module.css';
 
 export interface PostListItemProps {
   post: Post;
@@ -33,7 +33,6 @@ const PostListItem = ({ post }: PostListItemProps) => {
             className="rounded-md object-cover"
             fill
           />
-
         </div>
       )}
       <h2 className="mt-4 text-xl">{title}</h2>

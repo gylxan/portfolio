@@ -1,7 +1,7 @@
 import type { ButtonHTMLAttributes, FC, HTMLProps, PropsWithChildren, } from 'react';
 import clsx from 'clsx';
-import { Link } from '../';
-import type { LinkProps } from '../Link/Link';
+import { Link } from 'components';
+import type { LinkProps } from 'components/Link/Link';
 
 export type LinkOrButtonType =
   | LinkProps

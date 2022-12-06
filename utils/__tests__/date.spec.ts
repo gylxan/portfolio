@@ -1,4 +1,4 @@
-import { getFormattedPostDate } from "../date";
+import { getFormattedPostDate } from "utils/date";
 
 describe('Date utils', () => {
 

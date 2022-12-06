@@ -1,8 +1,8 @@
 import { act, render, screen } from '@testing-library/react';
-import SanityImage, { ImageProps } from '../../types/SanityImage';
-import * as hooks from '../../../../hooks/useSanityImage';
+import SanityImage, { ImageProps } from 'components/PortableText/types/SanityImage';
+import * as hooks from 'hooks/useSanityImage';
 
-jest.mock('../../../../hooks/useSanityImage');
+jest.mock('hooks/useSanityImage');
 
 describe('<Image />', () => {
   const value = {

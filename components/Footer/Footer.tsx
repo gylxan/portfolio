@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin, faSpotify, } from '@fortawesome/free-brands-svg-icons';
-import { Link } from '../';
+import { Link } from 'components';
 
 const Footer = () => (
   <footer className="flex grow flex-col items-center justify-between gap-4 py-5 px-4 sm:flex-row md:px-8">

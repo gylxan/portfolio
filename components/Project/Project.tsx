@@ -1,13 +1,13 @@
 import { useInView } from 'react-intersection-observer';
-import { Badge, Link } from '../';
+import { Badge, Link } from 'components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 import clsx from 'clsx';
 import Image from 'next/image';
-import { blurImageUrl } from '../../constants/image';
-import type { Project as IProject } from '../../types/project';
-import styles from './Project.module.css';
+import { blurImageUrl } from 'constants/image';
+import type { Project as IProject } from 'types/project';
+import styles from 'components/Project/Project.module.css';
 
 export type ProjectProps = IProject;
 

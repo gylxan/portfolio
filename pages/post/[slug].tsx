@@ -1,19 +1,13 @@
-import {
-  Title,
-  Badge,
-  Link,
-  Page,
-  PortableText,
-} from '../../components';
+import { Badge, Link, Page, PortableText, Title } from 'components';
 import type { GetStaticProps } from 'next';
-import client from '../../utils/sanity';
-import { pathPostQuery, singlePostQuery } from '../../constants/groq';
-import type { Post as IPost } from '../../types/post';
-import { getFormattedPostDate } from '../../utils/date';
+import client from 'utils/sanity';
+import { pathPostQuery, singlePostQuery } from 'constants/groq';
+import type { Post as IPost } from 'types/post';
+import { getFormattedPostDate } from 'utils/date';
 import Image from 'next/image';
-import useSanityImage from '../../hooks/useSanityImage';
-import { blurImageUrl } from '../../constants/image';
-import { Routes } from '../../constants/routes';
+import useSanityImage from 'hooks/useSanityImage';
+import { blurImageUrl } from 'constants/image';
+import { Routes } from 'constants/routes';
 
 interface PostProps {
   post: IPost;

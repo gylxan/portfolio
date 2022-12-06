@@ -2,7 +2,7 @@ import React, { AnchorHTMLAttributes } from 'react';
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 import clsx from 'clsx';
 
-import styles from './Link.module.css';
+import styles from 'components/Link/Link.module.css';
 
 export type NextLinkType = Omit<
   React.AnchorHTMLAttributes<HTMLAnchorElement>,

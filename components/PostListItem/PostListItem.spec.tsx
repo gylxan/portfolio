@@ -1,11 +1,10 @@
-import { PostListItemProps } from './PostListItem';
-import PostListItem from './PostListItem';
+import PostListItem ,{ PostListItemProps } from 'components/PostListItem/PostListItem';
 import { act, render, screen } from '@testing-library/react';
-import * as hooks from '../../hooks/useSanityImage';
-import { getFormattedPostDate } from '../../utils/date';
+import * as hooks from 'hooks/useSanityImage';
+import { getFormattedPostDate } from 'utils/date';
 import { ImageLoader } from "next/image";
 
-jest.mock('../../hooks/useSanityImage');
+jest.mock('hooks/useSanityImage');
 
 describe('<PostListItem />', () => {
   const post = {

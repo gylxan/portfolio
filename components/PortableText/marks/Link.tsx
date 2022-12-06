@@ -1,5 +1,5 @@
 import type { PortableTextMarkComponentProps } from '@portabletext/react';
-import DefaultLink from '../../Link/Link';
+import DefaultLink from 'components/Link/Link';
 import type { TypedObject } from '@sanity/types';
 
 interface LinkValue extends TypedObject {

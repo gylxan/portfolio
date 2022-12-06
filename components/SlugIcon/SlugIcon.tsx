@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { isTooDark } from '../../utils/color';
+import { isTooDark } from 'utils/color';
 
 export interface Slug {
   name: string;

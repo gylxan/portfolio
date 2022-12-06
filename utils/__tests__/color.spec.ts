@@ -1,4 +1,4 @@
-import { isTooDark } from '../color';
+import { isTooDark } from 'utils/color';
 
 describe('Color utils', () => {
   describe('isTooDark', () => {

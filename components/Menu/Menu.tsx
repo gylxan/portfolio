@@ -1,10 +1,10 @@
 import { MouseEvent, useRef, useState } from 'react';
-import { Link, MenuButton } from '../';
-import { menu } from '../../constants/routes';
+import { Link, MenuButton } from 'components';
+import { menu } from 'constants/routes';
 import clsx from 'clsx';
-import useOutsideClick from '../../hooks/useOutsideClick';
-import useResize from '../../hooks/useResize';
-import styles from './Menu.module.css';
+import useOutsideClick from 'hooks/useOutsideClick';
+import useResize from 'hooks/useResize';
+import styles from 'components/Menu/Menu.module.css';
 
 export const MD_WIDTH = 768;
 
