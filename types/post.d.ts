@@ -1,10 +1,11 @@
 import type { PortableTextBlock } from '@portabletext/types';
 import type { SanityImageObject } from '@sanity/image-url/lib/types/types';
 import { SanityAsset, SanityReference } from "@sanity/image-url/lib/types/types";
+import { Slug } from "@sanity/types";
 
 export interface Post {
   _id: string;
-  slug: string;
+  slug: Slug;
   title: string;
   description: string;
   categories: Category[] | null;
