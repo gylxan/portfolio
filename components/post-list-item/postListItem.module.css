@@ -1,3 +1,0 @@
-.imageContainer {
-  @apply relative aspect-square overflow-hidden transition-transform hover:scale-105;
-}

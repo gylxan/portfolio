@@ -4,7 +4,6 @@ import { getFormattedPostDate } from 'utils/date';
 import Image from 'next/image';
 import useSanityImage from 'hooks/useSanityImage';
 import { getBlurDataUrl } from 'utils/sanity';
-import styles from 'components/post-list-item/postListItem.module.css';
 
 export interface PostListItemProps {
   post: Post;
@@ -15,14 +14,14 @@ const PostListItem = ({ post }: PostListItemProps) => {
 
   return (
     <Link
-      href={`/post/${slug}`}
+      href={`/post/${slug.current}`}
       underlined={false}
       coloredHover={false}
       key={title}
       className="relative top-0 flex flex-col gap-2 rounded-md p-3 p-0 transition-top"
     >
       {imageProps && (
-        <div className={styles.imageContainer}>
+        <div className="relative aspect-video overflow-hidden transition-transform hover:scale-105">
           <Image
             src={imageProps.src}
             loader={imageProps.loader}

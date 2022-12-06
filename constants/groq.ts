@@ -3,7 +3,6 @@ import { groq } from 'next-sanity';
 export const allPostQuery = groq`
 *[_type == "post"] | order(_createdAt desc) {
   ...,
-  'slug': slug.current,
   categories[]->,
   "mainImage": mainImage {
     asset->{
@@ -36,12 +35,12 @@ export const singlePostQuery = groq`
       } 
     )
   },
-  "estReadingTime": round(length(pt::text(content)) / 5 / 180 )
+  "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 )
 }
 `;
 
 export const pathPostQuery = groq`
 *[_type == "post"] {
-  'slug': slug.current,
+  slug,
 }
 `;

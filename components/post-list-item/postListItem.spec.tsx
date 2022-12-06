@@ -1,18 +1,21 @@
-import PostListItem ,{ PostListItemProps } from 'components/post-list-item/postListItem';
+import PostListItem, {
+  PostListItemProps,
+} from 'components/post-list-item/postListItem';
 import { act, render, screen } from '@testing-library/react';
 import * as hooks from 'hooks/useSanityImage';
 import { getFormattedPostDate } from 'utils/date';
-import { ImageLoader } from "next/image";
+import { ImageLoader } from 'next/image';
+import { Post } from 'types/post';
 
 jest.mock('hooks/useSanityImage');
 
 describe('<PostListItem />', () => {
-  const post = {
+  const post: Post = {
     _id: '1',
     title: 'Post 1',
     description: 'Description for post 1',
     _createdAt: '2022-10-22',
-    slug: 'post1',
+    slug: { _type: 'slug', current: 'post1' },
     mainImage: {
       asset: {
         _ref: '123',
@@ -35,6 +38,7 @@ describe('<PostListItem />', () => {
       _type: 'block',
       children: [],
     },
+    estimatedReadingTime: 5,
   };
 
   const props: PostListItemProps = {
@@ -68,12 +72,12 @@ describe('<PostListItem />', () => {
 
     expect(screen.getByRole('link')).toBeInTheDocument();
     expect(screen.getByRole('link').getAttribute('href')).toBe(
-      `/post/${post.slug}`,
+      `/post/${post.slug.current}`,
     );
     expect(screen.getByRole('img')).toBeInTheDocument();
     expect(screen.getByRole('heading').textContent).toBe(post.title);
     expect(screen.getByText(post.description)).toBeInTheDocument();
-    expect(screen.getAllByTestId('badge').length).toBe(post.categories.length);
+    expect(screen.getAllByTestId('badge').length).toBe(post.categories?.length);
     expect(
       screen.getByText(getFormattedPostDate(post._createdAt)),
     ).toBeInTheDocument();
