@@ -11,8 +11,6 @@ import clsx from 'clsx';
 import { Button } from 'components';
 import type { LinkOrButtonType } from 'components/button/button';
 
-import styles from './tabs.module.css';
-
 interface TabsProps extends HTMLProps<HTMLDivElement> {
   children: ReactElement<TabProps> | ReactElement<TabProps>[];
 }
@@ -37,15 +35,22 @@ export const Tabs = ({ children, className, ...props }: TabsProps) => {
   }
 
   return (
-    <div className={clsx(className, styles.tabs)}>
-      <div {...props} className={styles.tabList} role="tablist">
+    <div className={clsx(className, 'flex flex-col gap-8 md:flex-row')}>
+      <div
+        {...props}
+        className="flex flex-row items-start md:flex-col -sm:overflow-x-auto"
+        role="tablist"
+      >
         {Children.map(children, (child, index) => {
           const isActive = isTabActive(index);
           return (
             <Button
               id={getTabId(index)}
               key={child.props.title}
-              className={clsx(styles.button, isActive && styles.active)}
+              className={clsx(
+                'whitespace-nowrap rounded-none border-0 border-b-2 px-8 py-2 text-left md:w-full md:border-l-2 md:border-b-0 md:px-4 md:py-4',
+                isActive ? 'border-l-secondary text-secondary' : 'text-primary',
+              )}
               role="tab"
               aria-selected={isActive}
               aria-controls={getPanelId(index)}
@@ -63,7 +68,6 @@ export const Tabs = ({ children, className, ...props }: TabsProps) => {
             {
               ...child.props,
               title: undefined,
-              className: styles.fade,
               id: getPanelId(index),
               'aria-labelledby': getTabId(index),
               active: isTabActive(index),

@@ -1,6 +1,5 @@
 import { HTMLProps, PropsWithChildren, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import styles from 'components/tabs/tab/tab.module.css';
 
 export interface TabProps extends PropsWithChildren<HTMLProps<HTMLDivElement>> {
   active?: boolean;
@@ -16,7 +15,12 @@ export const Tab = ({
   return (
     <CSSTransition
       timeout={300}
-      classNames={{ ...styles }}
+      classNames={{
+        enter: 'opacity-0',
+        enterActive: 'opacity-100 transition-opacity duration-300 ease-in',
+        exit: 'opacity-100',
+        exitActive: 'opacity-0 transition-opacity duration-300 ease-in'
+      }}
       in={active}
       appear={true}
       nodeRef={ref}
