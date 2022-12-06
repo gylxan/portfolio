@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import Tabs from 'components/tabs/tabs';
 import Tab from 'components/tabs/tab/tab';
 
-describe('<tabs />', () => {
+describe('<Tabs />', () => {
   const renderTabs = () =>
     render(
       <Tabs>
@@ -19,7 +19,7 @@ describe('<tabs />', () => {
     expect(screen.getAllByRole('tab')[0].getAttribute('aria-selected')).toBe(
       'true',
     );
-    expect(screen.getByText('My content for tab 1')).toBeInTheDocument();
+    expect(screen.getByText('My content for Tab 1')).toBeInTheDocument();
   });
 
   it('should show other tab panel on click on tab', () => {
@@ -30,6 +30,6 @@ describe('<tabs />', () => {
     expect(screen.getAllByRole('tab')[1].getAttribute('aria-selected')).toBe(
       'true',
     );
-    expect(screen.getByText('My content for tab 2')).toBeInTheDocument();
+    expect(screen.getByText('My content for Tab 2')).toBeInTheDocument();
   });
 });

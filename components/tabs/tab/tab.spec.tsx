@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import Tab from 'components/tabs/tab/tab';
 
-describe('<tab />', () => {
+describe('<Tab />', () => {
   it('should render', () => {
     render(<Tab>test</Tab>);
 

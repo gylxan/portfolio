@@ -1,7 +1,7 @@
 import Title, { AnimatedTitleProps } from 'components/title/title';
 import { render, screen } from '@testing-library/react';
 
-describe('<title />', () => {
+describe('<Title />', () => {
   const props: AnimatedTitleProps = {
     children: 'My title',
   };
@@ -26,7 +26,7 @@ describe('<title />', () => {
   it('should render not animated, when children is not string', () => {
     const { container } = render(
       <Title {...props}>
-        <div>My Title</div>
+        <div>My title</div>
       </Title>,
     );
 

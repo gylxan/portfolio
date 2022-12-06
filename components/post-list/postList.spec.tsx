@@ -62,7 +62,7 @@ const mockPosts: Post[] = [
     },
   },
 ];
-describe('<post-list/>', () => {
+describe('<PostList/>', () => {
   jest.spyOn(hooks, 'default').mockReturnValue({
     loader: undefined as unknown as ImageLoader,
     src: 'http://url/image.png',

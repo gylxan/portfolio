@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import Link from 'components/link/link';
 
-describe('<link />', () => {
+describe('<Link />', () => {
   it('should render', () => {
     render(<Link href="/about">test</Link>);
 

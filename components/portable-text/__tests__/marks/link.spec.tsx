@@ -1,7 +1,7 @@
 import Link, { LinkProps } from 'components/portable-text/marks/link';
 import { render, screen } from '@testing-library/react';
 
-describe('<link />', () => {
+describe('<Link />', () => {
   const props: LinkProps = {
     text: 'text',
     markType: 'link',

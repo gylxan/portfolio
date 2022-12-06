@@ -12,7 +12,7 @@ jest.mock('react-intersection-observer', () => {
   };
 });
 
-describe('<project />', () => {
+describe('<Project />', () => {
   const props = {
     name: 'project name',
     description: 'project description',
@@ -24,10 +24,12 @@ describe('<project />', () => {
     render(<Project {...props} />);
 
     expect(screen.getByTestId('project')).toBeInTheDocument();
-    expect(screen.getByText('Work project')).toBeInTheDocument();
+    expect(screen.getByText('Work Project')).toBeInTheDocument();
     expect(screen.queryAllByTestId('badge').length).toBe(0);
     expect(
-      screen.queryByLabelText("link to the Github repository or preview of the project"),
+      screen.queryByLabelText(
+        'Link to the Github repository or preview of the project',
+      ),
     ).not.toBeInTheDocument();
     expect(
       screen.queryByLabelText(`Link to Github repository of ${props.name}`),
@@ -41,14 +43,16 @@ describe('<project />', () => {
     const imageUrl = 'http://myimageurl/image.png';
     render(<Project {...props} imageUrl={imageUrl} />);
 
-    expect(screen.getByAltText(`Background image of ${props.name} project`)).toBeInTheDocument();
+    expect(
+      screen.getByAltText(`Background image of ${props.name} project`),
+    ).toBeInTheDocument();
   });
 
   it('should render as private project, when private is true', () => {
     render(<Project {...props} private={true} />);
 
     expect(screen.getByTestId('project')).toBeInTheDocument();
-    expect(screen.getByText('Private project')).toBeInTheDocument();
+    expect(screen.getByText('Private Project')).toBeInTheDocument();
     expect(screen.queryByText('Work project')).not.toBeInTheDocument();
   });
 
@@ -62,7 +66,9 @@ describe('<project />', () => {
     render(<Project {...props} githubUrl="https://githuburl" />);
 
     expect(
-      screen.getByLabelText("link to the Github repository or preview of the project"),
+      screen.getByLabelText(
+        'Link to the Github repository or preview of the project',
+      ),
     ).toBeInTheDocument();
     expect(
       screen.getByLabelText(`Link to Github repository of ${props.name}`),
@@ -73,7 +79,9 @@ describe('<project />', () => {
     render(<Project {...props} previewUrl="https://previewUrl" />);
 
     expect(
-      screen.getByLabelText("link to the Github repository or preview of the project"),
+      screen.getByLabelText(
+        'Link to the Github repository or preview of the project',
+      ),
     ).toBeInTheDocument();
     expect(
       screen.getByLabelText(`Link to a Preview of ${props.name}`),

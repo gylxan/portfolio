@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import Header from 'components/header/header';
 
-describe('<header />', function () {
+describe('<Header />', function () {
   const originalProcess = process.env;
 
 

@@ -6,7 +6,7 @@ import { ImageLoader } from "next/image";
 
 jest.mock('hooks/useSanityImage');
 
-describe('<post-list-item />', () => {
+describe('<PostListItem />', () => {
   const post = {
     _id: '1',
     title: 'Post 1',

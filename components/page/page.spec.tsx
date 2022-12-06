@@ -9,7 +9,7 @@ jest.mock(
       children,
 );
 
-describe('<page />', () => {
+describe('<Page />', () => {
   const originalProcessEnv = process.env;
 
   const props = {

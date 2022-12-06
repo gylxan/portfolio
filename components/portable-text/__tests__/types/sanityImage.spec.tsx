@@ -4,7 +4,7 @@ import * as hooks from 'hooks/useSanityImage';
 
 jest.mock('hooks/useSanityImage');
 
-describe('<Image />', () => {
+describe('<SanityImage />', () => {
   const value = {
     alt: 'alt',
     asset: {

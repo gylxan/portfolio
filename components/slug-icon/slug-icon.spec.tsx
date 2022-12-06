@@ -1,7 +1,7 @@
 import SlugIcon, { SlugIconProps } from 'components/slug-icon/slug-icon';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 
-describe('<slug-icon />', () => {
+describe('<SlugIcon />', () => {
   const props: SlugIconProps = {
     name: 'javascript',
     hex: 'ffec3c',

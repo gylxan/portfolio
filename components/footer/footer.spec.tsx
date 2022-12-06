@@ -6,7 +6,7 @@ import {
 } from '@testing-library/react';
 import Footer from 'components/footer/footer';
 
-describe('<footer />', () => {
+describe('<Footer />', () => {
   const originalProcess = process.env;
 
   afterEach(() => {
@@ -26,7 +26,7 @@ describe('<footer />', () => {
     render(<Footer />);
 
     expect(
-      screen.getByLabelText('link to LinkedIn account'),
+      screen.getByLabelText('Link to LinkedIn account'),
     ).toBeInTheDocument();
   });
 
@@ -35,7 +35,7 @@ describe('<footer />', () => {
 
     render(<Footer />);
 
-    expect(screen.getByLabelText('link to Github account')).toBeInTheDocument();
+    expect(screen.getByLabelText('Link to Github account')).toBeInTheDocument();
   });
 
   it('should render Github URL, when env var is set', () => {
@@ -44,7 +44,7 @@ describe('<footer />', () => {
     render(<Footer />);
 
     expect(
-      screen.getByLabelText('link to Spotify account'),
+      screen.getByLabelText('Link to Spotify account'),
     ).toBeInTheDocument();
   });
 

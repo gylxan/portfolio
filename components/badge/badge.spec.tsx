@@ -1,7 +1,7 @@
 import Badge from 'components/badge/badge';
 import { render, screen } from '@testing-library/react';
 
-describe('<badge />', () => {
+describe('<Badge />', () => {
   it('should render badge', () => {
     render(<Badge>text</Badge>);
 

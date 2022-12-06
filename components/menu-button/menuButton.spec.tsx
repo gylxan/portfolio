@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import MenuButton from 'components/menu-button/menuButton';
 
-describe('<menu-button />', () => {
+describe('<MenuButton />', () => {
   it('should render', () => {
     render(<MenuButton open={true} />);
 

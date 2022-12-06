@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import PortableText from 'components/portable-text/portable-text';
 
-describe('<portable-text />', () => {
+describe('<PortableText />', () => {
   const value = [
     {
       _key: 'a8278288bea8',
