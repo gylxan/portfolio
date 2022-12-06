@@ -4,6 +4,7 @@ import { NextSeo } from 'next-seo';
 import * as process from 'process';
 import useSanityImage from 'hooks/useSanityImage';
 import { SanityImageObject } from '@sanity/image-url/lib/types/types';
+import { useRouter } from 'next/router';
 
 interface PageProps extends HTMLProps<HTMLDivElement> {
   title?: string;
@@ -23,8 +24,12 @@ const Page = ({
   ...props
 }: PageProps) => {
   const ogImage = useSanityImage(openGraphImage)?.src || null;
+  const { pathname } = useRouter();
 
-  const url = `${process.env.NEXT_PUBLIC_URL}${slug ? slug : ''}`;
+  const url = `${process.env.NEXT_PUBLIC_URL}${
+    slug ? slug : pathname === '/' ? '' : pathname
+  }`;
+
   return (
     <>
       <NextSeo

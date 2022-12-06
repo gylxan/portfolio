@@ -3,6 +3,7 @@ import Page from 'components/page/page';
 import React from 'react';
 import * as hooks from 'hooks/useSanityImage';
 import { ImageLoader } from 'next/image';
+import * as nextRouter from 'next/router';
 
 jest.mock(
   'next/head',
@@ -22,10 +23,15 @@ describe('<Page />', () => {
     description: 'My description',
   };
   const mockChild = <span data-testid="test-child">I am test child</span>;
+  const useRouterMock = jest.spyOn(nextRouter, 'useRouter');
 
   beforeEach(() => {
     process.env.NEXT_PUBLIC_URL = 'https://example.com';
+    useRouterMock.mockReturnValue({
+      pathname: '/',
+    } as nextRouter.NextRouter);
   });
+
   afterEach(() => {
     process.env = originalProcessEnv;
   });
@@ -58,6 +64,18 @@ describe('<Page />', () => {
     );
 
     expect(container.querySelector('title')).toHaveTextContent(title);
+  });
+
+  it('should render with pathname from next router', () => {
+    const path = '/path';
+    useRouterMock.mockReturnValue({
+      pathname: path,
+    } as nextRouter.NextRouter);
+    const { container } = render(<Page {...props}>{mockChild}</Page>);
+
+    expect(
+      container.querySelector('link[rel="canonical"]')?.getAttribute('href'),
+    ).toBe(process.env.NEXT_PUBLIC_URL + path);
   });
 
   it('should render with title from props and process.env', () => {
@@ -114,19 +132,14 @@ describe('<Page />', () => {
       src: 'http://url/image.png',
       width: 123,
       height: 123,
-    }
+    };
     useSanityMock.mockReturnValue(imageProps);
-    const { container } = render(
-      <Page {...props} >
-        {mockChild}
-      </Page>,
-    );
+    const { container } = render(<Page {...props}>{mockChild}</Page>);
 
     expect(
       container
         .querySelector('meta[property="og:image"]')
         ?.getAttribute('content'),
     ).toBe(imageProps.src);
-
   });
 });
