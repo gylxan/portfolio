@@ -1,5 +1,5 @@
 import { Page, Project, Title } from 'components';
-import type { ProjectProps } from 'components/Project/Project';
+import type { ProjectProps } from 'components/project/project';
 import { parseJSON } from 'utils/json';
 import type { GetStaticProps } from 'next';
 

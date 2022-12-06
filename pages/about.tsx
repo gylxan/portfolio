@@ -1,7 +1,7 @@
 import { Page, SlugIcon, Title } from 'components';
 import { parseHtml } from 'utils/htmlParse';
 import { parseJSON } from 'utils/json';
-import type { Slug, SlugExtended } from 'components/SlugIcon/SlugIcon';
+import type { Slug, SlugExtended } from 'components/slug-icon/slug-icon';
 import * as simpleIcons from 'simple-icons/icons';
 import type { SimpleIcon } from 'simple-icons';
 
