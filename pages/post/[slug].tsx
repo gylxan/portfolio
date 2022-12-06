@@ -14,11 +14,15 @@ interface PostProps {
 }
 
 const Post = ({ post }: PostProps) => {
-  const { title, _createdAt, categories, mainImage, content } = post;
+  const { title, _createdAt, categories, mainImage, content, description } = post;
 
   const imageProps = useSanityImage(mainImage);
   return (
-    <Page title={title} className="flex flex-col items-center">
+    <Page
+      title={title}
+      className="flex flex-col items-center"
+      openGraphImage={mainImage}
+    >
       <Title animated={false}>{title}</Title>
       <div className="container mt-4 flex max-w-screen-lg flex-col items-center gap-4">
         <div>

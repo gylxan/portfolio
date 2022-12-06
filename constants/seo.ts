@@ -4,6 +4,8 @@ import manifest from 'public/manifest.json';
 const nextSeoConfig = {
   titleTemplate: process.env.NEXT_PUBLIC_NAME + ' - %s',
   defaultTitle: process.env.NEXT_PUBLIC_NAME,
+  canonical: process.env.NEXT_PUBLIC_URL,
+  description: process.env.NEXT_PUBLIC_DESCRIPTION,
   openGraph: {
     description: process.env.NEXT_PUBLIC_DESCRIPTION,
     url: process.env.NEXT_PUBLIC_URL,

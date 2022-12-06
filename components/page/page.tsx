@@ -2,23 +2,46 @@ import type { HTMLProps } from 'react';
 import clsx from 'clsx';
 import { NextSeo } from 'next-seo';
 import * as process from 'process';
+import useSanityImage from 'hooks/useSanityImage';
+import { SanityImageObject } from "@sanity/image-url/lib/types/types";
 
 interface PageProps extends HTMLProps<HTMLDivElement> {
   title?: string;
   fullHeight?: boolean;
+  openGraphImage?: SanityImageObject;
+  description?: string;
 }
 
-const Page = ({ fullHeight, title, className, ...props }: PageProps) => {
+const Page = ({
+  fullHeight,
+  title,
+  openGraphImage,
+  className,
+  description,
+  ...props
+}: PageProps) => {
+  const ogImage = useSanityImage(openGraphImage)?.src || null;
   return (
     <>
       <NextSeo
         title={title}
-        description={process.env.NEXT_PUBLIC_DESCRIPTION}
+        description={description}
         canonical={process.env.NEXT_PUBLIC_URL}
         openGraph={{
           title: title,
-          description: process.env.NEXT_PUBLIC_DESCRIPTION,
+          description: description,
           url: process.env.NEXT_PUBLIC_URL,
+          images: ogImage
+            ? [
+                {
+                  url: ogImage,
+                  height: 600,
+                  width: 800,
+                  alt: title,
+                },
+              ]
+            : undefined,
+          siteName: title
         }}
       />
       <div
