@@ -9,6 +9,7 @@ export default {
       name: 'title',
       type: 'string',
       title: 'Title',
+      description: 'Title of the post. Recommended: 60 chars',
       validation: (Rule) => Rule.required().min(5),
     },
     {
@@ -16,7 +17,7 @@ export default {
       type: 'text',
       title: 'Description',
       description:
-        'Short description for the post, which will be used in the overview',
+        'Short description for the post, which will be used in the overview and meta tags. Recommended: 155-160 chars',
     },
     {
       name: 'slug',
