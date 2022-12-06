@@ -1,5 +1,5 @@
 import { Head, Html, Main, NextScript } from 'next/document';
-import manifest from '../public/manifest.json';
+import manifest from 'public/manifest.json';
 
 export default function Document() {
   return (

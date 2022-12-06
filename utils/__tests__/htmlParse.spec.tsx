@@ -1,4 +1,4 @@
-import { parseHtml } from '../htmlParse';
+import { parseHtml } from 'utils/htmlParse';
 import { render, screen } from '@testing-library/react';
 
 describe('HTML parsing utils', () => {

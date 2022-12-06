@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react';
-import useResize from '../useResize';
+import useResize from 'hooks/useResize';
 
 describe('useResize', () => {
   const addEventListenerSpy = jest.spyOn(window, 'addEventListener');

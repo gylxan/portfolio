@@ -1,8 +1,8 @@
-import { Title, Page, PostList } from '../components';
+import { Page, PostList, Title } from 'components';
 import type { GetStaticProps } from 'next';
-import client from '../utils/sanity';
-import { allPostQuery } from '../constants/groq';
-import type { Post } from '../types/post';
+import client from 'utils/sanity';
+import { allPostQuery } from 'constants/groq';
+import type { Post } from 'types/post';
 
 interface BlogProps {
   posts: Post[];

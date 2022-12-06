@@ -1,7 +1,7 @@
-import { Title, Link, Page, Tab, Tabs } from '../components';
-import { parseJSON } from '../utils/json';
+import { Link, Page, Tab, Tabs, Title } from 'components';
+import { parseJSON } from 'utils/json';
 import type { GetStaticProps } from 'next';
-import type { Experience as IExperience } from '../types/experience';
+import type { Experience as IExperience } from 'types/experience';
 
 interface ExperienceProps {
   experiences: IExperience[];

@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react';
-import useSanityImage from '../useSanityImage';
+import useSanityImage from 'hooks/useSanityImage';
 import { SanityImageObject } from '@sanity/image-url/lib/types/types';
 import { useNextSanityImage } from 'next-sanity-image';
 

@@ -11,5 +11,6 @@ module.exports = createJestConfig({
   moduleNameMapper: {
     '\\.(scss|sass|css)$': 'identity-obj-proxy',
   },
+  modulePaths: ["<rootDir>"],
   testEnvironment: 'jest-environment-jsdom',
 });

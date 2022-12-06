@@ -1,11 +1,11 @@
-import { Title, Button, Link, Page } from '../components';
+import { Button, Link, Page, Title } from 'components';
 
 import Image from 'next/image';
-import { parseHtml } from '../utils/htmlParse';
-import { parseJSON } from '../utils/json';
+import { parseHtml } from 'utils/htmlParse';
+import { parseJSON } from 'utils/json';
 import type { GetStaticProps } from 'next';
-import { blurImageUrl } from '../constants/image';
-import { Routes } from '../constants/routes';
+import { blurImageUrl } from 'constants/image';
+import { Routes } from 'constants/routes';
 
 interface Props {
   name: string;
