@@ -36,7 +36,7 @@ export const singlePostQuery = groq`
       } 
     )
   },
-  "estReadingTime": round(length(pt::text(content)) / 5 / 180 )
+  "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 )
 }
 `;
 

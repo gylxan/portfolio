@@ -12,6 +12,7 @@ export interface Post {
   _createdAt: string;
   content: PortableTextBlock;
   mainImage: SanityImage;
+  estimatedReadingTime: number;
 }
 
 interface Category {

@@ -14,7 +14,7 @@ interface PostProps {
 }
 
 const Post = ({ post }: PostProps) => {
-  const { title, _createdAt, categories, mainImage, content, description, slug } =
+  const { title, _createdAt, categories, mainImage, content, description, slug, estimatedReadingTime } =
     post;
 
   const imageProps = useSanityImage(mainImage);
@@ -28,8 +28,9 @@ const Post = ({ post }: PostProps) => {
     >
       <Title animated={false}>{title}</Title>
       <div className="container mt-4 flex max-w-screen-lg flex-col items-center gap-4">
-        <div>
+        <div className="flex gap-2">
           <time>{getFormattedPostDate(_createdAt)}</time>
+          · <span>{estimatedReadingTime === 0 ? '< 1' : estimatedReadingTime} min read</span>
         </div>
         <div className="flex flex-wrap gap-1">
           {categories?.map((category) => (
