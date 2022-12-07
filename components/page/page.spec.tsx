@@ -27,6 +27,7 @@ describe('<Page />', () => {
 
   beforeEach(() => {
     process.env.NEXT_PUBLIC_URL = 'https://example.com';
+    process.env.NEXT_PUBLIC_NAME = 'My name';
     useRouterMock.mockReturnValue({
       pathname: '/',
     } as nextRouter.NextRouter);
@@ -48,11 +49,6 @@ describe('<Page />', () => {
         .querySelector('meta[property="og:url"]')
         ?.getAttribute('content'),
     ).toBe(process.env.NEXT_PUBLIC_URL);
-    expect(
-      container
-        .querySelector('meta[property="og:url"]')
-        ?.getAttribute('content'),
-    ).toBe(process.env.NEXT_PUBLIC_URL);
   });
 
   it('should render with title', () => {
@@ -64,6 +60,11 @@ describe('<Page />', () => {
     );
 
     expect(container.querySelector('title')).toHaveTextContent(title);
+    expect(
+      container
+        .querySelector('meta[property="og:title"]')
+        ?.getAttribute('content'),
+    ).toBe(`${title} | ${process.env.NEXT_PUBLIC_NAME}`);
   });
 
   it('should render with pathname from next router', () => {

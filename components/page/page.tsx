@@ -37,7 +37,7 @@ const Page = ({
         description={description}
         canonical={url}
         openGraph={{
-          title,
+          title: `${title} | ${process.env.NEXT_PUBLIC_NAME}`,
           description,
           url,
           images: ogImage
@@ -46,7 +46,7 @@ const Page = ({
                   url: ogImage,
                   height: 600,
                   width: 800,
-                  alt: title,
+                  alt: `Open Graph image - ${title}`,
                 },
               ]
             : undefined,

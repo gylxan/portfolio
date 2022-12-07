@@ -15,7 +15,7 @@ export const ogImages = [
 ];
 
 const nextSeoConfig = {
-  titleTemplate: process.env.NEXT_PUBLIC_NAME + ' - %s',
+  titleTemplate: `%s | ${process.env.NEXT_PUBLIC_NAME}`,
   defaultTitle: process.env.NEXT_PUBLIC_NAME,
   canonical: process.env.NEXT_PUBLIC_URL,
   description: process.env.NEXT_PUBLIC_DESCRIPTION,
@@ -24,7 +24,7 @@ const nextSeoConfig = {
     url: process.env.NEXT_PUBLIC_URL,
     locale: 'en_US',
     type: 'website',
-    images: ogImages
+    images: ogImages,
   },
   themeColor: manifest.theme_color,
   additionalMetaTags: [
