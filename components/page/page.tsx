@@ -12,6 +12,8 @@ interface PageProps extends HTMLProps<HTMLDivElement> {
   openGraphImage?: SanityImageObject;
   description?: string;
   slug?: string;
+  type?: string;
+  publishedTime?: string;
 }
 
 const Page = ({
@@ -21,6 +23,8 @@ const Page = ({
   className,
   description,
   slug,
+  type,
+  publishedTime,
   ...props
 }: PageProps) => {
   const ogImage = useSanityImage(openGraphImage)?.src || null;
@@ -40,6 +44,14 @@ const Page = ({
           title: `${title} | ${process.env.NEXT_PUBLIC_NAME}`,
           description,
           url,
+          type: type || 'website',
+          ...(type === 'article'
+            ? {
+                article: {
+                  publishedTime,
+                },
+              }
+            : {}),
           images: ogImage
             ? [
                 {
@@ -50,7 +62,6 @@ const Page = ({
                 },
               ]
             : undefined,
-          siteName: title,
         }}
       />
       <div

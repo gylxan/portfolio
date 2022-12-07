@@ -19,6 +19,7 @@ const nextSeoConfig = {
   defaultTitle: process.env.NEXT_PUBLIC_NAME,
   canonical: process.env.NEXT_PUBLIC_URL,
   description: process.env.NEXT_PUBLIC_DESCRIPTION,
+  siteName: `${process.env.NEXT_PUBLIC_NAME} portfolio`,
   openGraph: {
     description: process.env.NEXT_PUBLIC_DESCRIPTION,
     url: process.env.NEXT_PUBLIC_URL,

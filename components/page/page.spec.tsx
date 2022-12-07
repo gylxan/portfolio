@@ -49,6 +49,11 @@ describe('<Page />', () => {
         .querySelector('meta[property="og:url"]')
         ?.getAttribute('content'),
     ).toBe(process.env.NEXT_PUBLIC_URL);
+    expect(
+      container
+        .querySelector('meta[property="og:type"]')
+        ?.getAttribute('content'),
+    ).toBe('website');
   });
 
   it('should render with title', () => {
@@ -142,5 +147,25 @@ describe('<Page />', () => {
         .querySelector('meta[property="og:image"]')
         ?.getAttribute('content'),
     ).toBe(imageProps.src);
+  });
+
+  it('should render article data, when specified type is "article"', () => {
+    const articleData = { publishedTime: '2022-12-02T08:32:09Z' };
+    const { container } = render(
+      <Page {...props} type="article" {...articleData}>
+        {mockChild}
+      </Page>,
+    );
+
+    expect(
+      container
+        .querySelector('meta[property="og:type"]')
+        ?.getAttribute('content'),
+    ).toBe('article');
+    expect(
+      container
+        .querySelector('meta[property="article:published_time"]')
+        ?.getAttribute('content'),
+    ).toBe(articleData.publishedTime);
   });
 });
