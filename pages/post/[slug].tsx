@@ -17,6 +17,7 @@ const Post = ({ post }: PostProps) => {
   const { title, _createdAt, categories, mainImage, content, description, slug, estimatedReadingTime } =
     post;
 
+  console.warn(post);
   const imageProps = useSanityImage(mainImage);
   return (
     <Page
@@ -25,6 +26,8 @@ const Post = ({ post }: PostProps) => {
       openGraphImage={mainImage}
       slug={`/post/${slug.current}`}
       className="flex flex-col items-center"
+      type="article"
+      publishedTime={_createdAt}
     >
       <Title animated={false}>{title}</Title>
       <div className="container mt-4 flex max-w-screen-lg flex-col items-center gap-4">
