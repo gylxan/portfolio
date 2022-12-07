@@ -24,6 +24,7 @@ const nextSeoConfig = {
     url: process.env.NEXT_PUBLIC_URL,
     locale: 'en_US',
     type: 'website',
+    images: ogImages
   },
   themeColor: manifest.theme_color,
   additionalMetaTags: [
