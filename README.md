@@ -111,6 +111,9 @@ npm run build
 yarn build
 ```
 
+Before building the portfolio, Sanity studio dependencies are installed, we build the studio and copy the output to `public/studio`. 
+Like this it can be accessed later via `https://NEXT_PUBLIC_URL/studio`.
+
 After building the portfolio, we also create a sitemap for the portfolio with `next-sitemap`.
 
 ## Learn More
