@@ -4,7 +4,7 @@ const dynamicPaths = ['/post'];
 module.exports = {
   siteUrl,
   generateRobotsTxt: true,
-  outDir: './out', // Vercel specific output dir after build
+  // outDir: './out', // Vercel specific output dir after build
   robotsTxtOptions: {
     // Add server-sitemap.xml to sitemap index and robots.txt.
     additionalSitemaps: [`${siteUrl}/server-sitemap.xml`],
