@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 const siteUrl = process.env.NEXT_PUBLIC_URL || 'https://example.com';
-const dynamicPaths = ['/post'];
+const ignoredPaths = ['/server-sitemap.xml', '/post'];
 module.exports = {
   siteUrl,
   generateRobotsTxt: true,
@@ -18,7 +18,7 @@ module.exports = {
   },
   transform: (config, path) => {
     // Remove entries from static sitemap which are contained in the server-sitemap.xml
-    if (dynamicPaths.some((dynamicPath) => path.startsWith(dynamicPath))) {
+    if (ignoredPaths.some((dynamicPath) => path.startsWith(dynamicPath))) {
       return null;
     }
 
