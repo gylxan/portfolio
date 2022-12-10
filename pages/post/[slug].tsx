@@ -17,7 +17,6 @@ const Post = ({ post }: PostProps) => {
   const { title, _createdAt, categories, mainImage, content, description, slug, estimatedReadingTime } =
     post;
 
-  console.warn(post);
   const imageProps = useSanityImage(mainImage);
   return (
     <Page
