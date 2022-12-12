@@ -28,7 +28,6 @@
   },
   "devDependencies": {
     "eslint-plugin-react": "^7.31.11",
-    "eslint-config-sanity": "^6.0.0",
-    "@sanity/cli": "^3.0.6"
+    "eslint-config-sanity": "^6.0.0"
   }
 }
