@@ -1,8 +1,8 @@
 {
-  "name": "magenta-sardine",
+  "name": "portfolio-studio",
   "private": true,
   "version": "1.0.0",
-  "description": "",
+  "description": "Sanity Studio for Portfolio",
   "main": "package.json",
   "author": {
     "name": "Guido Lange",
