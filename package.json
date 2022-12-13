@@ -17,7 +17,7 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "sanity": "cd studio && npm run start",
-    "sanity:replace-static-folder": "replace-in-files --string='/static' --replacement='/studio/static' ../public/studio/index.html"
+    "sanity:replace-static-folder": "replace-in-files --string='/static' --replacement='/studio/static' public/studio/index.html"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
