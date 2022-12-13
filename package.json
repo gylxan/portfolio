@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "prebuild": "echo 'Building Sanity to public/studio' && cd studio && npm i && npm run build -- ../public/studio -y && cd .. && npm run sanity:replace-static-folder && echo 'Done building Sanity'",
+    "prebuild": "echo 'Building Sanity to public/studio' && cd studio && npm i && npm run build -- ../public/studio -y && echo 'Done building Sanity'",
     "build": "next build",
     "export" : "next export",
     "postbuild": "next-sitemap",
@@ -16,8 +16,7 @@
     "lint": "next lint",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "sanity": "cd studio && npm run start",
-    "sanity:replace-static-folder": "replace-in-files --string='/static' --replacement='/studio/static' public/studio/index.html"
+    "sanity": "cd studio && npm run start"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
@@ -39,7 +38,6 @@
     "react-dom": "18.2.0",
     "react-intersection-observer": "^9.4.1",
     "react-transition-group": "^4.4.5",
-    "replace-in-files-cli": "^2.0.0",
     "simple-icons": "^7.21.0"
   },
   "devDependencies": {
