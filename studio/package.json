@@ -26,11 +26,11 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.6.0",
-    "styled-components": "^5.2.0"
+    "styled-components": "^5.2.0",
+    "replace-in-files-cli": "^2.0.0"
   },
   "devDependencies": {
     "eslint-plugin-react": "^7.31.11",
-    "eslint-config-sanity": "^6.0.0",
-    "replace-in-files-cli": "^2.0.0"
+    "eslint-config-sanity": "^6.0.0"
   }
 }
