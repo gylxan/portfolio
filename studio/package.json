@@ -12,6 +12,7 @@
   "scripts": {
     "start": "sanity dev",
     "build": "sanity build",
+    "postbuild": "replace-in-files --string='/static' --replacement='/studio/static' dist/index.html",
     "deploy": "sanity deploy"
   },
   "keywords": [
@@ -29,6 +30,7 @@
   },
   "devDependencies": {
     "eslint-plugin-react": "^7.31.11",
-    "eslint-config-sanity": "^6.0.0"
+    "eslint-config-sanity": "^6.0.0",
+    "replace-in-files-cli": "^2.0.0"
   }
 }

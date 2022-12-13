@@ -1,12 +1,12 @@
 # Sanity Studio
 
 ## Configuration
-Create an `.env.development` file in the root folder with the following entries.
+Create an `.env` file in the root folder with the following entries.
 
-| Key                          | Description                                       | Example    |
-|------------------------------|---------------------------------------------------|------------|
-| SANITY_STUDIO_API_PROJECT_ID | ID of your Sanity project                         | 1w2l44us   |       |
-| SANITY_STUDIO_API_DATASET    | Dataset you want to use (Default is `production`) | production |       |
+| Key                      | Description                                       | Example    |
+|--------------------------|---------------------------------------------------|------------|
+| SANITY_STUDIO_PROJECT_ID | ID of your Sanity project                         | 1w2l44us   |       |
+| SANITY_STUDIO_DATASET    | Dataset you want to use (Default is `production`) | production |       |
 
 
 ## Commands
