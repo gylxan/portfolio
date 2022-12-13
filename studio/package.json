@@ -12,7 +12,6 @@
   "scripts": {
     "start": "sanity dev",
     "build": "sanity build",
-    "postbuild": "replace-in-files --string='/static' --replacement='/studio/static' dist/index.html",
     "deploy": "sanity deploy"
   },
   "keywords": [
