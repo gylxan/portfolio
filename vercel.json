@@ -2,7 +2,7 @@
   "version": 2,
   "rewrites": [
     {
-      "source": "/studio/:match*",
+      "source": "/studio/(.*)",
       "destination": "/studio/index.html"
     }
   ]
