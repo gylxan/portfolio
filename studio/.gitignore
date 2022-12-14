@@ -29,3 +29,6 @@ yarn-error.log*
 
 /.idea
 /dist
+
+# sanity runtime folder
+/.sanity
