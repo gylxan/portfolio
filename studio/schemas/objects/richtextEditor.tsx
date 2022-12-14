@@ -5,19 +5,19 @@ import {
   AiOutlineAlignLeft,
   AiOutlineAlignCenter,
 } from 'react-icons/ai';
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 
-const alignLeftRender = (props) => (
+const alignLeftRender = (props: PropsWithChildren) => (
   <span style={{ display: 'flex', justifyContent: 'start' }}>
     {props.children}
   </span>
 );
-const alignCenterRender = (props) => (
+const alignCenterRender = (props: PropsWithChildren) => (
   <span style={{ display: 'flex', justifyContent: 'center' }}>
     {props.children}
   </span>
 );
-const alignRightRender = (props) => (
+const alignRightRender = (props: PropsWithChildren) => (
   <span style={{ display: 'flex', justifyContent: 'end' }}>
     {props.children}
   </span>
