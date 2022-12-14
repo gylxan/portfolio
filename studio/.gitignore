@@ -22,10 +22,13 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # local env files
-.env.development
+.env
 
 # typescript
 *.tsbuildinfo
 
 /.idea
 /dist
+
+# sanity runtime folder
+/.sanity

@@ -42,3 +42,8 @@ yarn-error.log*
 # service worker (auto-generated)
 /public/sw.js
 /public/workbox-*.js
+
+# auto-generated sitemap and robots.txt
+/public/robots.txt
+/public/sitemap*.xml
+
