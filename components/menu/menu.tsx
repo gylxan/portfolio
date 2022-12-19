@@ -68,7 +68,7 @@ const Menu = ({ links }: MenuProps) => {
         {links.map(({ slug, title }) => (
           <li key={slug.current} className={listItemClassname}>
             <Link
-              href={slug.current}
+              href={`/${slug.current}`}
               underlined={false}
               onClick={linkClickHandler}
             >
