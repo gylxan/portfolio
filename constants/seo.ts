@@ -1,4 +1,3 @@
-import process from 'process';
 import manifest from 'public/manifest.json';
 
 const nextSeoConfig = {

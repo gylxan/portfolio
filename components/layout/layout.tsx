@@ -40,6 +40,7 @@ const Layout = ({
     slug ? slug : pathname === '/' ? '' : pathname
   }`;
 
+  console.warn(title);
   return (
     <>
       <Header siteConfig={siteConfig} />
@@ -50,7 +51,7 @@ const Layout = ({
         description={description || siteConfig.description}
         canonical={url}
         openGraph={{
-          title: `${title} | ${siteConfig.title}`,
+          title: title ? `${title} | ${siteConfig.title}` : siteConfig.title,
           description: description || siteConfig.description,
           url,
           type: type || 'website',
