@@ -1,4 +1,4 @@
-import { Button, Link, Page, Title } from 'components';
+import { Button, Link, Layout, Title } from 'components';
 
 import Image from 'next/image';
 import { parseHtml } from 'utils/htmlParse';
@@ -6,15 +6,19 @@ import { parseJSON } from 'utils/json';
 import type { GetStaticProps } from 'next';
 import { blurImageUrl } from 'constants/image';
 import { Routes } from 'constants/routes';
+import client from 'utils/sanity';
+import { configQuery } from 'constants/groq';
+import type { SiteConfig } from 'types/siteConfig';
 
 interface Props {
+  siteConfig: SiteConfig;
   name: string;
   profileImageUrl: string;
   paragraphs: string[];
 }
-const Home = ({ name, profileImageUrl, paragraphs }: Props) => {
+const Home = ({ name, profileImageUrl, paragraphs, siteConfig }: Props) => {
   return (
-    <Page>
+    <Layout siteConfig={siteConfig}>
       <div className="container flex flex-col items-center justify-center gap-4">
         <Link
           href="/about"
@@ -42,13 +46,16 @@ const Home = ({ name, profileImageUrl, paragraphs }: Props) => {
         ))}
         <Button href={Routes.About}>Check me out!</Button>
       </div>
-    </Page>
+    </Layout>
   );
 };
 
-export const getStaticProps: GetStaticProps<Props> = () => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const siteConfig = await client.fetch<SiteConfig>(configQuery);
+
   return {
     props: {
+      siteConfig,
       name: process.env.NEXT_PUBLIC_NAME ?? '',
       profileImageUrl: process.env.NEXT_PUBLIC_PROFILE_IMAGE_URL ?? '',
       paragraphs: parseJSON<string[]>(

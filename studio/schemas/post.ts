@@ -1,4 +1,5 @@
-import richtextEditor from './objects/richtextEditor.jsx';
+import richtextEditor from './objects/richtextEditor';
+import { Rule } from 'sanity'
 
 export default {
   name: 'post',
@@ -10,7 +11,7 @@ export default {
       type: 'string',
       title: 'Title',
       description: 'Title of the post. Recommended: 60 chars',
-      validation: (Rule) => Rule.required().min(5),
+      validation: (rule: Rule) => rule.required().min(5),
     },
     {
       name: 'description',
@@ -28,7 +29,7 @@ export default {
         source: 'title',
         maxLength: 96,
       },
-      validation: (Rule) => Rule.required(),
+      validation: (rule: Rule) => rule.required(),
     },
     {
       name: 'mainImage',

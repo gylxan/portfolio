@@ -1,7 +1,6 @@
 import type { PortableTextBlock } from '@portabletext/types';
-import type { SanityImageObject } from '@sanity/image-url/lib/types/types';
-import { SanityAsset, SanityReference } from "@sanity/image-url/lib/types/types";
-import { Slug } from "@sanity/types";
+import { Slug } from '@sanity/types';
+import { SanityImage } from 'types/image';
 
 export interface Post {
   _id: string;
@@ -18,8 +17,4 @@ export interface Post {
 interface Category {
   name: string;
   description: string;
-}
-
-export interface SanityImage extends SanityImageObject {
-  asset: SanityReference & SanityAsset;
 }

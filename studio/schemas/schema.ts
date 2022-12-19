@@ -5,6 +5,7 @@ import company from './experience';
 import skills from './objects/skills';
 import richtextEditor from './objects/richtextEditor';
 import customImage from './objects/customImage';
+import siteConfig from "./siteConfig";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export const schemaTypes = [
@@ -15,4 +16,5 @@ export const schemaTypes = [
   skills,
   richtextEditor,
   customImage,
+  siteConfig
 ];

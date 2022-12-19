@@ -44,3 +44,9 @@ export const pathPostQuery = groq`
   slug,
 }
 `;
+
+export const configQuery = groq`
+*[_type == "siteconfig"][0] {
+  ...,
+}
+`

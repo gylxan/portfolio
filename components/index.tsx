@@ -5,7 +5,7 @@ export { default as Header } from 'components/header/header';
 export { default as Link } from 'components/link/link';
 export { default as Menu } from 'components/menu/menu';
 export { default as MenuButton } from 'components/menu-button/menuButton';
-export { default as Page } from 'components/page/page';
+export { default as Layout } from 'components/layout/layout';
 export { default as PortableText } from 'components/portable-text/portable-text';
 export { default as PostList } from 'components/post-list/postList';
 export { default as PostListItem } from 'components/post-list-item/postListItem';

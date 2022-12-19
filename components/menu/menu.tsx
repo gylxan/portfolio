@@ -1,16 +1,20 @@
 import { MouseEvent, useRef, useState } from 'react';
 import { Link, MenuButton } from 'components';
-import { menu } from 'constants/routes';
 import clsx from 'clsx';
 import useOutsideClick from 'hooks/useOutsideClick';
 import useResize from 'hooks/useResize';
 import styles from 'components/menu/menu.module.css';
+import { MenuLink } from 'types/siteConfig';
 
 export const MD_WIDTH = 768;
 
 const menuOpenClass = 'menu-open';
 
-const Menu = () => {
+interface MenuProps {
+  links: MenuLink[];
+}
+
+const Menu = ({ links }: MenuProps) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const ref = useRef(null);
 
@@ -61,15 +65,17 @@ const Menu = () => {
   ) {
     return (
       <ol className={listClassname}>
-        {menu.map(({ href, name }) => {
-          return (
-            <li key={href} className={listItemClassname}>
-              <Link href={href} underlined={false} onClick={linkClickHandler}>
-                {name}
-              </Link>
-            </li>
-          );
-        })}
+        {links.map(({ slug, title }) => (
+          <li key={slug.current} className={listItemClassname}>
+            <Link
+              href={slug.current}
+              underlined={false}
+              onClick={linkClickHandler}
+            >
+              {title}
+            </Link>
+          </li>
+        ))}
       </ol>
     );
   }
@@ -89,7 +95,11 @@ const Menu = () => {
         ref={ref}
       >
         <nav>
-          {renderMenu(styles.burgerMenuList, styles.burgerMenuListItem, handleLinkClick)}
+          {renderMenu(
+            styles.burgerMenuList,
+            styles.burgerMenuListItem,
+            handleLinkClick,
+          )}
         </nav>
       </aside>
     </div>

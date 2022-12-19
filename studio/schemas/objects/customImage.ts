@@ -6,7 +6,8 @@ export default {
     {
       name: 'alt',
       type: 'string',
-      title: 'Alternative text',
+      title: 'Alternative Text',
+      description: 'Important for SEO and accessibility',
     },
   ],
 };

@@ -1,8 +1,15 @@
 import { Routes } from 'constants/routes';
 import Image from 'next/image';
 import { Link, Menu } from 'components';
+import { SiteConfig } from 'types/siteConfig';
+import useSanityImage from 'hooks/useSanityImage';
 
-const Header = () => {
+interface HeaderProps {
+  siteConfig: SiteConfig;
+}
+const Header = ({ siteConfig }: HeaderProps) => {
+  const { logo, menuLinks } = siteConfig;
+  const imageSrc = useSanityImage(logo)?.src;
   return (
     <header className="flex h-24 w-full grow items-center justify-between gap-4 px-4 text-center md:px-8">
       <Link
@@ -12,16 +19,20 @@ const Header = () => {
         underlined={false}
         coloredHover={false}
       >
-        <Image
-          src={process.env.NEXT_PUBLIC_LOGO_URL || ''}
-          alt="logo"
-          sizes="40px"
-          fill
-          priority
-        />
+        {imageSrc && (
+          <Image
+            src={imageSrc}
+            alt="logo"
+            sizes="40px"
+            fill
+            priority
+            width={undefined}
+            height={undefined}
+          />
+        )}
       </Link>
 
-      <Menu />
+      <Menu links={menuLinks} />
     </header>
   );
 };

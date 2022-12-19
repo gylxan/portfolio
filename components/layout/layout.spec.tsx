@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Page from 'components/page/page';
+import Layout from 'components/layout/layout';
 import React from 'react';
 import * as hooks from 'hooks/useSanityImage';
 import { ImageLoader } from 'next/image';
@@ -16,7 +16,7 @@ jest.mock('hooks/useSanityImage');
 
 const useSanityMock = jest.spyOn(hooks, 'default').mockReturnValue(null);
 
-describe('<Page />', () => {
+describe('<Layout />', () => {
   const originalProcessEnv = process.env;
 
   const props = {
@@ -38,7 +38,7 @@ describe('<Page />', () => {
   });
 
   it('should render', () => {
-    const { container } = render(<Page {...props}>{mockChild}</Page>);
+    const { container } = render(<Layout {...props}>{mockChild}</Layout>);
 
     expect(container.querySelector('div')).toHaveClass(
       'container mx-auto px-4 mt-4 max-w-screen-lg',
@@ -59,9 +59,9 @@ describe('<Page />', () => {
   it('should render with title', () => {
     const title = 'MyPortfolio';
     const { container } = render(
-      <Page {...props} title={title}>
+      <Layout {...props} title={title}>
         {mockChild}
-      </Page>,
+      </Layout>,
     );
 
     expect(container.querySelector('title')).toHaveTextContent(title);
@@ -77,7 +77,7 @@ describe('<Page />', () => {
     useRouterMock.mockReturnValue({
       pathname: path,
     } as nextRouter.NextRouter);
-    const { container } = render(<Page {...props}>{mockChild}</Page>);
+    const { container } = render(<Layout {...props}>{mockChild}</Layout>);
 
     expect(
       container.querySelector('link[rel="canonical"]')?.getAttribute('href'),
@@ -87,9 +87,9 @@ describe('<Page />', () => {
   it('should render with title from props and process.env', () => {
     const title = 'My-Title';
     const { container } = render(
-      <Page {...props} title={title}>
+      <Layout {...props} title={title}>
         {mockChild}
-      </Page>,
+      </Layout>,
     );
 
     expect(container.querySelector('title')).toHaveTextContent(title);
@@ -97,9 +97,9 @@ describe('<Page />', () => {
 
   it('should render in full height', () => {
     const { container } = render(
-      <Page {...props} fullHeight>
+      <Layout {...props} fullHeight>
         {mockChild}
-      </Page>,
+      </Layout>,
     );
 
     expect(container.querySelector('div')).toHaveClass(
@@ -109,9 +109,9 @@ describe('<Page />', () => {
 
   it('should render with given className', () => {
     const { container } = render(
-      <Page {...props} className="MyClass">
+      <Layout {...props} className="MyClass">
         {mockChild}
-      </Page>,
+      </Layout>,
     );
 
     expect(container.querySelector('div')).toHaveClass('MyClass');
@@ -120,9 +120,9 @@ describe('<Page />', () => {
   it('should render with slug in og:url, when slug is specified', () => {
     const slug = '/post';
     const { container } = render(
-      <Page {...props} slug={slug}>
+      <Layout {...props} slug={slug}>
         {mockChild}
-      </Page>,
+      </Layout>,
     );
 
     expect(
@@ -140,7 +140,7 @@ describe('<Page />', () => {
       height: 123,
     };
     useSanityMock.mockReturnValue(imageProps);
-    const { container } = render(<Page {...props}>{mockChild}</Page>);
+    const { container } = render(<Layout {...props}>{mockChild}</Layout>);
 
     expect(
       container
@@ -152,9 +152,9 @@ describe('<Page />', () => {
   it('should render article data, when specified type is "article"', () => {
     const articleData = { publishedTime: '2022-12-02T08:32:09Z' };
     const { container } = render(
-      <Page {...props} type="article" {...articleData}>
+      <Layout {...props} type="article" {...articleData}>
         {mockChild}
-      </Page>,
+      </Layout>,
     );
 
     expect(

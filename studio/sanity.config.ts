@@ -1,8 +1,18 @@
 import { defineConfig } from 'sanity';
-import { deskTool } from 'sanity/desk';
+import { deskTool, ListItem } from 'sanity/desk';
 import { schemaTypes } from './schemas/schema';
 import { codeInput } from '@sanity/code-input';
 import { visionTool } from '@sanity/vision';
+import {
+  HiOutlineCog,
+  HiOutlineClipboardList,
+  HiOutlineFilter,
+  HiOutlineNewspaper,
+} from 'react-icons/hi';
+import { ListItemBuilder } from 'sanity/lib/exports/desk';
+
+const hiddenDocTypes = (listItem: ListItemBuilder) =>
+  !['siteconfig'].includes(listItem.getId() as string);
 
 export default defineConfig({
   name: 'portfolio',
@@ -12,7 +22,21 @@ export default defineConfig({
   basePath: '/studio',
 
   plugins: [
-    deskTool({}),
+    deskTool({
+      structure: (S) =>
+        S.list()
+          .title('Content Manager')
+          .items([
+            S.listItem()
+              .title('Site config')
+              .icon(HiOutlineCog)
+              .child(
+                S.editor().schemaType('siteconfig').documentId('siteconfig'),
+              ),
+            S.divider(),
+            ...S.documentTypeListItems().filter(hiddenDocTypes),
+          ]),
+    }),
     codeInput(),
     visionTool({
       // Note: These are both optional
@@ -24,7 +48,7 @@ export default defineConfig({
     types: schemaTypes,
   },
   form: {
-    images: {
+    image: {
       directUploads: true,
     },
   },

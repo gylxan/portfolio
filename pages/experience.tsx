@@ -1,15 +1,19 @@
-import { Link, Page, Tab, Tabs, Title } from 'components';
+import { Link, Layout, Tab, Tabs, Title } from 'components';
 import { parseJSON } from 'utils/json';
 import type { GetStaticProps } from 'next';
 import type { Experience as IExperience } from 'types/experience';
+import client from 'utils/sanity';
+import type { SiteConfig } from 'types/siteConfig';
+import { configQuery } from 'constants/groq';
 
 interface ExperienceProps {
+  siteConfig: SiteConfig;
   experiences: IExperience[];
 }
 
-const Experience = ({ experiences }: ExperienceProps) => {
+const Experience = ({ experiences, siteConfig }: ExperienceProps) => {
   return (
-    <Page title="Experience">
+    <Layout title="Experience" siteConfig={siteConfig}>
       <Title>Experience</Title>
       <div className="container mt-8">
         <Tabs aria-label="Job Tabs" className="mx-auto max-w-3xl">
@@ -44,17 +48,19 @@ const Experience = ({ experiences }: ExperienceProps) => {
           ))}
         </Tabs>
       </div>
-    </Page>
+    </Layout>
   );
 };
 
-export const getStaticProps: GetStaticProps<ExperienceProps> = () => {
+export const getStaticProps: GetStaticProps<ExperienceProps> = async () => {
+  const siteConfig = await client.fetch<SiteConfig>(configQuery);
   return {
     props: {
       experiences: parseJSON<IExperience[]>(
         process.env.NEXT_PUBLIC_EXPERIENCES,
         [],
       ),
+      siteConfig,
     },
   };
 };

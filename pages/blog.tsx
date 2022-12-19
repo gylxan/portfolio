@@ -1,16 +1,18 @@
-import { Page, PostList, Title } from 'components';
+import { Layout, PostList, Title } from 'components';
 import type { GetStaticProps } from 'next';
 import client from 'utils/sanity';
-import { allPostQuery } from 'constants/groq';
+import { allPostQuery, configQuery } from 'constants/groq';
 import type { Post } from 'types/post';
+import type { SiteConfig } from 'types/siteConfig';
 
 interface BlogProps {
+  siteConfig: SiteConfig;
   posts: Post[];
 }
 
-const Blog = ({ posts }: BlogProps) => {
+const Blog = ({ posts, siteConfig }: BlogProps) => {
   return (
-    <Page title="Blog">
+    <Layout title="Blog" siteConfig={siteConfig}>
       <Title>Blog</Title>
       <div className="container mt-8">
         {posts.length > 0 ? (
@@ -24,16 +26,18 @@ const Blog = ({ posts }: BlogProps) => {
           'Sadly, there are no posts yet :('
         )}
       </div>
-    </Page>
+    </Layout>
   );
 };
 
 export const getStaticProps: GetStaticProps<BlogProps> = async () => {
+  const siteConfig = await client.fetch<SiteConfig>(configQuery);
   const posts = await client.fetch(allPostQuery);
 
   return {
     props: {
       posts,
+      siteConfig,
     },
     revalidate: 60,
   };
