@@ -8,7 +8,6 @@ import Image from 'next/image';
 import useSanityImage from 'hooks/useSanityImage';
 import { blurImageUrl } from 'constants/image';
 import { Routes } from 'constants/routes';
-import { useRouter } from 'next/router';
 
 interface PostProps {
   post: IPost;
@@ -91,10 +90,10 @@ export const getStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<PostProps> = async ({ params }) => {
   const post = await client.fetch(singlePostQuery, { slug: params?.slug });
 
-  if(!post) {
+  if (!post) {
     return {
-      notFound: true
-    }
+      notFound: true,
+    };
   }
 
   return {
