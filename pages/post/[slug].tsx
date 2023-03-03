@@ -8,14 +8,27 @@ import Image from 'next/image';
 import useSanityImage from 'hooks/useSanityImage';
 import { blurImageUrl } from 'constants/image';
 import { Routes } from 'constants/routes';
+import { useRouter } from 'next/router';
 
 interface PostProps {
   post: IPost;
 }
 
 const Post = ({ post }: PostProps) => {
-  const { title, _createdAt, categories, mainImage, content, description, slug, estimatedReadingTime } =
-    post;
+  const router = useRouter();
+  if (router.isFallback) {
+    console.warn("I'm the fallback!!", post);
+  }
+  const {
+    title,
+    _createdAt,
+    categories,
+    mainImage,
+    content,
+    description,
+    slug,
+    estimatedReadingTime,
+  } = post;
 
   const imageProps = useSanityImage(mainImage);
   return (
@@ -31,8 +44,10 @@ const Post = ({ post }: PostProps) => {
       <Title animated={false}>{title}</Title>
       <div className="container mt-4 flex max-w-screen-lg flex-col items-center gap-4">
         <div className="flex gap-2">
-          <time>{getFormattedPostDate(_createdAt)}</time>
-          · <span>{estimatedReadingTime === 0 ? '< 1' : estimatedReadingTime} min read</span>
+          <time>{getFormattedPostDate(_createdAt)}</time>·{' '}
+          <span>
+            {estimatedReadingTime === 0 ? '< 1' : estimatedReadingTime} min read
+          </span>
         </div>
         <div className="flex flex-wrap gap-1">
           {categories?.map((category) => (
@@ -73,7 +88,7 @@ export const getStaticPaths = async () => {
         slug: post.slug.current,
       },
     })),
-    fallback: "blocking",
+    fallback: 'blocking',
   };
 };
 
