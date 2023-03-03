@@ -14,8 +14,16 @@ interface PostProps {
 }
 
 const Post = ({ post }: PostProps) => {
-  const { title, _createdAt, categories, mainImage, content, description, slug, estimatedReadingTime } =
-    post;
+  const {
+    title,
+    _createdAt,
+    categories,
+    mainImage,
+    content,
+    description,
+    slug,
+    estimatedReadingTime,
+  } = post;
 
   const imageProps = useSanityImage(mainImage);
   return (
@@ -31,8 +39,10 @@ const Post = ({ post }: PostProps) => {
       <Title animated={false}>{title}</Title>
       <div className="container mt-4 flex max-w-screen-lg flex-col items-center gap-4">
         <div className="flex gap-2">
-          <time>{getFormattedPostDate(_createdAt)}</time>
-          · <span>{estimatedReadingTime === 0 ? '< 1' : estimatedReadingTime} min read</span>
+          <time>{getFormattedPostDate(_createdAt)}</time>·{' '}
+          <span>
+            {estimatedReadingTime === 0 ? '< 1' : estimatedReadingTime} min read
+          </span>
         </div>
         <div className="flex flex-wrap gap-1">
           {categories?.map((category) => (
@@ -73,12 +83,18 @@ export const getStaticPaths = async () => {
         slug: post.slug.current,
       },
     })),
-    fallback: false,
+    fallback: 'blocking',
   };
 };
 
 export const getStaticProps: GetStaticProps<PostProps> = async ({ params }) => {
   const post = await client.fetch(singlePostQuery, { slug: params?.slug });
+
+  if (!post) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {
