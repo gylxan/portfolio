@@ -15,10 +15,6 @@ interface PostProps {
 }
 
 const Post = ({ post }: PostProps) => {
-  const router = useRouter();
-  if (router.isFallback) {
-    console.warn("I'm the fallback!!", post);
-  }
   const {
     title,
     _createdAt,
