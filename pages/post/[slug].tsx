@@ -95,6 +95,12 @@ export const getStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<PostProps> = async ({ params }) => {
   const post = await client.fetch(singlePostQuery, { slug: params?.slug });
 
+  if(!post) {
+    return {
+      notFound: true
+    }
+  }
+
   return {
     props: {
       post,
