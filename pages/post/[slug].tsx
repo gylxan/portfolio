@@ -55,17 +55,17 @@ const Post = ({ siteConfig, post }: PostProps) => {
           ))}
         </div>
         <div className="relative aspect-video w-full overflow-hidden rounded-lg">
-          {imageProps && (
-            <Image
-              src={imageProps.src}
-              loader={imageProps.loader}
-              blurDataURL={mainImage.asset.metadata.lqip || blurImageUrl}
-              alt={`${title} cover image`}
-              className="object-cover"
-              placeholder="blur"
-              fill
-              loading="eager"
-            />
+          {imageProps && ( <Image
+            src={imageProps.src}
+            loader={imageProps.loader}
+            blurDataURL={mainImage.asset.metadata.lqip || blurImageUrl}
+            alt={`${title} cover image`}
+            className="object-cover"
+            placeholder="blur"
+            fill
+            loading="eager"
+          />
+
           )}
         </div>
         <article className="w-full max-w-screen-sm [&>p:first-child]:mt-0 [&>p]:my-4">

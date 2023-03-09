@@ -13,7 +13,7 @@ const nextConfig = withPWA({
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['res.cloudinary.com', 'cdn.sanity.io']
+    domains: ['cdn.sanity.io', 'cdn.simpleicons.org']
   }
 });
 

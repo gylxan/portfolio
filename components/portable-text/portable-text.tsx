@@ -1,15 +1,18 @@
 import {
   PortableText as PortableTextComponent,
   PortableTextMarkComponentProps,
-  PortableTextProps,
+  PortableTextProps as IPortableTextProps,
+  PortableTextReactComponents,
 } from '@portabletext/react';
 import SanityImage from 'components/portable-text/types/sanityImage';
 import Code from 'components/portable-text/types/code';
 import Link from 'components/portable-text/marks/link';
+import { Title } from 'components';
 
-const components = {
+const components: Partial<PortableTextReactComponents> = {
   types: {
     image: SanityImage,
+    customImage: SanityImage,
     code: Code,
   },
   marks: {
@@ -24,8 +27,13 @@ const components = {
     ),
     link: Link,
   },
+  block: {
+    h1: (props) => {
+      return <Title>{(props.children as string[]).join('')}</Title>;
+    },
+  },
 };
-
+export type PortableTextProps = IPortableTextProps;
 const PortableText = (props: PortableTextProps) => {
   return <PortableTextComponent components={components} {...props} />;
 };

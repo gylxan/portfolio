@@ -1,8 +1,8 @@
 import { Post } from 'types/post';
 import { act, render, screen } from '@testing-library/react';
-import PostList from 'components/post-list/postList';
+import PostList from 'components/post-list/post-list';
 import * as hooks from 'hooks/useSanityImage';
-import { ImageLoader } from "next/image";
+import { ImageLoader } from 'next/image';
 
 jest.mock('hooks/useSanityImage');
 
@@ -12,7 +12,8 @@ const mockPosts: Post[] = [
     title: 'Post 1',
     description: 'Description for post 1',
     _createdAt: '2022-10-22',
-    slug: 'post1',
+    slug: { _type: 'slug', current: 'post1' },
+    estimatedReadingTime: 12345,
     mainImage: {
       asset: {
         _ref: '123',
@@ -37,7 +38,8 @@ const mockPosts: Post[] = [
     title: 'Post 2',
     description: 'Description for post 2',
     _createdAt: '2022-10-22',
-    slug: 'post-2',
+    slug: { _type: 'slug', current: 'post-2' },
+    estimatedReadingTime: 12345,
     mainImage: {
       asset: {
         _ref: '234',

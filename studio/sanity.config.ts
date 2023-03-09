@@ -1,18 +1,19 @@
 import { defineConfig } from 'sanity';
-import { deskTool, ListItem } from 'sanity/desk';
+import { deskTool } from 'sanity/desk';
 import { schemaTypes } from './schemas/schema';
 import { codeInput } from '@sanity/code-input';
 import { visionTool } from '@sanity/vision';
-import {
-  HiOutlineCog,
-  HiOutlineClipboardList,
-  HiOutlineFilter,
-  HiOutlineNewspaper,
-} from 'react-icons/hi';
+import { HiDocument, HiOutlineCog } from 'react-icons/hi';
 import { ListItemBuilder } from 'sanity/lib/exports/desk';
 
 const hiddenDocTypes = (listItem: ListItemBuilder) =>
   !['siteconfig'].includes(listItem.getId() as string);
+
+const pageType = (listItem: ListItemBuilder) =>
+  ['page'].includes(listItem.getId() as string);
+
+const blogTypes = (listItem: ListItemBuilder) =>
+  ['post', 'category'].includes(listItem.getId() as string);
 
 export default defineConfig({
   name: 'portfolio',
@@ -34,7 +35,16 @@ export default defineConfig({
                 S.editor().schemaType('siteconfig').documentId('siteconfig'),
               ),
             S.divider(),
-            ...S.documentTypeListItems().filter(hiddenDocTypes),
+            ...S.documentTypeListItems()
+              .filter(pageType)
+              .map((element) => element.icon(HiDocument)),
+            S.divider(),
+            ...S.documentTypeListItems().filter(blogTypes),
+            S.divider(),
+            ...S.documentTypeListItems()
+              .filter(hiddenDocTypes)
+              .filter((element) => !pageType(element))
+              .filter((element) => !blogTypes(element)),
           ]),
     }),
     codeInput(),

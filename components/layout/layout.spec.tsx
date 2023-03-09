@@ -1,9 +1,10 @@
 import { render, screen } from '@testing-library/react';
-import Layout from 'components/layout/layout';
+import Layout, { LayoutProps } from 'components/layout/layout';
 import React from 'react';
 import * as hooks from 'hooks/useSanityImage';
-import { ImageLoader } from 'next/image';
+import type { ImageLoader } from 'next/image';
 import * as nextRouter from 'next/router';
+import { mockSiteConfig } from 'constants/mock';
 
 jest.mock(
   'next/head',
@@ -19,8 +20,8 @@ const useSanityMock = jest.spyOn(hooks, 'default').mockReturnValue(null);
 describe('<Layout />', () => {
   const originalProcessEnv = process.env;
 
-  const props = {
-    description: 'My description',
+  const props: LayoutProps = {
+    siteConfig: mockSiteConfig,
   };
   const mockChild = <span data-testid="test-child">I am test child</span>;
   const useRouterMock = jest.spyOn(nextRouter, 'useRouter');
@@ -40,20 +41,24 @@ describe('<Layout />', () => {
   it('should render', () => {
     const { container } = render(<Layout {...props}>{mockChild}</Layout>);
 
-    expect(container.querySelector('div')).toHaveClass(
-      'container mx-auto px-4 mt-4 max-w-screen-lg',
+    expect(screen.getByRole('main').children[0]).toHaveClass(
+      'container mx-auto max-w-screen-lg px-4 md:px-8',
     );
     expect(screen.getByTestId('test-child')).toBeInTheDocument();
     expect(
       container
         .querySelector('meta[property="og:url"]')
         ?.getAttribute('content'),
-    ).toBe(process.env.NEXT_PUBLIC_URL);
+    ).toBe(props.siteConfig.url);
     expect(
       container
         .querySelector('meta[property="og:type"]')
         ?.getAttribute('content'),
     ).toBe('website');
+
+    expect(screen.getByRole('main')).toBeInTheDocument();
+    expect(screen.getByRole('banner')).toBeInTheDocument();
+    expect(screen.getByRole('contentinfo')).toBeInTheDocument();
   });
 
   it('should render with title', () => {
@@ -69,7 +74,7 @@ describe('<Layout />', () => {
       container
         .querySelector('meta[property="og:title"]')
         ?.getAttribute('content'),
-    ).toBe(`${title} | ${process.env.NEXT_PUBLIC_NAME}`);
+    ).toBe(`${title} | ${props.siteConfig.title}`);
   });
 
   it('should render with pathname from next router', () => {
@@ -81,44 +86,33 @@ describe('<Layout />', () => {
 
     expect(
       container.querySelector('link[rel="canonical"]')?.getAttribute('href'),
-    ).toBe(process.env.NEXT_PUBLIC_URL + path);
-  });
-
-  it('should render with title from props and process.env', () => {
-    const title = 'My-Title';
-    const { container } = render(
-      <Layout {...props} title={title}>
-        {mockChild}
-      </Layout>,
-    );
-
-    expect(container.querySelector('title')).toHaveTextContent(title);
+    ).toBe(props.siteConfig.url + path);
   });
 
   it('should render in full height', () => {
-    const { container } = render(
+    render(
       <Layout {...props} fullHeight>
         {mockChild}
       </Layout>,
     );
 
-    expect(container.querySelector('div')).toHaveClass(
+    expect(screen.getByRole('main').children[0]).toHaveClass(
       'container mx-auto px-4 flex h-full flex-col justify-center',
     );
   });
 
   it('should render with given className', () => {
-    const { container } = render(
+    render(
       <Layout {...props} className="MyClass">
         {mockChild}
       </Layout>,
     );
 
-    expect(container.querySelector('div')).toHaveClass('MyClass');
+    expect(screen.getByRole('main').children[0]).toHaveClass('MyClass');
   });
 
   it('should render with slug in og:url, when slug is specified', () => {
-    const slug = '/post';
+    const slug = 'post';
     const { container } = render(
       <Layout {...props} slug={slug}>
         {mockChild}
@@ -129,7 +123,7 @@ describe('<Layout />', () => {
       container
         .querySelector('meta[property="og:url"]')
         ?.getAttribute('content'),
-    ).toBe(process.env.NEXT_PUBLIC_URL + slug);
+    ).toBe(`${props.siteConfig.url}/${slug}`);
   });
 
   it('should render with open graph image, when useSanity returns imageProps', () => {

@@ -1,6 +1,6 @@
 import PostListItem, {
   PostListItemProps,
-} from 'components/post-list-item/postListItem';
+} from 'components/post-list-item/post-list-item';
 import { act, render, screen } from '@testing-library/react';
 import * as hooks from 'hooks/useSanityImage';
 import { getFormattedPostDate } from 'utils/date';

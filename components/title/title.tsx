@@ -1,10 +1,16 @@
 import { PropsWithChildren } from 'react';
+import clsx from 'clsx';
 
 export interface AnimatedTitleProps extends PropsWithChildren {
   animated?: boolean;
+  className?: string;
 }
 
-const Title = ({ children, animated = true }: AnimatedTitleProps) => {
+const Title = ({
+  children,
+  className,
+  animated = true,
+}: AnimatedTitleProps) => {
   function renderChildren() {
     if (!animated || typeof children !== 'string') {
       return children;
@@ -28,7 +34,9 @@ const Title = ({ children, animated = true }: AnimatedTitleProps) => {
     });
   }
 
-  return <h1 className="relative text-4xl">{renderChildren()}</h1>;
+  return (
+    <h1 className={clsx('relative text-4xl', className)}>{renderChildren()}</h1>
+  );
 };
 
 export default Title;

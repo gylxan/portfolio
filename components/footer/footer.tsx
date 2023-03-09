@@ -6,9 +6,9 @@ import {
   IconDefinition,
 } from '@fortawesome/free-brands-svg-icons';
 import { Link } from 'components';
-import { SiteConfig, SocialMedia } from 'types/siteConfig';
+import type { SiteConfig, SocialMedia } from 'types/siteConfig';
 
-interface FooterProps {
+export interface FooterProps {
   siteConfig: SiteConfig;
 }
 
@@ -25,9 +25,6 @@ const Footer = ({ siteConfig }: FooterProps) => {
       <div className="flex gap-4">
         {social.map(({ url, media }) => {
           if (!iconMap[media]) {
-            console.warn(
-              `No defined icon for social ${media}. Add definition to iconMap to show icon.`,
-            );
             return null;
           }
           return (

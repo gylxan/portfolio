@@ -14,11 +14,11 @@ export interface MenuLink {
 export interface SiteConfig {
   title: string;
   url: string;
-  copyright: string;
+  copyright?: string;
   description: string;
   social: Social[];
   openGraphImage: SanityImage;
-  logo: SanityAltImage;
+  logo: SanityImage;
   keywords: string[];
   menuLinks: MenuLink[];
   appleTouchIcon: SanityImage;

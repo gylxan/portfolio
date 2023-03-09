@@ -5,9 +5,9 @@ import useSanityImage from 'hooks/useSanityImage';
 import { useRouter } from 'next/router';
 import { Footer, Header } from 'components/index';
 import type { SiteConfig } from 'types/siteConfig';
-import type { SanityImage } from "types/image";
+import type { SanityImage } from 'types/image';
 
-interface PageProps extends HTMLProps<HTMLDivElement> {
+export interface LayoutProps extends HTMLProps<HTMLDivElement> {
   title?: string;
   fullHeight?: boolean;
   openGraphImage?: SanityImage;
@@ -29,21 +29,20 @@ const Layout = ({
   publishedTime,
   siteConfig,
   ...props
-}: PageProps) => {
+}: LayoutProps) => {
+  const { logo, menuLinks, appleTouchIcon, safariTabIcon } = siteConfig;
   const ogImage = useSanityImage(openGraphImage)?.src || null;
-  const appleTouchIcon = useSanityImage(siteConfig.appleTouchIcon)?.src || null;
-  const safariTabIcon = useSanityImage(siteConfig.safariTabIcon)?.src || null;
+  const appleIcon = useSanityImage(appleTouchIcon)?.src || null;
+  const safariIcon = useSanityImage(safariTabIcon)?.src || null;
   const globalOgImage = useSanityImage(siteConfig.openGraphImage)?.src || null;
   const { pathname } = useRouter();
 
-  const url = `${siteConfig.url}${
-    slug ? slug : pathname === '/' ? '' : pathname
-  }`;
+  const subPath = slug ? (slug === '/' ? slug : `/${slug}`) : pathname;
+  const url = `${siteConfig.url}${subPath === '/' ? '' : subPath}`;
 
-  console.warn(title);
   return (
     <>
-      <Header siteConfig={siteConfig} />
+      <Header logo={logo} menuLinks={menuLinks} />
       <NextSeo
         title={title}
         defaultTitle={siteConfig.title}
@@ -97,20 +96,20 @@ const Layout = ({
             : []),
         ]}
         additionalLinkTags={[
-          ...(appleTouchIcon
+          ...(appleIcon
             ? [
                 {
                   rel: 'apple-touch-icon',
                   sizes: '180x180',
-                  href: appleTouchIcon,
+                  href: appleIcon,
                 },
               ]
             : []),
-          ...(safariTabIcon
+          ...(safariIcon
             ? [
                 {
                   rel: 'mask-icon',
-                  href: safariTabIcon,
+                  href: safariIcon,
                 },
               ]
             : []),
@@ -124,7 +123,7 @@ const Layout = ({
             'container mx-auto max-w-screen-lg px-4 md:px-8',
             fullHeight
               ? 'flex h-full flex-col justify-center'
-              : 'mt-4 mb-6 md:mt-12',
+              : 'mt-4 mb-6 md:mt-6',
             className,
           )}
         />
