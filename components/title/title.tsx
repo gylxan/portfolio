@@ -16,16 +16,16 @@ const Title = ({
       return children;
     }
 
-    let delayedElementIndex = -1;
+    let delayedElementIndex = 0;
     return children.split('').map((char, index) => {
       // Skip spaces or empty strings from animation
       if (!char.trim()) {
-        return <span key={index}>{char}</span>;
+        return <span key={`${char}-${index}`}>{char}</span>;
       }
       return (
         <span
-          key={index}
-          className={`relative inline-block animate-pop-in opacity-0 transition-all`}
+          key={`${char}-${index}`}
+          className="relative inline-block animate-pop-in opacity-0 transition-all"
           style={{ animationDelay: `${delayedElementIndex++ * 50}ms` }}
         >
           {char}
