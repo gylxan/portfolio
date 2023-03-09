@@ -10,7 +10,7 @@ export const MD_WIDTH = 768;
 
 const menuOpenClass = 'menu-open';
 
-interface MenuProps {
+export interface MenuProps {
   links: MenuLink[];
 }
 
@@ -58,51 +58,28 @@ const Menu = ({ links }: MenuProps) => {
     }
   }
 
-  function renderMenu(
-    listClassname: string,
-    listItemClassname?: string,
-    linkClickHandler?: () => void,
-  ) {
-    return (
-      <ol className={listClassname}>
-        {links.map(({ slug, title }) => (
-          <li key={slug.current} className={listItemClassname}>
-            <Link
-              href={`/${slug.current}`}
-              underlined={false}
-              onClick={linkClickHandler}
-            >
-              {title}
-            </Link>
-          </li>
-        ))}
-      </ol>
-    );
-  }
-
   return (
-    <div className="flex">
-      {renderMenu(styles.list)}
+    <nav className="flex" >
       <MenuButton
         open={isMenuOpen}
         onClick={handleMenuButtonClick}
         className={styles.menuButton}
       />
-      <aside
-        aria-hidden={isMenuOpen}
-        tabIndex={-1}
-        className={clsx(styles.burgerMenu, isMenuOpen && styles.open)}
-        ref={ref}
-      >
-        <nav>
-          {renderMenu(
-            styles.burgerMenuList,
-            styles.burgerMenuListItem,
-            handleLinkClick,
-          )}
-        </nav>
-      </aside>
-    </div>
+      <ul className={clsx(styles.list, isMenuOpen && styles.open)} role="menu" aria-hidden={!isMenuOpen} ref={ref}>
+        {links.map(({ slug, title }) => (
+            <li key={slug.current}>
+              <Link
+                  href={`/${slug.current}`}
+                  underlined={false}
+                  onClick={handleLinkClick}
+                  role="menuitem"
+              >
+                {title}
+              </Link>
+            </li>
+        ))}
+      </ul>
+    </nav>
   );
 };
 

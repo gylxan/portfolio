@@ -1,8 +1,24 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import Menu, { MD_WIDTH } from 'components/menu/menu';
+import Menu, { MD_WIDTH, MenuProps } from 'components/menu/menu';
 
 describe('<Menu />', () => {
   const originalInnerWidth = global.innerWidth;
+  const props: MenuProps = {
+    links: [
+      {
+        title: 'Link 1',
+        slug: { _type: 'slug', current: 'https://link1.com' },
+      },
+      {
+        title: 'Link 2',
+        slug: { _type: 'slug', current: 'https://link2.com' },
+      },
+      {
+        title: 'Link 3',
+        slug: { _type: 'slug', current: 'https://link3.com' },
+      },
+    ],
+  };
 
   afterEach(() => {
     Object.defineProperty(window, 'innerWidth', {
@@ -13,36 +29,38 @@ describe('<Menu />', () => {
   });
 
   it('should render', () => {
-    render(<Menu />);
+    render(<Menu {...props} />);
 
-    expect(document.querySelector('.list')).toBeInTheDocument();
-    expect(document.querySelector('.burgerMenu')).toBeInTheDocument();
-    expect(document.querySelector('.burgerMenuList')).toBeInTheDocument();
+    expect(screen.getByRole('menu', { hidden: true })).toBeInTheDocument();
+    expect(screen.getByRole('button')).toBeInTheDocument();
+    expect(screen.getAllByRole('menuitem', { hidden: true }).length).toBe(
+      props.links.length,
+    );
   });
 
   it('should open burger menu on click on menu button', () => {
-    render(<Menu />);
+    render(<Menu {...props} />);
 
     fireEvent.click(screen.getByRole('button'));
 
     expect(document.querySelector('body')).toHaveClass('menu-open');
-    expect(document.querySelector('.burgerMenu')).toHaveClass('open');
+    expect(screen.getByRole('menu')).toHaveClass('open');
   });
 
   it('should close burger menu on second click on menu button', () => {
-    render(<Menu />);
+    render(<Menu {...props} />);
 
     fireEvent.click(screen.getByRole('button'));
     expect(document.querySelector('body')).toHaveClass('menu-open');
-    expect(document.querySelector('.burgerMenu')).toHaveClass('open');
+    expect(screen.getByRole('menu')).toHaveClass('open');
 
     fireEvent.click(screen.getByRole('button'));
     expect(document.querySelector('body')).not.toHaveClass('menu-open');
-    expect(document.querySelector('.burgerMenu')).not.toHaveClass('open');
+    expect(screen.getByRole('menu', { hidden: true })).not.toHaveClass('open');
   });
 
   it('removes the menu-open class on resize for md and up screens', () => {
-    render(<Menu />);
+    render(<Menu {...props} />);
     fireEvent.click(screen.getByRole('button'));
     expect(document.querySelector('body')).toHaveClass('menu-open');
 
@@ -57,7 +75,7 @@ describe('<Menu />', () => {
   });
 
   it('adds the menu-open class on resize for below md screens, when it was open before', () => {
-    render(<Menu />);
+    render(<Menu {...props} />);
     fireEvent.click(screen.getByRole('button'));
     expect(document.querySelector('body')).toHaveClass('menu-open');
 
@@ -72,12 +90,12 @@ describe('<Menu />', () => {
   });
 
   it('closes the burger menu and redirects on click on link in burger menu', () => {
-    render(<Menu />);
+    render(<Menu {...props} />);
     fireEvent.click(screen.getByRole('button'));
 
-    fireEvent.click(document.querySelectorAll('.burgerMenuListItem a')[0]);
+    fireEvent.click(screen.getAllByRole('menuitem')[0]);
 
     expect(document.querySelector('body')).not.toHaveClass('menu-open');
-    expect(document.querySelector('.burgerMenu')).not.toHaveClass('open');
+    expect(screen.getByRole('menu', { hidden: true })).not.toHaveClass('open');
   });
 });
