@@ -24,7 +24,7 @@ const Page = ({ siteConfig, data }: PageProps) => {
       {(pageTitle || title) && (
         <Title className="mb-8">{!!pageTitle ? pageTitle : title}</Title>
       )}
-      <div className="container">
+      <div className="container mx-auto">
         {content.map((contentBlock) => (
           <DocumentCreator key={contentBlock._key} {...contentBlock} />
         ))}
