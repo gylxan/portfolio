@@ -1,4 +1,3 @@
-import Row from 'components/row/row';
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import Column from 'components/column/column';
@@ -20,9 +19,9 @@ describe('<Column />', () => {
     expect(container.querySelector('div')).toHaveClass(`gap-${space}`);
   });
 
-    it('should render with alignment', () => {
-        const { container } = render(<Column alignment="right" />);
+  it('should render with alignment', () => {
+    const { container } = render(<Column alignment="right" />);
 
-        expect(container.querySelector('div')).toHaveClass(`items-right`);
-    });
+    expect(container.querySelector('div')).toHaveClass(`items-right`);
+  });
 });

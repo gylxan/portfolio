@@ -1,9 +1,8 @@
-import { WelcomeProps } from 'components/welcome/welcome';
+import type { WelcomeProps } from 'components/welcome/welcome';
 import { act, render, screen } from '@testing-library/react';
 import React from 'react';
 import { Welcome } from 'components';
 import useSanityImage from 'hooks/useSanityImage';
-import SanityImage from 'components/portable-text/types/sanityImage';
 
 jest.mock('hooks/useSanityImage');
 
