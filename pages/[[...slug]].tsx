@@ -4,7 +4,6 @@ import client from 'utils/sanity';
 import { configQuery, pathPageQuery, singlePageQuery } from 'constants/groq';
 import type { SiteConfig } from 'types/siteConfig';
 import type { Page as IPage } from 'types/page';
-import { extendPageData } from 'utils/page';
 
 interface PageProps {
   siteConfig: SiteConfig;
@@ -62,7 +61,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async ({ params }) => {
   return {
     props: {
       siteConfig,
-      data: extendPageData(data),
+      data,
     },
     revalidate: 60,
   };
