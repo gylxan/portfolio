@@ -13,8 +13,6 @@ const SkillIcon = ({ url, name }: SkillIconProps) => {
       className="w-12 text-primary transition-all duration-300 hover:scale-125"
       src={`https://cdn.simpleicons.org/${name.toLowerCase()}/ABAFB9FF`}
       alt={`Icon of skill ${name}`}
-      blurDataURL={blurImageUrl}
-      loading="lazy"
       data-testid="skill-icon"
     />
   );
