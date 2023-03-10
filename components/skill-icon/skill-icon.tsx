@@ -5,9 +5,12 @@ import type { Skill } from 'types/skill';
 export type SkillIconProps = Skill;
 
 const SkillIcon = ({ url, name }: SkillIconProps) => {
+
   const image = (
     <Image
-      sizes="32px"
+      width={48}
+      height={48}
+      sizes="48px"
       className="w-12 text-primary transition-all duration-300 hover:scale-125"
       src={`https://cdn.simpleicons.org/${name.toLowerCase()}/ABAFB9FF`}
       alt={`Icon of skill ${name}`}
