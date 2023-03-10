@@ -2,12 +2,12 @@ import { Routes } from 'constants/routes';
 import Image from 'next/image';
 import { Link, Menu } from 'components';
 import useSanityImage from 'hooks/useSanityImage';
-import type { SanityImage } from 'types/image';
+import type { SanityAltImage } from 'types/image';
 import type { MenuLink } from 'types/siteConfig';
 
 export interface HeaderProps {
   menuLinks: MenuLink[];
-  logo: SanityImage;
+  logo: SanityAltImage;
 }
 
 const Header = ({ logo, menuLinks }: HeaderProps) => {
@@ -22,7 +22,7 @@ const Header = ({ logo, menuLinks }: HeaderProps) => {
         coloredHover={false}
       >
         {imageSrc && (
-          <Image src={imageSrc} alt="Logo" sizes="40px" fill priority />
+          <Image src={imageSrc} alt={logo.alt} sizes="40px" fill priority />
         )}
       </Link>
 

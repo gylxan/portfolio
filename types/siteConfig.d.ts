@@ -18,7 +18,7 @@ export interface SiteConfig {
   description: string;
   social: Social[];
   openGraphImage: SanityImage;
-  logo: SanityImage;
+  logo: SanityAltImage;
   keywords: string[];
   menuLinks: MenuLink[];
   appleTouchIcon: SanityImage;

@@ -18,14 +18,6 @@ export default {
       name: 'social',
     },
     {
-      title: 'Website Logo',
-      name: 'logos',
-      options: {
-        collapsible: true,
-        collapsed: false,
-      },
-    },
-    {
       title: 'Apple',
       name: 'apple',
       options: {
@@ -52,32 +44,12 @@ export default {
       title: 'Copyright Name',
       description: 'Enter company name to appear in footer after ©',
     },
-
     {
       title: 'Main logo',
-      description: 'Upload your main logo here. SVG preferred. ',
+      description: 'Upload your main logo here. SVG preferred.',
       name: 'logo',
       type: 'customImage',
-      fieldset: 'logos',
     },
-
-    {
-      title: 'Alternate logo (optional)',
-      description:
-        'Upload alternate logo here. it can be light / dark variation ',
-      name: 'logoalt',
-      type: 'customImage',
-      fieldset: 'logos',
-    },
-
-    {
-      name: 'w3ckey',
-      type: 'string',
-      title: 'Web3Forms Access Key',
-      description:
-        'Enter Access key obtained from web3forms.com. It is required to make the form work.',
-    },
-
     {
       name: 'social',
       type: 'array',
@@ -130,7 +102,7 @@ export default {
       name: 'openGraphImage',
       type: 'image',
       title: 'Open Graph Image',
-      description: 'Image for sharing previews on Facebook, Twitter etc.',
+      description: 'Default image for sharing previews on Facebook, Twitter etc.',
       fieldset: 'metadata',
     },
     {
