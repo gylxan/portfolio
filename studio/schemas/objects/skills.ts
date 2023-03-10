@@ -1,4 +1,5 @@
 import { Rule } from 'sanity';
+import { getShortenedJoinedList } from '../../utils/array';
 
 export default {
   name: 'skills',
@@ -54,10 +55,7 @@ export default {
       const skillNames = skills?.map(({ name }) => name) ?? [];
       return {
         title,
-        subtitle:
-          skillNames.length > 3
-            ? `${skillNames.slice(0, 3).join(', ')} + ${skillNames.length - 3} others`
-            : skillNames?.join(', ') ?? '',
+        subtitle: getShortenedJoinedList(skillNames),
       };
     },
   },

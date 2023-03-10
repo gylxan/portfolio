@@ -1,3 +1,4 @@
+import { getShortenedJoinedList } from '../../utils/array';
 import pageContent from './pageContent';
 
 const spaces = [
@@ -48,10 +49,7 @@ export default {
         title: `Row (space: ${
           spaces.find(({ value }) => value === space)?.title
         })`,
-        subtitle:
-          contentTypes.length > 3
-            ? `${contentTypes.slice(0, 3).join(', ')}...`
-            : contentTypes.join(', '),
+        subtitle: getShortenedJoinedList(contentTypes),
       };
     },
   },

@@ -1,4 +1,5 @@
 import pageContent from './pageContent';
+import { getShortenedJoinedList } from '../../utils/array';
 
 const spaces: Record<number, { title: string; value: number }> = {
   10: { title: '10', value: 10 },
@@ -87,10 +88,7 @@ export default {
         title: `Column (space: ${spaces[space]?.title}, alignment: ${
           alignments[alignment]?.title ?? 'left'
         }, row switch size: ${rowSwitchSizes[rowSwitchSize].title})`,
-        subtitle:
-          contentTypes.length > 3
-            ? `${contentTypes.slice(0, 3).join(', ')}...`
-            : contentTypes.join(', '),
+        subtitle: getShortenedJoinedList(contentTypes),
       };
     },
   },
