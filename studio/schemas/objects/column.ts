@@ -42,25 +42,45 @@ export default {
         ],
       },
     },
+    {
+      name: 'rowSwitchSize',
+      type: 'string',
+      title: 'Change to row, starting from size. \'never\' when always be a column.',
+      initialValue: 'never',
+      options: {
+        list: [
+          { title: 'never', value: 'never' },
+          { title: 'sm', value: 'Small' },
+          { title: 'md', value: 'Medium' },
+          { title: 'lg', value: 'Large' },
+          { title: 'xl', value: 'Extra large' },
+        ],
+      },
+    },
   ],
   preview: {
     select: {
       space: 'space',
       alignment: 'alignment',
       content: 'content',
+      rowSwitchSize: 'rowSwitchSize',
     },
     prepare: ({
       space,
       alignment,
       content,
+      rowSwitchSize,
     }: {
       space: string;
       alignment: string;
+      rowSwitchSize: string;
       content: { _type: string }[];
     }) => {
       const contentTypes = content?.map(({ _type }) => _type) ?? [];
       return {
-        title: `Column (space: ${space}, alignment: ${alignment ?? 'start'})`,
+        title: `Column (space: ${space}, alignment: ${
+          alignment ?? 'start'
+        }, row switch size: ${rowSwitchSize})`,
         subtitle:
           contentTypes.length > 3
             ? `${contentTypes.slice(0, 3).join(', ')}...`

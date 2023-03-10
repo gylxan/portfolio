@@ -24,4 +24,16 @@ describe('<Column />', () => {
 
     expect(container.querySelector('div')).toHaveClass(`items-right`);
   });
+
+  it('should not render with row switch size, when value is never', () => {
+    const { container } = render(<Column rowSwitchSize="never" />);
+
+    expect(container.querySelector('div')?.className).not.toContain('flex-row');
+  });
+
+  it('should render with row switch size', () => {
+    const { container } = render(<Column rowSwitchSize="lg" />);
+
+    expect(container.querySelector('div')).toHaveClass(`lg:flex-row`);
+  });
 });
