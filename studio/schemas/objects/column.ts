@@ -50,21 +50,21 @@ export default {
       content: 'content',
     },
     prepare: ({
-                space,
-                alignment,
-                content,
-              }: {
+      space,
+      alignment,
+      content,
+    }: {
       space: string;
       alignment: string;
       content: { _type: string }[];
     }) => {
-      const contentTypes = content.map(({ _type }) => _type);
+      const contentTypes = content?.map(({ _type }) => _type) ?? [];
       return {
         title: `Column (space: ${space}, alignment: ${alignment ?? 'start'})`,
         subtitle:
-            content.length > 3
-                ? `${contentTypes.slice(0, 3).join(', ')}...`
-                : contentTypes.join(', '),
+          contentTypes.length > 3
+            ? `${contentTypes.slice(0, 3).join(', ')}...`
+            : contentTypes.join(', '),
       };
     },
   },
