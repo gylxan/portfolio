@@ -5,9 +5,12 @@ import type { Skill } from 'types/skill';
 export type SkillIconProps = Skill;
 
 const SkillIcon = ({ url, name }: SkillIconProps) => {
-
+  const skillIconLoader = ({ src }: { src: string }) => {
+    return src;
+  };
   const image = (
     <Image
+      loader={skillIconLoader}
       width={48}
       height={48}
       sizes="48px"
