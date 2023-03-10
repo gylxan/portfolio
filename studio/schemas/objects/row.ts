@@ -1,5 +1,13 @@
 import pageContent from './pageContent';
 
+const spaces = [
+  { title: '10', value: 10 },
+  { title: '8', value: 8 },
+  { title: '6', value: 6 },
+  { title: '4', value: 4 },
+  { title: '2', value: 2 },
+  { title: '0', value: 0 },
+];
 export default {
   name: 'row',
   type: 'object',
@@ -19,14 +27,7 @@ export default {
       title: 'Choose a space between the columns',
       initialValue: 2,
       options: {
-        list: [
-          { title: '10', value: 10 },
-          { title: '8', value: 8 },
-          { title: '6', value: 6 },
-          { title: '4', value: 4 },
-          { title: '2', value: 2 },
-          { title: '0', value: 0 },
-        ],
+        list: spaces,
       },
     },
   ],
@@ -39,14 +40,16 @@ export default {
       space,
       content,
     }: {
-      space: string;
+      space: number;
       content: { _type: string }[];
     }) => {
       const contentTypes = content.map(({ _type }) => _type) ?? [];
       return {
-        title: `Row (space: ${space})`,
+        title: `Row (space: ${
+          spaces.find(({ value }) => value === space)?.title
+        })`,
         subtitle:
-            contentTypes.length > 3
+          contentTypes.length > 3
             ? `${contentTypes.slice(0, 3).join(', ')}...`
             : contentTypes.join(', '),
       };

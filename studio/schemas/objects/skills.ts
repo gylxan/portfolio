@@ -1,4 +1,4 @@
-import { Rule } from "sanity";
+import { Rule } from 'sanity';
 
 export default {
   name: 'skills',
@@ -20,7 +20,7 @@ export default {
           type: 'object',
           name: 'skill',
           title: 'Skill',
-          fields:[
+          fields: [
             {
               name: 'name',
               type: 'string',
@@ -32,9 +32,9 @@ export default {
               name: 'url',
               type: 'url',
               title: 'URL',
-              description: 'URL to a description or page for the skill'
-            }
-          ]
+              description: 'URL to a description or page for the skill',
+            },
+          ],
         },
       ],
     },
@@ -42,18 +42,22 @@ export default {
   preview: {
     select: {
       title: 'title',
-      slugs: 'slugs',
+      skills: 'skills',
     },
     prepare: ({
       title,
-      slugs,
+      skills,
     }: {
       title: string;
-      slugs: string[];
+      skills: { name: string }[];
     }) => {
+      const skillNames = skills?.map(({ name }) => name) ?? [];
       return {
         title,
-        subtitle: slugs?.join(',') ?? '',
+        subtitle:
+          skillNames.length > 3
+            ? `${skillNames.slice(0, 3).join(', ')} + ${skillNames.length - 3} others`
+            : skillNames?.join(', ') ?? '',
       };
     },
   },
