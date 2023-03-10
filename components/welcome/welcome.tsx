@@ -22,7 +22,6 @@ const Welcome = ({
   buttonText,
 }: WelcomeProps) => {
   const imageProps = useSanityImage(profileImage);
-  console.warn(profileImage);
   return (
     <div className="mx-auto flex flex-col items-center justify-center gap-4">
       {imageProps && (
