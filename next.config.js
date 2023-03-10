@@ -22,7 +22,10 @@ const nextConfig = withPWA({
         protocol: 'https',
         hostname: 'cdn.simpleicons.org',
       },
-    ]
+    ],
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;"
   }
 });
 

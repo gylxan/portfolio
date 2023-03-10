@@ -11,7 +11,7 @@ const SkillIcon = ({ url, name }: SkillIconProps) => {
   };
   const image = (
     <Image
-      loader={skillIconLoader}
+      // loader={skillIconLoader}
       width={48}
       height={48}
       sizes="48px"
