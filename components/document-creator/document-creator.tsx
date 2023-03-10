@@ -48,20 +48,19 @@ const map = {
   block: (props: PortableTextProps & DocumentCreatorProps) => (
     <PortableText value={props} />
   ),
-  row: ({ space, content }: RowProps & DocumentCreatorProps) => (
-    <Row space={space}>
+  row: ({  content, ...props }: RowProps & DocumentCreatorProps) => (
+    <Row {...props}>
       {content?.map((contentBlock: ContentBlock) => (
         <DocumentCreator key={contentBlock._key} {...contentBlock} />
       ))}
     </Row>
   ),
   column: ({
-    space,
     content,
-    alignment,
+      ...props
   }: ColumnProps & DocumentCreatorProps) => {
     return (
-      <Column space={space} alignment={alignment}>
+      <Column {...props}>
         {content?.map((contentBlock: ContentBlock) => (
           <DocumentCreator key={contentBlock._key} {...contentBlock} />
         ))}
