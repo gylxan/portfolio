@@ -50,10 +50,10 @@ export default {
       options: {
         list: [
           { title: 'never', value: 'never' },
-          { title: 'sm', value: 'Small' },
-          { title: 'md', value: 'Medium' },
-          { title: 'lg', value: 'Large' },
-          { title: 'xl', value: 'Extra large' },
+          { title: 'Small', value: 'sm' },
+          { title: 'Medium', value: 'md' },
+          { title: 'Large', value: 'lg' },
+          { title: 'Extra large', value: 'xl' },
         ],
       },
     },
