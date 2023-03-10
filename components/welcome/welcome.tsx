@@ -5,6 +5,7 @@ import { Routes } from 'constants/routes';
 import type { SanityImage } from 'types/image';
 import useSanityImage from 'hooks/useSanityImage';
 import type { PortableTextBlock } from '@portabletext/types';
+import {getBlurDataUrl} from "utils/sanity";
 
 export interface WelcomeProps {
   description: PortableTextBlock;
@@ -21,6 +22,7 @@ const Welcome = ({
   buttonText,
 }: WelcomeProps) => {
   const imageProps = useSanityImage(profileImage);
+  console.warn(profileImage);
   return (
     <div className="mx-auto flex flex-col items-center justify-center gap-4">
       {imageProps && (
@@ -34,12 +36,12 @@ const Welcome = ({
           <Image
             src={imageProps.src}
             loader={imageProps.loader}
-            alt="profile-image"
+            alt="Profile image"
             className="opacity-80 hover:opacity-100"
             width={300}
             height={300}
             placeholder="blur"
-            blurDataURL={blurImageUrl}
+            blurDataURL={getBlurDataUrl(profileImage)}
             priority
           />
         </Link>

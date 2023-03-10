@@ -89,12 +89,21 @@ export const singlePageQuery = groq`
               ...,
               metadata
             }
-        },
+         },
       }
     },
     _type == "experiences" => {
       ...,
       "companies": companies[]->
+    },
+     _type == "welcome" => {
+      ...,
+      "profileImage": profileImage {
+        asset->{
+          ...,
+          metadata
+        }
+      },
     }
   },
 }
