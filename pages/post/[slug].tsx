@@ -85,13 +85,19 @@ export const getStaticPaths = async () => {
         slug: post.slug.current,
       },
     })),
-    fallback: false,
+    fallback: 'blocking',
   };
 };
 
 export const getStaticProps: GetStaticProps<PostProps> = async ({ params }) => {
   const siteConfig = await client.fetch<SiteConfig>(configQuery);
   const post = await client.fetch(singlePostQuery, { slug: params?.slug });
+
+  if (!post) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {
