@@ -1,12 +1,11 @@
-import { Badge, Link, Layout, PortableText, Title } from 'components';
+import { Badge, Layout, Link, PortableText, Title } from 'components';
 import type { GetStaticProps } from 'next';
-import client from 'utils/sanity';
+import client, { getBlurDataUrl } from 'utils/sanity';
 import { configQuery, pathPostQuery, singlePostQuery } from 'constants/groq';
 import type { Post as IPost } from 'types/post';
 import { getFormattedPostDate } from 'utils/date';
 import Image from 'next/image';
 import useSanityImage from 'hooks/useSanityImage';
-import { blurImageUrl } from 'constants/image';
 import { Routes } from 'constants/routes';
 import type { SiteConfig } from 'types/siteConfig';
 
@@ -55,17 +54,17 @@ const Post = ({ siteConfig, post }: PostProps) => {
           ))}
         </div>
         <div className="relative aspect-video w-full overflow-hidden rounded-lg">
-          {imageProps && ( <Image
-            src={imageProps.src}
-            loader={imageProps.loader}
-            blurDataURL={mainImage.asset.metadata.lqip || blurImageUrl}
-            alt={`${title} cover image`}
-            className="object-cover"
-            placeholder="blur"
-            fill
-            loading="eager"
-          />
-
+          {imageProps && (
+            <Image
+              src={imageProps.src}
+              loader={imageProps.loader}
+              blurDataURL={getBlurDataUrl(mainImage)}
+              alt={`${title} cover image`}
+              className="object-cover"
+              placeholder="blur"
+              fill
+              loading="eager"
+            />
           )}
         </div>
         <article className="w-full max-w-screen-sm [&>p:first-child]:mt-0 [&>p]:my-4">
