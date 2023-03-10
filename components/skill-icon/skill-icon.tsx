@@ -25,7 +25,7 @@ const SkillIcon = ({ url, name }: SkillIconProps) => {
   );
 
   return url ? (
-    <a href={url} aria-label={`Link to slug ${name}`}>
+    <a href={url} aria-label={`Link to skill ${name}`}>
       {image}
     </a>
   ) : (
