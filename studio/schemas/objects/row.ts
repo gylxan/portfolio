@@ -11,7 +11,7 @@ export default {
       type: 'array',
       title: 'Content',
       description: 'Content',
-      of: [...pageContent.filter(({ type }) => type !== 'row')],
+      of: [...pageContent],
     },
     {
       name: 'space',
