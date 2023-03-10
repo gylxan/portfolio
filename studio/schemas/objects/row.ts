@@ -30,4 +30,26 @@ export default {
       },
     },
   ],
+  preview: {
+    select: {
+      space: 'space',
+      content: 'content',
+    },
+    prepare: ({
+      space,
+      content,
+    }: {
+      space: string;
+      content: { _type: string }[];
+    }) => {
+      const contentTypes = content.map(({ _type }) => _type);
+      return {
+        title: `Row (space: ${space})`,
+        subtitle:
+          content.length > 3
+            ? `${contentTypes.slice(0, 3).join(', ')}...`
+            : contentTypes.join(', '),
+      };
+    },
+  },
 };

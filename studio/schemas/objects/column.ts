@@ -33,7 +33,7 @@ export default {
       name: 'alignment',
       type: 'string',
       title: 'Choose an alignment for content',
-      initialValue: 'left',
+      initialValue: 'start',
       options: {
         list: [
           { title: 'left', value: 'start' },
@@ -43,4 +43,29 @@ export default {
       },
     },
   ],
+  preview: {
+    select: {
+      space: 'space',
+      alignment: 'alignment',
+      content: 'content',
+    },
+    prepare: ({
+                space,
+                alignment,
+                content,
+              }: {
+      space: string;
+      alignment: string;
+      content: { _type: string }[];
+    }) => {
+      const contentTypes = content.map(({ _type }) => _type);
+      return {
+        title: `Column (space: ${space}, alignment: ${alignment ?? 'start'})`,
+        subtitle:
+            content.length > 3
+                ? `${contentTypes.slice(0, 3).join(', ')}...`
+                : contentTypes.join(', '),
+      };
+    },
+  },
 };
