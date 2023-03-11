@@ -1,16 +1,20 @@
 import { MouseEvent, useRef, useState } from 'react';
 import { Link, MenuButton } from 'components';
-import { menu } from 'constants/routes';
 import clsx from 'clsx';
 import useOutsideClick from 'hooks/useOutsideClick';
 import useResize from 'hooks/useResize';
 import styles from 'components/menu/menu.module.css';
+import { MenuLink } from 'types/siteConfig';
 
 export const MD_WIDTH = 768;
 
 const menuOpenClass = 'menu-open';
 
-const Menu = () => {
+export interface MenuProps {
+  links: MenuLink[];
+}
+
+const Menu = ({ links }: MenuProps) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const ref = useRef(null);
 
@@ -54,45 +58,28 @@ const Menu = () => {
     }
   }
 
-  function renderMenu(
-    listClassname: string,
-    listItemClassname?: string,
-    linkClickHandler?: () => void,
-  ) {
-    return (
-      <ol className={listClassname}>
-        {menu.map(({ href, name }) => {
-          return (
-            <li key={href} className={listItemClassname}>
-              <Link href={href} underlined={false} onClick={linkClickHandler}>
-                {name}
-              </Link>
-            </li>
-          );
-        })}
-      </ol>
-    );
-  }
-
   return (
-    <div className="flex">
-      {renderMenu(styles.list)}
+    <nav className="flex" >
       <MenuButton
         open={isMenuOpen}
         onClick={handleMenuButtonClick}
         className={styles.menuButton}
       />
-      <aside
-        aria-hidden={isMenuOpen}
-        tabIndex={-1}
-        className={clsx(styles.burgerMenu, isMenuOpen && styles.open)}
-        ref={ref}
-      >
-        <nav>
-          {renderMenu(styles.burgerMenuList, styles.burgerMenuListItem, handleLinkClick)}
-        </nav>
-      </aside>
-    </div>
+      <ul className={clsx(styles.list, isMenuOpen && styles.open)} role="menu" aria-hidden={!isMenuOpen} ref={ref}>
+        {links.map(({ slug, title }) => (
+            <li key={slug.current}>
+              <Link
+                  href={`/${slug.current}`}
+                  underlined={false}
+                  onClick={handleLinkClick}
+                  role="menuitem"
+              >
+                {title}
+              </Link>
+            </li>
+        ))}
+      </ul>
+    </nav>
   );
 };
 

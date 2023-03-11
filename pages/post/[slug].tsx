@@ -1,19 +1,20 @@
-import { Badge, Link, Page, PortableText, Title } from 'components';
+import { Badge, Layout, Link, PortableText, Title } from 'components';
 import type { GetStaticProps } from 'next';
-import client from 'utils/sanity';
-import { pathPostQuery, singlePostQuery } from 'constants/groq';
+import client, { getBlurDataUrl } from 'utils/sanity';
+import { configQuery, pathPostQuery, singlePostQuery } from 'constants/groq';
 import type { Post as IPost } from 'types/post';
 import { getFormattedPostDate } from 'utils/date';
 import Image from 'next/image';
 import useSanityImage from 'hooks/useSanityImage';
-import { blurImageUrl } from 'constants/image';
 import { Routes } from 'constants/routes';
+import type { SiteConfig } from 'types/siteConfig';
 
 interface PostProps {
+  siteConfig: SiteConfig;
   post: IPost;
 }
 
-const Post = ({ post }: PostProps) => {
+const Post = ({ siteConfig, post }: PostProps) => {
   const {
     title,
     _createdAt,
@@ -27,7 +28,8 @@ const Post = ({ post }: PostProps) => {
 
   const imageProps = useSanityImage(mainImage);
   return (
-    <Page
+    <Layout
+      siteConfig={siteConfig}
       title={title}
       description={description}
       openGraphImage={mainImage}
@@ -56,7 +58,7 @@ const Post = ({ post }: PostProps) => {
             <Image
               src={imageProps.src}
               loader={imageProps.loader}
-              blurDataURL={mainImage.asset.metadata.lqip || blurImageUrl}
+              blurDataURL={getBlurDataUrl(mainImage)}
               alt={`${title} cover image`}
               className="object-cover"
               placeholder="blur"
@@ -70,7 +72,7 @@ const Post = ({ post }: PostProps) => {
         </article>
         <Link href={Routes.Blog}>← View all posts</Link>
       </div>
-    </Page>
+    </Layout>
   );
 };
 
@@ -88,6 +90,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<PostProps> = async ({ params }) => {
+  const siteConfig = await client.fetch<SiteConfig>(configQuery);
   const post = await client.fetch(singlePostQuery, { slug: params?.slug });
 
   if (!post) {
@@ -98,6 +101,7 @@ export const getStaticProps: GetStaticProps<PostProps> = async ({ params }) => {
 
   return {
     props: {
+      siteConfig,
       post,
     },
     revalidate: 60,

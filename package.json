@@ -1,6 +1,6 @@
 {
   "name": "portfolio",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "private": false,
   "author": {
     "name": "Guido Lange",
@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "prebuild": "echo 'Building Sanity to public/studio' && cd studio && npm i && npm run build -- ../public/studio -y && echo 'Done building Sanity'",
+    "prebuild": "echo 'Building Sanity to public/studio' && npm run sanity:build && echo 'Done building Sanity'",
     "build": "next build",
     "export" : "next export",
     "postbuild": "next-sitemap",
@@ -16,7 +16,8 @@
     "lint": "next lint",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "sanity": "cd studio && npm run start"
+    "sanity": "cd studio && npm run start",
+    "sanity:build": "cd studio && npm i && npm run build -- ../public/studio -y"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",

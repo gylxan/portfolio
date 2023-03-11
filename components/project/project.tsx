@@ -8,6 +8,7 @@ import Image from 'next/image';
 import { blurImageUrl } from 'constants/image';
 import type { Project as IProject } from 'types/project';
 import styles from 'components/project/project.module.css';
+import useSanityImage from "hooks/useSanityImage";
 
 export type ProjectProps = IProject;
 
@@ -17,9 +18,10 @@ const Project = ({
   private: isPrivate,
   previewUrl,
   githubUrl,
-  slugs,
-  imageUrl,
+  keywords,
+  backgroundImage,
 }: ProjectProps) => {
+  const imageProps = useSanityImage(backgroundImage);
   const { ref, inView } = useInView({ triggerOnce: true, delay: 300 });
 
   const className = clsx(styles.project, inView && 'animate-fade-in-up');
@@ -27,14 +29,15 @@ const Project = ({
   const url = githubUrl || previewUrl;
   return (
     <div key={name} ref={ref} className={className} data-testid="project">
-      {imageUrl && (
+      {imageProps && (
         <div className={styles.imageContainer}>
           <Image
-            src={imageUrl}
-            className={styles.image}
-            alt={`Background image of ${name} project`}
-            placeholder="blur"
+            src={imageProps.src}
+            loader={imageProps.loader}
             blurDataURL={blurImageUrl}
+            alt={`Background image of ${name} project`}
+            className={styles.image}
+            placeholder="blur"
             sizes={
               '(min-width: 1555px) 500px, (min-width: 1024px) 400px, (min-width: 768px) 340px, 600px'
             }
@@ -89,8 +92,8 @@ const Project = ({
       </div>
       <p className={styles.description}>{description}</p>
       <div className="mt-auto flex flex-wrap gap-1">
-        {slugs.map((slug) => (
-          <Badge key={slug}>{slug}</Badge>
+        {keywords?.map((keyword) => (
+          <Badge key={keyword}>{keyword}</Badge>
         ))}
       </div>
     </div>

@@ -5,7 +5,7 @@ describe('<Badge />', () => {
   it('should render badge', () => {
     render(<Badge>text</Badge>);
 
-    expect(screen.findByTestId('badge')).not.toBeNull();
-    expect(screen.findByText('text')).not.toBeNull();
+    expect(screen.getByTestId('badge')).toBeInTheDocument();
+    expect(screen.getByText('text')).toBeInTheDocument();
   });
 });

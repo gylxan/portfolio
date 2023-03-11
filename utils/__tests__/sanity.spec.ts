@@ -1,5 +1,5 @@
 import { getBlurDataUrl } from 'utils/sanity';
-import type { SanityImage } from 'types/post';
+import type { SanityImage } from 'types/image';
 import { blurImageUrl } from 'constants/image';
 
 describe('Sanity utils', () => {

@@ -1,6 +1,6 @@
 import { createClient } from 'next-sanity';
 import { blurImageUrl } from 'constants/image';
-import type { SanityImage } from 'types/post';
+import type { SanityImage } from 'types/image';
 
 const config = {
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',

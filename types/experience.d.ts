@@ -5,7 +5,7 @@ export interface Experience {
 }
 
 export interface Position {
-  name: string;
+  role: string;
   startDate: string;
   endDate: string;
   tasks: string[];

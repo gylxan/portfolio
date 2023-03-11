@@ -25,15 +25,13 @@ export const singlePostQuery = groq`
   },
   "content": content[]{
     ...,
-    ...select(
-      _type == "image" => {
+    _type == "image" => {
+      ...,
+      "asset": asset-> {
         ...,
-        "asset": asset-> {
-          ...,
-          metadata
-        }
-      } 
-    )
+        metadata
+      }
+    } 
   },
   "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 )
 }
@@ -42,5 +40,71 @@ export const singlePostQuery = groq`
 export const pathPostQuery = groq`
 *[_type == "post"] {
   slug,
+}
+`;
+
+export const configQuery = groq`
+*[_type == "siteconfig"][0] {
+  ...,
+}
+`
+
+export const pathPageQuery = groq`
+*[_type == "page"] {
+  slug,
+}
+`;
+
+export const singlePageQuery = groq`
+*[_type == "page" && slug.current == $slug][0] {
+  ...,
+  "content": content[]{
+    ...,
+    _type == "column" => {
+      ...,
+      "content": content[]{ 
+        ...,
+        _type == "customImage" => {
+          ...,
+          "asset": asset-> {
+            ...,
+            metadata
+         }
+        },
+      }
+    },
+    _type == "image" => {
+      ...,
+      "asset": asset-> {
+        ...,
+        metadata
+      }
+    },
+    _type == "projects" => {
+      ...,
+      "projects": projects[]->{
+        ...,
+         "backgroundImage": backgroundImage {
+            asset->{
+              ...,
+              metadata
+            }
+         },
+      }
+    },
+    _type == "experiences" => {
+      ...,
+      "companies": companies[]->
+    },
+     _type == "welcome" => {
+      ...,
+      "profileImage": profileImage {
+        asset->{
+          ...,
+          metadata
+        }
+      },
+    }
+  },
 }
 `;
