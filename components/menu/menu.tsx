@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import useOutsideClick from 'hooks/useOutsideClick';
 import useResize from 'hooks/useResize';
 import styles from 'components/menu/menu.module.css';
-import { MenuLink } from 'types/siteConfig';
+import type { MenuLink } from 'types/siteConfig';
 
 export const MD_WIDTH = 768;
 
@@ -59,24 +59,28 @@ const Menu = ({ links }: MenuProps) => {
   }
 
   return (
-    <nav className="flex" >
+    <nav className="flex">
       <MenuButton
         open={isMenuOpen}
         onClick={handleMenuButtonClick}
         className={styles.menuButton}
       />
-      <ul className={clsx(styles.list, isMenuOpen && styles.open)} role="menu" aria-hidden={!isMenuOpen} ref={ref}>
+      <ul
+        className={clsx(styles.list, isMenuOpen && styles.open)}
+        role="menu"
+        ref={ref}
+      >
         {links.map(({ slug, title }) => (
-            <li key={slug.current}>
-              <Link
-                  href={`/${slug.current}`}
-                  underlined={false}
-                  onClick={handleLinkClick}
-                  role="menuitem"
-              >
-                {title}
-              </Link>
-            </li>
+          <li key={slug.current}>
+            <Link
+              href={`/${slug.current}`}
+              underlined={false}
+              onClick={handleLinkClick}
+              role="menuitem"
+            >
+              {title}
+            </Link>
+          </li>
         ))}
       </ul>
     </nav>
