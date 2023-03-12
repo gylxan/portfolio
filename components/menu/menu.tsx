@@ -4,8 +4,8 @@ import clsx from 'clsx';
 import useOutsideClick from 'hooks/useOutsideClick';
 import useResize from 'hooks/useResize';
 import styles from 'components/menu/menu.module.css';
-import { MenuLink } from 'types/siteConfig';
-import { SanityFile } from 'types/file';
+import type { MenuLink } from 'types/siteConfig';
+import type { SanityFile } from 'types/file';
 
 export const MD_WIDTH = 768;
 
