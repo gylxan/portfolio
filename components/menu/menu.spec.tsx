@@ -1,23 +1,11 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import Menu, { MD_WIDTH, MenuProps } from 'components/menu/menu';
+import { mockSanityFile, mockSiteConfig } from 'constants/mock';
 
 describe('<Menu />', () => {
   const originalInnerWidth = global.innerWidth;
   const props: MenuProps = {
-    links: [
-      {
-        title: 'Link 1',
-        slug: { _type: 'slug', current: 'https://link1.com' },
-      },
-      {
-        title: 'Link 2',
-        slug: { _type: 'slug', current: 'https://link2.com' },
-      },
-      {
-        title: 'Link 3',
-        slug: { _type: 'slug', current: 'https://link3.com' },
-      },
-    ],
+    links: mockSiteConfig.menuLinks,
   };
 
   afterEach(() => {
@@ -36,6 +24,13 @@ describe('<Menu />', () => {
     expect(screen.getAllByRole('menuitem', { hidden: true }).length).toBe(
       props.links.length,
     );
+    expect(screen.queryByTestId('resume-button')).not.toBeInTheDocument();
+  });
+
+  it('should render button with link to resume, when specified', () => {
+    render(<Menu {...props} resume={mockSanityFile} />);
+
+    expect(screen.getByTestId('resume-button')).toBeInTheDocument();
   });
 
   it('should open burger menu on click on menu button', () => {
@@ -44,7 +39,7 @@ describe('<Menu />', () => {
     fireEvent.click(screen.getByRole('button'));
 
     expect(document.querySelector('body')).toHaveClass('menu-open');
-    expect(screen.getByRole('menu')).toHaveClass('open');
+    expect(document.querySelector('.menu')).toHaveClass('open');
   });
 
   it('should close burger menu on second click on menu button', () => {
@@ -52,11 +47,11 @@ describe('<Menu />', () => {
 
     fireEvent.click(screen.getByRole('button'));
     expect(document.querySelector('body')).toHaveClass('menu-open');
-    expect(screen.getByRole('menu')).toHaveClass('open');
+    expect(document.querySelector('.menu')).toHaveClass('open');
 
     fireEvent.click(screen.getByRole('button'));
     expect(document.querySelector('body')).not.toHaveClass('menu-open');
-    expect(screen.getByRole('menu', { hidden: true })).not.toHaveClass('open');
+    expect(document.querySelector('.menu')).not.toHaveClass('open');
   });
 
   it('removes the menu-open class on resize for md and up screens', () => {

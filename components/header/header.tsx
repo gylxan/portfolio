@@ -4,13 +4,15 @@ import { Link, Menu } from 'components';
 import useSanityImage from 'hooks/useSanityImage';
 import type { SanityAltImage } from 'types/image';
 import type { MenuLink } from 'types/siteConfig';
+import { SanityFile } from 'types/file';
 
 export interface HeaderProps {
   menuLinks: MenuLink[];
+  resume?: SanityFile;
   logo: SanityAltImage;
 }
 
-const Header = ({ logo, menuLinks }: HeaderProps) => {
+const Header = ({ logo, menuLinks, resume }: HeaderProps) => {
   const imageSrc = useSanityImage(logo)?.src;
   return (
     <header className="flex h-24 w-full grow items-center justify-between gap-4 px-4 text-center md:px-8">
@@ -26,7 +28,7 @@ const Header = ({ logo, menuLinks }: HeaderProps) => {
         )}
       </Link>
 
-      <Menu links={menuLinks} />
+      <Menu links={menuLinks} resume={resume} />
     </header>
   );
 };
