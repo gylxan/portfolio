@@ -1,6 +1,7 @@
 import type { Post } from 'types/post';
 import PostListItem from 'components/post-list-item/post-list-item';
 import { useTranslations } from 'use-intl';
+import Loader from 'components/loader/loader';
 
 export interface PostListProps {
   posts: Post[];
@@ -21,6 +22,7 @@ const PostList = ({ posts }: PostListProps) => {
           <PostListItem key={post._id} post={post} />
         ))}
       </div>
+      <Loader limit={1} />
     </>
   );
 };
