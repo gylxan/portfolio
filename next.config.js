@@ -4,12 +4,11 @@ const withPWA = require('next-pwa')({
   register: true,
   disable: process.env.NODE_ENV === 'development',
   buildExcludes: [/\/studio(.*)$/],
-  publicExcludes: ['!studio/**/*']
-
+  publicExcludes: ['!studio/**/*'],
 });
 
 /** @type {import('next').NextConfig} */
-const nextConfig = withPWA({
+const config = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
@@ -24,8 +23,13 @@ const nextConfig = withPWA({
       },
     ],
     dangerouslyAllowSVG: true,
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;"
-  }
-});
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+  },
+  i18n: {
+    locales: ['en-US', 'de'],
+    defaultLocale: 'en-US',
+  },
+};
+const nextConfig = withPWA(config);
 
 module.exports = nextConfig;
