@@ -67,7 +67,10 @@ const Menu = ({ links, resume }: MenuProps) => {
         onClick={handleMenuButtonClick}
         className={styles.menuButton}
       />
-      <div className={clsx(styles.menu, isMenuOpen && styles.open)} aria-hidden={!isMenuOpen}>
+      <div
+        className={clsx(styles.menu, isMenuOpen && styles.open)}
+        aria-hidden={!isMenuOpen}
+      >
         <ul role="menu" ref={ref} className={styles.list}>
           {links.map(({ slug, title }) => (
             <li key={slug.current}>
@@ -83,7 +86,12 @@ const Menu = ({ links, resume }: MenuProps) => {
           ))}
         </ul>
         {resume && (
-          <Button href={resume.asset.url} target="_blank" className="text-base md:text-sm" data-testid="resume-button">
+          <Button
+            href={resume.asset.url}
+            target="_blank"
+            className="text-base md:text-sm"
+            data-testid="resume-button"
+          >
             Resume
           </Button>
         )}
