@@ -1,7 +1,7 @@
 import type { SiteConfig } from 'types/siteConfig';
 import type { SanityAltImage, SanityImage } from 'types/image';
-import { SkillsProps } from 'components/skills/skills';
 import { Project } from 'types/project';
+import { SanityFile } from 'types/file';
 
 export const mockSanityImage: SanityImage = {
   asset: {
@@ -14,6 +14,26 @@ export const mockSanityAltImage: SanityAltImage = {
   alt: 'My alt value',
 };
 
+export const mockSanityFile: SanityFile = {
+  asset: {
+    _createdAt: '2023-03-11T14:13:52Z',
+    _id: 'file-e5cea496b5343aecf7021f9625749e9be7f49d21-pdf',
+    _rev: 'i49QvTuSpEZVuFsrZdxnje',
+    _type: 'sanity.fileAsset',
+    _updatedAt: '2023-03-11T14:13:52Z',
+    assetId: 'e5cea496b5343aecf7021f9625749e9be7f49d21',
+    extension: 'pdf',
+    mimeType: 'application/pdf',
+    originalFilename: 'test.pdf',
+    path: 'files/22awa/production/12341.pdf',
+    sha1hash: 'e5cea496b5343aecf7021f9625749e9be7f49d21',
+    size: 4624343,
+    uploadId: 'dllIfiyagtq9S3nyOqkp7PVoS3v9XeoC',
+    url: 'https://cdn.sanity.io/files/22awa/production/test.pdf',
+    metadata: {},
+  },
+};
+
 export const mockSiteConfig: SiteConfig = {
   description: 'Site description',
   keywords: ['React', 'Next.js', 'Javascript'],
@@ -22,12 +42,16 @@ export const mockSiteConfig: SiteConfig = {
   url: 'https://mysite.com',
   menuLinks: [
     {
-      title: 'About',
-      slug: { _type: 'slug', current: 'about' },
+      title: 'Link 1',
+      slug: { _type: 'slug', current: 'https://link1.com' },
     },
     {
       title: 'Link 2',
-      slug: { _type: 'slug', current: 'link2' },
+      slug: { _type: 'slug', current: 'https://link2.com' },
+    },
+    {
+      title: 'Link 3',
+      slug: { _type: 'slug', current: 'https://link3.com' },
     },
   ],
   safariTabIcon: mockSanityImage,
@@ -44,6 +68,7 @@ export const mockSiteConfig: SiteConfig = {
       url: 'https://spotify.com/user/1233',
     },
   ],
+  resume: mockSanityFile,
 };
 
 export const mockSkills = [

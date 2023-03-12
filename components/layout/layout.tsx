@@ -30,7 +30,7 @@ const Layout = ({
   siteConfig,
   ...props
 }: LayoutProps) => {
-  const { logo, menuLinks, appleTouchIcon, safariTabIcon } = siteConfig;
+  const { logo, menuLinks, appleTouchIcon, safariTabIcon, resume } = siteConfig;
   const ogImage = useSanityImage(openGraphImage)?.src || null;
   const appleIcon = useSanityImage(appleTouchIcon)?.src || null;
   const safariIcon = useSanityImage(safariTabIcon)?.src || null;
@@ -42,7 +42,7 @@ const Layout = ({
 
   return (
     <>
-      <Header logo={logo} menuLinks={menuLinks} />
+      <Header logo={logo} menuLinks={menuLinks} resume={resume} />
       <NextSeo
         title={title}
         defaultTitle={siteConfig.title}

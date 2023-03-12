@@ -18,6 +18,14 @@ export default {
       name: 'social',
     },
     {
+      title: 'Menu',
+      name: 'menu',
+      options: {
+        collapsible: true,
+        collapsed: false,
+      },
+    },
+    {
       title: 'Apple',
       name: 'apple',
       options: {
@@ -145,6 +153,15 @@ export default {
           },
         },
       ],
+      fieldset: 'menu',
+    },
+    {
+      name: 'resume',
+      title: 'Resume',
+      description: 'Resume, which can be downloaded from the menu. Empty when should not been shown.',
+      type: 'file',
+      accept: '.pdf',
+      fieldset: 'menu',
     },
 
     {
