@@ -26,8 +26,8 @@ const config = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   i18n: {
-    locales: ['en', 'de'],
-    defaultLocale: 'en',
+    locales: ['en-US', 'de'],
+    defaultLocale: 'en-US',
   },
 };
 const nextConfig = withPWA(config);
