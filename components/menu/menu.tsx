@@ -40,8 +40,7 @@ const Menu = ({ links, resume }: MenuProps) => {
     toggleMenu(false);
   }
 
-  function handleMenuButtonClick(event: MouseEvent<HTMLButtonElement>) {
-    event.stopPropagation();
+  function handleMenuButtonClick() {
     toggleMenu();
   }
 
@@ -61,7 +60,7 @@ const Menu = ({ links, resume }: MenuProps) => {
   }
 
   return (
-    <nav className="flex">
+    <nav className="flex" ref={ref} >
       <MenuButton
         open={isMenuOpen}
         onClick={handleMenuButtonClick}
@@ -71,7 +70,7 @@ const Menu = ({ links, resume }: MenuProps) => {
         className={clsx(styles.menu, isMenuOpen && styles.open)}
         aria-hidden={!isMenuOpen}
       >
-        <ul role="menu" ref={ref} className={styles.list}>
+        <ul role="menu" className={styles.list}>
           {links.map(({ slug, title }) => (
             <li key={slug.current}>
               <Link
