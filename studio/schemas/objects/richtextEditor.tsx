@@ -1,12 +1,12 @@
 import link from './link';
 
 import {
-  AiOutlineAlignRight,
-  AiOutlineAlignLeft,
   AiOutlineAlignCenter,
+  AiOutlineAlignLeft,
+  AiOutlineAlignRight,
 } from 'react-icons/ai';
 import React, { PropsWithChildren } from 'react';
-import {defineField, defineType} from 'sanity';
+import { defineField } from 'sanity';
 
 const alignLeftRender = (props: PropsWithChildren) => (
   <span style={{ display: 'flex', justifyContent: 'start' }}>

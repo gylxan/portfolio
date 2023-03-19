@@ -60,6 +60,7 @@ export default defineConfig({
       languageFilter({
         supportedLanguages: i18nConfig.languages,
         defaultLanguages: [i18nConfig.base],
+        documentTypes: ['siteconfig', 'category', 'experience', 'project', 'translation'],
       }),
     ],
     { ...i18nConfig, includeDeskTool: false },
