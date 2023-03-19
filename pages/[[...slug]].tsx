@@ -15,8 +15,6 @@ interface PageProps {
 
 const Page = ({ siteConfig, data }: PageProps) => {
   const { title, pageTitle, content, slug, ogDescription } = data;
-  const router = useRouter();
-  console.warn(router);
 
   return (
     <Layout
