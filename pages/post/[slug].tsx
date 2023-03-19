@@ -11,6 +11,7 @@ import type { SiteConfig } from 'types/siteConfig';
 import { useTranslations } from 'use-intl';
 import { restructureTranslations } from 'utils/i18n';
 import { useRouter } from 'next/router';
+import { getPathsFromSlug } from 'utils/url';
 
 interface PostProps {
   siteConfig: SiteConfig;
@@ -86,11 +87,14 @@ export const getStaticPaths = async () => {
   const allPosts = await client.fetch<IPost[] | null>(pathPostQuery);
 
   return {
-    paths: allPosts?.map((post) => ({
-      params: {
-        slug: post.slug.current,
-      },
-    })),
+    paths: allPosts?.map((post) => {
+      return {
+        params: {
+          slug: getPathsFromSlug(post.slug.current, post.language).join('/'),
+        },
+        locale: post.language,
+      };
+    }),
     fallback: 'blocking',
   };
 };

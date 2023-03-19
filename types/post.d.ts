@@ -12,6 +12,7 @@ export interface Post {
   content: PortableTextBlock;
   mainImage: SanityImage;
   estimatedReadingTime: number;
+  language?: string;
 }
 
 interface Category {

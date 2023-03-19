@@ -48,6 +48,7 @@ export const singlePostQuery = groq`
 export const pathPostQuery = groq`
 *[_type == "post"] {
   slug,
+  "language": __i18n_lang
 }
 `;
 

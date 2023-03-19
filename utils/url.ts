@@ -8,8 +8,7 @@ export const getUrlFromSlugs = (locale: string, slugs: string[]) => {
   )}`;
 };
 
-export const getPathsFromSlug = (slug: string, locale: string | undefined) => {
-  return slug === '/' || slug === `/${locale}`
+export const getPathsFromSlug = (slug: string, locale: string | undefined) =>
+  slug === '/' || slug === `/${locale}`
     ? []
     : slug.split('/').filter((slugPart) => !!slugPart && slugPart !== locale);
-};
