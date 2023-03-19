@@ -1,14 +1,10 @@
 import { DocumentCreator, Layout, Title } from 'components';
-import type {
-  GetStaticPaths,
-  GetStaticPathsContext,
-  GetStaticProps,
-} from 'next';
+import type { GetStaticProps } from 'next';
 import client from 'utils/sanity';
 import { configQuery, pathPageQuery, singlePageQuery } from 'constants/groq';
 import type { SiteConfig } from 'types/siteConfig';
 import type { Page as IPage } from 'types/page';
-import { getUrl } from 'utils/url';
+import { getPathsFromSlug, getUrlFromSlugs } from 'utils/url';
 import { restructureTranslations } from 'utils/i18n';
 
 interface PageProps {
@@ -39,26 +35,16 @@ const Page = ({ siteConfig, data }: PageProps) => {
   );
 };
 
-export const getStaticPaths = async ({ locales, defaultLocale }: GetStaticPathsContext) => {
+export const getStaticPaths = async () => {
   const allPages = await client.fetch<IPage[] | null>(pathPageQuery);
 
-  const allPaths = allPages?.map((page) => {
-    const isDefaultLanguage = defaultLocale === page.language;
-    return {
-      params: {
-        slug:
-          page.slug.current === '/' || page.slug.current === `/${page.language}`
-            ? []
-            : page.slug.current
-                .split('/')
-                .filter((slug) => !!slug && slug !== page.language),
-      },
-      locale:  isDefaultLanguage ? undefined : page.language,
-    };
-  });
-
   return {
-    paths: allPaths,
+    paths: allPages?.map((page) => ({
+      params: {
+        slug: getPathsFromSlug(page.slug.current, page.language),
+      },
+      locale: page.language,
+    })),
     fallback: 'blocking',
   };
 };
@@ -71,7 +57,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async ({
     lang: locale,
   });
 
-  const currentUrl = getUrl(
+  const currentUrl = getUrlFromSlugs(
     locale ?? (process.env.NEXT_PUBLIC_DEFAULT_LANGUAGE as string),
     (params?.slug ?? []) as string[],
   );
