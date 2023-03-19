@@ -1,7 +1,6 @@
 import React from 'react';
 import type { ContentBlock } from 'types/page';
 import type { SanityAltImage } from 'types/image';
-import SanityImage from 'components/portable-text/types/sanityImage';
 import Experiences, {
   ExperiencesProps,
 } from 'components/experiences/experiences';

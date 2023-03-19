@@ -1,12 +1,11 @@
-import { DocumentCreator, Layout, Title } from 'components';
-import type { GetStaticProps } from 'next';
+import {DocumentCreator, Layout, Title} from 'components';
+import type {GetStaticProps} from 'next';
 import client from 'utils/sanity';
-import { configQuery, pathPageQuery, singlePageQuery } from 'constants/groq';
-import type { SiteConfig } from 'types/siteConfig';
-import type { Page as IPage } from 'types/page';
-import { getUrl } from 'utils/url';
-import { restructureTranslations } from 'utils/i18n';
-import {useRouter} from "next/router";
+import {configQuery, pathPageQuery, singlePageQuery} from 'constants/groq';
+import type {SiteConfig} from 'types/siteConfig';
+import type {Page as IPage} from 'types/page';
+import {getUrl} from 'utils/url';
+import {restructureTranslations} from 'utils/i18n';
 
 interface PageProps {
   siteConfig: SiteConfig;

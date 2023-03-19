@@ -1,6 +1,5 @@
 import { SkillIcon } from 'components';
 import { SkillIconProps } from 'components/skill-icon/skill-icon';
-import { useTranslations } from 'use-intl';
 
 export interface SkillsProps {
   title: string;
