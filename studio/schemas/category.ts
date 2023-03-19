@@ -1,3 +1,5 @@
+import { i18nConfig } from '../config/i18n';
+
 export default {
   name: 'category',
   type: 'document',
@@ -5,13 +7,24 @@ export default {
   fields: [
     {
       name: 'name',
-      type: 'string',
+      type: 'localeString',
       title: 'Name',
     },
     {
       name: 'description',
-      type: 'text',
+      type: 'localeText',
       title: 'Description',
     },
   ],
+
+  preview: {
+    select: {
+      name: 'name',
+    },
+    prepare: ({ name }: { name: Record<string, string> }) => {
+      return {
+        title: name[i18nConfig.base],
+      };
+    },
+  },
 };

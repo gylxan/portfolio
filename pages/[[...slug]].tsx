@@ -4,6 +4,9 @@ import client from 'utils/sanity';
 import { configQuery, pathPageQuery, singlePageQuery } from 'constants/groq';
 import type { SiteConfig } from 'types/siteConfig';
 import type { Page as IPage } from 'types/page';
+import { getUrl } from 'utils/url';
+import { restructureTranslations } from 'utils/i18n';
+import {useRouter} from "next/router";
 
 interface PageProps {
   siteConfig: SiteConfig;
@@ -12,6 +15,8 @@ interface PageProps {
 
 const Page = ({ siteConfig, data }: PageProps) => {
   const { title, pageTitle, content, slug, ogDescription } = data;
+  const router = useRouter();
+  console.warn(router);
 
   return (
     <Layout
@@ -46,13 +51,25 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps<PageProps> = async ({ params }) => {
-  const siteConfig = await client.fetch<SiteConfig>(configQuery);
-  const data = await client.fetch(singlePageQuery, {
-    slug: !params?.slug ? '/' : (params?.slug as string[])?.join('/'),
+export const getStaticProps: GetStaticProps<PageProps> = async ({
+  params,
+  locale,
+}) => {
+  const siteConfig = await client.fetch<SiteConfig>(configQuery, {
+    lang: locale,
   });
 
-  if (!data) {
+  const currentUrl = getUrl(
+    locale ?? (process.env.NEXT_PUBLIC_DEFAULT_LANGUAGE as string),
+    (params?.slug ?? []) as string[],
+  );
+
+  const data = await client.fetch<IPage>(singlePageQuery, {
+    slug: currentUrl,
+    lang: locale,
+  });
+
+  if (!siteConfig || !data || !data.enabled) {
     return {
       notFound: true,
     };
@@ -62,6 +79,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async ({ params }) => {
     props: {
       siteConfig,
       data,
+      translations: restructureTranslations(siteConfig.translations),
     },
     revalidate: 60,
   };

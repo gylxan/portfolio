@@ -12,6 +12,16 @@ export interface MenuLink {
   title: string;
   slug: Slug;
 }
+
+interface TranslationNamespace {
+  namespace: string;
+  translations: Translation[];
+}
+interface Translation {
+  key: string;
+  value: string;
+}
+
 export interface SiteConfig {
   title: string;
   url: string;
@@ -25,4 +35,5 @@ export interface SiteConfig {
   resume?: SanityFile;
   appleTouchIcon: SanityImage;
   safariTabIcon: SanityImage;
+  translations: TranslationNamespace[];
 }

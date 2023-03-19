@@ -20,7 +20,6 @@ describe('<DropdownMenuItem />', () => {
     expect(
       screen.getByRole('option').getAttribute('aria-selected'),
     ).toBeFalsy();
-    expect(screen.getByRole('img')).toBeInTheDocument();
     expect(screen.queryByRole('img', { hidden: true })).not.toBeInTheDocument();
   });
 

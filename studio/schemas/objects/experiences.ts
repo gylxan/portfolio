@@ -1,5 +1,3 @@
-import { Rule } from 'sanity';
-
 export default {
   name: 'experiences',
   type: 'object',
@@ -37,7 +35,8 @@ export default {
       companies: Record<number, string>;
     }) => {
       const firstCompanies = [company0, company1, company2].filter(Boolean);
-      const subtitle = firstCompanies.length > 0 ? firstCompanies.join(', ') : '';
+      const subtitle =
+        firstCompanies.length > 0 ? firstCompanies.join(', ') : '';
       const otherCompaniesQuantity = Object.keys(companies).length - 3;
       const hasMoreCompanies = otherCompaniesQuantity > 0;
       return {

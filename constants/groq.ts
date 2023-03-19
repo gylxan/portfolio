@@ -1,9 +1,13 @@
 import { groq } from 'next-sanity';
 
 export const allPostQuery = groq`
-*[_type == "post"] | order(_createdAt desc) {
+*[_type == "post" && __i18n_lang == $lang] | order(_createdAt desc) {
   ...,
-  categories[]->,
+  categories[]->{
+    ...,
+    "name": name[$lang],
+    "description": description[$lang],
+  },
   "mainImage": mainImage {
     asset->{
       ...,
@@ -14,9 +18,13 @@ export const allPostQuery = groq`
 `;
 
 export const singlePostQuery = groq`
-*[_type == "post" && slug.current == $slug][0] {
+*[_type == "post" && slug.current == $slug && __i18n_lang == $lang][0] {
   ...,
-  categories[]->,
+  categories[]->{
+    ...,
+    "name": name[$lang],
+    "description": description[$lang],
+  },
   "mainImage": mainImage {
     asset->{
       ...,
@@ -43,6 +51,15 @@ export const pathPostQuery = groq`
 }
 `;
 
+export const allTranslationQuery = groq`
+*[_type == "translation"]{
+    namespace,
+    "translations": translations[]{
+        key,
+        "value": value[$lang]
+    }
+}`;
+
 export const configQuery = groq`
 *[_type == "siteconfig"][0] {
   ...,
@@ -50,17 +67,24 @@ export const configQuery = groq`
     ...,
     asset->
   },
+  "menuLinks": menuLinks[] {
+    ...,
+    "title": title[$lang]
+  },
+  "copyright": copyright[$lang],
+  "description": description[$lang],
+  "translations": ${allTranslationQuery}
 }
 `
 
 export const pathPageQuery = groq`
-*[_type == "page"] {
+*[_type == "page" && enabled == true] {
   slug,
 }
 `;
 
 export const singlePageQuery = groq`
-*[_type == "page" && slug.current == $slug][0] {
+*[_type == "page" && slug.current == $slug && __i18n_lang == $lang][0] {
   ...,
   "content": content[]{
     ...,
@@ -94,11 +118,19 @@ export const singlePageQuery = groq`
               metadata
             }
          },
+         "description": description[$lang]
       }
     },
     _type == "experiences" => {
       ...,
-      "companies": companies[]->
+      "companies": companies[]->{
+        ...,
+        "positions": positions[] {
+          ...,
+          "role": role[$lang],
+          "tasks": tasks[][$lang]
+        },
+      }
     },
      _type == "welcome" => {
       ...,
@@ -107,8 +139,14 @@ export const singlePageQuery = groq`
           ...,
           metadata
         }
-      },
-    }
+      }
+     },
+     _type == "posts" => {
+        ...,
+        "posts": ${allPostQuery}
+     },
   },
 }
 `;
+
+

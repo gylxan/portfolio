@@ -1,11 +1,11 @@
 import { RefObject, useCallback, useEffect } from 'react';
 
-interface OnOutsideClickProps {
+export interface UseOutsideClickProps {
   active: boolean;
   callback: () => void;
   ref: RefObject<any>;
 }
-const useOutsideClick = ({ active, ref, callback }: OnOutsideClickProps) => {
+const useOutsideClick = ({ active, ref, callback }: UseOutsideClickProps) => {
   const handleClickOutside = useCallback(
     (event: Event) => {
       if (!ref.current?.contains(event.target)) {

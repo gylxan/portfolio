@@ -1,12 +1,12 @@
-import link from './link';
+import link from '../schemas/objects/link';
 
-export default [
-  { type: 'skills' },
-  { type: 'customImage' },
-  { type: 'row' },
+export const pageContentTypes = [
   { type: 'column' },
   { type: 'experiences' },
+  { type: 'posts' },
   { type: 'projects' },
+  { type: 'row' },
+  { type: 'skills' },
   { type: 'welcome' },
   {
     type: 'block',

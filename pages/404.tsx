@@ -1,35 +1,43 @@
 import type { GetStaticProps } from 'next';
-import { Link, Layout } from 'components';
+import { Layout, Link } from 'components';
 import { Routes } from 'constants/routes';
 import styles from 'styles/404.module.css';
 import client from 'utils/sanity';
 import type { SiteConfig } from 'types/siteConfig';
 import { configQuery } from 'constants/groq';
+import { restructureTranslations } from 'utils/i18n';
+import { useTranslations } from 'use-intl';
 
 interface FourOhFourProps {
   siteConfig: SiteConfig;
 }
 
 const FourOhFour = ({ siteConfig }: FourOhFourProps) => {
+  const t = useTranslations('four_oh_four');
   return (
     <Layout fullHeight title="404" siteConfig={siteConfig}>
       <div className="container flex flex-col items-center gap-4">
         <h1 className={styles.title} title="404">
           404
         </h1>
-        <h2>Ooops, seems like you are wrong here</h2>
-        <Link href={Routes.Home}>Go back to home</Link>
+        <h2>{t('wrong_place')}</h2>
+        <Link href={Routes.Home}>{t('back_to_home')}</Link>
       </div>
     </Layout>
   );
 };
 
-export const getStaticProps: GetStaticProps<FourOhFourProps> = async () => {
-  const siteConfig = await client.fetch<SiteConfig>(configQuery);
+export const getStaticProps: GetStaticProps<FourOhFourProps> = async ({
+  locale,
+}) => {
+  const siteConfig = await client.fetch<SiteConfig>(configQuery, {
+    lang: locale,
+  });
 
   return {
     props: {
       siteConfig,
+      translations: restructureTranslations(siteConfig.translations),
     },
     revalidate: 60,
   };

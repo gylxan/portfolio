@@ -7,6 +7,7 @@ describe('<MenuButton />', () => {
 
     expect(screen.queryByRole('button')).toBeInTheDocument();
     expect(screen.queryByRole('button')).toHaveClass('open');
+    expect(screen.getByLabelText('menu.close_menu')).toBeInTheDocument()
     expect(document.querySelectorAll('.line').length).toBe(3);
   });
 
@@ -15,6 +16,7 @@ describe('<MenuButton />', () => {
 
     expect(screen.queryByRole('button')).toBeInTheDocument();
     expect(screen.queryByRole('button')).not.toHaveClass('open');
+    expect(screen.getByLabelText('menu.open_menu')).toBeInTheDocument()
     expect(document.querySelectorAll('.line').length).toBe(3);
   });
 

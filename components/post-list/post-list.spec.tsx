@@ -85,6 +85,17 @@ describe('<PostList/>', () => {
       render(<PostList posts={mockPosts} />);
     });
 
+    expect(
+      screen.getByText(`post.amount (count: ${mockPosts.length})`),
+    ).toBeInTheDocument();
     expect(screen.getAllByRole('link')).toHaveLength(2);
+  });
+
+  it('should render a message, when there are no posts', async () => {
+    await act(() => {
+      render(<PostList posts={[]} />);
+    });
+
+    expect(screen.getByText('post.no_posts_available')).toBeInTheDocument();
   });
 });

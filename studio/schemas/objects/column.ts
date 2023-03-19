@@ -1,4 +1,4 @@
-import pageContent from './pageContent';
+import { pageContentTypes } from '../../constants/page';
 import { getShortenedJoinedList } from '../../utils/array';
 
 const spaces: Record<number, { title: string; value: number }> = {
@@ -34,7 +34,7 @@ export default {
       type: 'array',
       title: 'Content',
       description: 'Content',
-      of: [...pageContent],
+      of: [...pageContentTypes],
     },
     {
       name: 'space',

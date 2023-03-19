@@ -1,5 +1,5 @@
 import { getShortenedJoinedList } from '../../utils/array';
-import pageContent from './pageContent';
+import { pageContentTypes } from '../../constants/page';
 
 const spaces = [
   { title: '10', value: 10 },
@@ -20,7 +20,7 @@ export default {
       type: 'array',
       title: 'Content',
       description: 'Content',
-      of: [...pageContent],
+      of: [...pageContentTypes],
     },
     {
       name: 'space',

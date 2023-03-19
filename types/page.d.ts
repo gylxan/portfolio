@@ -6,6 +6,7 @@ export interface Page {
   pageTitle?: string;
   content: ContentBlock[];
   ogDescription?: string;
+  enabled: boolean;
 }
 
 export interface ContentBlock {

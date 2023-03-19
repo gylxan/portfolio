@@ -1,9 +1,10 @@
 import { Rule } from 'sanity';
+import { i18nConfig } from '../config/i18n';
 export default {
   name: 'siteconfig',
   type: 'document',
   title: 'Site Settings',
-  __experimental_actions: [/* "create", "delete", */ 'update', 'publish'],
+  __experimental_actions: ['update', 'publish'],
   fieldsets: [
     {
       title: 'SEO & metadata',
@@ -48,9 +49,9 @@ export default {
     },
     {
       name: 'copyright',
-      type: 'string',
+      type: 'localeString',
       title: 'Copyright Name',
-      description: 'Enter company name to appear in footer after ©',
+      description: 'Enter copyright text to appear in footer after ©',
     },
     {
       title: 'Main logo',
@@ -75,7 +76,7 @@ export default {
               options: {
                 list: [
                   { title: 'GitHub', value: 'github' },
-                  { title: 'Linkedin', value: 'linkedin' },
+                  { title: 'LinkedIn', value: 'linkedin' },
                   { title: 'Spotify', value: 'spotify' },
                 ],
               },
@@ -100,9 +101,8 @@ export default {
       title: 'Meta Description',
       name: 'description',
       fieldset: 'metadata',
-      type: 'text',
+      type: 'localeText',
       rows: 5,
-      validation: (rule: Rule) => rule.min(20).max(200),
       description: 'Enter SEO Meta Description',
     },
 
@@ -110,7 +110,8 @@ export default {
       name: 'openGraphImage',
       type: 'image',
       title: 'Open Graph Image',
-      description: 'Default image for sharing previews on Facebook, Twitter etc.',
+      description:
+        'Default image for sharing previews on Facebook, Twitter etc.',
       fieldset: 'metadata',
     },
     {
@@ -124,7 +125,7 @@ export default {
     {
       name: 'menuLinks',
       title: 'Menu links',
-      description: 'Links shown in the Header and Mobile menu',
+      description: 'Links shown in the Header and Mobile menu.',
       type: 'array',
       of: [
         {
@@ -133,8 +134,9 @@ export default {
             {
               title: 'Title',
               name: 'title',
-              description: 'Title for the link',
-              type: 'string',
+              description:
+                "Title for the link. Empty for a language = Link won't be shown for the language",
+              type: 'localeString',
               validation: (rule: Rule) => rule.required(),
             },
             {
@@ -150,6 +152,24 @@ export default {
               title: 'title',
               subtitle: 'slug.current',
             },
+            prepare: ({
+              title,
+              subtitle,
+            }: {
+              title: Record<string, string>;
+              subtitle: string;
+            }) => {
+              return {
+                title:
+                  title[i18nConfig.base] ??
+                  title[
+                    i18nConfig.languages.find((lang) => !!title[lang.id])?.id ??
+                      ''
+                  ] ??
+                  '',
+                subtitle,
+              };
+            },
           },
         },
       ],
@@ -158,7 +178,8 @@ export default {
     {
       name: 'resume',
       title: 'Resume',
-      description: 'Resume, which can be downloaded from the menu. Empty when should not been shown.',
+      description:
+        'Resume, which can be downloaded from the menu. Empty when should not been shown.',
       type: 'file',
       accept: '.pdf',
       fieldset: 'menu',

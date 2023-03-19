@@ -8,25 +8,32 @@ import customImage from './objects/customImage';
 import richtextEditor from './objects/richtextEditor';
 import row from './objects/row';
 import skills from './objects/skills';
+import posts from './objects/posts';
 import column from './objects/column';
 import experiences from './objects/experiences';
 import projects from './objects/projects';
+import translation from './translation';
 import welcome from './objects/welcome';
+import { getLocalizedObject } from '../utils/schema';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export const schemaTypes = [
-  post,
   category,
-  page,
   company,
-  skills,
-  richtextEditor,
   customImage,
-  siteConfig,
-  project,
-  row,
   column,
   experiences,
+  page,
+  post,
+  posts,
+  project,
   projects,
+  richtextEditor,
+  row,
+  siteConfig,
+  skills,
+  translation,
   welcome,
+  getLocalizedObject('text'),
+  getLocalizedObject('string'),
 ];

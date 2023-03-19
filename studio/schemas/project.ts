@@ -21,7 +21,7 @@ export default {
     },
     {
       name: 'description',
-      type: 'text',
+      type: 'localeString',
       title: 'Description',
       description: 'Short description for the project',
     },
@@ -51,5 +51,10 @@ export default {
       title: "Background image",
       description: "Background image for the project. Should be in aspect ratio 4:3."
     }
+
   ],
+  options: {
+    // show language filter for this document type, regardless of how documentTypes for the plugin is configured
+    languageFilter: true
+  }
 };

@@ -8,7 +8,8 @@ import Image from 'next/image';
 import { blurImageUrl } from 'constants/image';
 import type { Project as IProject } from 'types/project';
 import styles from 'components/project/project.module.css';
-import useSanityImage from "hooks/useSanityImage";
+import useSanityImage from 'hooks/useSanityImage';
+import { useTranslations } from 'use-intl';
 
 export type ProjectProps = IProject;
 
@@ -21,6 +22,7 @@ const Project = ({
   keywords,
   backgroundImage,
 }: ProjectProps) => {
+  const t = useTranslations('project');
   const imageProps = useSanityImage(backgroundImage);
   const { ref, inView } = useInView({ triggerOnce: true, delay: 300 });
 
@@ -35,7 +37,7 @@ const Project = ({
             src={imageProps.src}
             loader={imageProps.loader}
             blurDataURL={blurImageUrl}
-            alt={`Background image of ${name} project`}
+            alt={`${t('background_image_of')} ${name}`}
             className={styles.image}
             placeholder="blur"
             sizes={
@@ -48,7 +50,7 @@ const Project = ({
       <div className="flex flex-row justify-between justify-items-start">
         <div>
           <span className="text-secondary">
-            {isPrivate ? 'Private' : 'Work'} Project
+            {t(`${isPrivate ? 'private' : 'work'}_project`)}
           </span>
           <h2 className="text-xl">
             {url ? (
@@ -56,7 +58,7 @@ const Project = ({
                 href={url}
                 underlined={false}
                 target="_blank"
-                aria-label="Link to the Github repository or preview of the project"
+                aria-label={`${t('preview_or_project')} ${name}`}
               >
                 {name}
               </Link>
@@ -73,7 +75,7 @@ const Project = ({
               href={githubUrl}
               target="_blank"
               underlined={false}
-              aria-label={`Link to Github repository of ${name}`}
+              aria-label={`${t('github_repo_of')} ${name}`}
             >
               <FontAwesomeIcon icon={faGithub} size="lg" />
             </Link>
@@ -83,7 +85,7 @@ const Project = ({
               href={previewUrl}
               target="_blank"
               underlined={false}
-              aria-label={`Link to a Preview of ${name}`}
+              aria-label={`${t('preview_of')} ${name}`}
             >
               <FontAwesomeIcon icon={faExternalLink} size="lg" />
             </Link>

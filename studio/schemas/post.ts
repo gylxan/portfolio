@@ -1,10 +1,11 @@
 import richtextEditor from './objects/richtextEditor';
-import { Rule } from 'sanity'
+import { Rule } from 'sanity';
 
 export default {
   name: 'post',
   type: 'document',
   title: 'Post',
+  i18n: true,
   fields: [
     {
       name: 'title',

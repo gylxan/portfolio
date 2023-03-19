@@ -37,7 +37,7 @@ const Layout = ({
   const globalOgImage = useSanityImage(siteConfig.openGraphImage)?.src || null;
   const { pathname } = useRouter();
 
-  const subPath = slug ? (slug === '/' ? slug : `/${slug}`) : pathname;
+  const subPath = slug ?? pathname;
   const url = `${siteConfig.url}${subPath === '/' ? '' : subPath}`;
 
   return (

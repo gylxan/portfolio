@@ -1,4 +1,5 @@
 import { Rule } from 'sanity';
+import { i18nConfig } from '../config/i18n';
 
 export default {
   name: 'experience',
@@ -30,7 +31,7 @@ export default {
           fields: [
             {
               name: 'role',
-              type: 'string',
+              type: 'localeString',
               title: 'Role',
             },
             {
@@ -51,9 +52,30 @@ export default {
               type: 'array',
               title: 'Tasks',
               description: 'Tasks you had in the position',
-              of: [{ type: 'string' }],
+              of: [{ type: 'localeString' }],
             },
           ],
+          preview: {
+            select: {
+              role: 'role',
+              startDate: 'startDate',
+              endDate: 'endDate',
+            },
+            prepare: ({
+              role,
+              startDate,
+              endDate,
+            }: {
+              role: Record<string, string>;
+              startDate: string;
+              endDate: string;
+            }) => {
+              return {
+                title: role[i18nConfig.base],
+                subtitle: `${startDate} - ${endDate || 'Today'}`,
+              };
+            },
+          },
         },
       ],
     },
@@ -68,11 +90,14 @@ export default {
       positions,
     }: {
       company: string;
-      positions: { role: string }[];
+      positions: { role: Record<string, string> }[];
     }) => {
       return {
         title: company,
-        subtitle: positions.map((position) => position.role).join(', ') ?? '',
+        subtitle:
+          positions
+            .map((position) => position.role[i18nConfig.base])
+            .join(', ') ?? '',
       };
     },
   },

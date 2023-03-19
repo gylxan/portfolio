@@ -1,11 +1,16 @@
 import type { Rule, Slug } from 'sanity';
-import pageContent from './objects/pageContent';
+import { pageContentTypes } from '../constants/page';
 import { ConditionalPropertyProps } from 'sanity/src/core/field/conditional-property';
+import { i18nConfig } from '../config/i18n';
+
+const isRootUrl = (url: string) =>
+  url === '/' || i18nConfig.languages.some((lang) => `/${lang.id}` === url);
 
 export default {
   name: 'page',
   type: 'document',
   title: 'Page',
+  i18n: true,
   fields: [
     {
       name: 'slug',
@@ -21,7 +26,7 @@ export default {
       description:
         'Title used for open graph and the tab. When slug is root (/) no title is shown.',
       readOnly: ({ document }: ConditionalPropertyProps) =>
-        (document?.slug as Slug)?.current === '/',
+        isRootUrl((document?.slug as Slug)?.current ?? ''),
     },
     {
       name: 'pageTitle',
@@ -30,7 +35,16 @@ export default {
       description:
         'Title, which is used on the page. When empty, the title is used',
       readOnly: ({ document }: ConditionalPropertyProps) =>
-        (document?.slug as Slug)?.current === '/',
+        isRootUrl((document?.slug as Slug)?.current ?? ''),
+    },
+
+    {
+      name: 'enabled',
+      type: 'boolean',
+      title: 'Enabled',
+      description:
+        "Whether the page is enabled or not. Disabled pages won't be pre-build and are shown as 404 pages",
+      initialValue: true,
     },
     {
       name: 'ogDescription',
@@ -43,18 +57,29 @@ export default {
       name: 'content',
       type: 'array',
       title: 'Content',
-      of: [...pageContent],
+      of: [...pageContentTypes],
     },
   ],
   preview: {
     select: {
       title: 'title',
-      pageTitle: 'pageTitle',
       slug: 'slug',
+      lang: '__i18n_lang',
     },
-    prepare: ({ title, slug }: { title: string; slug: Slug }) => {
+    prepare: ({
+      title,
+      slug,
+      lang,
+    }: {
+      title: string;
+      slug: Slug;
+      lang: string;
+    }) => {
       return {
-        title: title ? title : slug?.current === '/' ? 'Home' : 'Untitled',
+        title: `${
+          title ? title : isRootUrl(slug?.current ?? '') ? 'Home' : 'Untitled'
+        } (${slug?.current})`,
+        subtitle: lang || i18nConfig.base,
       };
     },
   },

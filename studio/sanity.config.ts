@@ -3,17 +3,17 @@ import { deskTool } from 'sanity/desk';
 import { schemaTypes } from './schemas/schema';
 import { codeInput } from '@sanity/code-input';
 import { visionTool } from '@sanity/vision';
-import { HiDocument, HiOutlineCog } from 'react-icons/hi';
-import { ListItemBuilder } from 'sanity/lib/exports/desk';
-
-const hiddenDocTypes = (listItem: ListItemBuilder) =>
-  !['siteconfig'].includes(listItem.getId() as string);
-
-const pageType = (listItem: ListItemBuilder) =>
-  ['page'].includes(listItem.getId() as string);
-
-const blogTypes = (listItem: ListItemBuilder) =>
-  ['post', 'category'].includes(listItem.getId() as string);
+import { HiOutlineCog } from 'react-icons/hi';
+import { withDocumentI18nPlugin } from '@sanity/document-internationalization';
+import { languageFilter } from '@sanity/language-filter';
+import { i18nConfig } from './config/i18n';
+import {
+  applyIconOnListItemBuilder,
+  filterChildrenForBaseLanguage,
+  getBlogTypes,
+  getHiddenDocumentTypes,
+  getPageType,
+} from './utils/schema';
 
 export default defineConfig({
   name: 'portfolio',
@@ -22,38 +22,48 @@ export default defineConfig({
   dataset: import.meta.env.SANITY_STUDIO_DATASET,
   basePath: '/studio',
 
-  plugins: [
-    deskTool({
-      structure: (S) =>
-        S.list()
-          .title('Content Manager')
-          .items([
-            S.listItem()
-              .title('Site config')
-              .icon(HiOutlineCog)
-              .child(
-                S.editor().schemaType('siteconfig').documentId('siteconfig'),
+  plugins: withDocumentI18nPlugin(
+    [
+      deskTool({
+        structure: (S) => {
+          const documentTypesWithIcons = S.documentTypeListItems().map(
+            (element) =>
+              filterChildrenForBaseLanguage(
+                S,
+                applyIconOnListItemBuilder(element),
               ),
-            S.divider(),
-            ...S.documentTypeListItems()
-              .filter(pageType)
-              .map((element) => element.icon(HiDocument)),
-            S.divider(),
-            ...S.documentTypeListItems().filter(blogTypes),
-            S.divider(),
-            ...S.documentTypeListItems()
-              .filter(hiddenDocTypes)
-              .filter((element) => !pageType(element))
-              .filter((element) => !blogTypes(element)),
-          ]),
-    }),
-    codeInput(),
-    visionTool({
-      // Note: These are both optional
-      defaultApiVersion: 'v2021-10-21',
-      defaultDataset: import.meta.env.SANITY_STUDIO_DATASET,
-    }),
-  ],
+          );
+          return S.list()
+            .title('Content Manager')
+            .items([
+              S.listItem()
+                .title('Site config')
+                .icon(HiOutlineCog)
+                .child(
+                  S.editor().schemaType('siteconfig').documentId('siteconfig'),
+                ),
+              S.divider(),
+              ...documentTypesWithIcons.filter(getPageType),
+              S.divider(),
+              ...documentTypesWithIcons.filter(getBlogTypes),
+              S.divider(),
+              ...documentTypesWithIcons.filter(getHiddenDocumentTypes),
+            ]);
+        },
+      }),
+      codeInput(),
+      visionTool({
+        // Note: These are both optional
+        defaultApiVersion: 'v2021-10-21',
+        defaultDataset: import.meta.env.SANITY_STUDIO_DATASET,
+      }),
+      languageFilter({
+        supportedLanguages: i18nConfig.languages,
+        defaultLanguages: [i18nConfig.base],
+      }),
+    ],
+    { ...i18nConfig, includeDeskTool: false },
+  ),
   schema: {
     types: schemaTypes,
   },

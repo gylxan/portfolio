@@ -1,4 +1,4 @@
-import {Rule} from 'sanity';
+import { Rule } from 'sanity';
 export default {
   name: 'link',
   type: 'object',
@@ -8,10 +8,11 @@ export default {
       name: 'href',
       type: 'url',
       title: 'URL',
-      validation: (rule: Rule) => rule.uri({
-        scheme: ['http', 'https', 'mailto'],
-        allowRelative: true
-      })
+      validation: (rule: Rule) =>
+        rule.uri({
+          scheme: ['http', 'https', 'mailto'],
+          allowRelative: true,
+        }),
     },
     {
       name: 'label',

@@ -4,49 +4,46 @@ import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { setCookie } from 'utils/cookie';
 import React from 'react';
 import { DropdownMenu, DropdownMenuItem } from 'components';
+import { useTranslations } from 'use-intl';
 
-const languages = [
-  {
-    code: 'de',
-    title: 'Deutsch',
-  },
-  {
-    code: 'en-US',
-    title: 'English',
-  },
-];
 const LanguageDropdown = () => {
-  const { locale, asPath, defaultLocale } = useRouter();
+  const { locale, asPath, locales } = useRouter();
+  const t = useTranslations('language');
+  const availableLanguages = locales ?? [];
 
   function handleLanguageSelect(locale: string) {
     setCookie('NEXT_LOCALE', locale, 31536000);
   }
 
-  const currentLocaleTitle = languages.find(
-    ({ code }) => code === locale,
-  )?.title;
+  function getTitle(code: string) {
+    return t(code) || code.toUpperCase();
+  }
+
+  if (!availableLanguages.length) {
+    return null;
+  }
 
   return (
     <DropdownMenu
       label={
         <div className="flex gap-1">
           <FontAwesomeIcon icon={faGlobe} size="lg" />
-          {currentLocaleTitle}
+          {getTitle(locale ?? '')}
         </div>
       }
       value={locale}
       onChange={handleLanguageSelect}
     >
-      {languages.map(({ code, title }) => (
+      {availableLanguages.map((code) => (
         <DropdownMenuItem
           key={code}
           value={code}
-          href={code === defaultLocale ? asPath : `${code}${asPath}`}
+          href={asPath}
           locale={code}
           lang={code}
           hrefLang={code}
         >
-          {title}
+          {getTitle(code)}
         </DropdownMenuItem>
       ))}
     </DropdownMenu>
