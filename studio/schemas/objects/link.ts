@@ -1,5 +1,5 @@
-import { Rule } from 'sanity';
-export default {
+import { defineField, defineType, Rule } from 'sanity';
+export default defineField({
   name: 'link',
   type: 'object',
   title: 'Link',
@@ -26,4 +26,4 @@ export default {
       type: 'boolean',
     },
   ],
-};
+});

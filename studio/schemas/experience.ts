@@ -1,7 +1,7 @@
-import { Rule } from 'sanity';
+import { defineType, Rule } from 'sanity';
 import { i18nConfig } from '../config/i18n';
 
-export default {
+export default defineType({
   name: 'experience',
   type: 'document',
   title: 'Experience',
@@ -65,10 +65,6 @@ export default {
               role,
               startDate,
               endDate,
-            }: {
-              role: Record<string, string>;
-              startDate: string;
-              endDate: string;
             }) => {
               return {
                 title: role[i18nConfig.base],
@@ -101,4 +97,4 @@ export default {
       };
     },
   },
-};
+});

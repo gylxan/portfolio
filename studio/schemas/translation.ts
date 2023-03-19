@@ -1,7 +1,7 @@
 import { i18nConfig } from '../config/i18n';
-import {Rule} from "sanity";
+import { defineType, Rule } from 'sanity';
 
-export default {
+export default defineType({
   name: 'translation',
   type: 'document',
   title: 'Translation',
@@ -10,7 +10,7 @@ export default {
       name: 'namespace',
       type: 'string',
       title: 'Namespace',
-      validation: (rule: Rule) => rule.unique()
+      validation: (rule: Rule) => rule.unique(),
     },
     {
       name: 'translations',
@@ -41,9 +41,6 @@ export default {
         prepare: ({
           key,
           value,
-        }: {
-          key: string;
-          value: Record<string, string>;
         }) => {
           return {
             title: key,
@@ -75,4 +72,4 @@ export default {
       };
     },
   },
-};
+});

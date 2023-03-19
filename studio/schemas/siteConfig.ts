@@ -1,10 +1,10 @@
-import { Rule } from 'sanity';
+import { defineType, Rule } from 'sanity';
 import { i18nConfig } from '../config/i18n';
-export default {
+export default defineType({
   name: 'siteconfig',
   type: 'document',
   title: 'Site Settings',
-  __experimental_actions: ['update', 'publish'],
+  // __experimental_actions: ['update', 'publish'],
   fieldsets: [
     {
       title: 'SEO & metadata',
@@ -102,7 +102,6 @@ export default {
       name: 'description',
       fieldset: 'metadata',
       type: 'localeText',
-      rows: 5,
       description: 'Enter SEO Meta Description',
     },
 
@@ -152,13 +151,7 @@ export default {
               title: 'title',
               subtitle: 'slug.current',
             },
-            prepare: ({
-              title,
-              subtitle,
-            }: {
-              title: Record<string, string>;
-              subtitle: string;
-            }) => {
+            prepare: ({ title, subtitle }) => {
               return {
                 title:
                   title[i18nConfig.base] ??
@@ -181,8 +174,10 @@ export default {
       description:
         'Resume, which can be downloaded from the menu. Empty when should not been shown.',
       type: 'file',
-      accept: '.pdf',
       fieldset: 'menu',
+      options: {
+        accept: '.pdf',
+      },
     },
 
     {
@@ -201,4 +196,4 @@ export default {
       fieldset: 'apple',
     },
   ],
-};
+});

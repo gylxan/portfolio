@@ -1,4 +1,4 @@
-import link from './link.js';
+import link from './link';
 
 import {
   AiOutlineAlignRight,
@@ -6,6 +6,7 @@ import {
   AiOutlineAlignCenter,
 } from 'react-icons/ai';
 import React, { PropsWithChildren } from 'react';
+import {defineField, defineType} from 'sanity';
 
 const alignLeftRender = (props: PropsWithChildren) => (
   <span style={{ display: 'flex', justifyContent: 'start' }}>
@@ -23,7 +24,7 @@ const alignRightRender = (props: PropsWithChildren) => (
   </span>
 );
 
-export default {
+export default defineField({
   name: 'content',
   title: 'Content',
   type: 'array',
@@ -50,29 +51,23 @@ export default {
           {
             title: 'Align left',
             value: 'alignLeft',
-            blockEditor: {
-              icon: AiOutlineAlignLeft,
-              render: alignLeftRender,
-            },
+            icon: AiOutlineAlignLeft,
+            component: alignLeftRender,
           },
           {
             title: 'Align center',
             value: 'alignCenter',
-            blockEditor: {
-              icon: AiOutlineAlignCenter,
-              render: alignCenterRender,
-            },
+            icon: AiOutlineAlignCenter,
+            component: alignCenterRender,
           },
           {
             title: 'Align right',
             value: 'alignRight',
-            blockEditor: {
-              icon: AiOutlineAlignRight,
-              render: alignRightRender,
-            },
+            icon: AiOutlineAlignRight,
+            component: alignRightRender,
           },
         ],
       },
     },
   ],
-};
+});

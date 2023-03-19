@@ -1,6 +1,6 @@
-import { Rule } from 'sanity';
+import { defineType, Rule } from 'sanity';
 
-export default {
+export default defineType({
   name: 'project',
   type: 'document',
   title: 'Project',
@@ -17,7 +17,7 @@ export default {
       type: 'boolean',
       title: 'Private project',
       description: 'Whether the project is private or a work project',
-      initialValue: false
+      initialValue: false,
     },
     {
       name: 'description',
@@ -46,15 +46,15 @@ export default {
       initialValue: [],
     },
     {
-      name: "backgroundImage",
-      type: "image",
-      title: "Background image",
-      description: "Background image for the project. Should be in aspect ratio 4:3."
-    }
-
+      name: 'backgroundImage',
+      type: 'image',
+      title: 'Background image',
+      description:
+        'Background image for the project. Should be in aspect ratio 4:3.',
+    },
   ],
   options: {
     // show language filter for this document type, regardless of how documentTypes for the plugin is configured
-    languageFilter: true
-  }
-};
+    languageFilter: true,
+  },
+});

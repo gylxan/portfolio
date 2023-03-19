@@ -1,12 +1,16 @@
-import type { Rule, Slug } from 'sanity';
+import {
+  ConditionalPropertyCallbackContext,
+  defineType,
+  Rule,
+  Slug,
+} from 'sanity';
 import { pageContentTypes } from '../constants/page';
-import { ConditionalPropertyProps } from 'sanity/src/core/field/conditional-property';
 import { i18nConfig } from '../config/i18n';
 
 const isRootUrl = (url: string) =>
   url === '/' || i18nConfig.languages.some((lang) => `/${lang.id}` === url);
 
-export default {
+export default defineType({
   name: 'page',
   type: 'document',
   title: 'Page',
@@ -25,7 +29,7 @@ export default {
       title: 'Title',
       description:
         'Title used for open graph and the tab. When slug is root (/) no title is shown.',
-      readOnly: ({ document }: ConditionalPropertyProps) =>
+      readOnly: ({ document }: ConditionalPropertyCallbackContext) =>
         isRootUrl((document?.slug as Slug)?.current ?? ''),
     },
     {
@@ -34,7 +38,7 @@ export default {
       title: 'Page title',
       description:
         'Title, which is used on the page. When empty, the title is used',
-      readOnly: ({ document }: ConditionalPropertyProps) =>
+      readOnly: ({ document }: ConditionalPropertyCallbackContext) =>
         isRootUrl((document?.slug as Slug)?.current ?? ''),
     },
 
@@ -83,4 +87,4 @@ export default {
       };
     },
   },
-};
+});

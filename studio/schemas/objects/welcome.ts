@@ -1,7 +1,7 @@
-import { Rule } from 'sanity';
+import { defineType, Rule } from 'sanity';
 import richtextEditor from './richtextEditor';
 
-export default {
+export default defineType({
   name: 'welcome',
   type: 'object',
   title: 'Welcome',
@@ -56,4 +56,4 @@ export default {
       };
     },
   },
-};
+});

@@ -1,4 +1,6 @@
-export default {
+import { defineType } from 'sanity';
+
+export default defineType({
   name: 'experiences',
   type: 'object',
   title: 'Experiences',
@@ -47,4 +49,4 @@ export default {
       };
     },
   },
-};
+});

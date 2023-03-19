@@ -1,7 +1,7 @@
 import richtextEditor from './objects/richtextEditor';
-import { Rule } from 'sanity';
+import { defineType, Rule } from 'sanity';
 
-export default {
+export default defineType({
   name: 'post',
   type: 'document',
   title: 'Post',
@@ -54,4 +54,4 @@ export default {
     },
     { ...richtextEditor },
   ],
-};
+});

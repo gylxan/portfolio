@@ -1,6 +1,7 @@
+import { defineType } from 'sanity';
 import { i18nConfig } from '../config/i18n';
 
-export default {
+export default defineType({
   name: 'category',
   type: 'document',
   title: 'Category',
@@ -27,4 +28,4 @@ export default {
       };
     },
   },
-};
+});
