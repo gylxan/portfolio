@@ -80,6 +80,7 @@ export const configQuery = groq`
 export const pathPageQuery = groq`
 *[_type == "page" && enabled == true] {
   slug,
+  "language": __i18n_lang
 }
 `;
 
