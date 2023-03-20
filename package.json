@@ -1,6 +1,6 @@
 {
   "name": "portfolio",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "private": false,
   "author": {
     "name": "Guido Lange",
@@ -16,8 +16,8 @@
     "lint": "next lint",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "sanity": "cd studio && npm run start",
-    "sanity:build": "cd studio && npm i && npm run build -- ../public/studio -y"
+    "sanity": "cd studio && npm run dev",
+    "sanity:build": "cd studio && npm i --legacy-peer-deps && npm run build -- ../public/studio -y"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
