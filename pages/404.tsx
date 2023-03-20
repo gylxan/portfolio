@@ -2,10 +2,9 @@ import type { GetStaticProps } from 'next';
 import { Layout, Link } from 'components';
 import { Routes } from 'constants/routes';
 import styles from 'styles/404.module.css';
-import client from 'utils/sanity';
-import type { SiteConfig } from 'types/siteConfig';
+import client, { getSanitizedSiteConfig } from 'utils/sanity';
+import type { SanitySiteConfig, SiteConfig } from 'types/siteConfig';
 import { configQuery } from 'constants/groq';
-import { restructureTranslations } from 'utils/i18n';
 import { useTranslations } from 'use-intl';
 
 interface FourOhFourProps {
@@ -30,14 +29,13 @@ const FourOhFour = ({ siteConfig }: FourOhFourProps) => {
 export const getStaticProps: GetStaticProps<FourOhFourProps> = async ({
   locale,
 }) => {
-  const siteConfig = await client.fetch<SiteConfig>(configQuery, {
+  const siteConfig = await client.fetch<SanitySiteConfig>(configQuery, {
     lang: locale,
   });
 
   return {
     props: {
-      siteConfig,
-      translations: restructureTranslations(siteConfig.translations),
+      siteConfig: getSanitizedSiteConfig(siteConfig),
     },
     revalidate: 60,
   };
