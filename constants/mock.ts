@@ -1,4 +1,4 @@
-import type {SiteConfig, TranslationNamespace} from 'types/siteConfig';
+import type {SanitySiteConfig, SiteConfig, TranslationNamespace} from 'types/siteConfig';
 import type { SanityAltImage, SanityImage } from 'types/image';
 import { Project } from 'types/project';
 import { SanityFile } from 'types/file';
@@ -61,7 +61,7 @@ export const mockTranslationNamespaces: TranslationNamespace[]= [
   }
 ]
 
-export const mockSiteConfig: SiteConfig = {
+export const mockSiteConfig: SanitySiteConfig = {
   description: 'Site description',
   keywords: ['React', 'Next.js', 'Javascript'],
   title: 'My site',

@@ -1,15 +1,14 @@
 import { Badge, Layout, Link, PortableText, Title } from 'components';
 import type { GetStaticProps } from 'next';
-import client, { getBlurDataUrl } from 'utils/sanity';
+import { client, getBlurDataUrl, getSanitizedSiteConfig } from 'utils/sanity';
 import { configQuery, pathPostQuery, singlePostQuery } from 'constants/groq';
 import type { Post as IPost } from 'types/post';
 import { getFormattedPostDate } from 'utils/date';
 import Image from 'next/image';
 import useSanityImage from 'hooks/useSanityImage';
 import { Routes } from 'constants/routes';
-import type { SiteConfig } from 'types/siteConfig';
+import type { SanitySiteConfig, SiteConfig } from 'types/siteConfig';
 import { useTranslations } from 'use-intl';
-import { restructureTranslations } from 'utils/i18n';
 import { useRouter } from 'next/router';
 import { getPathsFromSlug } from 'utils/url';
 
@@ -103,7 +102,7 @@ export const getStaticProps: GetStaticProps<PostProps> = async ({
   params,
   locale,
 }) => {
-  const siteConfig = await client.fetch<SiteConfig>(configQuery, {
+  const siteConfig = await client.fetch<SanitySiteConfig>(configQuery, {
     lang: locale,
   });
   const post = await client.fetch<IPost>(singlePostQuery, {
@@ -119,9 +118,8 @@ export const getStaticProps: GetStaticProps<PostProps> = async ({
 
   return {
     props: {
-      siteConfig,
+      siteConfig: getSanitizedSiteConfig(siteConfig),
       post,
-      translations: restructureTranslations(siteConfig.translations),
     },
     revalidate: 60,
   };

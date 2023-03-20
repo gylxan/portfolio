@@ -1,6 +1,8 @@
-import { getBlurDataUrl } from 'utils/sanity';
+import { getBlurDataUrl, getSanitizedSiteConfig } from 'utils/sanity';
 import type { SanityImage } from 'types/image';
 import { blurImageUrl } from 'constants/image';
+import { mockSiteConfig } from 'constants/mock';
+import { restructureTranslations } from 'utils/i18n';
 
 describe('Sanity utils', () => {
   describe('getBlurDataUrl', () => {
@@ -30,6 +32,15 @@ describe('Sanity utils', () => {
       expect(
         getBlurDataUrl({ ...image, asset: { ...image.asset, metadata: null } }),
       ).toBe(blurImageUrl);
+    });
+  });
+
+  describe('getSanitizedSiteConfig', () => {
+    it('returns site config with restructured translations', () => {
+      expect(getSanitizedSiteConfig(mockSiteConfig)).toStrictEqual({
+        ...mockSiteConfig,
+        translations: restructureTranslations(mockSiteConfig.translations),
+      });
     });
   });
 });

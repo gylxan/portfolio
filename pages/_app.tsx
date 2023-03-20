@@ -11,9 +11,9 @@ import { NextIntlProvider } from 'next-intl';
 config.autoAddCss = false;
 
 export default function App({ Component, pageProps }: AppProps) {
-  const { translations } = pageProps;
+  const { siteConfig } = pageProps;
   return (
-    <NextIntlProvider messages={translations}>
+    <NextIntlProvider messages={siteConfig.translations}>
       <DefaultSeo {...nextSeoConfig} />
       <Component {...pageProps} />
       <Analytics />

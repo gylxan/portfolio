@@ -22,7 +22,7 @@ interface Translation {
   value: string;
 }
 
-export interface SiteConfig {
+export interface SanitySiteConfig {
   title: string;
   url: string;
   copyright?: string;
@@ -36,4 +36,8 @@ export interface SiteConfig {
   appleTouchIcon: SanityImage;
   safariTabIcon: SanityImage;
   translations: TranslationNamespace[];
+}
+
+export interface SiteConfig extends Omit<SanitySiteConfig, 'translations'> {
+  translations: Record<string, Record<string, string>>;
 }

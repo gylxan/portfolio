@@ -2,7 +2,12 @@ import { groq } from 'next-sanity';
 
 export const allPostQuery = groq`
 *[_type == "post" && __i18n_lang == $lang] | order(_createdAt desc) {
-  ...,
+  _id,
+  _type,
+  _createdAt,
+  title,
+  slug,
+  description,
   categories[]->{
     ...,
     "name": name[$lang],
