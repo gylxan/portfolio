@@ -106,12 +106,12 @@ export const getStaticProps: GetStaticProps<PostProps> = async ({
   const siteConfig = await client.fetch<SiteConfig>(configQuery, {
     lang: locale,
   });
-  const post = await client.fetch(singlePostQuery, {
+  const post = await client.fetch<IPost>(singlePostQuery, {
     slug: params?.slug,
     lang: locale,
   });
 
-  if (!post) {
+  if (!post || !post.enabled) {
     return {
       notFound: true,
     };

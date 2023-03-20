@@ -25,6 +25,23 @@ export const getLocalizedObject = (fieldType: string) => {
   };
 };
 
+// Helper function to solve problem of document internationalization of disabling base translation document
+// @see https://github.com/sanity-io/document-internationalization/issues/96
+export const withActivatable = (schemaDefinition) => ({
+  ...schemaDefinition,
+  fields: [
+    {
+      name: 'enabled',
+      type: 'boolean',
+      title: 'Enabled',
+      description:
+        "Whether this document is enabled. Use this to disable document for specific languages.",
+      initialValue: true,
+    },
+    ...schemaDefinition.fields,
+  ],
+});
+
 export const applyIconOnListItemBuilder = (element: ListItemBuilder) => {
   const elementId = element.getId() || 'default';
   if (documentTypeIcons[elementId]) {
