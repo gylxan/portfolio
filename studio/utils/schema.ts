@@ -2,6 +2,7 @@ import { ListItemBuilder, StructureBuilder } from 'sanity/desk';
 import { i18nConfig } from '../config/i18n';
 import { documentTypeIcons } from '../constants/sanity';
 import { SchemaType } from 'sanity';
+import { getLanguagesWithoutBase } from './i18n';
 
 export const getLocalizedObject = (fieldType: string) => {
   return {
@@ -35,12 +36,21 @@ export const withActivatable = (schemaDefinition) => ({
       type: 'boolean',
       title: 'Enabled',
       description:
-        "Whether this document is enabled. Use this to disable document for specific languages.",
+        'Whether this document is enabled. Use this to disable document for specific languages.',
       initialValue: true,
     },
     ...schemaDefinition.fields,
   ],
 });
+
+export const getLanguageEnableStates = () =>
+  getLanguagesWithoutBase().reduce(
+    (accu, { id }, index) => ({
+      ...accu,
+      [id]: `__i18n_refs.${index}.enabled`,
+    }),
+    {},
+  );
 
 export const applyIconOnListItemBuilder = (element: ListItemBuilder) => {
   const elementId = element.getId() || 'default';

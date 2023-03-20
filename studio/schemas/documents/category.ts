@@ -1,5 +1,5 @@
 import { defineType } from 'sanity';
-import { i18nConfig } from '../config/i18n';
+import { i18nConfig } from '../../config/i18n';
 
 export default defineType({
   name: 'category',

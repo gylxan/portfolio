@@ -1,4 +1,4 @@
-import { i18nConfig } from '../config/i18n';
+import { i18nConfig } from '../../config/i18n';
 import { defineType, Rule } from 'sanity';
 
 export default defineType({

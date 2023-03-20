@@ -4,13 +4,10 @@ import {
   Rule,
   Slug,
 } from 'sanity';
-import { pageContentTypes } from '../constants/page';
-import { i18nConfig } from '../config/i18n';
-import { withActivatable } from '../utils/schema';
-import {
-  getEnabledLanguagesString,
-  getLanguagesWithoutBase,
-} from '../utils/i18n';
+import { pageContentTypes } from '../../constants/page';
+import { i18nConfig } from '../../config/i18n';
+import { getLanguageEnableStates, withActivatable } from '../../utils/schema';
+import { getEnabledLanguagesString } from '../../utils/i18n';
 
 const isRootUrl = (url: string) =>
   url === '/' || i18nConfig.languages.some((lang) => `/${lang.id}` === url);
@@ -75,13 +72,7 @@ export default defineType(
         title: 'title',
         slug: 'slug',
         enabled: 'enabled',
-        ...getLanguagesWithoutBase().reduce(
-          (accu, { id }, index) => ({
-            ...accu,
-            [id]: `__i18n_refs.${index}.enabled`,
-          }),
-          {},
-        ),
+        ...getLanguageEnableStates(),
       },
       prepare: ({
         title,

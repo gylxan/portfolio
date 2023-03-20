@@ -1,8 +1,7 @@
-import richtextEditor from './objects/richtextEditor';
+import richtextEditor from '../objects/richtextEditor';
 import { defineType, Rule, Slug } from 'sanity';
-import { withActivatable } from '../utils/schema';
-import {getEnabledLanguagesString, getLanguagesWithoutBase} from '../utils/i18n';
-import { i18nConfig } from '../config/i18n';
+import { getLanguageEnableStates, withActivatable } from '../../utils/schema';
+import { getEnabledLanguagesString } from '../../utils/i18n';
 
 export default defineType(
   withActivatable({
@@ -63,13 +62,7 @@ export default defineType(
         title: 'title',
         enabled: 'enabled',
         media: 'mainImage',
-        ...getLanguagesWithoutBase().reduce(
-          (accu, { id }, index) => ({
-            ...accu,
-            [id]: `__i18n_refs.${index}.enabled`,
-          }),
-          {},
-        ),
+        ...getLanguageEnableStates(),
       },
       prepare: ({
         title,
@@ -87,7 +80,7 @@ export default defineType(
         return {
           title,
           media,
-          subtitle: languageString === "" ? `Enabled: ✖`: languageString,
+          subtitle: languageString === '' ? `Enabled: ✖` : languageString,
         };
       },
     },

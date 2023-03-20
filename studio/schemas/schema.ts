@@ -1,9 +1,9 @@
-import post from './post';
-import category from './category';
-import page from './page';
-import company from './experience';
-import project from './project';
-import siteConfig from './siteConfig';
+import post from './documents/post';
+import category from './documents/category';
+import page from './documents/page';
+import company from './documents/experience';
+import project from './documents/project';
+import siteConfig from './documents/siteConfig';
 import customImage from './objects/customImage';
 import richtextEditor from './objects/richtextEditor';
 import row from './objects/row';
@@ -12,7 +12,7 @@ import posts from './objects/posts';
 import column from './objects/column';
 import experiences from './objects/experiences';
 import projects from './objects/projects';
-import translation from './translation';
+import translation from './documents/translation';
 import welcome from './objects/welcome';
 import { getLocalizedObject } from '../utils/schema';
 
