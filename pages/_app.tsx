@@ -12,13 +12,13 @@ import type { SiteConfig } from 'types/siteConfig';
 config.autoAddCss = false;
 
 interface AppProps extends IAppProps {
-  siteConfig: SiteConfig;
+  siteConfig?: SiteConfig;
 }
 
 export default function App({ Component, pageProps }: AppProps) {
   const { siteConfig } = pageProps;
   return (
-    <NextIntlProvider messages={siteConfig.translations}>
+    <NextIntlProvider messages={siteConfig?.translations}>
       <DefaultSeo {...nextSeoConfig} />
       <Component {...pageProps} />
       <Analytics />
