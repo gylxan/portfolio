@@ -1,5 +1,5 @@
 import * as i18nUtils from 'utils/i18n';
-import { getPathsFromSlug, getUrlFromSlugs } from 'utils/url';
+import {getPathsFromSlug, getUrlFromSlugs, isSlugMatchingCurrentUrl} from 'utils/url';
 jest.mock('utils/i18n', () => {
   const originalI18n = jest.requireActual('utils/i18n');
   return {
@@ -50,4 +50,22 @@ describe('URL utils', () => {
       expect(getPathsFromSlug('/de/test/test2', 'de')).toStrictEqual(['test', 'test2']);
     });
   });
+
+  describe('isSlugMatchingCurrentUrl', () => {
+    it('should return true, when slug matches non-locale url', () => {
+      expect(isSlugMatchingCurrentUrl('test-slug', undefined, '/test-slug'))
+    })
+
+    it('should return true, when slug matches localized url', () => {
+      expect(isSlugMatchingCurrentUrl('en/test-slug', 'en', '/test-slug'))
+    })
+
+    it('should return true, when slug starts with slash and matches non-localized url', () => {
+      expect(isSlugMatchingCurrentUrl('/test-slug', undefined, '/test-slug'))
+    })
+
+    it('should return true, when slug starts with slash and matches localized url', () => {
+      expect(isSlugMatchingCurrentUrl('/en/test-slug', 'en', '/test-slug'))
+    })
+  })
 });
