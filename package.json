@@ -17,7 +17,7 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "sanity": "cd studio && npm run start",
-    "sanity:build": "cd studio && npm i --legacy-peer-deps && npm run build -- ../public/studio -y --source-maps --no-minify"
+    "sanity:build": "cd studio && npm i && npm run build -- ../public/studio -y --source-maps --no-minify"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
