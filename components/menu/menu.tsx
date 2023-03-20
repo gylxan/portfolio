@@ -7,6 +7,8 @@ import styles from 'components/menu/menu.module.css';
 import type { MenuLink } from 'types/siteConfig';
 import type { SanityFile } from 'types/file';
 import { useTranslations } from 'use-intl';
+import { useRouter } from 'next/router';
+import { isSlugMatchingCurrentUrl } from 'utils/url';
 
 export const MD_WIDTH = 768;
 
@@ -21,6 +23,7 @@ const Menu = ({ links, resume }: MenuProps) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const ref = useRef(null);
   const t = useTranslations('menu');
+  const { asPath, locale } = useRouter();
 
   useOutsideClick({
     active: isMenuOpen,
@@ -73,19 +76,24 @@ const Menu = ({ links, resume }: MenuProps) => {
         aria-hidden={!isMenuOpen}
       >
         <ul role="menu" className={styles.list}>
-          {links.map(({ slug, title }) => (
-
-            title && <li key={slug.current}>
-              <Link
-                href={`/${slug.current}`}
-                underlined={false}
-                onClick={handleLinkClick}
-                role="menuitem"
-              >
-                {title}
-              </Link>
-            </li>
-          ))}
+          {links.map(({ slug, title }) => {
+            const href = `/${slug.current}`;
+            return (
+              title && (
+                <li key={slug.current}>
+                  <Link
+                    href={href}
+                    underlined={false}
+                    active={isSlugMatchingCurrentUrl(href, locale, asPath)}
+                    onClick={handleLinkClick}
+                    role="menuitem"
+                  >
+                    {title}
+                  </Link>
+                </li>
+              )
+            );
+          })}
         </ul>
         {resume && (
           <Button

@@ -16,12 +16,14 @@ export type LinkProps = (
 ) & {
   underlined?: boolean;
   coloredHover?: boolean;
+  active?: boolean;
   href: string;
 };
 const Link = ({
   className,
   underlined = true,
   coloredHover = true,
+  active = false,
   href,
   ...props
 }: LinkProps) => {
@@ -31,14 +33,18 @@ const Link = ({
     styles.link,
     'transition-colors duration-300 inline-block',
     underlined && styles.underlined,
-    coloredHover && 'hover:text-secondary',
-    coloredHover && 'active:text-secondary',
+    coloredHover && 'hover:text-secondary active:text-secondary',
+    active && styles.active,
     className,
   );
 
   if (isInternal) {
     return (
-      <NextLink {...(props as NextLinkType)} href={href} className={resultClassName} />
+      <NextLink
+        {...(props as NextLinkType)}
+        href={href}
+        className={resultClassName}
+      />
     );
   }
   return (

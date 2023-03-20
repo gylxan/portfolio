@@ -13,6 +13,14 @@ describe('<Link />', () => {
     expect(screen.getByRole('link').getAttribute('ref')).toBeNull();
   });
 
+  it('should apply active className, when active is set', () => {
+    render(<Link href="/about" active={true}>test</Link>);
+
+    expect(screen.getByRole('link')).toBeInTheDocument();
+    const classNames = screen.getByRole('link').className.split(' ');
+    expect(classNames).toContain('active');
+  });
+
   it('should render external link, when href does not start with "/"', () => {
     render(<Link href="https://google.com">test</Link>);
 
