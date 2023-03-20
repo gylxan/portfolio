@@ -1,6 +1,6 @@
-import { Rule } from 'sanity';
+import { defineType } from 'sanity';
 
-export default {
+export default defineType({
   name: 'experiences',
   type: 'object',
   title: 'Experiences',
@@ -37,7 +37,8 @@ export default {
       companies: Record<number, string>;
     }) => {
       const firstCompanies = [company0, company1, company2].filter(Boolean);
-      const subtitle = firstCompanies.length > 0 ? firstCompanies.join(', ') : '';
+      const subtitle =
+        firstCompanies.length > 0 ? firstCompanies.join(', ') : '';
       const otherCompaniesQuantity = Object.keys(companies).length - 3;
       const hasMoreCompanies = otherCompaniesQuantity > 0;
       return {
@@ -48,4 +49,4 @@ export default {
       };
     },
   },
-};
+});

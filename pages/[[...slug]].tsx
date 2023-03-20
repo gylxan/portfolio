@@ -1,9 +1,10 @@
 import { DocumentCreator, Layout, Title } from 'components';
 import type { GetStaticProps } from 'next';
-import client from 'utils/sanity';
+import { client, getSanitizedSiteConfig } from 'utils/sanity';
 import { configQuery, pathPageQuery, singlePageQuery } from 'constants/groq';
-import type { SiteConfig } from 'types/siteConfig';
+import type { SanitySiteConfig, SiteConfig } from 'types/siteConfig';
 import type { Page as IPage } from 'types/page';
+import { getPathsFromSlug, getUrlFromSlugs } from 'utils/url';
 
 interface PageProps {
   siteConfig: SiteConfig;
@@ -39,20 +40,33 @@ export const getStaticPaths = async () => {
   return {
     paths: allPages?.map((page) => ({
       params: {
-        slug: page.slug.current === '/' ? [] : page.slug.current.split('/'),
+        slug: getPathsFromSlug(page.slug.current, page.language),
       },
+      locale: page.language,
     })),
     fallback: 'blocking',
   };
 };
 
-export const getStaticProps: GetStaticProps<PageProps> = async ({ params }) => {
-  const siteConfig = await client.fetch<SiteConfig>(configQuery);
-  const data = await client.fetch(singlePageQuery, {
-    slug: !params?.slug ? '/' : (params?.slug as string[])?.join('/'),
+export const getStaticProps: GetStaticProps<PageProps> = async ({
+  params,
+  locale,
+}) => {
+  const siteConfig = await client.fetch<SanitySiteConfig>(configQuery, {
+    lang: locale,
   });
 
-  if (!data) {
+  const currentUrl = getUrlFromSlugs(
+    locale ?? (process.env.NEXT_PUBLIC_DEFAULT_LANGUAGE as string),
+    (params?.slug ?? []) as string[],
+  );
+
+  const data = await client.fetch<IPage>(singlePageQuery, {
+    slug: currentUrl,
+    lang: locale,
+  });
+
+  if (!siteConfig || !data || !data.enabled) {
     return {
       notFound: true,
     };
@@ -60,7 +74,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async ({ params }) => {
 
   return {
     props: {
-      siteConfig,
+      siteConfig: getSanitizedSiteConfig(siteConfig),
       data,
     },
     revalidate: 60,

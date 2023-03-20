@@ -44,7 +44,7 @@ describe('<Project />', () => {
     render(<Project {...props} />);
 
     expect(screen.getByTestId('project')).toBeInTheDocument();
-    expect(screen.getByText('Work Project')).toBeInTheDocument();
+    expect(screen.getByText('project.work_project')).toBeInTheDocument();
     expect(screen.queryAllByTestId('badge').length).toBe(0);
     expect(
       screen.queryByLabelText(
@@ -73,7 +73,7 @@ describe('<Project />', () => {
 
     expect(screen.getByRole('img')).toBeInTheDocument();
     expect(
-      screen.getByAltText(`Background image of ${props.name} project`),
+      screen.getByAltText(`project.background_image_of ${props.name}`),
     ).toBeInTheDocument();
   });
 
@@ -81,8 +81,8 @@ describe('<Project />', () => {
     render(<Project {...props} private={true} />);
 
     expect(screen.getByTestId('project')).toBeInTheDocument();
-    expect(screen.getByText('Private Project')).toBeInTheDocument();
-    expect(screen.queryByText('Work project')).not.toBeInTheDocument();
+    expect(screen.getByText('project.private_project')).toBeInTheDocument();
+    expect(screen.queryByText('project.work_project')).not.toBeInTheDocument();
   });
 
   it('should render badges for the slugs', () => {
@@ -97,11 +97,11 @@ describe('<Project />', () => {
 
     expect(
       screen.getByLabelText(
-        'Link to the Github repository or preview of the project',
+        `project.preview_or_project ${props.name}`,
       ),
     ).toBeInTheDocument();
     expect(
-      screen.getByLabelText(`Link to Github repository of ${props.name}`),
+      screen.getByLabelText(`project.github_repo_of ${props.name}`),
     ).toBeInTheDocument();
   });
 
@@ -110,11 +110,11 @@ describe('<Project />', () => {
 
     expect(
       screen.getByLabelText(
-        'Link to the Github repository or preview of the project',
+        `project.preview_or_project ${props.name}`,
       ),
     ).toBeInTheDocument();
     expect(
-      screen.getByLabelText(`Link to a Preview of ${props.name}`),
+      screen.getByLabelText(`project.preview_of ${props.name}`),
     ).toBeInTheDocument();
   });
 });

@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { Experience } from 'components';
 import { getFormattedMonthAndYear } from 'utils/date';
+import { routerConfig } from '__mocks__/next/router';
 
 describe('<Experience />', () => {
   const props: ExperienceProps = {
@@ -33,9 +34,15 @@ describe('<Experience />', () => {
       screen.getByText(
         `${getFormattedMonthAndYear(
           props.positions[0].startDate,
-        )} - ${getFormattedMonthAndYear(props.positions[0].endDate)}`,
+          routerConfig.locale,
+        )} - ${getFormattedMonthAndYear(
+          props.positions[0].endDate,
+          routerConfig.locale,
+        )}`,
       ),
     ).toBeInTheDocument();
-    expect(screen.getAllByTestId('experience-position').length).toBe(props.positions.length);
+    expect(screen.getAllByTestId('experience-position').length).toBe(
+      props.positions.length,
+    );
   });
 });

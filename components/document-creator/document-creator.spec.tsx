@@ -16,6 +16,35 @@ describe('<DocumentCreator />', () => {
     expect(screen.getAllByTestId('skill-icon')).toHaveLength(mockSkills.length);
   });
 
+  it('should render row', () => {
+    render(
+      <DocumentCreator
+        _type="row"
+        space={2}
+        content={[{ _key: '1', _type: 'skills', skills: mockSkills }]}
+      />,
+    );
+
+    expect(document.querySelector(`.flex.gap-2`)).toBeInTheDocument();
+    expect(screen.getByTestId('skills')).toBeInTheDocument();
+  });
+
+  it('should render column', () => {
+    render(
+      <DocumentCreator
+        _type="column"
+        space={2}
+        alignment="center"
+        content={[{ _key: '1', _type: 'skills', skills: mockSkills }]}
+      />,
+    );
+
+    expect(
+      document.querySelector(`.flex.flex-col.gap-2.items-center`),
+    ).toBeInTheDocument();
+    expect(screen.getByTestId('skills')).toBeInTheDocument();
+  });
+
   it('should render nothing, when _type is not existing', () => {
     console.warn = jest.fn();
     const { container } = render(<DocumentCreator _type="invalid" />);

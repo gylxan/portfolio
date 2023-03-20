@@ -1,5 +1,6 @@
-import pageContent from './pageContent';
+import { pageContentTypes } from '../../constants/page';
 import { getShortenedJoinedList } from '../../utils/array';
+import { defineType } from 'sanity';
 
 const spaces: Record<number, { title: string; value: number }> = {
   10: { title: '10', value: 10 },
@@ -23,7 +24,7 @@ const rowSwitchSizes: Record<string, { title: string; value: string }> = {
   lg: { title: 'Large', value: 'lg' },
   xl: { title: 'Extra large', value: 'xl' },
 };
-export default {
+export default defineType({
   name: 'column',
   type: 'object',
   title: 'Column',
@@ -34,7 +35,7 @@ export default {
       type: 'array',
       title: 'Content',
       description: 'Content',
-      of: [...pageContent],
+      of: [...pageContentTypes],
     },
     {
       name: 'space',
@@ -92,4 +93,4 @@ export default {
       };
     },
   },
-};
+});

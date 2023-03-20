@@ -12,7 +12,17 @@ export interface MenuLink {
   title: string;
   slug: Slug;
 }
-export interface SiteConfig {
+
+interface TranslationNamespace {
+  namespace: string;
+  translations: Translation[];
+}
+interface Translation {
+  key: string;
+  value: string;
+}
+
+export interface SanitySiteConfig {
   title: string;
   url: string;
   copyright?: string;
@@ -25,4 +35,9 @@ export interface SiteConfig {
   resume?: SanityFile;
   appleTouchIcon: SanityImage;
   safariTabIcon: SanityImage;
+  translations: TranslationNamespace[];
+}
+
+export interface SiteConfig extends Omit<SanitySiteConfig, 'translations'> {
+  translations: Record<string, Record<string, string>>;
 }

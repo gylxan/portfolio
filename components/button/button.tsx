@@ -12,7 +12,7 @@ export type ButtonProps = HTMLProps<LinkOrButtonType>;
 const Button: FC<PropsWithChildren<ButtonProps>> = (props) => {
   const { children, className } = props;
   const defaultClassName =
-    'font-mono text-sm rounded border-2 p-2 hover:no-underline text-secondary hover:bg-secondary-ghost hover:text-secondary focus:bg-secondary-ghost transition-colors duration-[250ms]';
+    'font-mono text-sm rounded border-2 p-2 hover:no-underline text-secondary hover:bg-secondary-ghost hover:text-secondary focus:bg-secondary-ghost transition-colors';
   if ('href' in props) {
     return (
       <Link
@@ -28,7 +28,7 @@ const Button: FC<PropsWithChildren<ButtonProps>> = (props) => {
   return (
     <button
       {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}
-      className={clsx(defaultClassName, className)}
+      className={clsx(defaultClassName, 'duration-[250ms]', className)}
     >
       {children}
     </button>

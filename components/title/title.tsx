@@ -1,42 +1,12 @@
 import { PropsWithChildren } from 'react';
 import clsx from 'clsx';
 
-export interface AnimatedTitleProps extends PropsWithChildren {
-  animated?: boolean;
+export interface TitleProps extends PropsWithChildren {
   className?: string;
 }
 
-const Title = ({
-  children,
-  className,
-  animated = true,
-}: AnimatedTitleProps) => {
-  function renderChildren() {
-    if (!animated || typeof children !== 'string') {
-      return children;
-    }
-
-    let delayedElementIndex = 0;
-    return children.split('').map((char, index) => {
-      // Skip spaces or empty strings from animation
-      if (!char.trim()) {
-        return <span key={`${char}-${index}`}>{char}</span>;
-      }
-      return (
-        <span
-          key={`${char}-${index}`}
-          className="relative inline-block animate-pop-in opacity-0 transition-all"
-          style={{ animationDelay: `${delayedElementIndex++ * 50}ms` }}
-        >
-          {char}
-        </span>
-      );
-    });
-  }
-
-  return (
-    <h1 className={clsx('relative text-4xl', className)}>{renderChildren()}</h1>
-  );
+const Title = ({ children, className }: TitleProps) => {
+  return <h1 className={clsx('relative text-4xl', className)}>{children}</h1>;
 };
 
 export default Title;

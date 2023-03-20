@@ -1,6 +1,6 @@
 {
   "name": "portfolio",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": false,
   "author": {
     "name": "Guido Lange",
@@ -8,9 +8,8 @@
   },
   "scripts": {
     "dev": "next dev",
-    "prebuild": "echo 'Building Sanity to public/studio' && npm run sanity:build && echo 'Done building Sanity'",
     "build": "next build",
-    "export" : "next export",
+    "export": "next export",
     "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
@@ -29,9 +28,10 @@
     "@vercel/analytics": "^0.1.5",
     "clsx": "^1.2.1",
     "html-react-parser": "^3.0.4",
-    "next": "^13.0.5",
+    "next": "^13.2.4",
+    "next-intl": "^2.11.0",
     "next-pwa": "^5.6.0",
-    "next-sanity": "^3.1.2",
+    "next-sanity": "^3.1.9",
     "next-sanity-image": "^5.0.0",
     "next-seo": "^5.15.0",
     "next-sitemap": "^3.1.32",

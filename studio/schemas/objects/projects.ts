@@ -1,6 +1,6 @@
-import { Rule } from 'sanity';
+import { defineType } from 'sanity';
 
-export default {
+export default defineType({
   name: 'projects',
   type: 'object',
   title: 'Projects',
@@ -23,13 +23,13 @@ export default {
       project0: 'projects.0.name', // <- projects.0 is a reference to project, and the preview component will automatically resolve the reference and return the name
       project1: 'projects.1.name',
       project2: 'projects.2.name',
-      projects: 'projects'
+      projects: 'projects',
     },
     prepare: ({
       project0,
       project1,
       project2,
-      projects
+      projects,
     }: {
       project0: string;
       project1: string;
@@ -42,8 +42,10 @@ export default {
       const hasMoreProjects = otherProjectsQuantity > 0;
       return {
         title: 'Projects',
-        subtitle: hasMoreProjects ? `${subtitle} + ${otherProjectsQuantity} more` : subtitle,
+        subtitle: hasMoreProjects
+          ? `${subtitle} + ${otherProjectsQuantity} more`
+          : subtitle,
       };
     },
   },
-};
+});

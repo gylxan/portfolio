@@ -1,7 +1,7 @@
 {
   "name": "portfolio-studio",
   "private": true,
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "Sanity Studio for Portfolio",
   "main": "package.json",
   "author": {
@@ -18,17 +18,19 @@
     "sanity"
   ],
   "dependencies": {
-    "@sanity/vision": "^3.6.0",
     "@sanity/code-input": "^3.0.1",
-    "sanity": "^3.6.0",
+    "@sanity/document-internationalization": "^1.1.0",
+    "@sanity/language-filter": "^3.0.1",
+    "@sanity/vision": "3.3.1",
     "eslint": "^8.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.6.0",
+    "react-icons": "^4.8.0",
+    "sanity": "3.3.1",
     "styled-components": "^5.2.0"
   },
   "devDependencies": {
-    "eslint-plugin-react": "^7.31.11",
-    "eslint-config-sanity": "^6.0.0"
+    "eslint-config-sanity": "^6.0.0",
+    "eslint-plugin-react": "^7.31.11"
   }
 }

@@ -1,5 +1,6 @@
 import { getShortenedJoinedList } from '../../utils/array';
-import pageContent from './pageContent';
+import { pageContentTypes } from '../../constants/page';
+import { defineType } from 'sanity';
 
 const spaces = [
   { title: '10', value: 10 },
@@ -9,7 +10,7 @@ const spaces = [
   { title: '2', value: 2 },
   { title: '0', value: 0 },
 ];
-export default {
+export default defineType({
   name: 'row',
   type: 'object',
   title: 'Row',
@@ -20,7 +21,7 @@ export default {
       type: 'array',
       title: 'Content',
       description: 'Content',
-      of: [...pageContent],
+      of: [...pageContentTypes],
     },
     {
       name: 'space',
@@ -53,4 +54,4 @@ export default {
       };
     },
   },
-};
+});

@@ -1,9 +1,12 @@
 import type { Post } from 'types/post';
-import { Badge, Link } from 'components';
+import Badge from 'components/badge/badge';
+import Link from 'components/link/link';
 import { getFormattedPostDate } from 'utils/date';
 import Image from 'next/image';
 import useSanityImage from 'hooks/useSanityImage';
 import { getBlurDataUrl } from 'utils/sanity';
+import { useTranslations } from 'use-intl';
+import { useRouter } from 'next/router';
 
 export interface PostListItemProps {
   post: Post;
@@ -11,6 +14,8 @@ export interface PostListItemProps {
 const PostListItem = ({ post }: PostListItemProps) => {
   const { categories, slug, title, description, _createdAt, mainImage } = post;
   const imageProps = useSanityImage(post.mainImage);
+  const t = useTranslations('post');
+  const { locale } = useRouter();
 
   return (
     <Link
@@ -25,7 +30,7 @@ const PostListItem = ({ post }: PostListItemProps) => {
           <Image
             src={imageProps.src}
             loader={imageProps.loader}
-            alt={`Cover Image for ${title}`}
+            alt={`${t('cover_image_of')} ${title}`}
             placeholder="blur"
             blurDataURL={getBlurDataUrl(mainImage)}
             sizes="(max-width: 640px) 90vw, 480px"
@@ -38,12 +43,12 @@ const PostListItem = ({ post }: PostListItemProps) => {
       <p>{description}</p>
       <div className="flex justify-between">
         <div className="mt-auto flex flex-wrap gap-1">
-          {categories?.map((category) => (
+          {!!categories && categories.map((category) => (
             <Badge key={category.name}>{category.name}</Badge>
           ))}
         </div>
         <span className="self-end text-sm">
-          {getFormattedPostDate(_createdAt)}
+          {getFormattedPostDate(_createdAt, locale)}
         </span>
       </div>
     </Link>

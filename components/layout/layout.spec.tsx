@@ -5,6 +5,7 @@ import * as hooks from 'hooks/useSanityImage';
 import type { ImageLoader } from 'next/image';
 import * as nextRouter from 'next/router';
 import { mockSiteConfig } from 'constants/mock';
+import { routerConfig } from '__mocks__/next/router';
 
 jest.mock(
   'next/head',
@@ -22,20 +23,22 @@ describe('<Layout />', () => {
 
   const props: LayoutProps = {
     siteConfig: mockSiteConfig,
+    slug: '/',
   };
   const mockChild = <span data-testid="test-child">I am test child</span>;
   const useRouterMock = jest.spyOn(nextRouter, 'useRouter');
 
   beforeEach(() => {
-    process.env.NEXT_PUBLIC_URL = 'https://example.com';
-    process.env.NEXT_PUBLIC_NAME = 'My name';
-    useRouterMock.mockReturnValue({
-      pathname: '/',
-    } as nextRouter.NextRouter);
+    useRouterMock.mockReturnValue(routerConfig);
   });
 
   afterEach(() => {
     process.env = originalProcessEnv;
+    jest.clearAllMocks();
+  });
+
+  afterAll(() => {
+    jest.resetAllMocks();
   });
 
   it('should render', () => {
@@ -55,6 +58,9 @@ describe('<Layout />', () => {
         .querySelector('meta[property="og:type"]')
         ?.getAttribute('content'),
     ).toBe('website');
+    expect(
+      container.querySelector('meta[name="keywords"]')?.getAttribute('content'),
+    ).toBe(props.siteConfig.keywords.join(','));
 
     expect(screen.getByRole('main')).toBeInTheDocument();
     expect(screen.getByRole('banner')).toBeInTheDocument();
@@ -82,7 +88,11 @@ describe('<Layout />', () => {
     useRouterMock.mockReturnValue({
       pathname: path,
     } as nextRouter.NextRouter);
-    const { container } = render(<Layout {...props}>{mockChild}</Layout>);
+    const { container } = render(
+      <Layout {...props} slug={undefined}>
+        {mockChild}
+      </Layout>,
+    );
 
     expect(
       container.querySelector('link[rel="canonical"]')?.getAttribute('href'),
@@ -112,7 +122,7 @@ describe('<Layout />', () => {
   });
 
   it('should render with slug in og:url, when slug is specified', () => {
-    const slug = 'post';
+    const slug = '/post';
     const { container } = render(
       <Layout {...props} slug={slug}>
         {mockChild}
@@ -123,7 +133,7 @@ describe('<Layout />', () => {
       container
         .querySelector('meta[property="og:url"]')
         ?.getAttribute('content'),
-    ).toBe(`${props.siteConfig.url}/${slug}`);
+    ).toBe(`${props.siteConfig.url}${slug}`);
   });
 
   it('should render with open graph image, when useSanity returns imageProps', () => {
@@ -161,5 +171,17 @@ describe('<Layout />', () => {
         .querySelector('meta[property="article:published_time"]')
         ?.getAttribute('content'),
     ).toBe(articleData.publishedTime);
+  });
+
+  it('should render without keywords, when not specified', () => {
+    const { container } = render(
+      <Layout {...props} siteConfig={{ ...props.siteConfig, keywords: [] }}>
+        {mockChild}
+      </Layout>,
+    );
+
+    expect(
+      container.querySelector('meta[name="keywords"]'),
+    ).not.toBeInTheDocument();
   });
 });

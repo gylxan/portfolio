@@ -1,13 +1,16 @@
 import { Badge, Layout, Link, PortableText, Title } from 'components';
 import type { GetStaticProps } from 'next';
-import client, { getBlurDataUrl } from 'utils/sanity';
+import { client, getBlurDataUrl, getSanitizedSiteConfig } from 'utils/sanity';
 import { configQuery, pathPostQuery, singlePostQuery } from 'constants/groq';
 import type { Post as IPost } from 'types/post';
 import { getFormattedPostDate } from 'utils/date';
 import Image from 'next/image';
 import useSanityImage from 'hooks/useSanityImage';
 import { Routes } from 'constants/routes';
-import type { SiteConfig } from 'types/siteConfig';
+import type { SanitySiteConfig, SiteConfig } from 'types/siteConfig';
+import { useTranslations } from 'use-intl';
+import { useRouter } from 'next/router';
+import { getPathsFromSlug } from 'utils/url';
 
 interface PostProps {
   siteConfig: SiteConfig;
@@ -25,7 +28,8 @@ const Post = ({ siteConfig, post }: PostProps) => {
     slug,
     estimatedReadingTime,
   } = post;
-
+  const t = useTranslations('post');
+  const { locale } = useRouter();
   const imageProps = useSanityImage(mainImage);
   return (
     <Layout
@@ -38,12 +42,14 @@ const Post = ({ siteConfig, post }: PostProps) => {
       type="article"
       publishedTime={_createdAt}
     >
-      <Title animated={false}>{title}</Title>
+      <Title>{title}</Title>
       <div className="container mt-4 flex max-w-screen-lg flex-col items-center gap-4">
         <div className="flex gap-2">
-          <time>{getFormattedPostDate(_createdAt)}</time>·{' '}
+          <time>{getFormattedPostDate(_createdAt, locale)}</time>·{' '}
           <span>
-            {estimatedReadingTime === 0 ? '< 1' : estimatedReadingTime} min read
+            {t('read_time', {
+              count: estimatedReadingTime === 0 ? '< 1' : estimatedReadingTime,
+            })}
           </span>
         </div>
         <div className="flex flex-wrap gap-1">
@@ -59,7 +65,7 @@ const Post = ({ siteConfig, post }: PostProps) => {
               src={imageProps.src}
               loader={imageProps.loader}
               blurDataURL={getBlurDataUrl(mainImage)}
-              alt={`${title} cover image`}
+              alt={`${t('cover_image_of')} ${title}`}
               className="object-cover"
               placeholder="blur"
               fill
@@ -70,7 +76,7 @@ const Post = ({ siteConfig, post }: PostProps) => {
         <article className="w-full max-w-screen-sm [&>p:first-child]:mt-0 [&>p]:my-4">
           <PortableText value={content} />
         </article>
-        <Link href={Routes.Blog}>← View all posts</Link>
+        <Link href={Routes.Blog}>← {t('view_all_posts')}</Link>
       </div>
     </Layout>
   );
@@ -80,20 +86,31 @@ export const getStaticPaths = async () => {
   const allPosts = await client.fetch<IPost[] | null>(pathPostQuery);
 
   return {
-    paths: allPosts?.map((post) => ({
-      params: {
-        slug: post.slug.current,
-      },
-    })),
+    paths: allPosts?.map((post) => {
+      return {
+        params: {
+          slug: getPathsFromSlug(post.slug.current, post.language).join('/'),
+        },
+        locale: post.language,
+      };
+    }),
     fallback: 'blocking',
   };
 };
 
-export const getStaticProps: GetStaticProps<PostProps> = async ({ params }) => {
-  const siteConfig = await client.fetch<SiteConfig>(configQuery);
-  const post = await client.fetch(singlePostQuery, { slug: params?.slug });
+export const getStaticProps: GetStaticProps<PostProps> = async ({
+  params,
+  locale,
+}) => {
+  const siteConfig = await client.fetch<SanitySiteConfig>(configQuery, {
+    lang: locale,
+  });
+  const post = await client.fetch<IPost>(singlePostQuery, {
+    slug: params?.slug,
+    lang: locale,
+  });
 
-  if (!post) {
+  if (!post || !post.enabled) {
     return {
       notFound: true,
     };
@@ -101,7 +118,7 @@ export const getStaticProps: GetStaticProps<PostProps> = async ({ params }) => {
 
   return {
     props: {
-      siteConfig,
+      siteConfig: getSanitizedSiteConfig(siteConfig),
       post,
     },
     revalidate: 60,

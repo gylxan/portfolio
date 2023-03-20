@@ -1,7 +1,7 @@
-import { Rule } from 'sanity';
+import { defineType, Rule } from 'sanity';
 import { getShortenedJoinedList } from '../../utils/array';
 
-export default {
+export default defineType({
   name: 'skills',
   type: 'object',
   title: 'Skills',
@@ -59,4 +59,4 @@ export default {
       };
     },
   },
-};
+});

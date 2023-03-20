@@ -1,6 +1,6 @@
 import { Routes } from 'constants/routes';
 import Image from 'next/image';
-import { Link, Menu } from 'components';
+import { LanguageDropdown, Link, Menu } from 'components';
 import useSanityImage from 'hooks/useSanityImage';
 import type { SanityAltImage } from 'types/image';
 import type { MenuLink } from 'types/siteConfig';
@@ -28,7 +28,10 @@ const Header = ({ logo, menuLinks, resume }: HeaderProps) => {
         )}
       </Link>
 
-      <Menu links={menuLinks} resume={resume} />
+      <div className="flex items-center gap-4 md:flex-row-reverse">
+        <LanguageDropdown />
+        <Menu links={menuLinks} resume={resume} />
+      </div>
     </header>
   );
 };

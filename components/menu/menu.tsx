@@ -1,4 +1,4 @@
-import { MouseEvent, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Button, Link, MenuButton } from 'components';
 import clsx from 'clsx';
 import useOutsideClick from 'hooks/useOutsideClick';
@@ -6,6 +6,7 @@ import useResize from 'hooks/useResize';
 import styles from 'components/menu/menu.module.css';
 import type { MenuLink } from 'types/siteConfig';
 import type { SanityFile } from 'types/file';
+import { useTranslations } from 'use-intl';
 
 export const MD_WIDTH = 768;
 
@@ -19,6 +20,7 @@ export interface MenuProps {
 const Menu = ({ links, resume }: MenuProps) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const ref = useRef(null);
+  const t = useTranslations('menu');
 
   useOutsideClick({
     active: isMenuOpen,
@@ -40,8 +42,7 @@ const Menu = ({ links, resume }: MenuProps) => {
     toggleMenu(false);
   }
 
-  function handleMenuButtonClick(event: MouseEvent<HTMLButtonElement>) {
-    event.stopPropagation();
+  function handleMenuButtonClick() {
     toggleMenu();
   }
 
@@ -61,7 +62,7 @@ const Menu = ({ links, resume }: MenuProps) => {
   }
 
   return (
-    <nav className="flex">
+    <nav className="flex" ref={ref}>
       <MenuButton
         open={isMenuOpen}
         onClick={handleMenuButtonClick}
@@ -71,9 +72,10 @@ const Menu = ({ links, resume }: MenuProps) => {
         className={clsx(styles.menu, isMenuOpen && styles.open)}
         aria-hidden={!isMenuOpen}
       >
-        <ul role="menu" ref={ref} className={styles.list}>
+        <ul role="menu" className={styles.list}>
           {links.map(({ slug, title }) => (
-            <li key={slug.current}>
+
+            title && <li key={slug.current}>
               <Link
                 href={`/${slug.current}`}
                 underlined={false}
@@ -92,7 +94,7 @@ const Menu = ({ links, resume }: MenuProps) => {
             className="text-base md:text-sm"
             data-testid="resume-button"
           >
-            Resume
+            {t('resume')}
           </Button>
         )}
       </div>

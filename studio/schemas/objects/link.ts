@@ -1,5 +1,5 @@
-import {Rule} from 'sanity';
-export default {
+import { defineField, defineType, Rule } from 'sanity';
+export default defineField({
   name: 'link',
   type: 'object',
   title: 'Link',
@@ -8,10 +8,11 @@ export default {
       name: 'href',
       type: 'url',
       title: 'URL',
-      validation: (rule: Rule) => rule.uri({
-        scheme: ['http', 'https', 'mailto'],
-        allowRelative: true
-      })
+      validation: (rule: Rule) =>
+        rule.uri({
+          scheme: ['http', 'https', 'mailto'],
+          allowRelative: true,
+        }),
     },
     {
       name: 'label',
@@ -25,4 +26,4 @@ export default {
       type: 'boolean',
     },
   ],
-};
+});

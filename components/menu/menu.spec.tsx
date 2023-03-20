@@ -1,12 +1,24 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import Menu, { MD_WIDTH, MenuProps } from 'components/menu/menu';
 import { mockSanityFile, mockSiteConfig } from 'constants/mock';
+import { UseOutsideClickProps } from 'hooks/useOutsideClick';
+
+let useOutsideClickProps: Partial<UseOutsideClickProps> = {};
+jest.mock('hooks/useOutsideClick', () =>
+  jest.fn().mockImplementation((props) => {
+    useOutsideClickProps = props;
+  }),
+);
 
 describe('<Menu />', () => {
   const originalInnerWidth = global.innerWidth;
   const props: MenuProps = {
     links: mockSiteConfig.menuLinks,
   };
+
+  beforeEach(() => {
+    useOutsideClickProps = {};
+  });
 
   afterEach(() => {
     Object.defineProperty(window, 'innerWidth', {
@@ -92,5 +104,20 @@ describe('<Menu />', () => {
 
     expect(document.querySelector('body')).not.toHaveClass('menu-open');
     expect(screen.getByRole('menu', { hidden: true })).not.toHaveClass('open');
+  });
+
+  it('should close the burger menu, when useOutsideClick is triggered', () => {
+    render(<Menu {...props} />);
+    fireEvent.click(screen.getByRole('button'));
+
+    expect(document.querySelector('body')).toHaveClass('menu-open');
+    expect(document.querySelector('.menu')).toHaveClass('open');
+
+    act(() => {
+      useOutsideClickProps.callback();
+    });
+
+    expect(document.querySelector('body')).not.toHaveClass('menu-open');
+    expect(document.querySelector('.menu')).not.toHaveClass('open');
   });
 });

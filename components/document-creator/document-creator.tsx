@@ -1,7 +1,6 @@
 import React from 'react';
 import type { ContentBlock } from 'types/page';
 import type { SanityAltImage } from 'types/image';
-import SanityImage from 'components/portable-text/types/sanityImage';
 import Experiences, {
   ExperiencesProps,
 } from 'components/experiences/experiences';
@@ -13,6 +12,7 @@ import PortableText, {
   PortableTextProps,
 } from 'components/portable-text/portable-text';
 import Projects, { ProjectsProps } from 'components/projects/projects';
+import PostList, { PostListProps } from 'components/post-list/post-list';
 
 interface DocumentCreatorProps {
   _type: string;
@@ -23,6 +23,7 @@ interface DocumentCreatorProps {
 type DocumentCreatorType = DocumentCreatorProps &
   (
     | SkillsProps
+    | PostListProps
     | ExperiencesProps
     | WelcomeProps
     | ProjectsProps
@@ -37,28 +38,18 @@ const map = {
   experiences: Experiences,
   welcome: Welcome,
   projects: Projects,
-  customImage: (props: SanityAltImage) => (
-    <SanityImage
-      value={props}
-      index={1}
-      isInline={false}
-      renderNode={() => null}
-    />
-  ),
+  posts: PostList,
   block: (props: PortableTextProps & DocumentCreatorProps) => (
     <PortableText value={props} />
   ),
-  row: ({  content, ...props }: RowProps & DocumentCreatorProps) => (
+  row: ({ content, ...props }: RowProps & DocumentCreatorProps) => (
     <Row {...props}>
       {content?.map((contentBlock: ContentBlock) => (
         <DocumentCreator key={contentBlock._key} {...contentBlock} />
       ))}
     </Row>
   ),
-  column: ({
-    content,
-      ...props
-  }: ColumnProps & DocumentCreatorProps) => {
+  column: ({ content, ...props }: ColumnProps & DocumentCreatorProps) => {
     return (
       <Column {...props}>
         {content?.map((contentBlock: ContentBlock) => (

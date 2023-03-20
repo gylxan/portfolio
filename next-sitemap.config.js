@@ -15,6 +15,12 @@ module.exports = {
           (res, item) => res.replace(`Sitemap: ${item}\n`, ''),
           robotsTxt,
         ),
+    alternateRefs: [
+      {
+        href: `${siteUrl}/de`,
+        hreflang: 'de'
+      }
+    ]
   },
   transform: (config, path) => {
     // Remove entries from static sitemap which are contained in the server-sitemap.xml

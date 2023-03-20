@@ -1,8 +1,8 @@
-import Title, { AnimatedTitleProps } from 'components/title/title';
-import { render, screen } from '@testing-library/react';
+import Title, { TitleProps } from 'components/title/title';
+import { render } from '@testing-library/react';
 
 describe('<Title />', () => {
-  const props: AnimatedTitleProps = {
+  const props: TitleProps = {
     children: 'My title',
   };
 
@@ -10,28 +10,6 @@ describe('<Title />', () => {
     const { container } = render(<Title {...props} />);
 
     expect(container.querySelector('h1')).toBeInTheDocument();
-    expect(container.querySelectorAll('span').length).toBe(
-      (props.children as string).split('').length,
-    );
-  });
-
-  it('should render not animated, when animated is false', () => {
-    const { container } = render(<Title {...props} animated={false} />);
-
-    expect(container.querySelector('h1')).toBeInTheDocument();
-    expect(container.querySelectorAll('span')).toHaveLength(0);
-    expect(screen.getByText(props.children as string)).toBeInTheDocument();
-  });
-
-  it('should render not animated, when children is not string', () => {
-    const { container } = render(
-      <Title {...props}>
-        <div>My title</div>
-      </Title>,
-    );
-
-    expect(container.querySelector('h1')).toBeInTheDocument();
-    expect(container.querySelectorAll('span')).toHaveLength(0);
-    expect(screen.getByText('My title')).toBeInTheDocument();
+    expect(container.querySelector('h1')?.textContent).toBe(props.children);
   });
 });

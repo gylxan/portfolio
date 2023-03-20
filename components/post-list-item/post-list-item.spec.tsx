@@ -6,8 +6,18 @@ import * as hooks from 'hooks/useSanityImage';
 import { getFormattedPostDate } from 'utils/date';
 import { ImageLoader } from 'next/image';
 import { Post } from 'types/post';
+import { NextRouter, useRouter } from 'next/router';
 
 jest.mock('hooks/useSanityImage');
+
+const mockUseRouter = useRouter as jest.MockedFunction<typeof useRouter>;
+jest.mock('next/router', () => {
+  const router = jest.requireActual('next/router');
+  return {
+    ...router,
+    useRouter: jest.fn(),
+  };
+});
 
 describe('<PostListItem />', () => {
   const post: Post = {
@@ -52,6 +62,16 @@ describe('<PostListItem />', () => {
     height: 123,
   });
 
+  const router = {
+    locale: 'en',
+    locales: ['en', 'de'],
+    asPath: '/test',
+  } as NextRouter;
+
+  beforeEach(() => {
+    mockUseRouter.mockReturnValue(router);
+  });
+
   beforeAll(() => {
     jest.useFakeTimers().setSystemTime(new Date('2022-01-12'));
   });
@@ -77,9 +97,9 @@ describe('<PostListItem />', () => {
     expect(screen.getByRole('img')).toBeInTheDocument();
     expect(screen.getByRole('heading').textContent).toBe(post.title);
     expect(screen.getByText(post.description)).toBeInTheDocument();
-    expect(screen.getAllByTestId('badge').length).toBe(post.categories?.length);
+    expect(screen.getAllByTestId('badge')).toHaveLength(post.categories?.length ?? 0);
     expect(
-      screen.getByText(getFormattedPostDate(post._createdAt)),
+      screen.getByText(getFormattedPostDate(post._createdAt, router.locale)),
     ).toBeInTheDocument();
   });
 
@@ -91,4 +111,11 @@ describe('<PostListItem />', () => {
 
     expect(screen.queryByRole('img')).not.toBeInTheDocument();
   });
+
+  it('should render without badges, when no categories are specified', async () => {
+    await act(() => {
+      render(<PostListItem {...props} post={{...props.post, categories: null}}/>);
+    });
+    expect(screen.queryAllByTestId('badge')).toHaveLength(0)
+  })
 });
