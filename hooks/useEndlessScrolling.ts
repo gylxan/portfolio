@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import client from 'utils/sanity';
 import { groq } from 'next-sanity';
 
-interface UseEndlessScrollingProps<T> {
+export interface UseEndlessScrollingProps<T> {
   idField: string;
   limit?: number;
   documentQuery: string;
@@ -59,7 +59,6 @@ const useEndlessScrolling = <T extends object>({
       );
       onLoaded(results);
     } catch (error) {
-      console.log(error);
       if (typeof error === 'string') {
         setState((prevState) => ({ ...prevState, error: error as string }));
       } else if ((error as Error).message) {
