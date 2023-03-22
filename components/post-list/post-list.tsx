@@ -14,7 +14,7 @@ import useEndlessScrolling from 'hooks/useEndlessScrolling';
 const PostList = () => {
   const { data, setData } = useAppContext();
   const { posts } = data;
-  const { hasMore, loading, error, fetchNextPage } = useEndlessScrolling({
+  const { hasMore, error, loading, fetchNextPage } = useEndlessScrolling({
     idField: '_createdAt',
     documentQuery: paginatedPostDocumentQuery,
     orderQuery: paginatedPostOrderQuery,
