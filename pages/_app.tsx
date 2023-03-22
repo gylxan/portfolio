@@ -8,6 +8,7 @@ import { DefaultSeo } from 'next-seo';
 import { Analytics } from '@vercel/analytics/react';
 import { NextIntlProvider } from 'next-intl';
 import type { SiteConfig } from 'types/siteConfig';
+import { AppProvider } from 'components/app-context/app-context';
 
 config.autoAddCss = false;
 
@@ -19,9 +20,11 @@ export default function App({ Component, pageProps }: AppProps) {
   const { siteConfig } = pageProps;
   return (
     <NextIntlProvider messages={siteConfig?.translations}>
-      <DefaultSeo {...nextSeoConfig} />
-      <Component {...pageProps} />
-      <Analytics />
+      <AppProvider>
+        <DefaultSeo {...nextSeoConfig} />
+        <Component {...pageProps} />
+        <Analytics />
+      </AppProvider>
     </NextIntlProvider>
   );
 }
