@@ -1,28 +1,46 @@
 import type { Post } from 'types/post';
 import PostListItem from 'components/post-list-item/post-list-item';
 import { useTranslations } from 'use-intl';
-import Loader from 'components/loader/loader';
+import NextPageLoader from 'components/next-page-loader/next-page-loader';
+import {
+  paginatedPostDocumentQuery,
+  paginatedPostOrderQuery,
+  postListFields,
+  postPaginatedLimit,
+} from 'constants/groq';
+import { useAppContext } from 'components/app-context/app-context';
+import useEndlessScrolling from 'hooks/useEndlessScrolling';
 
-export interface PostListProps {
-  posts: Post[];
-}
+const PostList = () => {
+  const { data, setData } = useAppContext();
+  const { posts } = data;
+  const { hasMore, loading, error, fetchNextPage } = useEndlessScrolling({
+    idField: '_createdAt',
+    documentQuery: paginatedPostDocumentQuery,
+    orderQuery: paginatedPostOrderQuery,
+    fields: postListFields,
+    limit: postPaginatedLimit,
+    onLoaded: (results: Post[]) =>
+      setData({ ...data, posts: [...posts, ...results] }),
+  });
 
-const PostList = ({ posts }: PostListProps) => {
   const t = useTranslations('post');
-  if (posts.length === 0) {
+  if (!hasMore && posts.length === 0) {
     return <>{t('no_posts_available')}</>;
   }
   return (
     <>
-      <span className="mb-4 flex justify-end">
-        {t('amount', { count: posts.length })}
-      </span>
       <div className="grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-3">
         {posts.map((post) => (
           <PostListItem key={post._id} post={post} />
         ))}
       </div>
-      <Loader limit={1} />
+      <NextPageLoader
+        hasMore={hasMore}
+        isLoading={loading}
+        error={error}
+        onFetchNextPage={fetchNextPage}
+      />
     </>
   );
 };
