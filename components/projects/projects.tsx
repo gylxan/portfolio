@@ -1,7 +1,5 @@
-import { ProjectProps } from 'components/project/project';
-import Project from 'components/project/project';
+import Project, { ProjectProps } from 'components/project/project';
 import React from 'react';
-import Loader from 'components/loader/loader';
 
 export interface ProjectsProps {
   projects?: ProjectProps[];
@@ -12,7 +10,6 @@ const Projects = ({ projects }: ProjectsProps) => {
       {projects?.map((project) => (
         <Project key={project.name} {...project} />
       ))}
-      <Loader />
     </div>
   );
 };
