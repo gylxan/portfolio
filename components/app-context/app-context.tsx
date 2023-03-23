@@ -10,8 +10,14 @@ import { Post } from 'types/post';
 import { Project } from 'types/project';
 
 interface AppState {
-  posts: Post[];
-  projects: Project[];
+  post: {
+    entries: Post[];
+    lastId: string | null;
+  };
+  project: {
+    entries: Project[];
+    lastId: string | null;
+  };
 }
 
 interface AppContextValue {
@@ -19,16 +25,24 @@ interface AppContextValue {
   setData: Dispatch<SetStateAction<AppState>>;
 }
 
+const initialState: AppState = {
+  post: {
+    entries: [],
+    lastId: '',
+  },
+  project: {
+    entries: [],
+    lastId: '',
+  },
+};
+
 const AppContext = createContext<AppContextValue>({
-  data: { posts: [], projects: [] },
+  data: initialState,
   setData: () => undefined,
 });
 
 export function AppProvider({ children }: PropsWithChildren) {
-  const [data, setData] = useState<AppState>({
-    posts: [],
-    projects: [],
-  });
+  const [data, setData] = useState<AppState>(initialState);
 
   return (
     <AppContext.Provider value={{ data, setData }}>

@@ -5,21 +5,22 @@ import { groq } from 'next-sanity';
 
 export interface UseEndlessScrollingProps<T> {
   idField: string;
+  lastId: string | null;
   limit?: number;
   documentQuery: string;
   orderQuery?: string;
   fields?: string;
-  onLoaded: (results: T) => void;
+  onLoaded: (results: T, lastId: string | null) => void;
 }
 const useEndlessScrolling = <T extends object>({
   limit = 10,
+  lastId,
   idField,
   documentQuery,
   orderQuery,
   fields = '...',
   onLoaded,
 }: UseEndlessScrollingProps<T>) => {
-  const [lastId, setLastId] = useState<null | string>('');
   const isInitialLoaded = useRef(false);
   const [state, setState] = useState<{
     loading: boolean;
@@ -38,13 +39,6 @@ const useEndlessScrolling = <T extends object>({
 
     try {
       setState((prevState) => ({ ...prevState, error: null, loading: true }));
-      console.log('endless scrolling load with last id', documentQuery,
-          fields,
-          idField,
-          limit,
-          locale,
-          onLoaded,
-          orderQuery, lastId);
 
       const results = await client.fetch(
         groq`
@@ -60,12 +54,13 @@ const useEndlessScrolling = <T extends object>({
         },
       );
 
-      setLastId(
+
+      onLoaded(
+        results,
         results.length === limit
           ? results[results.length - 1]?.[idField] ?? null
           : null,
       );
-      onLoaded(results);
     } catch (error) {
       if (typeof error === 'string') {
         setState((prevState) => ({ ...prevState, error: error as string }));
@@ -86,7 +81,7 @@ const useEndlessScrolling = <T extends object>({
     locale,
     onLoaded,
     orderQuery,
-    lastId
+    lastId,
   ]);
 
   useEffect(() => {
@@ -100,7 +95,6 @@ const useEndlessScrolling = <T extends object>({
   return {
     loading,
     error,
-    lastId,
     hasMore: lastId !== null,
     fetchNextPage,
   };

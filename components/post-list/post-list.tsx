@@ -14,13 +14,19 @@ import { EndlessLoadingItem } from 'components/endless-loading-item/endless-load
 
 const PostList = () => {
   const { data, setData } = useAppContext();
-  const { posts } = data;
+  const {
+    post: { entries, lastId },
+  } = data;
 
   const handleOnLoaded = useCallback(
-    (results: Post[]) =>
+    (results: Post[], lastId: string | null) =>
       setData((prevData) => ({
         ...prevData,
-        posts: [...prevData.posts, ...results],
+        post: {
+          ...prevData.post,
+          lastId,
+          entries: [...prevData.post.entries, ...results],
+        },
       })),
     [setData],
   );
@@ -32,19 +38,20 @@ const PostList = () => {
     fields: postListFields,
     limit: postPaginatedLimit,
     onLoaded: handleOnLoaded,
+    lastId,
   });
 
   const t = useTranslations('post');
-  if (!hasMore && posts.length === 0) {
+  if (!hasMore && entries.length === 0) {
     return <>{t('no_posts_available')}</>;
   }
   return (
     <>
       <div className="grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-3">
-        {posts.map((post, index) => (
+        {entries.map((post, index) => (
           <EndlessLoadingItem
             key={post._id}
-            enabled={index === posts.length - 1}
+            enabled={index === entries.length - 1}
             onLoad={fetchNextPage}
           >
             <PostListItem post={post} />
