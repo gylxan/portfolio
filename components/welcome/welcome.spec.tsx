@@ -15,7 +15,7 @@ describe('<Welcome />', () => {
     introduction: 'Hi, I am',
     name: 'The user',
     buttonText: 'Click here',
-    buttonLink: {
+    link: {
       _type: 'slug',
       current: '/about',
     },
@@ -55,7 +55,7 @@ describe('<Welcome />', () => {
     expect(screen.getByText(props.buttonText)).toBeInTheDocument();
     expect(screen.getByText(props.buttonText).tagName).toBe('A');
     expect(screen.getByText(props.buttonText).getAttribute('href')).toBe(
-      props.buttonLink.current,
+      props.link.current,
     );
     expect(screen.getAllByRole('link').length).toBe(2);
   });
