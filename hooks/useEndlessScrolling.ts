@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import client from 'utils/sanity';
 import { groq } from 'next-sanity';
@@ -20,6 +20,7 @@ const useEndlessScrolling = <T extends object>({
   onLoaded,
 }: UseEndlessScrollingProps<T>) => {
   const [lastId, setLastId] = useState<null | string>('');
+  const isInitialLoaded = useRef(false);
   const [state, setState] = useState<{
     loading: boolean;
     error: null | string;
@@ -30,13 +31,20 @@ const useEndlessScrolling = <T extends object>({
   const { locale } = useRouter();
   const { error, loading } = state;
 
-  const fetchNextPage = async () => {
+  const fetchNextPage = useCallback(async () => {
     if (lastId === null) {
       return;
     }
 
     try {
-      setState({ ...state, error: null, loading: true });
+      setState((prevState) => ({ ...prevState, error: null, loading: true }));
+      console.log('endless scrolling load with last id', documentQuery,
+          fields,
+          idField,
+          limit,
+          locale,
+          onLoaded,
+          orderQuery, lastId);
 
       const results = await client.fetch(
         groq`
@@ -70,7 +78,24 @@ const useEndlessScrolling = <T extends object>({
     } finally {
       setState((prevState) => ({ ...prevState, loading: false }));
     }
-  };
+  }, [
+    documentQuery,
+    fields,
+    idField,
+    limit,
+    locale,
+    onLoaded,
+    orderQuery,
+    lastId
+  ]);
+
+  useEffect(() => {
+    if (isInitialLoaded.current) {
+      return;
+    }
+    fetchNextPage();
+    isInitialLoaded.current = true;
+  }, [fetchNextPage]);
 
   return {
     loading,
