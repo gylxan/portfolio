@@ -11,6 +11,7 @@ import { useAppContext } from 'components/app-context/app-context';
 import useEndlessScrolling from 'hooks/useEndlessScrolling';
 import React, { useCallback } from 'react';
 import { EndlessLoadingItem } from 'components/endless-loading-item/endless-loading-item';
+import Loader from 'components/loader/loader';
 
 const PostList = () => {
   const { data, setData } = useAppContext();
@@ -31,7 +32,7 @@ const PostList = () => {
     [setData],
   );
 
-  const { hasMore, fetchNextPage } = useEndlessScrolling({
+  const { hasMore, fetchNextPage, loading } = useEndlessScrolling({
     idField: '_createdAt',
     documentQuery: paginatedPostDocumentQuery,
     orderQuery: paginatedPostOrderQuery,
@@ -58,6 +59,7 @@ const PostList = () => {
           </EndlessLoadingItem>
         ))}
       </div>
+      {loading && <Loader className="mt-6"/>}
     </>
   );
 };
