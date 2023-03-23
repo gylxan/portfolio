@@ -1,7 +1,6 @@
 import type { Post } from 'types/post';
 import PostListItem from 'components/post-list-item/post-list-item';
 import { useTranslations } from 'use-intl';
-import NextPageLoader from 'components/next-page-loader/next-page-loader';
 import {
   paginatedPostDocumentQuery,
   paginatedPostOrderQuery,
@@ -10,18 +9,29 @@ import {
 } from 'constants/groq';
 import { useAppContext } from 'components/app-context/app-context';
 import useEndlessScrolling from 'hooks/useEndlessScrolling';
+import React, { useCallback } from 'react';
+import { EndlessLoadingItem } from 'components/endless-loading-item/endless-loading-item';
 
 const PostList = () => {
   const { data, setData } = useAppContext();
   const { posts } = data;
-  const { hasMore, error, loading, fetchNextPage } = useEndlessScrolling({
+
+  const handleOnLoaded = useCallback(
+    (results: Post[]) =>
+      setData((prevData) => ({
+        ...prevData,
+        posts: [...prevData.posts, ...results],
+      })),
+    [setData],
+  );
+
+  const { hasMore, fetchNextPage } = useEndlessScrolling({
     idField: '_createdAt',
     documentQuery: paginatedPostDocumentQuery,
     orderQuery: paginatedPostOrderQuery,
     fields: postListFields,
     limit: postPaginatedLimit,
-    onLoaded: (results: Post[]) =>
-      setData({ ...data, posts: [...posts, ...results] }),
+    onLoaded: handleOnLoaded,
   });
 
   const t = useTranslations('post');
@@ -31,16 +41,16 @@ const PostList = () => {
   return (
     <>
       <div className="grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-3">
-        {posts.map((post) => (
-          <PostListItem key={post._id} post={post} />
+        {posts.map((post, index) => (
+          <EndlessLoadingItem
+            key={post._id}
+            enabled={index === posts.length - 1}
+            onLoad={fetchNextPage}
+          >
+            <PostListItem post={post} />
+          </EndlessLoadingItem>
         ))}
       </div>
-      <NextPageLoader
-        hasMore={hasMore}
-        isLoading={loading}
-        error={error}
-        onFetchNextPage={fetchNextPage}
-      />
     </>
   );
 };
