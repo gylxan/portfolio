@@ -15,6 +15,10 @@ describe('<Welcome />', () => {
     introduction: 'Hi, I am',
     name: 'The user',
     buttonText: 'Click here',
+    buttonLink: {
+      _type: 'slug',
+      current: '/about',
+    },
     profileImage: {
       asset: { _ref: 'ref' },
     },
@@ -50,6 +54,9 @@ describe('<Welcome />', () => {
     expect(screen.getByRole('heading')).toBeInTheDocument();
     expect(screen.getByText(props.buttonText)).toBeInTheDocument();
     expect(screen.getByText(props.buttonText).tagName).toBe('A');
+    expect(screen.getByText(props.buttonText).getAttribute('href')).toBe(
+      props.buttonLink.current,
+    );
     expect(screen.getAllByRole('link').length).toBe(2);
   });
 

@@ -1,11 +1,12 @@
-import {Button, Link, PortableText, Title} from 'components';
+import { Button, Link, PortableText, Title } from 'components';
 import Image from 'next/image';
-import {Routes} from 'constants/routes';
-import type {SanityImage} from 'types/image';
+import { Routes } from 'constants/routes';
+import type { SanityImage } from 'types/image';
 import useSanityImage from 'hooks/useSanityImage';
-import type {PortableTextBlock} from '@portabletext/types';
-import {getBlurDataUrl} from "utils/sanity";
-import {useTranslations} from "use-intl";
+import type { PortableTextBlock } from '@portabletext/types';
+import { getBlurDataUrl } from 'utils/sanity';
+import { useTranslations } from 'use-intl';
+import type { Slug } from '@sanity/types';
 
 export interface WelcomeProps {
   description: PortableTextBlock;
@@ -13,6 +14,7 @@ export interface WelcomeProps {
   profileImage: SanityImage;
   name: string;
   buttonText: string;
+  buttonLink: Slug;
 }
 const Welcome = ({
   name,
@@ -20,6 +22,7 @@ const Welcome = ({
   introduction,
   description,
   buttonText,
+  buttonLink,
 }: WelcomeProps) => {
   const imageProps = useSanityImage(profileImage);
   const t = useTranslations('welcome');
@@ -27,7 +30,7 @@ const Welcome = ({
     <div className="mx-auto flex flex-col items-center justify-center gap-4">
       {imageProps && (
         <Link
-          href="/about"
+          href={buttonLink.current}
           coloredHover={false}
           underlined={false}
           className="relative h-[300px] overflow-hidden rounded-full"

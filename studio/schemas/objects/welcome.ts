@@ -5,6 +5,13 @@ export default defineType({
   name: 'welcome',
   type: 'object',
   title: 'Welcome',
+  fieldsets: [
+    {
+      title: 'Button',
+      name: 'button',
+      options: { collapsible: true },
+    },
+  ],
   fields: [
     {
       title: 'Profile Image',
@@ -37,6 +44,14 @@ export default defineType({
       name: 'buttonText',
       type: 'string',
       validation: (rule: Rule) => rule.required(),
+      fieldset: 'button'
+    },
+    {
+      title: 'Button link',
+      description: 'Link for the button',
+      name: 'buttonLink',
+      type: 'slug',
+      fieldset: 'button'
     },
   ],
   preview: {
