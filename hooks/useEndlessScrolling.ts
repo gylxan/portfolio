@@ -3,6 +3,10 @@ import { useRouter } from 'next/router';
 import client from 'utils/sanity';
 import { groq } from 'next-sanity';
 
+export enum IdCheckOperator {
+  LowerThen = '<',
+  GreaterThen = '>',
+}
 export interface UseEndlessScrollingProps<T> {
   idField: string;
   lastId: string | null;
@@ -10,6 +14,7 @@ export interface UseEndlessScrollingProps<T> {
   documentQuery: string;
   orderQuery?: string;
   fields?: string;
+  checkOperator?: IdCheckOperator;
   onLoaded: (results: T, lastId: string | null) => void;
 }
 const useEndlessScrolling = <T extends object>({
@@ -19,6 +24,7 @@ const useEndlessScrolling = <T extends object>({
   documentQuery,
   orderQuery,
   fields = '...',
+  checkOperator = IdCheckOperator.GreaterThen,
   onLoaded,
 }: UseEndlessScrollingProps<T>) => {
   const isInitialLoaded = useRef(false);
@@ -42,9 +48,9 @@ const useEndlessScrolling = <T extends object>({
 
       const results = await client.fetch(
         groq`
-      *[${documentQuery}${!!lastId ? ` && ${idField} < $${idField}` : ''}]${
-          orderQuery ? ` | ${orderQuery}` : ''
-        } [0..$limit] {
+      *[${documentQuery}${
+          !!lastId ? ` && ${idField} ${checkOperator} $${idField}` : ''
+        }]${orderQuery ? ` | ${orderQuery}` : ''} [0..$limit] {
       ${fields}
       }`,
         {
@@ -53,7 +59,6 @@ const useEndlessScrolling = <T extends object>({
           [idField]: lastId,
         },
       );
-
 
       onLoaded(
         results,
@@ -82,6 +87,7 @@ const useEndlessScrolling = <T extends object>({
     onLoaded,
     orderQuery,
     lastId,
+    checkOperator,
   ]);
 
   useEffect(() => {
