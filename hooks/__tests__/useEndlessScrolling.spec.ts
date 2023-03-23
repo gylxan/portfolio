@@ -1,7 +1,7 @@
 import useEndlessScrolling, {
   UseEndlessScrollingProps,
 } from 'hooks/useEndlessScrolling';
-import { act, renderHook } from '@testing-library/react';
+import { act, renderHook, RenderHookResult } from '@testing-library/react';
 import { Post } from 'types/post';
 import client from 'utils/sanity';
 import { routerConfig } from '__mocks__/next/router';
@@ -15,6 +15,7 @@ describe('useEndlessScrolling', () => {
     idField: 'id',
     documentQuery: '_type == "post"',
     onLoaded: jest.fn(),
+    lastId: '',
   };
 
   const fetchSpy = jest.spyOn(client, 'fetch');
@@ -30,54 +31,62 @@ describe('useEndlessScrolling', () => {
     jest.resetAllMocks();
   });
 
-  it('fetches the next page', async () => {
-    const { result } = renderHook(() =>
-      useEndlessScrolling({ ...props, onLoaded: onLoadedMock }),
-    );
-
+  it('fetches the next page on mount', async () => {
     await act(async () => {
-      await result.current.fetchNextPage();
+      await renderHook(() =>
+        useEndlessScrolling({ ...props, onLoaded: onLoadedMock }),
+      );
     });
 
     expect(onLoadedMock).toHaveBeenCalledTimes(1);
-    expect(onLoadedMock).toHaveBeenCalledWith([]);
+    expect(onLoadedMock).toHaveBeenCalledWith([], null);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledWith(expect.anything(), {
       limit: 9,
       lang: routerConfig.locale,
       [props.idField]: '',
     });
-    expect(result.current.error).toBeNull();
-    expect(result.current.loading).toBeFalsy();
   });
 
-  it('fetches the next page with last id of previous results', async () => {
-    fetchSpy.mockResolvedValue([{ id: '123' }]);
-    const { result } = renderHook(() =>
-      useEndlessScrolling({ ...props, onLoaded: onLoadedMock, limit: 1 }),
-    );
-
+  it('fetches the next page', async () => {
+    let render: RenderHookResult<{ loading: boolean; error: string | null; hasMore: boolean; fetchNextPage: () => Promise<void>; }, UseEndlessScrollingProps<Post[]>>;
     await act(async () => {
-      await result.current.fetchNextPage();
+      render = await renderHook(() =>
+        useEndlessScrolling({ ...props, onLoaded: onLoadedMock }),
+      );
     });
 
-    expect(onLoadedMock).toHaveBeenCalledTimes(1);
-    expect(fetchSpy).toHaveBeenCalledTimes(1);
-    expect(fetchSpy).toHaveBeenCalledWith(expect.anything(), {
-      limit: 0,
+    await act(async () => {
+      await render?.result.current.fetchNextPage();
+    });
+
+    expect(onLoadedMock).toHaveBeenCalledTimes(2);
+    expect(onLoadedMock).toHaveBeenLastCalledWith([], null);
+    expect(fetchSpy).toHaveBeenCalledTimes(2);
+    expect(fetchSpy).toHaveBeenLastCalledWith(expect.anything(), {
+      limit: 9,
       lang: routerConfig.locale,
       [props.idField]: '',
     });
-    expect(result.current.error).toBe(null);
-    expect(result.current.loading).toBeFalsy();
+    expect(render?.result.current.error).toBeNull();
+    expect(render?.result.current.loading).toBeFalsy();
+  });
+
+  it('fetches the next page with last id of previous results', async () => {
+    let render: RenderHookResult<{ loading: boolean; error: string | null; hasMore: boolean; fetchNextPage: () => Promise<void>; }, UseEndlessScrollingProps<Post[]>>;
+    await act(async () => {
+      render = await renderHook(() =>
+          useEndlessScrolling({ ...props, onLoaded: onLoadedMock, limit: 1, lastId: '123' }),
+      );
+    });
 
     await act(async () => {
-      await result.current.fetchNextPage();
+      await render.result.current.fetchNextPage();
     });
 
     expect(onLoadedMock).toHaveBeenCalledTimes(2);
     expect(fetchSpy).toHaveBeenCalledTimes(2);
-    expect(fetchSpy).toHaveBeenNthCalledWith(2, expect.anything(), {
+    expect(fetchSpy).toHaveBeenCalledWith(expect.anything(), {
       limit: 0,
       lang: routerConfig.locale,
       [props.idField]: '123',
@@ -85,27 +94,24 @@ describe('useEndlessScrolling', () => {
   });
 
   it('sets last id to null, when less then limit elements returned', async () => {
-    fetchSpy.mockResolvedValue([{ id: '123' }]);
-    const { result } = renderHook(() =>
-      useEndlessScrolling({ ...props, onLoaded: onLoadedMock }),
-    );
-
+    let render: RenderHookResult<{ loading: boolean; error: string | null; hasMore: boolean; fetchNextPage: () => Promise<void>; }, UseEndlessScrollingProps<Post[]>>;
     await act(async () => {
-      await result.current.fetchNextPage();
+      render = await renderHook(() =>
+          useEndlessScrolling({ ...props, onLoaded: onLoadedMock, lastId: '123' }),
+      );
     });
 
-    expect(result.current.lastId).toBeNull();
+    expect(onLoadedMock).toHaveBeenLastCalledWith([], null)
   });
 
   it('fetches the next page and sets error, when error (string) occurs', async () => {
     fetchSpy.mockRejectedValue('My error');
 
-    const { result } = renderHook(() =>
-      useEndlessScrolling({ ...props, onLoaded: onLoadedMock }),
-    );
-
+    let render: RenderHookResult<{ loading: boolean; error: string | null; hasMore: boolean; fetchNextPage: () => Promise<void>; }, UseEndlessScrollingProps<Post[]>>;
     await act(async () => {
-      await result.current.fetchNextPage();
+      render = await renderHook(() =>
+          useEndlessScrolling({ ...props, onLoaded: onLoadedMock }),
+      );
     });
 
     expect(onLoadedMock).not.toHaveBeenCalled();
@@ -115,18 +121,17 @@ describe('useEndlessScrolling', () => {
       lang: routerConfig.locale,
       [props.idField]: '',
     });
-    expect(result.current.error).toBe('My error');
-    expect(result.current.loading).toBeFalsy();
+    expect(render?.result.current.error).toBe('My error');
+    expect(render?.result.current.loading).toBeFalsy();
   });
 
   it('fetches the next page and sets error, when error (object) occurs', async () => {
     fetchSpy.mockRejectedValue({ message: 'My error' });
-    const { result } = renderHook(() =>
-      useEndlessScrolling({ ...props, onLoaded: onLoadedMock }),
-    );
-
+    let render: RenderHookResult<{ loading: boolean; error: string | null; hasMore: boolean; fetchNextPage: () => Promise<void>; }, UseEndlessScrollingProps<Post[]>>;
     await act(async () => {
-      await result.current.fetchNextPage();
+      render = await renderHook(() =>
+          useEndlessScrolling({ ...props, onLoaded: onLoadedMock }),
+      );
     });
 
     expect(onLoadedMock).not.toHaveBeenCalled();
@@ -136,7 +141,7 @@ describe('useEndlessScrolling', () => {
       lang: routerConfig.locale,
       [props.idField]: '',
     });
-    expect(result.current.error).toBe('My error');
-    expect(result.current.loading).toBeFalsy();
+    expect(render?.result.current.error).toBe('My error');
+    expect(render?.result.current.loading).toBeFalsy();
   });
 });

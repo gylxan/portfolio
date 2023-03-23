@@ -1,5 +1,4 @@
-import {
-  EndlessLoadingItem,
+import EndlessLoadingItem, {
   EndlessLoadingItemProps,
 } from 'components/endless-loading-item/endless-loading-item';
 import { render, screen } from '@testing-library/react';
@@ -78,9 +77,9 @@ describe('<EndlessLoadingItem />', () => {
 
     it('does not trigger onLoad, when element in view and disabled', () => {
       render(
-          <EndlessLoadingItem {...props} enabled={false} onLoad={onLoad}>
-            {children}
-          </EndlessLoadingItem>,
+        <EndlessLoadingItem {...props} enabled={false} onLoad={onLoad}>
+          {children}
+        </EndlessLoadingItem>,
       );
 
       expect(onLoad).toHaveBeenCalledTimes(0);
