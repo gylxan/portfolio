@@ -5,7 +5,7 @@ export interface EndlessLoadingItemProps {
   enabled: boolean;
   onLoad: () => void;
 }
-export const EndlessLoadingItem = ({
+const EndlessLoadingItem = ({
   enabled,
   onLoad,
   children,
@@ -23,3 +23,5 @@ export const EndlessLoadingItem = ({
 
   return <div ref={ref}>{children}</div>;
 };
+
+export default EndlessLoadingItem;

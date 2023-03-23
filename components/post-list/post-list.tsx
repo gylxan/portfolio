@@ -1,5 +1,4 @@
 import type { Post } from 'types/post';
-import PostListItem from 'components/post-list-item/post-list-item';
 import { useTranslations } from 'use-intl';
 import {
   paginatedPostDocumentQuery,
@@ -7,11 +6,12 @@ import {
   postListFields,
   postPaginatedLimit,
 } from 'constants/groq';
-import { useAppContext } from 'components/app-context/app-context';
-import useEndlessScrolling from 'hooks/useEndlessScrolling';
+import { useAppContext } from 'contexts/app-context';
+import useEndlessScrolling, {
+  IdCheckOperator,
+} from 'hooks/useEndlessScrolling';
 import React, { useCallback } from 'react';
-import { EndlessLoadingItem } from 'components/endless-loading-item/endless-loading-item';
-import Loader from 'components/loader/loader';
+import { EndlessLoadingItem, Loader, PostListItem } from 'components';
 
 const PostList = () => {
   const { data, setData } = useAppContext();
@@ -32,7 +32,7 @@ const PostList = () => {
     [setData],
   );
 
-  const { hasMore, fetchNextPage, loading } = useEndlessScrolling({
+  const { hasMore, fetchNextPage, loading } = useEndlessScrolling<Post[]>({
     idField: '_createdAt',
     documentQuery: paginatedPostDocumentQuery,
     orderQuery: paginatedPostOrderQuery,
@@ -40,6 +40,7 @@ const PostList = () => {
     limit: postPaginatedLimit,
     onLoaded: handleOnLoaded,
     lastId,
+    checkOperator: IdCheckOperator.LowerThen,
   });
 
   const t = useTranslations('post');
@@ -59,7 +60,7 @@ const PostList = () => {
           </EndlessLoadingItem>
         ))}
       </div>
-      {loading && <Loader className="mt-6"/>}
+      {loading && <Loader className="mt-6" />}
     </>
   );
 };

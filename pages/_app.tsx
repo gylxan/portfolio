@@ -8,7 +8,7 @@ import { DefaultSeo } from 'next-seo';
 import { Analytics } from '@vercel/analytics/react';
 import { NextIntlProvider } from 'next-intl';
 import type { SiteConfig } from 'types/siteConfig';
-import { AppProvider } from 'components/app-context/app-context';
+import { AppProvider } from 'contexts/app-context';
 
 config.autoAddCss = false;
 
