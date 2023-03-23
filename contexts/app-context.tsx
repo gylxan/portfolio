@@ -6,16 +6,11 @@ import {
   useContext,
   useState,
 } from 'react';
-import { Post } from 'types/post';
-import { Project } from 'types/project';
+import type { Post } from 'types/post';
 
 interface AppState {
   post: {
     entries: Post[];
-    lastId: string | null;
-  };
-  project: {
-    entries: Project[];
     lastId: string | null;
   };
 }
@@ -27,10 +22,6 @@ interface AppContextValue {
 
 const initialState: AppState = {
   post: {
-    entries: [],
-    lastId: '',
-  },
-  project: {
     entries: [],
     lastId: '',
   },

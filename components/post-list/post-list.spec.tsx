@@ -1,9 +1,9 @@
-import { Post } from 'types/post';
+import type { Post } from 'types/post';
 import { act, render, screen } from '@testing-library/react';
 import { PostList } from 'components';
 import * as useSanityImageHook from 'hooks/useSanityImage';
 import * as useEndlessScrollingHook from 'hooks/useEndlessScrolling';
-import { ImageLoader } from 'next/image';
+import type { ImageLoader } from 'next/image';
 import * as AppContext from 'contexts/app-context';
 
 jest.mock('hooks/useSanityImage');
@@ -108,7 +108,6 @@ describe('<PostList/>', () => {
     useAppContextSpy.mockReturnValue({
       data: {
         post: { entries: mockPosts, lastId: '' },
-        project: { entries: [], lastId: '' },
       },
       setData,
     });
@@ -144,7 +143,6 @@ describe('<PostList/>', () => {
     useAppContextSpy.mockReturnValue({
       data: {
         post: { entries: [], lastId: '' },
-        project: { entries: [], lastId: '' },
       },
       setData,
     });
