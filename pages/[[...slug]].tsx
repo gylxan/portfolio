@@ -12,7 +12,7 @@ interface PageProps {
 }
 
 const Page = ({ siteConfig, data }: PageProps) => {
-  const { title, pageTitle, content, slug, ogDescription } = data;
+  const { title, pageTitle, content, slug, ogDescription, fullHeight } = data;
 
   return (
     <Layout
@@ -21,6 +21,7 @@ const Page = ({ siteConfig, data }: PageProps) => {
       description={ogDescription}
       // openGraphImage={mainImage}
       slug={slug.current}
+      fullHeight={fullHeight}
     >
       {(pageTitle || title) && (
         <Title className="mb-8">{!!pageTitle ? pageTitle : title}</Title>

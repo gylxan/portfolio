@@ -8,6 +8,7 @@ export interface Page {
   ogDescription?: string;
   enabled: boolean;
   language?: string;
+  fullHeight?: boolean;
 }
 
 export interface ContentBlock {

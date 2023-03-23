@@ -61,6 +61,13 @@ export default defineType(
           'Specific site description for Open Graph. When empty default description is used',
       },
       {
+        name: 'fullHeight',
+        type: "boolean",
+        title: "Use full height for content",
+        initialValue: false,
+        description: "Use full height for content, to position it in the center. Useful for small content"
+      },
+      {
         name: 'content',
         type: 'array',
         title: 'Content',
