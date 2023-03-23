@@ -1,4 +1,11 @@
-import { createContext, PropsWithChildren, useContext, useState } from 'react';
+import {
+  createContext,
+  Dispatch,
+  PropsWithChildren,
+  SetStateAction,
+  useContext,
+  useState,
+} from 'react';
 import { Post } from 'types/post';
 import { Project } from 'types/project';
 
@@ -9,7 +16,7 @@ interface AppState {
 
 interface AppContextValue {
   data: AppState;
-  setData: (state: AppState) => void | undefined;
+  setData: Dispatch<SetStateAction<AppState>>;
 }
 
 const AppContext = createContext<AppContextValue>({
