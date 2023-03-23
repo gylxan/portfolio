@@ -1,8 +1,8 @@
 import { groq } from 'next-sanity';
 
-export const allPostQuery = groq`
-*[_type == "post" && __i18n_lang == $lang] | order(_createdAt desc) {
-  _id,
+
+export const postListFields = `
+   _id,
   _type,
   _createdAt,
   title,
@@ -19,11 +19,13 @@ export const allPostQuery = groq`
       metadata
     }
   }
-}
-`;
+`
+export const postPaginatedLimit = 6;
+export const paginatedPostDocumentQuery = '_type == "post" && __i18n_lang == $lang';
+export const paginatedPostOrderQuery = 'order(_createdAt desc)';
 
 export const singlePostQuery = groq`
-*[_type == "post" && slug.current == $slug && __i18n_lang == $lang][0] {
+*[${paginatedPostDocumentQuery} && slug.current == $slug][0] {
   ...,
   categories[]->{
     ...,
@@ -81,7 +83,7 @@ export const configQuery = groq`
   "description": description[$lang],
   "translations": ${allTranslationQuery}
 }
-`
+`;
 
 export const pathPageQuery = groq`
 *[_type == "page" && enabled == true] {
@@ -147,13 +149,7 @@ export const singlePageQuery = groq`
           metadata
         }
       }
-     },
-     _type == "posts" => {
-        ...,
-        "posts": ${allPostQuery}
-     },
+     }
   },
 }
 `;
-
-

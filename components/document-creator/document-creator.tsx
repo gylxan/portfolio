@@ -12,7 +12,7 @@ import PortableText, {
   PortableTextProps,
 } from 'components/portable-text/portable-text';
 import Projects, { ProjectsProps } from 'components/projects/projects';
-import PostList, { PostListProps } from 'components/post-list/post-list';
+import PostList from 'components/post-list/post-list';
 
 interface DocumentCreatorProps {
   _type: string;
@@ -23,7 +23,6 @@ interface DocumentCreatorProps {
 type DocumentCreatorType = DocumentCreatorProps &
   (
     | SkillsProps
-    | PostListProps
     | ExperiencesProps
     | WelcomeProps
     | ProjectsProps

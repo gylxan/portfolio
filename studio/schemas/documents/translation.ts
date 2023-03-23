@@ -10,7 +10,6 @@ export default defineType({
       name: 'namespace',
       type: 'string',
       title: 'Namespace',
-      validation: (rule: Rule) => rule.unique(),
     },
     {
       name: 'translations',

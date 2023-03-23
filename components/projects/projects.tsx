@@ -1,5 +1,4 @@
-import { ProjectProps } from 'components/project/project';
-import Project from 'components/project/project';
+import Project, { ProjectProps } from 'components/project/project';
 import React from 'react';
 
 export interface ProjectsProps {
