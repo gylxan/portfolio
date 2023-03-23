@@ -7,4 +7,12 @@ describe('<Loader />', () => {
 
     expect(screen.getByTestId('loader')).toBeInTheDocument();
   });
+
+  it('renders with className', () => {
+    const className = 'my-class';
+    render(<Loader className={className} />);
+
+    expect(screen.getByTestId('loader')).toBeInTheDocument();
+    expect(screen.getByTestId('loader').className).toContain(className);
+  });
 });

@@ -1,7 +1,14 @@
 import styles from './loader.module.css';
-const Loader = () => {
+import clsx from 'clsx';
+export interface LoaderProps {
+  className?: string;
+}
+const Loader = ({ className }: LoaderProps) => {
   return (
-    <div className="flex justify-center h-20 py-6" data-testid="loader">
+    <div
+      className={clsx(['flex h-20 justify-center py-6', className])}
+      data-testid="loader"
+    >
       <span className={styles.loader} />
     </div>
   );
