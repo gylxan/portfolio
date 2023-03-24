@@ -11,6 +11,9 @@ const withPWA = require('next-pwa')({
 const config = {
   reactStrictMode: true,
   swcMinify: true,
+  experimental: {
+    scrollRestoration: true
+  },
   images: {
     remotePatterns: [
       {
