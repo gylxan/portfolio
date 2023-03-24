@@ -1,6 +1,5 @@
 import type { GetStaticProps } from 'next';
 import { Layout, Link } from 'components';
-import { Routes } from 'constants/routes';
 import styles from 'styles/404.module.css';
 import client, { getSanitizedSiteConfig } from 'utils/sanity';
 import type { SanitySiteConfig, SiteConfig } from 'types/siteConfig';
@@ -20,7 +19,7 @@ const FourOhFour = ({ siteConfig }: FourOhFourProps) => {
           404
         </h1>
         <h2>{t('wrong_place')}</h2>
-        <Link href={Routes.Home}>{t('back_to_home')}</Link>
+        <Link href="/">{t('back_to_home')}</Link>
       </div>
     </Layout>
   );

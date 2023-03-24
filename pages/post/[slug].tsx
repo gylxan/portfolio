@@ -1,4 +1,4 @@
-import { Badge, Layout, Link, PortableText, Title } from 'components';
+import { Badge, Button, Layout, PortableText, Title } from 'components';
 import type { GetStaticProps } from 'next';
 import { client, getBlurDataUrl, getSanitizedSiteConfig } from 'utils/sanity';
 import { configQuery, pathPostQuery, singlePostQuery } from 'constants/groq';
@@ -6,7 +6,6 @@ import type { Post as IPost } from 'types/post';
 import { getFormattedPostDate } from 'utils/date';
 import Image from 'next/image';
 import useSanityImage from 'hooks/useSanityImage';
-import { Routes } from 'constants/routes';
 import type { SanitySiteConfig, SiteConfig } from 'types/siteConfig';
 import { useTranslations } from 'use-intl';
 import { useRouter } from 'next/router';
@@ -29,7 +28,7 @@ const Post = ({ siteConfig, post }: PostProps) => {
     estimatedReadingTime,
   } = post;
   const t = useTranslations('post');
-  const { locale } = useRouter();
+  const { locale, back } = useRouter();
   const imageProps = useSanityImage(mainImage);
   return (
     <Layout
@@ -76,7 +75,7 @@ const Post = ({ siteConfig, post }: PostProps) => {
         <article className="w-full max-w-screen-sm [&>p:first-child]:mt-0 [&>p]:my-4">
           <PortableText value={content} />
         </article>
-        <Link href={Routes.Blog}>← {t('view_all_posts')}</Link>
+        <Button onClick={back}>← {t('view_all_posts')}</Button>
       </div>
     </Layout>
   );

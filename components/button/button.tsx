@@ -1,4 +1,9 @@
-import type { ButtonHTMLAttributes, FC, HTMLProps, PropsWithChildren, } from 'react';
+import type {
+  ButtonHTMLAttributes,
+  FC,
+  HTMLProps,
+  PropsWithChildren,
+} from 'react';
 import clsx from 'clsx';
 import { Link } from 'components';
 import type { LinkProps } from 'components/link/link';
@@ -27,6 +32,7 @@ const Button: FC<PropsWithChildren<ButtonProps>> = (props) => {
   }
   return (
     <button
+      type="button"
       {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}
       className={clsx(defaultClassName, 'duration-[250ms]', className)}
     >

@@ -1,5 +1,6 @@
 .link {
   text-decoration-skip-ink: auto;
+  cursor: pointer;
 }
 
 .active:after {
