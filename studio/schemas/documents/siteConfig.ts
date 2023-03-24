@@ -1,5 +1,6 @@
 import { defineType, Rule } from 'sanity';
 import { i18nConfig } from '../../config/i18n';
+import { getLocalizedObject } from '../../utils/schema';
 export default defineType({
   name: 'siteconfig',
   type: 'document',
@@ -169,15 +170,12 @@ export default defineType({
       fieldset: 'menu',
     },
     {
+      ...getLocalizedObject('file', { accept: '.pdf' }),
       name: 'resume',
       title: 'Resume',
       description:
         'Resume, which can be downloaded from the menu. Empty when should not been shown.',
-      type: 'file',
       fieldset: 'menu',
-      options: {
-        accept: '.pdf',
-      },
     },
 
     {

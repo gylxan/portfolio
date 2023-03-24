@@ -4,7 +4,7 @@ import { documentTypeIcons } from '../constants/sanity';
 import { SchemaType } from 'sanity';
 import { getLanguagesWithoutBase } from './i18n';
 
-export const getLocalizedObject = (fieldType: string) => {
+export const getLocalizedObject = (fieldType: string, fieldOptions?: any) => {
   return {
     title: `Localized ${fieldType}`,
     name: `locale${fieldType.charAt(0).toUpperCase()}${fieldType.substring(1)}`,
@@ -22,6 +22,7 @@ export const getLocalizedObject = (fieldType: string) => {
       name: lang.id,
       type: fieldType,
       fieldset: lang.id === i18nConfig.base ? null : 'translations',
+      ...(fieldOptions ? { options: fieldOptions } : {}),
     })),
   };
 };

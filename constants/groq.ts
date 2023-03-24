@@ -71,7 +71,7 @@ export const allTranslationQuery = groq`
 export const configQuery = groq`
 *[_type == "siteconfig"][0] {
   ...,
-  "resume": resume {
+  "resume": resume[$lang] {
     ...,
     asset->
   },
