@@ -26,6 +26,19 @@ export default defineType({
       description: 'Short description for the project',
     },
     {
+      name: 'workDate',
+      type: 'date',
+      title: 'Work date',
+      description:
+        'Date you worked on this project the last time (Used for sorting)',
+      initialValue: () => {
+        const date = new Date();
+        return `${date.getFullYear()}-${
+          date.getMonth() <= 9 ? `0${date.getMonth()}` : date.getMonth()
+        }-${date.getDate() <= 9 ? `0${date.getDate()}` : date.getDate()}`;
+      },
+    },
+    {
       name: 'previewUrl',
       type: 'url',
       title: 'Preview URL',
