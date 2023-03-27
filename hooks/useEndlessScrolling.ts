@@ -8,23 +8,23 @@ export enum IdCheckOperator {
   GreaterThen = '>',
 }
 export interface UseEndlessScrollingProps<T> {
-  idField: string;
+  sortField: string;
   lastId: string | null;
   limit?: number;
   documentQuery: string;
   orderQuery?: string;
   fields?: string;
   checkOperator?: IdCheckOperator;
-  onLoaded: (results: T, lastId: string | null) => void;
+  onLoaded: (results: T[], lastId: string | null) => void;
 }
 const useEndlessScrolling = <T extends object>({
   limit = 10,
   lastId,
-  idField,
+  sortField,
   documentQuery,
   orderQuery,
   fields = '...',
-  checkOperator = IdCheckOperator.GreaterThen,
+  checkOperator = IdCheckOperator.LowerThen,
   onLoaded,
 }: UseEndlessScrollingProps<T>) => {
   const isInitialLoaded = useRef(false);
@@ -49,21 +49,21 @@ const useEndlessScrolling = <T extends object>({
       const results = await client.fetch(
         groq`
       *[${documentQuery}${
-          !!lastId ? ` && ${idField} ${checkOperator} $${idField}` : ''
+          !!lastId ? ` && ${sortField} ${checkOperator} $${sortField}` : ''
         }]${orderQuery ? ` | ${orderQuery}` : ''} [0..$limit] {
       ${fields}
       }`,
         {
           limit: limit - 1,
           lang: locale,
-          [idField]: lastId,
+          [sortField]: lastId,
         },
       );
 
       onLoaded(
         results,
         results.length === limit
-          ? results[results.length - 1]?.[idField] ?? null
+          ? results[results.length - 1]?.[sortField] ?? null
           : null,
       );
     } catch (error) {
@@ -81,7 +81,7 @@ const useEndlessScrolling = <T extends object>({
   }, [
     documentQuery,
     fields,
-    idField,
+    sortField,
     limit,
     locale,
     onLoaded,

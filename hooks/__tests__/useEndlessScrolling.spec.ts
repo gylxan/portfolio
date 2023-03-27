@@ -12,7 +12,7 @@ jest.mock('utils/sanity', () => ({
 
 describe('useEndlessScrolling', () => {
   const props: UseEndlessScrollingProps<Post[]> = {
-    idField: 'id',
+    sortField: 'id',
     documentQuery: '_type == "post"',
     onLoaded: jest.fn(),
     lastId: '',
@@ -44,7 +44,7 @@ describe('useEndlessScrolling', () => {
     expect(fetchSpy).toHaveBeenCalledWith(expect.anything(), {
       limit: 9,
       lang: routerConfig.locale,
-      [props.idField]: '',
+      [props.sortField]: '',
     });
   });
 
@@ -66,7 +66,7 @@ describe('useEndlessScrolling', () => {
     expect(fetchSpy).toHaveBeenLastCalledWith(expect.anything(), {
       limit: 9,
       lang: routerConfig.locale,
-      [props.idField]: '',
+      [props.sortField]: '',
     });
     expect(render?.result.current.error).toBeNull();
     expect(render?.result.current.loading).toBeFalsy();
@@ -89,7 +89,7 @@ describe('useEndlessScrolling', () => {
     expect(fetchSpy).toHaveBeenCalledWith(expect.anything(), {
       limit: 0,
       lang: routerConfig.locale,
-      [props.idField]: '123',
+      [props.sortField]: '123',
     });
   });
 
@@ -119,7 +119,7 @@ describe('useEndlessScrolling', () => {
     expect(fetchSpy).toHaveBeenCalledWith(expect.anything(), {
       limit: 9,
       lang: routerConfig.locale,
-      [props.idField]: '',
+      [props.sortField]: '',
     });
     expect(render?.result.current.error).toBe('My error');
     expect(render?.result.current.loading).toBeFalsy();
@@ -139,7 +139,7 @@ describe('useEndlessScrolling', () => {
     expect(fetchSpy).toHaveBeenCalledWith(expect.anything(), {
       limit: 9,
       lang: routerConfig.locale,
-      [props.idField]: '',
+      [props.sortField]: '',
     });
     expect(render?.result.current.error).toBe('My error');
     expect(render?.result.current.loading).toBeFalsy();
