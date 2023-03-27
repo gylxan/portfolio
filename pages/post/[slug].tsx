@@ -1,7 +1,12 @@
 import { Badge, Button, Layout, PortableText, Title } from 'components';
 import type { GetStaticProps } from 'next';
 import { client, getBlurDataUrl, getSanitizedSiteConfig } from 'utils/sanity';
-import { configQuery, pathPostQuery, singlePostQuery } from 'constants/groq';
+import {
+  configQuery,
+  pathPostLimitedQuery,
+  postPaginatedLimit,
+  singlePostQuery,
+} from 'constants/groq';
 import type { Post as IPost } from 'types/post';
 import { getFormattedPostDate } from 'utils/date';
 import Image from 'next/image';
@@ -82,7 +87,9 @@ const Post = ({ siteConfig, post }: PostProps) => {
 };
 
 export const getStaticPaths = async () => {
-  const allPosts = await client.fetch<IPost[] | null>(pathPostQuery);
+  const allPosts = await client.fetch<IPost[] | null>(pathPostLimitedQuery, {
+    limit: postPaginatedLimit,
+  });
 
   return {
     paths: allPosts?.map((post) => {
