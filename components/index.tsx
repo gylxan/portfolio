@@ -4,6 +4,7 @@ export { default as DocumentCreator } from 'components/document-creator/document
 export { default as DropdownMenu } from 'components/dropdown-menu/dropdown-menu';
 export { default as DropdownMenuItem } from 'components/dropdown-menu/dropdown-menu-item/dropdown-menu-item';
 export { default as EndlessLoadingItem } from 'components/endless-loading-item/endless-loading-item';
+export { default as EndlessLoadingList } from 'components/endless-loading-list/endless-loading-list';
 export { default as Experience } from 'components/experiences/experience/experience';
 export { default as Experiences } from 'components/experiences/experiences';
 export { default as Footer } from 'components/footer/footer';

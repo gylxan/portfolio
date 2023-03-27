@@ -58,6 +58,27 @@ export const pathPostQuery = groq`
   "language": __i18n_lang
 }
 `;
+export const projectPaginatedLimit = 6;
+export const paginatedProjectDocumentQuery = '_type == "project"';
+export const paginatedProjectOrderQuery = 'order(workDate desc)';
+
+export const projectFields = `
+   _id,
+  name,
+  private,
+  workDate,
+  title,
+  previewUrl,
+  githubUrl,
+  keywords,
+  "backgroundImage": backgroundImage {
+    asset->{
+        ...,
+        metadata
+    }
+  },
+  "description": description[$lang]
+`
 
 export const allTranslationQuery = groq`
 *[_type == "translation"]{
@@ -115,19 +136,6 @@ export const singlePageQuery = groq`
       "asset": asset-> {
         ...,
         metadata
-      }
-    },
-    _type == "projects" => {
-      ...,
-      "projects": projects[]->{
-        ...,
-         "backgroundImage": backgroundImage {
-            asset->{
-              ...,
-              metadata
-            }
-         },
-         "description": description[$lang]
       }
     },
     _type == "experiences" => {

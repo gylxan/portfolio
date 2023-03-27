@@ -1,7 +1,22 @@
-import { render, screen } from '@testing-library/react';
-import React from 'react';
+import { act, render, screen } from '@testing-library/react';
 import { Projects } from 'components';
+import * as useSanityImageHook from 'hooks/useSanityImage';
+import * as useEndlessScrollingHook from 'hooks/useEndlessScrolling';
+import type { ImageLoader } from 'next/image';
+import * as AppContext from 'contexts/app-context';
 import { mockProjects } from 'constants/mock';
+import { Project } from 'types/project';
+
+jest.mock('hooks/useSanityImage');
+jest.mock('hooks/useEndlessScrolling');
+
+jest.mock('contexts/app-context', () => {
+  const originalAppContext = jest.requireActual('contexts/app-context');
+  return {
+    ...originalAppContext,
+    useAppContext: jest.fn(),
+  };
+});
 
 jest.mock('react-intersection-observer', () => {
   const actual = jest.requireActual('react-intersection-observer');
@@ -13,15 +28,85 @@ jest.mock('react-intersection-observer', () => {
     }),
   };
 });
-describe('<Projects />', () => {
-  const props = {
-    projects: mockProjects,
-  };
-  it('should render projects', () => {
-    render(<Projects {...props} />);
 
-    expect(screen.getAllByTestId('project')).toHaveLength(
-      props.projects.length,
-    );
+describe('<Projects/>', () => {
+  const useAppContextSpy = jest.spyOn(AppContext, 'useAppContext');
+  const setData = jest.fn();
+
+  jest.spyOn(useSanityImageHook, 'default').mockReturnValue({
+    loader: undefined as unknown as ImageLoader,
+    src: 'http://url/image.png',
+    width: 123,
+    height: 123,
+  });
+
+  let onLoadedMock: (results: Project[], lastId: string | null) => void;
+
+  const useEndlessScrollingHookSpy = jest.spyOn(
+    useEndlessScrollingHook,
+    'default',
+  );
+
+  beforeEach(() => {
+    useAppContextSpy.mockReturnValue({
+      data: {
+        post: { entries: [], lastId: '' },
+        project: { entries: mockProjects, lastId: '' },
+      },
+      setData,
+    });
+
+    useEndlessScrollingHookSpy.mockImplementation(({ onLoaded }) => {
+      onLoadedMock = onLoaded;
+      return {
+        hasMore: false,
+        loading: false,
+        fetchNextPage: jest.fn(),
+        error: null,
+      };
+    });
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  afterAll(() => {
+    jest.resetAllMocks();
+  });
+
+  it('should render', async () => {
+    await act(() => {
+      render(<Projects />);
+    });
+
+    expect(screen.getAllByTestId('project')).toHaveLength(mockProjects.length);
+  });
+
+  it('should render a message, when there are no projects', async () => {
+    useAppContextSpy.mockReturnValue({
+      data: {
+        post: { entries: [], lastId: '' },
+        project: { entries: [], lastId: '' },
+      },
+      setData,
+    });
+    await act(() => {
+      render(<Projects />);
+    });
+
+    expect(
+      screen.getByText('project.no_projects_available'),
+    ).toBeInTheDocument();
+  });
+
+  it('calls setData of app context, when endless scrolling loaded next page', async () => {
+    await act(() => {
+      render(<Projects />);
+    });
+
+    onLoadedMock?.(mockProjects, null);
+
+    expect(setData).toHaveBeenCalledTimes(1);
   });
 });
