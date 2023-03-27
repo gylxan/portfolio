@@ -5,6 +5,7 @@ import * as useSanityImageHook from 'hooks/useSanityImage';
 import * as useEndlessScrollingHook from 'hooks/useEndlessScrolling';
 import type { ImageLoader } from 'next/image';
 import * as AppContext from 'contexts/app-context';
+import { mockPosts } from 'constants/mock';
 
 jest.mock('hooks/useSanityImage');
 jest.mock('hooks/useEndlessScrolling');
@@ -28,64 +29,6 @@ jest.mock('react-intersection-observer', () => {
   };
 });
 
-const mockPosts: Post[] = [
-  {
-    _id: '1',
-    title: 'Post 1',
-    description: 'Description for post 1',
-    _createdAt: '2022-10-22',
-    slug: { _type: 'slug', current: 'post1' },
-    estimatedReadingTime: 12345,
-    mainImage: {
-      asset: {
-        _ref: '123',
-        metadata: {
-          lqid: '12324',
-        },
-      },
-    },
-    categories: [
-      {
-        name: 'Category 1',
-        description: 'Description for category 1',
-      },
-    ],
-    content: {
-      _type: 'block',
-      children: [],
-    },
-  },
-  {
-    _id: '2',
-    title: 'Post 2',
-    description: 'Description for post 2',
-    _createdAt: '2022-10-22',
-    slug: { _type: 'slug', current: 'post-2' },
-    estimatedReadingTime: 12345,
-    mainImage: {
-      asset: {
-        _ref: '234',
-        metadata: {
-          lqid: '4343211',
-        },
-      },
-    },
-    categories: [
-      {
-        name: 'Category 2',
-        description: 'Description for category 2',
-      },
-      {
-        name: 'Category 3',
-        description: 'Description for category 3',
-      },
-    ],
-    content: {
-      _type: 'block',
-      children: [],
-    },
-  },
-];
 describe('<PostList/>', () => {
   const useAppContextSpy = jest.spyOn(AppContext, 'useAppContext');
   const setData = jest.fn();
@@ -108,6 +51,7 @@ describe('<PostList/>', () => {
     useAppContextSpy.mockReturnValue({
       data: {
         post: { entries: mockPosts, lastId: '' },
+        project: { entries: [], lastId: '' },
       },
       setData,
     });
@@ -143,6 +87,7 @@ describe('<PostList/>', () => {
     useAppContextSpy.mockReturnValue({
       data: {
         post: { entries: [], lastId: '' },
+        project: { entries: [], lastId: '' },
       },
       setData,
     });

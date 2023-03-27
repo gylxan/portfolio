@@ -1,11 +1,17 @@
+import type { Post } from 'types/post';
 import { act, render, screen } from '@testing-library/react';
-import { Projects } from 'components';
+import { EndlessLoadingList, PostListItem } from 'components';
 import * as useSanityImageHook from 'hooks/useSanityImage';
 import * as useEndlessScrollingHook from 'hooks/useEndlessScrolling';
 import type { ImageLoader } from 'next/image';
 import * as AppContext from 'contexts/app-context';
-import { mockProjects } from 'constants/mock';
-import { Project } from 'types/project';
+import { mockPosts } from 'constants/mock';
+import { EndlessLoadingListProps } from 'components/endless-loading-list/endless-loading-list';
+import {
+  paginatedPostDocumentQuery,
+  paginatedPostOrderQuery,
+  postListFields,
+} from 'constants/groq';
 
 jest.mock('hooks/useSanityImage');
 jest.mock('hooks/useEndlessScrolling');
@@ -29,7 +35,7 @@ jest.mock('react-intersection-observer', () => {
   };
 });
 
-describe('<Projects/>', () => {
+describe('<EndlessLoadingList/>', () => {
   const useAppContextSpy = jest.spyOn(AppContext, 'useAppContext');
   const setData = jest.fn();
 
@@ -40,18 +46,30 @@ describe('<Projects/>', () => {
     height: 123,
   });
 
-  let onLoadedMock: (results: Project[], lastId: string | null) => void;
+  let onLoadedMock: (results: Post[], lastId: string | null) => void;
 
   const useEndlessScrollingHookSpy = jest.spyOn(
     useEndlessScrollingHook,
     'default',
   );
 
+  const props: EndlessLoadingListProps<Post> = {
+    idField: '_id',
+    fields: postListFields,
+    orderQuery: paginatedPostOrderQuery,
+    documentQuery: paginatedPostDocumentQuery,
+    contextKey: 'post',
+    sortField: '_createdAt',
+    limit: 6,
+    noEntryAvailableTranslationKey: 'no_post_available',
+    component: PostListItem,
+  };
+
   beforeEach(() => {
     useAppContextSpy.mockReturnValue({
       data: {
-        post: { entries: [], lastId: '' },
-        project: { entries: mockProjects, lastId: '' },
+        post: { entries: mockPosts, lastId: '' },
+        project: { entries: [], lastId: '' },
       },
       setData,
     });
@@ -77,13 +95,13 @@ describe('<Projects/>', () => {
 
   it('should render', async () => {
     await act(() => {
-      render(<Projects />);
+      render(<EndlessLoadingList {...props} />);
     });
 
-    expect(screen.getAllByTestId('project')).toHaveLength(mockProjects.length);
+    expect(screen.getAllByRole('link')).toHaveLength(mockPosts.length);
   });
 
-  it('should render a message, when there are no projects', async () => {
+  it('should render a message, when there are no entries available', async () => {
     useAppContextSpy.mockReturnValue({
       data: {
         post: { entries: [], lastId: '' },
@@ -92,20 +110,22 @@ describe('<Projects/>', () => {
       setData,
     });
     await act(() => {
-      render(<Projects />);
+      render(<EndlessLoadingList {...props} />);
     });
 
     expect(
-      screen.getByText('project.no_projects_available'),
+      screen.getByText(
+        `${props.contextKey}.${props.noEntryAvailableTranslationKey}`,
+      ),
     ).toBeInTheDocument();
   });
 
   it('calls setData of app context, when endless scrolling loaded next page', async () => {
     await act(() => {
-      render(<Projects />);
+      render(<EndlessLoadingList {...props} />);
     });
 
-    onLoadedMock?.(mockProjects, null);
+    onLoadedMock?.(mockPosts, null);
 
     expect(setData).toHaveBeenCalledTimes(1);
   });

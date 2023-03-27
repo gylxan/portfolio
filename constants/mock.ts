@@ -2,6 +2,7 @@ import type {SanitySiteConfig, SiteConfig, TranslationNamespace} from 'types/sit
 import type { SanityAltImage, SanityImage } from 'types/image';
 import { Project } from 'types/project';
 import { SanityFile } from 'types/file';
+import {Post} from "types/post";
 
 export const mockSanityImage: SanityImage = {
   asset: {
@@ -127,6 +128,65 @@ export const mockProjects: Project[] = [
     private: true,
     keywords: ['CSS', 'Javascript'],
     previewUrl: 'https://project2.com',
+  },
+];
+
+export const mockPosts: Post[] = [
+  {
+    _id: '1',
+    title: 'Post 1',
+    description: 'Description for post 1',
+    _createdAt: '2022-10-22',
+    slug: { _type: 'slug', current: 'post1' },
+    estimatedReadingTime: 12345,
+    mainImage: {
+      asset: {
+        _ref: '123',
+        metadata: {
+          lqid: '12324',
+        },
+      },
+    },
+    categories: [
+      {
+        name: 'Category 1',
+        description: 'Description for category 1',
+      },
+    ],
+    content: {
+      _type: 'block',
+      children: [],
+    },
+  },
+  {
+    _id: '2',
+    title: 'Post 2',
+    description: 'Description for post 2',
+    _createdAt: '2022-10-22',
+    slug: { _type: 'slug', current: 'post-2' },
+    estimatedReadingTime: 12345,
+    mainImage: {
+      asset: {
+        _ref: '234',
+        metadata: {
+          lqid: '4343211',
+        },
+      },
+    },
+    categories: [
+      {
+        name: 'Category 2',
+        description: 'Description for category 2',
+      },
+      {
+        name: 'Category 3',
+        description: 'Description for category 3',
+      },
+    ],
+    content: {
+      _type: 'block',
+      children: [],
+    },
   },
 ];
 

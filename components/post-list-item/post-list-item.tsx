@@ -8,12 +8,9 @@ import { getBlurDataUrl } from 'utils/sanity';
 import { useTranslations } from 'use-intl';
 import { useRouter } from 'next/router';
 
-export interface PostListItemProps {
-  post: Post;
-}
-const PostListItem = ({ post }: PostListItemProps) => {
-  const { categories, slug, title, description, _createdAt, mainImage } = post;
-  const imageProps = useSanityImage(post.mainImage);
+export type PostListItemProps = Post;
+const PostListItem = ({ categories, slug, title, description, _createdAt, mainImage }: PostListItemProps) => {
+  const imageProps = useSanityImage(mainImage);
   const t = useTranslations('post');
   const { locale } = useRouter();
 
