@@ -1,7 +1,7 @@
 {
   "name": "portfolio-studio",
   "private": true,
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Sanity Studio for Portfolio",
   "main": "package.json",
   "author": {
