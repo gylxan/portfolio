@@ -58,6 +58,13 @@ export const pathPostQuery = groq`
   "language": __i18n_lang
 }
 `;
+
+export const pathPostLimitedQuery = groq`
+*[_type == "post" && enabled == true] | order(_createdAt desc)[0...$limit] {
+  slug,
+  "language": __i18n_lang
+}
+`;
 export const projectPaginatedLimit = 6;
 export const paginatedProjectDocumentQuery = '_type == "project"';
 export const paginatedProjectOrderQuery = 'order(workDate desc)';
