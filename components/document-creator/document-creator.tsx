@@ -11,7 +11,7 @@ import Column, { ColumnProps } from 'components/column/column';
 import PortableText, {
   PortableTextProps,
 } from 'components/portable-text/portable-text';
-import Projects, { ProjectsProps } from 'components/projects/projects';
+import Projects from 'components/projects/projects';
 import PostList from 'components/post-list/post-list';
 
 interface DocumentCreatorProps {
@@ -25,7 +25,6 @@ type DocumentCreatorType = DocumentCreatorProps &
     | SkillsProps
     | ExperiencesProps
     | WelcomeProps
-    | ProjectsProps
     | ColumnProps
     | RowProps
     | SanityAltImage
