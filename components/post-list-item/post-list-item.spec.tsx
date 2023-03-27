@@ -51,9 +51,7 @@ describe('<PostListItem />', () => {
     estimatedReadingTime: 5,
   };
 
-  const props: PostListItemProps = {
-    post,
-  };
+  const props: PostListItemProps = post;
 
   const useSanityMock = jest.spyOn(hooks, 'default').mockReturnValue({
     loader: undefined as unknown as ImageLoader,
@@ -114,7 +112,7 @@ describe('<PostListItem />', () => {
 
   it('should render without badges, when no categories are specified', async () => {
     await act(() => {
-      render(<PostListItem {...props} post={{...props.post, categories: null}}/>);
+      render(<PostListItem {...props} categories={null}/>);
     });
     expect(screen.queryAllByTestId('badge')).toHaveLength(0)
   })
