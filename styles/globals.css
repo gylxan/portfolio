@@ -8,6 +8,7 @@
   --red: #FF8080;
   --red-ghost: rgba(255, 128, 128, 0.1);
   --grey: rgb(171, 175, 185);
+  --dark-grey: rgb(103, 103, 110);
 
   --background: var(--dark-blue);
   --primary: var(--grey);
