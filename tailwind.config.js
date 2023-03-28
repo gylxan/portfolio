@@ -116,6 +116,7 @@ module.exports = {
       white: 'var(--white)',
       darkblue: 'var(--dark-blue)',
       'secondary-ghost': 'var(--secondary-ghost)',
+      skeleton: 'var(--dark-grey)',
     },
   },
   plugins: [],

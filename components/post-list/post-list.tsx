@@ -5,7 +5,7 @@ import {
   postPaginatedLimit,
 } from 'constants/groq';
 import React from 'react';
-import { EndlessLoadingList, PostListItem } from 'components';
+import { EndlessLoadingList, PostListItem, PostListItemSkeleton } from 'components';
 
 const PostList = () => {
   return (
@@ -15,6 +15,7 @@ const PostList = () => {
       idField="_id"
       noEntryAvailableTranslationKey="no_posts_available"
       component={PostListItem}
+      skeleton={PostListItemSkeleton}
       sortField="_createdAt"
       documentQuery={paginatedPostDocumentQuery}
       orderQuery={paginatedPostOrderQuery}

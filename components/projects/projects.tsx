@@ -5,7 +5,7 @@ import {
   projectFields,
   projectPaginatedLimit,
 } from 'constants/groq';
-import { EndlessLoadingList, Project } from 'components';
+import { EndlessLoadingList, Project, ProjectSkeleton } from 'components';
 
 const Projects = () => {
   return (
@@ -15,6 +15,7 @@ const Projects = () => {
       idField="name"
       noEntryAvailableTranslationKey="no_projects_available"
       component={Project}
+      skeleton={ProjectSkeleton}
       sortField="workDate"
       documentQuery={paginatedProjectDocumentQuery}
       orderQuery={paginatedProjectOrderQuery}

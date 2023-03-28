@@ -53,6 +53,8 @@ describe('<EndlessLoadingList/>', () => {
     'default',
   );
 
+  const skeleton = () => <div data-testid="skeleton">Skeleton</div>;
+
   const props: EndlessLoadingListProps<Post> = {
     idField: '_id',
     fields: postListFields,
@@ -63,6 +65,7 @@ describe('<EndlessLoadingList/>', () => {
     limit: 6,
     noEntryAvailableTranslationKey: 'no_post_available',
     component: PostListItem,
+    skeleton,
   };
 
   beforeEach(() => {
@@ -99,6 +102,33 @@ describe('<EndlessLoadingList/>', () => {
     });
 
     expect(screen.getAllByRole('link')).toHaveLength(mockPosts.length);
+    expect(screen.queryAllByTestId('skeleton')).toHaveLength(0);
+    expect(screen.queryByTestId('loader')).not.toBeInTheDocument()
+  });
+
+  it('should render skeletons, when there are no entries yet, has more and is loading', async () => {
+    useEndlessScrollingHookSpy.mockImplementation(({ onLoaded }) => {
+      onLoadedMock = onLoaded;
+      return {
+        hasMore: true,
+        loading: true,
+        fetchNextPage: jest.fn(),
+        error: null,
+      };
+    });
+    useAppContextSpy.mockReturnValue({
+      data: {
+        post: { entries: [], lastId: '' },
+        project: { entries: [], lastId: '' },
+      },
+      setData,
+    });
+    const limit = 7;
+    await act(() => {
+      render(<EndlessLoadingList {...props} limit={limit}/>);
+    });
+
+    expect(screen.getAllByTestId('skeleton')).toHaveLength(limit);
   });
 
   it('should render a message, when there are no entries available', async () => {
@@ -118,6 +148,24 @@ describe('<EndlessLoadingList/>', () => {
         `${props.contextKey}.${props.noEntryAvailableTranslationKey}`,
       ),
     ).toBeInTheDocument();
+  });
+
+  it('should render Loader, when there are entries and is loading', async () => {
+    useEndlessScrollingHookSpy.mockImplementation(({ onLoaded }) => {
+      onLoadedMock = onLoaded;
+      return {
+        hasMore: true,
+        loading: true,
+        fetchNextPage: jest.fn(),
+        error: null,
+      };
+    });
+
+    await act(() => {
+      render(<EndlessLoadingList {...props} />);
+    });
+
+    expect(screen.getByTestId('loader')).toBeInTheDocument()
   });
 
   it('calls setData of app context, when endless scrolling loaded next page', async () => {
