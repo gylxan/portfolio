@@ -36,6 +36,10 @@ describe('URL utils', () => {
       isDefaultLanguageSpy.mockReturnValueOnce(false);
       expect(getUrlFromSlugs('en', ['slug1', 'slug2'])).toBe('/en/slug1/slug2');
     });
+
+    it('should return "/", when locale is default language and no slugs are specified', () => {
+      expect(getUrlFromSlugs('en', [])).toBe('/');
+    });
   });
 
   describe('getPathsFromSlug', () => {
