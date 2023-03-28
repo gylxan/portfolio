@@ -1,7 +1,7 @@
 import { isDefaultLanguage } from 'utils/i18n';
 
 export const getUrlFromSlugs = (locale: string, slugs: string[]) =>
-  `${getLanguageUrlPrefix(locale)}${slugs.length ? '/' : ''}${slugs.join('/')}`;
+  `${getLanguageUrlPrefix(locale)}${slugs.length ? '/' : ''}${slugs.join('/')}` || '/';
 
 export const getPathsFromSlug = (slug: string, locale: string | undefined) =>
   slug === '/' || slug === `/${locale}`
