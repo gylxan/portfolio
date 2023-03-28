@@ -13,6 +13,7 @@ export interface EndlessLoadingListProps<T>
   noEntryAvailableTranslationKey: string;
   className?: string;
   component: React.FC<T>;
+  skeleton: React.FC;
 }
 const EndlessLoadingList = <T extends object>({
   contextKey,
@@ -20,6 +21,8 @@ const EndlessLoadingList = <T extends object>({
   noEntryAvailableTranslationKey,
   className,
   component: Component,
+  skeleton: Skeleton,
+  limit = 10,
   ...endlessScrollingProps
 }: EndlessLoadingListProps<T>) => {
   const { data, setData } = useAppContext();
@@ -53,6 +56,9 @@ const EndlessLoadingList = <T extends object>({
   return (
     <>
       <div className={className}>
+        {entries.length === 0 &&
+          loading &&
+          [...Array(limit)].map((_, index) => <Skeleton key={index} />)}
         {(entries as T[]).map((entry, index) => (
           <EndlessLoadingItem
             key={`${entry[idField]}`}
@@ -63,7 +69,7 @@ const EndlessLoadingList = <T extends object>({
           </EndlessLoadingItem>
         ))}
       </div>
-      {loading && <Loader className="mt-6" />}
+      {loading && entries.length > 0 && <Loader className="mt-6" />}
     </>
   );
 };
