@@ -1,10 +1,11 @@
-import React, { useCallback } from 'react';
-import { AppState, useAppContext } from 'contexts/app-context';
+import React, { useCallback, useEffect, useRef } from 'react';
+import {AppState, initialState, useAppContext} from 'contexts/app-context';
 import useEndlessScrolling, {
   UseEndlessScrollingProps,
 } from 'hooks/useEndlessScrolling';
 import { EndlessLoadingItem, Loader } from 'components';
 import { useTranslations } from 'use-intl';
+import { useRouter } from 'next/router';
 
 export interface EndlessLoadingListProps<T>
   extends Omit<UseEndlessScrollingProps<T>, 'onLoaded' | 'lastId'> {
@@ -15,7 +16,7 @@ export interface EndlessLoadingListProps<T>
   component: React.FC<T>;
   skeleton: React.FC;
 }
-const EndlessLoadingList = <T extends object>({
+const EndlessScrollingList = <T extends object>({
   contextKey,
   idField,
   noEntryAvailableTranslationKey,
@@ -26,6 +27,9 @@ const EndlessLoadingList = <T extends object>({
   ...endlessScrollingProps
 }: EndlessLoadingListProps<T>) => {
   const { data, setData } = useAppContext();
+  const { locale } = useRouter();
+  const prevLocale = useRef(locale);
+
   const {
     [contextKey]: { entries, lastId },
   } = data;
@@ -49,6 +53,27 @@ const EndlessLoadingList = <T extends object>({
     lastId,
   });
 
+  useEffect(() => {
+    if (locale !== prevLocale.current) {
+      setData((prevState) => ({
+        ...prevState,
+        [contextKey]: {
+          lastId: initialState[contextKey].lastId,
+          entries: [],
+        },
+      }));
+      fetchNextPage(initialState[contextKey].lastId);
+    }
+  }, [locale, fetchNextPage, contextKey, setData]);
+
+  const handleNextPage = useCallback(() => {
+    fetchNextPage(lastId);
+  }, [fetchNextPage, lastId]);
+
+  useEffect(() => {
+    prevLocale.current = locale;
+  }, [locale]);
+
   const t = useTranslations(contextKey);
   if (!hasMore && entries.length === 0) {
     return <>{t(noEntryAvailableTranslationKey)}</>;
@@ -63,7 +88,7 @@ const EndlessLoadingList = <T extends object>({
           <EndlessLoadingItem
             key={`${entry[idField]}`}
             enabled={index === entries.length - 1}
-            onLoad={fetchNextPage}
+            onLoad={handleNextPage}
           >
             <Component {...entry} />
           </EndlessLoadingItem>
@@ -74,4 +99,4 @@ const EndlessLoadingList = <T extends object>({
   );
 };
 
-export default EndlessLoadingList;
+export default EndlessScrollingList;

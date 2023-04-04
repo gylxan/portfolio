@@ -38,7 +38,8 @@ const useEndlessScrolling = <T extends object>({
   const { locale } = useRouter();
   const { error, loading } = state;
 
-  const fetchNextPage = useCallback(async () => {
+  const fetchNextPage = useCallback(async (lastId: string | null) => {
+    console.log("Fetch next page", lastId);
     if (lastId === null) {
       return;
     }
@@ -78,25 +79,15 @@ const useEndlessScrolling = <T extends object>({
     } finally {
       setState((prevState) => ({ ...prevState, loading: false }));
     }
-  }, [
-    documentQuery,
-    fields,
-    sortField,
-    limit,
-    locale,
-    onLoaded,
-    orderQuery,
-    lastId,
-    checkOperator,
-  ]);
+  }, [documentQuery, fields, sortField, limit, locale, onLoaded, orderQuery, checkOperator]);
 
   useEffect(() => {
     if (isInitialLoaded.current) {
       return;
     }
-    fetchNextPage();
+    fetchNextPage(lastId);
     isInitialLoaded.current = true;
-  }, [fetchNextPage]);
+  }, [fetchNextPage, lastId]);
 
   return {
     loading,

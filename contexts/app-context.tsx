@@ -24,7 +24,7 @@ interface AppContextValue {
   setData: Dispatch<SetStateAction<AppState>>;
 }
 
-const initialState: AppState = {
+export const initialState: AppState = {
   post: {
     entries: [],
     lastId: '',

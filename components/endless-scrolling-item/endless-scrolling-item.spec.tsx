@@ -1,6 +1,6 @@
-import EndlessLoadingItem, {
+import EndlessScrollingItem, {
   EndlessLoadingItemProps,
-} from 'components/endless-loading-item/endless-loading-item';
+} from 'components/endless-scrolling-item/endless-scrolling-item';
 import { render, screen } from '@testing-library/react';
 import { InViewHookResponse, useInView } from 'react-intersection-observer';
 
@@ -17,7 +17,7 @@ jest.mock('react-intersection-observer', () => {
 
 const mockUseInView = useInView as jest.MockedFunction<typeof useInView>;
 
-describe('<EndlessLoadingItem />', () => {
+describe('<EndlessScrollingItem />', () => {
   const props: EndlessLoadingItemProps = {
     onLoad: jest.fn(),
     enabled: true,
@@ -35,7 +35,7 @@ describe('<EndlessLoadingItem />', () => {
   });
 
   it('renders', () => {
-    render(<EndlessLoadingItem {...props}>{children}</EndlessLoadingItem>);
+    render(<EndlessScrollingItem {...props}>{children}</EndlessScrollingItem>);
 
     expect(screen.getByText(text)).toBeInTheDocument();
   });
@@ -53,9 +53,9 @@ describe('<EndlessLoadingItem />', () => {
 
     it('triggers onLoad, when element in view and enabled', () => {
       render(
-        <EndlessLoadingItem {...props} onLoad={onLoad}>
+        <EndlessScrollingItem {...props} onLoad={onLoad}>
           {children}
-        </EndlessLoadingItem>,
+        </EndlessScrollingItem>,
       );
 
       expect(onLoad).toHaveBeenCalledTimes(1);
@@ -67,9 +67,9 @@ describe('<EndlessLoadingItem />', () => {
       } as InViewHookResponse);
 
       render(
-        <EndlessLoadingItem {...props} onLoad={onLoad}>
+        <EndlessScrollingItem {...props} onLoad={onLoad}>
           {children}
-        </EndlessLoadingItem>,
+        </EndlessScrollingItem>,
       );
 
       expect(onLoad).toHaveBeenCalledTimes(0);
@@ -77,9 +77,9 @@ describe('<EndlessLoadingItem />', () => {
 
     it('does not trigger onLoad, when element in view and disabled', () => {
       render(
-        <EndlessLoadingItem {...props} enabled={false} onLoad={onLoad}>
+        <EndlessScrollingItem {...props} enabled={false} onLoad={onLoad}>
           {children}
-        </EndlessLoadingItem>,
+        </EndlessScrollingItem>,
       );
 
       expect(onLoad).toHaveBeenCalledTimes(0);

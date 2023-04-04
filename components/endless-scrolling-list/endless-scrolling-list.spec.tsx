@@ -6,7 +6,7 @@ import * as useEndlessScrollingHook from 'hooks/useEndlessScrolling';
 import type { ImageLoader } from 'next/image';
 import * as AppContext from 'contexts/app-context';
 import { mockPosts } from 'constants/mock';
-import { EndlessLoadingListProps } from 'components/endless-loading-list/endless-loading-list';
+import { EndlessLoadingListProps } from 'components/endless-scrolling-list/endless-scrolling-list';
 import {
   paginatedPostDocumentQuery,
   paginatedPostOrderQuery,
@@ -35,7 +35,7 @@ jest.mock('react-intersection-observer', () => {
   };
 });
 
-describe('<EndlessLoadingList/>', () => {
+describe('<EndlessScrollingList />', () => {
   const useAppContextSpy = jest.spyOn(AppContext, 'useAppContext');
   const setData = jest.fn();
 
