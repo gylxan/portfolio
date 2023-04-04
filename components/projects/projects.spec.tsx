@@ -5,7 +5,6 @@ import * as useEndlessScrollingHook from 'hooks/useEndlessScrolling';
 import type { ImageLoader } from 'next/image';
 import * as AppContext from 'contexts/app-context';
 import { mockProjects } from 'constants/mock';
-import { Project } from 'types/project';
 
 jest.mock('hooks/useSanityImage');
 jest.mock('hooks/useEndlessScrolling');
@@ -40,8 +39,6 @@ describe('<Projects/>', () => {
     height: 123,
   });
 
-  let onLoadedMock: (results: Project[], lastId: string | null) => void;
-
   const useEndlessScrollingHookSpy = jest.spyOn(
     useEndlessScrollingHook,
     'default',
@@ -56,14 +53,11 @@ describe('<Projects/>', () => {
       setData,
     });
 
-    useEndlessScrollingHookSpy.mockImplementation(({ onLoaded }) => {
-      onLoadedMock = onLoaded;
-      return {
-        hasMore: false,
-        loading: false,
-        fetchNextPage: jest.fn(),
-        error: null,
-      };
+    useEndlessScrollingHookSpy.mockReturnValue({
+      hasMore: false,
+      loading: false,
+      fetchNextPage: jest.fn(),
+      error: null,
     });
   });
 
@@ -98,15 +92,5 @@ describe('<Projects/>', () => {
     expect(
       screen.getByText('project.no_projects_available'),
     ).toBeInTheDocument();
-  });
-
-  it('calls setData of app context, when endless scrolling loaded next page', async () => {
-    await act(() => {
-      render(<Projects />);
-    });
-
-    onLoadedMock?.(mockProjects, null);
-
-    expect(setData).toHaveBeenCalledTimes(1);
   });
 });

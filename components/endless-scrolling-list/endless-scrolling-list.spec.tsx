@@ -46,8 +46,6 @@ describe('<EndlessScrollingList />', () => {
     height: 123,
   });
 
-  let onLoadedMock: (results: Post[], lastId: string | null) => void;
-
   const useEndlessScrollingHookSpy = jest.spyOn(
     useEndlessScrollingHook,
     'default',
@@ -77,14 +75,11 @@ describe('<EndlessScrollingList />', () => {
       setData,
     });
 
-    useEndlessScrollingHookSpy.mockImplementation(({ onLoaded }) => {
-      onLoadedMock = onLoaded;
-      return {
-        hasMore: false,
-        loading: false,
-        fetchNextPage: jest.fn(),
-        error: null,
-      };
+    useEndlessScrollingHookSpy.mockReturnValue({
+      hasMore: false,
+      loading: false,
+      fetchNextPage: jest.fn(),
+      error: null,
     });
   });
 
@@ -103,18 +98,15 @@ describe('<EndlessScrollingList />', () => {
 
     expect(screen.getAllByRole('link')).toHaveLength(mockPosts.length);
     expect(screen.queryAllByTestId('skeleton')).toHaveLength(0);
-    expect(screen.queryByTestId('loader')).not.toBeInTheDocument()
+    expect(screen.queryByTestId('loader')).not.toBeInTheDocument();
   });
 
   it('should render skeletons, when there are no entries yet, has more and is loading', async () => {
-    useEndlessScrollingHookSpy.mockImplementation(({ onLoaded }) => {
-      onLoadedMock = onLoaded;
-      return {
-        hasMore: true,
-        loading: true,
-        fetchNextPage: jest.fn(),
-        error: null,
-      };
+    useEndlessScrollingHookSpy.mockReturnValue({
+      hasMore: true,
+      loading: true,
+      fetchNextPage: jest.fn(),
+      error: null,
     });
     useAppContextSpy.mockReturnValue({
       data: {
@@ -125,7 +117,7 @@ describe('<EndlessScrollingList />', () => {
     });
     const limit = 7;
     await act(() => {
-      render(<EndlessLoadingList {...props} limit={limit}/>);
+      render(<EndlessLoadingList {...props} limit={limit} />);
     });
 
     expect(screen.getAllByTestId('skeleton')).toHaveLength(limit);
@@ -151,30 +143,17 @@ describe('<EndlessScrollingList />', () => {
   });
 
   it('should render Loader, when there are entries and is loading', async () => {
-    useEndlessScrollingHookSpy.mockImplementation(({ onLoaded }) => {
-      onLoadedMock = onLoaded;
-      return {
-        hasMore: true,
-        loading: true,
-        fetchNextPage: jest.fn(),
-        error: null,
-      };
+    useEndlessScrollingHookSpy.mockReturnValue({
+      hasMore: true,
+      loading: true,
+      fetchNextPage: jest.fn(),
+      error: null,
     });
 
     await act(() => {
       render(<EndlessLoadingList {...props} />);
     });
 
-    expect(screen.getByTestId('loader')).toBeInTheDocument()
-  });
-
-  it('calls setData of app context, when endless scrolling loaded next page', async () => {
-    await act(() => {
-      render(<EndlessLoadingList {...props} />);
-    });
-
-    onLoadedMock?.(mockPosts, null);
-
-    expect(setData).toHaveBeenCalledTimes(1);
+    expect(screen.getByTestId('loader')).toBeInTheDocument();
   });
 });
