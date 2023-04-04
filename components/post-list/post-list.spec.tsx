@@ -1,4 +1,3 @@
-import type { Post } from 'types/post';
 import { act, render, screen } from '@testing-library/react';
 import { PostList } from 'components';
 import * as useSanityImageHook from 'hooks/useSanityImage';
@@ -40,8 +39,6 @@ describe('<PostList/>', () => {
     height: 123,
   });
 
-  let onLoadedMock: (results: Post[], lastId: string | null) => void;
-
   const useEndlessScrollingHookSpy = jest.spyOn(
     useEndlessScrollingHook,
     'default',
@@ -56,14 +53,11 @@ describe('<PostList/>', () => {
       setData,
     });
 
-    useEndlessScrollingHookSpy.mockImplementation(({ onLoaded }) => {
-      onLoadedMock = onLoaded;
-      return {
-        hasMore: false,
-        loading: false,
-        fetchNextPage: jest.fn(),
-        error: null,
-      };
+    useEndlessScrollingHookSpy.mockReturnValue({
+      hasMore: false,
+      loading: false,
+      fetchNextPage: jest.fn(),
+      error: null,
     });
   });
 
@@ -96,15 +90,5 @@ describe('<PostList/>', () => {
     });
 
     expect(screen.getByText('post.no_posts_available')).toBeInTheDocument();
-  });
-
-  it('calls setData of app context, when endless scrolling loaded next page', async () => {
-    await act(() => {
-      render(<PostList />);
-    });
-
-    onLoadedMock?.(mockPosts, null);
-
-    expect(setData).toHaveBeenCalledTimes(1);
   });
 });

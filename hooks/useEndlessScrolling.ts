@@ -2,10 +2,11 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import client from 'utils/sanity';
 import { groq } from 'next-sanity';
+import { AppState, useAppContext } from 'contexts/app-context';
 
 export enum IdCheckOperator {
   LowerThen = '<',
-  GreaterThen = '>',
+  // GreaterThen = '>',
 }
 export interface UseEndlessScrollingProps<T> {
   sortField: string;
@@ -15,7 +16,7 @@ export interface UseEndlessScrollingProps<T> {
   orderQuery?: string;
   fields?: string;
   checkOperator?: IdCheckOperator;
-  onLoaded: (results: T[], lastId: string | null) => void;
+  contextKey: keyof AppState;
 }
 const useEndlessScrolling = <T extends object>({
   limit = 10,
@@ -25,7 +26,7 @@ const useEndlessScrolling = <T extends object>({
   orderQuery,
   fields = '...',
   checkOperator = IdCheckOperator.LowerThen,
-  onLoaded,
+  contextKey,
 }: UseEndlessScrollingProps<T>) => {
   const isInitialLoaded = useRef(false);
   const [state, setState] = useState<{
@@ -37,6 +38,21 @@ const useEndlessScrolling = <T extends object>({
   });
   const { locale } = useRouter();
   const { error, loading } = state;
+  const previousLocale = useRef(locale);
+  const { setData } = useAppContext();
+
+  const handleOnLoaded = useCallback(
+    (results: T[], lastId: string | null) =>
+      setData((prevData) => ({
+        ...prevData,
+        [contextKey]: {
+          ...prevData[contextKey],
+          lastId,
+          entries: [...prevData[contextKey].entries, ...results],
+        },
+      })),
+    [setData, contextKey],
+  );
 
   const fetchNextPage = useCallback(async () => {
     if (lastId === null) {
@@ -60,7 +76,7 @@ const useEndlessScrolling = <T extends object>({
         },
       );
 
-      onLoaded(
+      handleOnLoaded(
         results,
         results.length === limit
           ? results[results.length - 1]?.[sortField] ?? null
@@ -78,25 +94,22 @@ const useEndlessScrolling = <T extends object>({
     } finally {
       setState((prevState) => ({ ...prevState, loading: false }));
     }
-  }, [
-    documentQuery,
-    fields,
-    sortField,
-    limit,
-    locale,
-    onLoaded,
-    orderQuery,
-    lastId,
-    checkOperator,
-  ]);
+  }, [lastId, documentQuery, sortField, checkOperator, orderQuery, fields, limit, locale, handleOnLoaded]);
 
   useEffect(() => {
-    if (isInitialLoaded.current) {
-      return;
+    // When there was no initial load yet, or we change the language and lastId has been reset, load new page
+    if (
+      !isInitialLoaded.current ||
+      (previousLocale.current !== locale && lastId === '')
+    ) {
+      fetchNextPage();
     }
-    fetchNextPage();
     isInitialLoaded.current = true;
-  }, [fetchNextPage]);
+  }, [fetchNextPage, lastId, loading, locale]);
+
+  useEffect(() => {
+    previousLocale.current = locale;
+  }, [locale]);
 
   return {
     loading,

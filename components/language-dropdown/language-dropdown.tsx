@@ -5,14 +5,17 @@ import { setCookie } from 'utils/cookie';
 import React from 'react';
 import { DropdownMenu, DropdownMenuItem } from 'components';
 import { useTranslations } from 'use-intl';
+import { initialState, useAppContext } from 'contexts/app-context';
 
 const LanguageDropdown = () => {
   const { locale, asPath, locales } = useRouter();
   const t = useTranslations('language');
   const availableLanguages = locales ?? [];
+  const { setData } = useAppContext();
 
   function handleLanguageSelect(locale: string) {
     setCookie('NEXT_LOCALE', locale, 31536000);
+    setData(initialState);
   }
 
   function getTitle(code: string) {

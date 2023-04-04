@@ -1,5 +1,5 @@
-import React, { useCallback } from 'react';
-import { AppState, useAppContext } from 'contexts/app-context';
+import React from 'react';
+import { useAppContext } from 'contexts/app-context';
 import useEndlessScrolling, {
   UseEndlessScrollingProps,
 } from 'hooks/useEndlessScrolling';
@@ -7,15 +7,14 @@ import { EndlessLoadingItem, Loader } from 'components';
 import { useTranslations } from 'use-intl';
 
 export interface EndlessLoadingListProps<T>
-  extends Omit<UseEndlessScrollingProps<T>, 'onLoaded' | 'lastId'> {
-  contextKey: keyof AppState;
+  extends Omit<UseEndlessScrollingProps<T>, 'lastId'> {
   idField: keyof T;
   noEntryAvailableTranslationKey: string;
   className?: string;
   component: React.FC<T>;
   skeleton: React.FC;
 }
-const EndlessLoadingList = <T extends object>({
+const EndlessScrollingList = <T extends object>({
   contextKey,
   idField,
   noEntryAvailableTranslationKey,
@@ -25,27 +24,14 @@ const EndlessLoadingList = <T extends object>({
   limit = 10,
   ...endlessScrollingProps
 }: EndlessLoadingListProps<T>) => {
-  const { data, setData } = useAppContext();
+  const { data } = useAppContext();
   const {
     [contextKey]: { entries, lastId },
   } = data;
 
-  const handleOnLoaded = useCallback(
-    (results: T[], lastId: string | null) =>
-      setData((prevData) => ({
-        ...prevData,
-        [contextKey]: {
-          ...prevData[contextKey],
-          lastId,
-          entries: [...prevData[contextKey].entries, ...results],
-        },
-      })),
-    [setData, contextKey],
-  );
-
   const { hasMore, fetchNextPage, loading } = useEndlessScrolling<T>({
     ...endlessScrollingProps,
-    onLoaded: handleOnLoaded,
+    contextKey,
     lastId,
   });
 
@@ -74,4 +60,4 @@ const EndlessLoadingList = <T extends object>({
   );
 };
 
-export default EndlessLoadingList;
+export default EndlessScrollingList;

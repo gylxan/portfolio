@@ -2,6 +2,8 @@ import { NextRouter, useRouter } from 'next/router';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { LanguageDropdown } from 'components';
 import * as cookieUtils from 'utils/cookie';
+import * as AppContext from 'contexts/app-context';
+import { initialState } from 'contexts/app-context';
 
 const mockUseRouter = useRouter as jest.MockedFunction<typeof useRouter>;
 jest.mock('next/router', () => {
@@ -19,6 +21,14 @@ jest.mock('utils/cookie', () => {
   };
 });
 
+jest.mock('contexts/app-context', () => {
+  const originalAppContext = jest.requireActual('contexts/app-context');
+  return {
+    ...originalAppContext,
+    useAppContext: jest.fn(),
+  };
+});
+
 describe('<LanguageDropdown />', () => {
   const router = {
     locale: 'de',
@@ -27,10 +37,16 @@ describe('<LanguageDropdown />', () => {
   } as NextRouter;
 
   const setCookieSpy = jest.spyOn(cookieUtils, 'setCookie');
+  const useAppContextSpy = jest.spyOn(AppContext, 'useAppContext');
+  const setAppContextDataMock = jest.fn();
 
   beforeEach(() => {
     mockUseRouter.mockReturnValue(router);
     setCookieSpy.mockClear();
+    useAppContextSpy.mockReturnValue({
+      data: initialState,
+      setData: setAppContextDataMock,
+    });
   });
 
   afterEach(() => {
@@ -77,17 +93,16 @@ describe('<LanguageDropdown />', () => {
     } as unknown as NextRouter);
     render(<LanguageDropdown />);
 
-    expect(screen.getByRole('button').textContent).toBe(
-        'language.',
-    );
+    expect(screen.getByRole('button').textContent).toBe('language.');
   });
 
-  it('sets the cookie for the language, when clicked on a link', () => {
+  it('sets the cookie for the language and context data to initial, when clicked on a link', () => {
     render(<LanguageDropdown />);
 
     fireEvent.click(screen.getByRole('button'));
     fireEvent.click(screen.getAllByRole('option')[0]);
 
     expect(setCookieSpy).toHaveBeenCalledWith('NEXT_LOCALE', 'en', 31536000);
+    expect(setAppContextDataMock).toHaveBeenCalledWith(initialState);
   });
 });
