@@ -116,7 +116,7 @@ const Layout = ({
         ]}
       />
 
-      <main>
+      <main className="overflow-auto">
         <div
           {...props}
           className={clsx(

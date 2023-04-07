@@ -14,7 +14,7 @@ export interface HeaderProps {
 const Header = ({ logo, menuLinks, resume }: HeaderProps) => {
   const imageSrc = useSanityImage(logo)?.src;
   return (
-    <header className="flex h-24 w-full grow items-center justify-between gap-4 px-4 text-center md:px-8">
+    <header className="flex h-24 w-full grow items-center justify-between gap-4 px-4 text-center md:px-8 bg-background sticky top-0 z-[1]">
       <Link
         href="/"
         data-testid="logo"
