@@ -4,6 +4,8 @@ import useSanityImage from 'hooks/useSanityImage';
 import type { SanityAltImage } from 'types/image';
 import type { MenuLink } from 'types/siteConfig';
 import type { SanityFile } from 'types/file';
+import { useEffect, useState } from 'react';
+import clsx from 'clsx';
 
 export interface HeaderProps {
   menuLinks: MenuLink[];
@@ -13,8 +15,23 @@ export interface HeaderProps {
 
 const Header = ({ logo, menuLinks, resume }: HeaderProps) => {
   const imageSrc = useSanityImage(logo)?.src;
+  const [shadowActive, setShadowActive] = useState(false);
+
+  function activateShadow() {
+    setShadowActive(window.scrollY > 0);
+  }
+  useEffect(() => {
+    window.addEventListener('scroll', activateShadow);
+    return () => window.removeEventListener('scroll', activateShadow);
+  }, []);
+
   return (
-    <header className="flex h-24 w-full grow items-center justify-between gap-4 px-4 text-center md:px-8">
+    <header
+      className={clsx([
+        'sticky top-0 z-[1] flex h-24 w-full grow items-center justify-between gap-4 bg-background px-4 text-center md:px-8 transition-shadow duration-300',
+        shadowActive && 'shadow-lg',
+      ])}
+    >
       <Link
         href="/"
         data-testid="logo"

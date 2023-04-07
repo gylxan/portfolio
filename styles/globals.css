@@ -4,8 +4,8 @@
 
 :root {
   --white: #fff;
-  --dark-blue: #11182C;
-  --red: #FF8080;
+  --dark-blue: #11182c;
+  --red: #ff8080;
   --red-ghost: rgba(255, 128, 128, 0.1);
   --grey: rgb(171, 175, 185);
   --dark-grey: rgb(103, 103, 110);
@@ -52,23 +52,6 @@ a {
   @apply min-h-screen bg-background text-primary;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  grid-template-areas:
-    'header'
-    'main'
-    'footer';
-}
-
-#__next > header {
-  grid-area: header;
-}
-
-#__next > main {
-  grid-area: main;
-  overflow: auto;
-}
-
-#__next > footer {
-  grid-area: footer;
 }
 
 h1,
@@ -78,7 +61,7 @@ h3 {
 }
 
 ::-webkit-scrollbar {
-   width: 12px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-thumb {
