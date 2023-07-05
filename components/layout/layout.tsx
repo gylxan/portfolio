@@ -73,11 +73,11 @@ const Layout = ({
                   },
                 ]
               : []),
-            ...(!ogImage && globalOgImage
+            ...(globalOgImage
               ? [
                   {
                     url: globalOgImage,
-                    alt: 'Open Graph Image Alt',
+                    alt: 'Open Graph image alt',
                     width: 800,
                     height: 600,
                   },
