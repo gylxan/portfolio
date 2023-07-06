@@ -72,3 +72,9 @@ h3 {
 ::-webkit-scrollbar-track {
   @apply bg-background;
 }
+
+@layer components {
+  .button {
+    @apply font-mono text-sm rounded border-2 p-2 hover:no-underline text-secondary hover:bg-secondary-ghost hover:text-secondary focus:bg-secondary-ghost transition-colors
+  }
+}
