@@ -1,4 +1,4 @@
-import { getServerSideSitemap } from 'next-sitemap';
+import { getServerSideSitemapLegacy } from 'next-sitemap';
 import { GetServerSideProps } from 'next';
 import client from 'utils/sanity';
 import { Post as IPost } from 'types/post';
@@ -8,7 +8,7 @@ import { getLanguageUrlPrefix } from 'utils/url';
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const posts = await client.fetch<IPost[] | null>(pathPostQuery);
 
-  return getServerSideSitemap(
+  return getServerSideSitemapLegacy(
     ctx,
     posts?.map(({ slug, language }) => ({
       loc: `${process.env.NEXT_PUBLIC_URL}${getLanguageUrlPrefix(
