@@ -21,7 +21,7 @@ export const postListFields = `
   }
 `
 export const postPaginatedLimit = 6;
-export const paginatedPostDocumentQuery = '_type == "post" && __i18n_lang == $lang';
+export const paginatedPostDocumentQuery = '_type == "post" && language == $lang';
 export const paginatedPostOrderQuery = 'order(_createdAt desc)';
 
 export const singlePostQuery = groq`
@@ -55,14 +55,14 @@ export const singlePostQuery = groq`
 export const pathPostQuery = groq`
 *[_type == "post" && enabled == true] {
   slug,
-  "language": __i18n_lang
+  language
 }
 `;
 
 export const pathPostLimitedQuery = groq`
 *[_type == "post" && enabled == true] | order(_createdAt desc)[0...$limit] {
   slug,
-  "language": __i18n_lang
+  language
 }
 `;
 export const projectPaginatedLimit = 6;
@@ -116,12 +116,12 @@ export const configQuery = groq`
 export const pathPageQuery = groq`
 *[_type == "page" && enabled == true] {
   slug,
-  "language": __i18n_lang
+  language
 }
 `;
 
 export const singlePageQuery = groq`
-*[_type == "page" && slug.current == $slug && __i18n_lang == $lang][0] {
+*[_type == "page" && slug.current == $slug && language == $lang][0] {
   ...,
   "content": content[]{
     ...,

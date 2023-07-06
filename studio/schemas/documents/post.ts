@@ -1,14 +1,13 @@
 import richtextEditor from '../objects/richtextEditor';
-import { defineType, Rule, Slug } from 'sanity';
-import { getLanguageEnableStates, withActivatable } from '../../utils/schema';
-import { getEnabledLanguagesString } from '../../utils/i18n';
+import { defineType, Rule } from 'sanity';
+import { withActivatable } from '../../utils/schema';
+import { languageField } from '../../config/i18n';
 
 export default defineType(
   withActivatable({
     name: 'post',
     type: 'document',
     title: 'Post',
-    i18n: true,
     fields: [
       {
         name: 'title',
@@ -56,31 +55,32 @@ export default defineType(
         ],
       },
       { ...richtextEditor },
+      { ...languageField },
     ],
     preview: {
       select: {
         title: 'title',
         enabled: 'enabled',
         media: 'mainImage',
-        ...getLanguageEnableStates(),
+        language: 'language',
       },
       prepare: ({
         title,
         enabled,
         media,
-        ...i18nRefs
+        language,
       }: {
         title: string;
         media: any;
         enabled: boolean;
-        lang: string;
-        [langCode: string]: string | boolean | Slug;
+        language: string;
       }) => {
-        const languageString = getEnabledLanguagesString(enabled, i18nRefs);
         return {
           title,
           media,
-          subtitle: languageString === '' ? `Enabled: ✖` : languageString,
+          subtitle: `${language.toUpperCase()}, Enabled: ${
+            enabled ? '✔' : '✖'
+          }`,
         };
       },
     },

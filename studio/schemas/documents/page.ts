@@ -6,8 +6,8 @@ import {
 } from 'sanity';
 import { pageContentTypes } from '../../constants/page';
 import { i18nConfig } from '../../config/i18n';
-import { getLanguageEnableStates, withActivatable } from '../../utils/schema';
-import { getEnabledLanguagesString } from '../../utils/i18n';
+import { withActivatable } from '../../utils/schema';
+import { languageField } from '../../config/i18n';
 
 const isRootUrl = (url: string) =>
   url === '/' || i18nConfig.languages.some((lang) => `/${lang.id}` === url);
@@ -17,7 +17,6 @@ export default defineType(
     name: 'page',
     type: 'document',
     title: 'Page',
-    i18n: true,
     fields: [
       {
         name: 'slug',
@@ -44,15 +43,6 @@ export default defineType(
         readOnly: ({ document }: ConditionalPropertyCallbackContext) =>
           isRootUrl((document?.slug as Slug)?.current ?? ''),
       },
-
-      // {
-      //   name: 'enabled',
-      //   type: 'boolean',
-      //   title: 'Enabled',
-      //   description:
-      //     "Whether the page is enabled or not. Disabled pages won't be pre-build and are shown as 404 pages",
-      //   initialValue: true,
-      // },
       {
         name: 'ogDescription',
         type: 'string',
@@ -62,10 +52,11 @@ export default defineType(
       },
       {
         name: 'fullHeight',
-        type: "boolean",
-        title: "Use full height for content",
+        type: 'boolean',
+        title: 'Use full height for content',
         initialValue: false,
-        description: "Use full height for content, to position it in the center. Useful for small content"
+        description:
+          'Use full height for content, to position it in the center. Useful for small content',
       },
       {
         name: 'content',
@@ -73,31 +64,31 @@ export default defineType(
         title: 'Content',
         of: [...pageContentTypes],
       },
+      { ...languageField },
     ],
     preview: {
       select: {
         title: 'title',
         slug: 'slug',
         enabled: 'enabled',
-        ...getLanguageEnableStates(),
+        language: 'language',
       },
       prepare: ({
         title,
         slug,
         enabled,
-        ...i18nRefs
+        language,
       }: {
         title: string;
         slug: Slug;
         enabled: boolean;
-        lang: string;
-        [langCode: string]: string | boolean | Slug;
+        language: string;
       }) => {
         return {
           title: `${
             title ? title : isRootUrl(slug?.current ?? '') ? 'Home' : 'Untitled'
           } (${slug?.current})`,
-          subtitle: getEnabledLanguagesString(enabled, i18nRefs),
+          subtitle: `${language.toUpperCase()}, Enabled: ${enabled ? '✔' : '✖'}`,
         };
       },
     },
