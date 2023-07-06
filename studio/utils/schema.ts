@@ -1,8 +1,6 @@
 import { ListItemBuilder, StructureBuilder } from 'sanity/desk';
 import { i18nConfig } from '../config/i18n';
 import { documentTypeIcons } from '../constants/sanity';
-import { SchemaType } from 'sanity';
-import { getLanguagesWithoutBase } from './i18n';
 
 export const getLocalizedObject = (fieldType: string, fieldOptions?: any) => {
   return {
@@ -44,15 +42,6 @@ export const withActivatable = (schemaDefinition) => ({
   ],
 });
 
-export const getLanguageEnableStates = () =>
-  getLanguagesWithoutBase().reduce(
-    (accu, { id }, index) => ({
-      ...accu,
-      [id]: `__i18n_refs.${index}.enabled`,
-    }),
-    {},
-  );
-
 export const applyIconOnListItemBuilder = (element: ListItemBuilder) => {
   const elementId = element.getId() || 'default';
   if (documentTypeIcons[elementId]) {
@@ -65,22 +54,23 @@ export const filterChildrenForBaseLanguage = (
   S: StructureBuilder,
   element: ListItemBuilder,
 ) => {
-  if (
-    typeof element.getSchemaType() !== 'string' &&
-    element.getSchemaType()?.i18n
-  ) {
-    return element.child(
-      S.documentList()
-        .title(element.getTitle() as string)
-        .schemaType(element.getSchemaType() as string | SchemaType)
-        .filter(
-          `_type == "${
-            element.getSchemaType()?.name
-          }" && __i18n_lang == $baseLanguage`,
-        )
-        .params({ baseLanguage: i18nConfig.base }),
-    );
-  }
+  // if (
+  //   typeof element.getSchemaType() !== 'string' &&
+  //     i18nDocuments.includes(element.getSchemaType()?.name)
+  // ) {
+  //   return element.child(
+  //     S.documentList()
+  //       .title(element.getTitle() as string)
+  //       .schemaType(element.getSchemaType() as string | SchemaType)
+  //       .filter(
+  //         `_type == "${
+  //           element.getSchemaType()?.name
+  //         }" && language == $language`,
+  //       )
+  //       .params({ language: i18nConfig.base }),
+  //   );
+  //   return element
+  // }
   return element;
 };
 
