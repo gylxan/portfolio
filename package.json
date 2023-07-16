@@ -27,7 +27,7 @@
     "@portabletext/react": "^3.0.0",
     "@sanity/image-url": "^1.0.1",
     "@vercel/analytics": "^1.0.0",
-    "clsx": "^1.2.1",
+    "clsx": "^2.0.0",
     "html-react-parser": "^4.0.0",
     "next": "^13.2.4",
     "next-intl": "^2.11.0",
