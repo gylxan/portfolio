@@ -2,6 +2,7 @@
 
 My portfolio website with Next.js, Tailwind CSS and [Sanity](https://sanity.io/) as CMS.
 
+Test
 ![Tests](https://github.com/gylxan/portfolio/actions/workflows/main.yml/badge.svg)
 
 # Quick start
