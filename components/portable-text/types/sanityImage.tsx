@@ -8,7 +8,7 @@ export type ImageProps = PortableTextTypeComponentProps<SanityAltImage>;
 
 const SanityImage = ({ value }: ImageProps) => {
   const imageProps = useSanityImage(value);
-  if (!imageProps) {
+  if (!imageProps || !imageProps.src) {
     return null;
   }
 
