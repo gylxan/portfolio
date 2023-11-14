@@ -9,6 +9,7 @@ import { Analytics } from '@vercel/analytics/react';
 import { NextIntlClientProvider } from 'next-intl';
 import type { SiteConfig } from 'types/siteConfig';
 import { AppProvider } from 'contexts/app-context';
+import { useRouter } from 'next/router';
 
 config.autoAddCss = false;
 
@@ -18,8 +19,9 @@ interface AppProps extends IAppProps {
 
 export default function App({ Component, pageProps }: AppProps) {
   const { siteConfig } = pageProps;
+  const { locale } = useRouter();
   return (
-    <NextIntlClientProvider messages={siteConfig?.translations}>
+    <NextIntlClientProvider messages={siteConfig?.translations} locale={locale}>
       <AppProvider>
         <DefaultSeo {...nextSeoConfig} />
         <Component {...pageProps} />
