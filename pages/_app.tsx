@@ -6,9 +6,10 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import nextSeoConfig from 'constants/seo';
 import { DefaultSeo } from 'next-seo';
 import { Analytics } from '@vercel/analytics/react';
-import { NextIntlProvider } from 'next-intl';
+import { NextIntlClientProvider } from 'next-intl';
 import type { SiteConfig } from 'types/siteConfig';
 import { AppProvider } from 'contexts/app-context';
+import { useRouter } from 'next/router';
 
 config.autoAddCss = false;
 
@@ -18,13 +19,14 @@ interface AppProps extends IAppProps {
 
 export default function App({ Component, pageProps }: AppProps) {
   const { siteConfig } = pageProps;
+  const { locale } = useRouter();
   return (
-    <NextIntlProvider messages={siteConfig?.translations}>
+    <NextIntlClientProvider messages={siteConfig?.translations} locale={locale}>
       <AppProvider>
         <DefaultSeo {...nextSeoConfig} />
         <Component {...pageProps} />
         <Analytics />
       </AppProvider>
-    </NextIntlProvider>
+    </NextIntlClientProvider>
   );
 }
