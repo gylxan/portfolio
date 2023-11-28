@@ -29,7 +29,7 @@ const LanguageDropdown = () => {
   return (
     <DropdownMenu
       label={
-        <div className="flex gap-1">
+        <div className="flex gap-1 items-center">
           <FontAwesomeIcon icon={faGlobe} size="lg" />
           {getTitle(locale ?? '')}
         </div>
