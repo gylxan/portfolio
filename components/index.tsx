@@ -1,5 +1,6 @@
 export { default as Badge } from 'components/badge/badge';
 export { default as Button } from 'components/button/button';
+export { ColorModeButton } from 'components/color-mode-button/color-mode-button';
 export { default as DocumentCreator } from 'components/document-creator/document-creator';
 export { default as DropdownMenu } from 'components/dropdown-menu/dropdown-menu';
 export { default as DropdownMenuItem } from 'components/dropdown-menu/dropdown-menu-item/dropdown-menu-item';

@@ -63,7 +63,7 @@ describe('<LanguageDropdown />', () => {
     fireEvent.click(screen.getByRole('button'));
     expect(screen.getByRole('button')).toBeInTheDocument();
     expect(screen.getByRole('button').textContent).toBe(
-      `language.${router.locale}`,
+      router.locale?.toUpperCase(),
     );
     expect(screen.getAllByRole('option')).toHaveLength(
       router.locales?.length ?? 0,
@@ -93,7 +93,7 @@ describe('<LanguageDropdown />', () => {
     } as unknown as NextRouter);
     render(<LanguageDropdown />);
 
-    expect(screen.getByRole('button').textContent).toBe('language.');
+    expect(screen.getByRole('button').textContent).toBe('');
   });
 
   it('sets the cookie for the language and context data to initial, when clicked on a link', () => {

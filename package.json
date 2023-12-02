@@ -36,11 +36,11 @@
     "next-sanity-image": "^6.0.0",
     "next-seo": "^6.0.0",
     "next-sitemap": "^4.0.0",
+    "next-themes": "^0.2.1",
     "react": "^18.2.0",
     "react-dom": "18.2.0",
     "react-intersection-observer": "^9.4.1",
-    "react-transition-group": "^4.4.5",
-    "simple-icons": "^9.0.0"
+    "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
     "@testing-library/dom": "^9.0.0",

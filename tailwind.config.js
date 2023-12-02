@@ -1,4 +1,5 @@
 module.exports = {
+  darkMode: 'class',
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
@@ -117,6 +118,9 @@ module.exports = {
       darkblue: 'var(--dark-blue)',
       'secondary-ghost': 'var(--secondary-ghost)',
       skeleton: 'var(--dark-grey)',
+      darkMode: {
+        background: 'var(--white)',
+      },
     },
   },
   plugins: [],

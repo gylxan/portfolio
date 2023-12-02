@@ -10,6 +10,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import type { SiteConfig } from 'types/siteConfig';
 import { AppProvider } from 'contexts/app-context';
 import { useRouter } from 'next/router';
+import { ThemeProvider } from 'next-themes';
 
 config.autoAddCss = false;
 
@@ -22,11 +23,13 @@ export default function App({ Component, pageProps }: AppProps) {
   const { locale } = useRouter();
   return (
     <NextIntlClientProvider messages={siteConfig?.translations} locale={locale}>
-      <AppProvider>
-        <DefaultSeo {...nextSeoConfig} />
-        <Component {...pageProps} />
-        <Analytics />
-      </AppProvider>
+      <ThemeProvider attribute="class">
+        <AppProvider>
+          <DefaultSeo {...nextSeoConfig} />
+          <Component {...pageProps} />
+          <Analytics />
+        </AppProvider>
+      </ThemeProvider>
     </NextIntlClientProvider>
   );
 }
