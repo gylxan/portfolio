@@ -1,15 +1,11 @@
 import { useRouter } from 'next/router';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { setCookie } from 'utils/cookie';
 import React from 'react';
 import { DropdownMenu, DropdownMenuItem } from 'components';
-import { useTranslations } from 'use-intl';
 import { initialState, useAppContext } from 'contexts/app-context';
 
 const LanguageDropdown = () => {
   const { locale, asPath, locales } = useRouter();
-  const t = useTranslations('language');
   const availableLanguages = locales ?? [];
   const { setData } = useAppContext();
 
@@ -19,7 +15,7 @@ const LanguageDropdown = () => {
   }
 
   function getTitle(code: string) {
-    return t(code) || code.toUpperCase();
+    return code.toUpperCase();
   }
 
   if (!availableLanguages.length) {
@@ -29,8 +25,7 @@ const LanguageDropdown = () => {
   return (
     <DropdownMenu
       label={
-        <div className="flex gap-1 items-center">
-          <FontAwesomeIcon icon={faGlobe} size="lg" />
+        <div className="flex gap-2 items-center text-base md:text-sm">
           {getTitle(locale ?? '')}
         </div>
       }
@@ -45,6 +40,7 @@ const LanguageDropdown = () => {
           locale={code}
           lang={code}
           hrefLang={code}
+          className="text-base md:text-sm"
         >
           {getTitle(code)}
         </DropdownMenuItem>

@@ -45,8 +45,10 @@ const Header = ({ logo, menuLinks, resume }: HeaderProps) => {
       </Link>
 
       <div className="flex items-center gap-4 md:flex-row-reverse">
-        <LanguageDropdown />
-        <ColorModeButton />
+        <div className="flex items-center gap-2 md:gap-4">
+          <LanguageDropdown />
+          <ColorModeButton />
+        </div>
         <Menu links={menuLinks} resume={resume} />
       </div>
     </header>
