@@ -40,7 +40,7 @@
     "react-dom": "18.3.1",
     "react-intersection-observer": "^9.4.1",
     "react-transition-group": "^4.4.5",
-    "simple-icons": "^11.0.0"
+    "simple-icons": "^12.0.0"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.0.0",
