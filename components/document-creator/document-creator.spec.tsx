@@ -1,8 +1,22 @@
 import { render, screen } from '@testing-library/react';
 import DocumentCreator from 'components/document-creator/document-creator';
 import { mockSkills } from 'constants/mock';
+import useSanityImage from "../../hooks/useSanityImage";
+
+jest.mock('hooks/useSanityImage');
+
+const mockUseSanityImage = useSanityImage as jest.MockedFunction<
+    typeof useSanityImage
+>;
+
 
 describe('<DocumentCreator />', () => {
+  mockUseSanityImage.mockReturnValue({
+    src: 'https://domain.image.com',
+    loader: jest.fn(),
+    width: 123,
+    height: 123,
+  });
   const originalWarn = console.warn;
 
   afterEach(() => {

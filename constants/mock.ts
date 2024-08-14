@@ -1,8 +1,8 @@
-import type {SanitySiteConfig, SiteConfig, TranslationNamespace} from 'types/siteConfig';
+import type { SanitySiteConfig, TranslationNamespace } from 'types/siteConfig';
 import type { SanityAltImage, SanityImage } from 'types/image';
 import { Project } from 'types/project';
 import { SanityFile } from 'types/file';
-import {Post} from "types/post";
+import { Post } from 'types/post';
 
 export const mockSanityImage: SanityImage = {
   asset: {
@@ -35,32 +35,34 @@ export const mockSanityFile: SanityFile = {
   },
 };
 
-export const mockTranslationNamespaces: TranslationNamespace[]= [
+export const mockTranslationNamespaces: TranslationNamespace[] = [
   {
-    namespace: "blog",
-    translations: [{
-      key: "title",
-      value: "Title"
-    },
+    namespace: 'blog',
+    translations: [
       {
-        key: "other-translation",
-        value: "Other translation"
+        key: 'title',
+        value: 'Title',
       },
-    ]
+      {
+        key: 'other-translation',
+        value: 'Other translation',
+      },
+    ],
   },
   {
-    namespace: "welcome",
-    translations: [{
-      key: "image",
-      value: "This is an image"
-    },
+    namespace: 'welcome',
+    translations: [
       {
-        key: "other-translation",
-        value: "Other translation"
+        key: 'image',
+        value: 'This is an image',
       },
-    ]
-  }
-]
+      {
+        key: 'other-translation',
+        value: 'Other translation',
+      },
+    ],
+  },
+];
 
 export const mockSiteConfig: SanitySiteConfig = {
   description: 'Site description',
@@ -97,20 +99,44 @@ export const mockSiteConfig: SanitySiteConfig = {
     },
   ],
   resume: mockSanityFile,
-  translations: mockTranslationNamespaces
+  translations: mockTranslationNamespaces,
 };
 
 export const mockSkills = [
   {
     name: 'TypeScript',
     url: 'https://typescript.com',
+    image: {
+      asset: {
+        _ref: '123',
+        metadata: {
+          lqid: '12324',
+        },
+      },
+    },
   },
   {
     name: 'JavaScript',
+    image: {
+      asset: {
+        _ref: '123',
+        metadata: {
+          lqid: '12324',
+        },
+      },
+    },
   },
   {
     name: 'React',
     url: 'https://react.com',
+    image: {
+      asset: {
+        _ref: '123',
+        metadata: {
+          lqid: '12324',
+        },
+      },
+    },
   },
 ];
 
@@ -189,6 +215,3 @@ export const mockPosts: Post[] = [
     },
   },
 ];
-
-
-
