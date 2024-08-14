@@ -1,4 +1,7 @@
+import { SanityImage } from './image';
+
 export interface Skill {
-    name: string;
-    url?: string;
+  name: string;
+  url?: string;
+  image: SanityImage;
 }

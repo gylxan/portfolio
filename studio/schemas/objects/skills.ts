@@ -35,6 +35,13 @@ export default defineType({
               title: 'URL',
               description: 'URL to a description or page for the skill',
             },
+            {
+              name: 'image',
+              type: 'image',
+              title: 'Image',
+              description: 'Image used for the skill',
+              validation: (rule: Rule) => rule.required(),
+            },
           ],
         },
       ],
