@@ -19,7 +19,7 @@
     "sanity"
   ],
   "dependencies": {
-    "@sanity/code-input": "^4.0.0",
+    "@sanity/code-input": "^5.0.0",
     "@sanity/document-internationalization": "^3.0.0",
     "@sanity/language-filter": "^4.0.0",
     "@sanity/vision": "3.66.1",
