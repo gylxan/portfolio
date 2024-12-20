@@ -6,7 +6,7 @@
     "name": "Guido Lange",
     "url": "https://github.com/gylxan"
   },
-  "packageManager": "pnpm@9.14.2",
+  "packageManager": "pnpm@9.15.1",
   "scripts": {
     "dev": "next dev",
     "prebuild": "echo 'Building Sanity to public/studio' && pnpm run sanity:build && echo 'Done building Sanity'",
@@ -41,7 +41,7 @@
     "react-dom": "18.3.1",
     "react-intersection-observer": "^9.4.1",
     "react-transition-group": "^4.4.5",
-    "use-intl": "3.26.2"
+    "use-intl": "3.26.3"
   },
   "devDependencies": {
     "@portabletext/types": "^2.0.13",
