@@ -6,9 +6,10 @@
     "name": "Guido Lange",
     "url": "https://github.com/gylxan"
   },
+  "packageManager": "pnpm@9.14.2",
   "scripts": {
     "dev": "next dev",
-    "prebuild": "echo 'Building Sanity to public/studio' && npm run sanity:build && echo 'Done building Sanity'",
+    "prebuild": "echo 'Building Sanity to public/studio' && pnpm run sanity:build && echo 'Done building Sanity'",
     "build": "next build",
     "export": "next export",
     "postbuild": "next-sitemap",
@@ -16,8 +17,8 @@
     "lint": "next lint",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "sanity": "cd studio && npm run dev",
-    "sanity:build": "cd studio && npm i && npm run build -- ../public/studio -y"
+    "sanity": "cd studio && pnpm run dev",
+    "sanity:build": "cd studio && pnpm i && pnpm run build -- ../public/studio -y"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
@@ -39,12 +40,15 @@
     "react": "^18.2.0",
     "react-dom": "18.3.1",
     "react-intersection-observer": "^9.4.1",
-    "react-transition-group": "^4.4.5"
+    "react-transition-group": "^4.4.5",
+    "use-intl": "3.26.2"
   },
   "devDependencies": {
+    "@portabletext/types": "^2.0.13",
+    "@sanity/types": "^3.68.2",
     "@testing-library/dom": "^10.0.0",
     "@testing-library/jest-dom": "^6.0.0",
-    "@testing-library/react": "^14.0.0",
+    "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.4.3",
     "@types/jest": "^29.2.3",
     "@types/node": "^22.0.0",

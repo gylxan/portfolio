@@ -38,6 +38,7 @@ describe('<PortableText />', () => {
         {
           _key: 'f7210264b074',
           _type: 'link',
+          href: '/test',
         },
       ],
       style: 'normal',
@@ -79,8 +80,7 @@ describe('<PortableText />', () => {
     render(<PortableText value={value} />);
 
     expect(screen.getByRole('img')).toBeInTheDocument();
-    expect(document.querySelectorAll('p').length).toBe(3)
+    expect(document.querySelectorAll('p').length).toBe(3);
     expect(screen.getByRole('link')).toBeInTheDocument();
-
   });
 });
