@@ -4,21 +4,27 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
     - name: Install modules
-      run: npm install
+      run: pnpm install
     - name: Run linting
-      run: npm run lint
+      run: pnpm run lint
     - name: Run tests
-      run: npm test
+      run: pnpm test
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
       - name: Install modules
-        run: npm install
+        run: pnpm install
       - name: Run build
-        run: npx next build
+        run: pnpm build
         env:
           NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
           NEXT_PUBLIC_SANITY_API_VERSION: ${{ secrets.NEXT_PUBLIC_SANITY_API_VERSION }}
