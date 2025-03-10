@@ -6,7 +6,7 @@
     "name": "Guido Lange",
     "url": "https://github.com/gylxan"
   },
-  "packageManager": "pnpm@10.6.0",
+  "packageManager": "pnpm@10.6.2",
   "scripts": {
     "dev": "next dev",
     "prebuild": "echo 'Building Sanity to public/studio' && pnpm run sanity:build && echo 'Done building Sanity'",
