@@ -9,7 +9,7 @@
     "url": "https://github.com/gylxan"
   },
   "license": "UNLICENSED",
-  "packageManager": "pnpm@10.6.2",
+  "packageManager": "pnpm@10.6.3",
   "scripts": {
     "start": "sanity start",
     "dev": "sanity dev",
