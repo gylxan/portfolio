@@ -69,8 +69,8 @@ importers:
         specifier: ^4.4.5
         version: 4.4.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       use-intl:
-        specifier: 3.26.5
-        version: 3.26.5(react@18.3.1)
+        specifier: ^4.1.0
+        version: 4.1.0(react@18.3.1)
     devDependencies:
       '@eslint/eslintrc':
         specifier: ^3.2.0
@@ -7074,13 +7074,8 @@ packages:
     peerDependencies:
       react: '>=17.0.0'
 
-  use-intl@3.26.5:
-    resolution: {integrity: sha512-OdsJnC/znPvHCHLQH/duvQNXnP1w0hPfS+tkSi3mAbfjYBGh4JnyfdwkQBfIVf7t8gs9eSX/CntxUMvtKdG2MQ==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || >=19.0.0-rc <19.0.0 || ^19.0.0
-
-  use-intl@4.0.2:
-    resolution: {integrity: sha512-6RAP/5KJMRzLMLS25/BVh2u09cRK8S6HRGc1RnZvqR547qAKZCpjYylOqMPU9eNIirAiKoGmsoUPa7JrlaA/yg==}
+  use-intl@4.1.0:
+    resolution: {integrity: sha512-mQvDYFvoGn+bm/PWvlQOtluKCknsQ5a9F1Cj0hMfBjMBVTwnOqLPd6srhjvVdEQEQFVyHM1PfyifKqKYb11M9Q==}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0 || >=19.0.0-rc <19.0.0 || ^19.0.0
 
@@ -14218,7 +14213,7 @@ snapshots:
       negotiator: 1.0.0
       next: 15.3.1(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
-      use-intl: 4.0.2(react@18.3.1)
+      use-intl: 4.1.0(react@18.3.1)
     optionalDependencies:
       typescript: 5.8.3
 
@@ -16128,13 +16123,7 @@ snapshots:
     dependencies:
       react: 18.3.1
 
-  use-intl@3.26.5(react@18.3.1):
-    dependencies:
-      '@formatjs/fast-memoize': 2.2.5
-      intl-messageformat: 10.7.10
-      react: 18.3.1
-
-  use-intl@4.0.2(react@18.3.1):
+  use-intl@4.1.0(react@18.3.1):
     dependencies:
       '@formatjs/fast-memoize': 2.2.5
       '@schummar/icu-type-parser': 1.21.5
