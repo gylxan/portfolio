@@ -49,7 +49,7 @@ export const Tabs = ({ children, className, ...props }: TabsProps) => {
               key={child.props.title}
               className={clsx(
                 'whitespace-nowrap rounded-none border-0 border-b-2 px-8 py-2 text-left md:w-full md:border-l-2 md:border-b-0 md:px-4 md:py-4',
-                isActive ? 'border-l-secondary text-secondary' : 'text-primary',
+                isActive ? 'border-l-secondary text-secondary' : 'text-primary cursor-pointer',
               )}
               role="tab"
               aria-selected={isActive}

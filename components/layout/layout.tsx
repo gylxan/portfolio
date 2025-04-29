@@ -120,7 +120,7 @@ const Layout = ({
         <div
           {...props}
           className={clsx(
-            'container mx-auto max-w-screen-lg px-4 md:px-8',
+            'container mx-auto max-w-(--breakpoint-lg) px-4 md:px-8',
             fullHeight
               ? 'flex h-full flex-col justify-center'
               : 'mt-4 mb-6 md:mt-6',

@@ -28,7 +28,7 @@ const Header = ({ logo, menuLinks, resume }: HeaderProps) => {
   return (
     <header
       className={clsx([
-        'sticky top-0 z-[1] flex h-24 w-full grow items-center justify-between gap-4 bg-background px-4 text-center md:px-8 transition-shadow duration-300',
+        'sticky top-0 z-1 flex h-24 w-full grow items-center justify-between gap-4 bg-background px-4 text-center md:px-8 transition-shadow duration-300',
         shadowActive && 'shadow-lg',
       ])}
     >

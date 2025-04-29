@@ -1,10 +1,12 @@
+@reference "../../styles/globals.css";
+
 .menuButton {
-  @apply relative cursor-pointer w-[36px] h-[36px] rotate-0;
+  @apply relative cursor-pointer size-9 rotate-0;
   transition: 0.5s ease-in-out;
 }
 
 .lineBox {
-  @apply w-[36px] h-[20px];
+  @apply w-9 h-5;
   position: relative;
 }
 
