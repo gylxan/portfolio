@@ -1,3 +1,5 @@
+@reference "./globals.css";
+
 .title {
   @apply text-9xl font-extrabold animate-glitch;
   font-size: 96px;

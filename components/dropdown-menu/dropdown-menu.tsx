@@ -71,7 +71,7 @@ const DropdownMenu = ({
       {isMenuOpen && (
         <ul
           role="listbox"
-          className="absolute top-full left-0 z-[1] translate-y-2 rounded-md border-2 bg-background"
+          className="absolute top-full left-0 z-1 translate-y-2 rounded-md border-2 bg-background"
         >
           {Children.map(children || [], (child) => {
             return cloneElement(

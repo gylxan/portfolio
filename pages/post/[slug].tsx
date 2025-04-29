@@ -47,7 +47,7 @@ const Post = ({ siteConfig, post }: PostProps) => {
       publishedTime={_createdAt}
     >
       <Title>{title}</Title>
-      <div className="container mt-4 flex max-w-screen-lg flex-col items-center gap-4">
+      <div className="container mt-4 flex max-w-(--breakpoint-lg) flex-col items-center gap-4">
         <div className="flex gap-2">
           <time>{getFormattedPostDate(_createdAt, locale)}</time>·{' '}
           <span>
@@ -77,7 +77,7 @@ const Post = ({ siteConfig, post }: PostProps) => {
             />
           )}
         </div>
-        <article className="w-full max-w-screen-sm [&>p:first-child]:mt-0 [&>p]:my-4">
+        <article className="w-full max-w-(--breakpoint-sm) [&>p:first-child]:mt-0 [&>p]:my-4">
           <PortableText value={content} />
         </article>
         <Button onClick={back}>← {t('view_all_posts')}</Button>

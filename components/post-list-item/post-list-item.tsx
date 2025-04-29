@@ -20,7 +20,7 @@ const PostListItem = ({ categories, slug, title, description, _createdAt, mainIm
       underlined={false}
       coloredHover={false}
       key={title}
-      className="relative top-0 flex flex-col gap-2 rounded-md p-3 p-0 transition-top"
+      className="relative top-0 flex flex-col gap-2 rounded-md p-3 transition-[top]"
     >
       {imageProps && (
         <div className="relative aspect-video overflow-hidden transition-transform hover:scale-105">

@@ -45,7 +45,7 @@ describe('<Layout />', () => {
     const { container } = render(<Layout {...props}>{mockChild}</Layout>);
 
     expect(screen.getByRole('main').children[0]).toHaveClass(
-      'container mx-auto max-w-screen-lg px-4 md:px-8',
+      'container mx-auto max-w-(--breakpoint-lg) px-4 md:px-8',
     );
     expect(screen.getByTestId('test-child')).toBeInTheDocument();
     expect(
