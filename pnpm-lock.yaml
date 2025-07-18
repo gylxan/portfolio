@@ -34,7 +34,7 @@ importers:
         version: 2.1.1
       html-react-parser:
         specifier: ^5.0.0
-        version: 5.2.5(@types/react@18.3.23)(react@18.3.1)
+        version: 5.2.6(@types/react@18.3.23)(react@18.3.1)
       next:
         specifier: 15.4.1
         version: 15.4.1(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -4354,10 +4354,6 @@ packages:
     resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
     engines: {node: '>=0.12'}
 
-  entities@6.0.0:
-    resolution: {integrity: sha512-aKstq2TDOndCn4diEyp9Uq/Flu2i1GlLkc6XIDQSDMuaFE3OPW5OphLCyQ5SpSJZTb4reN+kTcYru5yIfXoRPw==}
-    engines: {node: '>=0.12'}
-
   entities@6.0.1:
     resolution: {integrity: sha512-aN97NXWF6AWBTahfVOIrB/NShkzi5H7F9r1s9mD3cDj4Ko5f2qhhVoYMibXF7GlLveb/D2ioWay8lxI97Ven3g==}
     engines: {node: '>=0.12'}
@@ -4746,8 +4742,8 @@ packages:
     resolution: {integrity: sha512-gIXjKqtFuWEgzFRJA9WCQeSJLZDjgJUOMCMzxtvFq/37KojM1BFGufqsCy0r4qSQmYLsZYMeyRqzIWOMup03sw==}
     engines: {node: '>=14'}
 
-  form-data@4.0.3:
-    resolution: {integrity: sha512-qsITQPfmvMOSAdeyZ+12I1c+CKSstAFAwu+97zrnWAbIr5u8wfsExUzCesVLC8NgHuRUqNN4Zy6UPWUTRGslcA==}
+  form-data@4.0.4:
+    resolution: {integrity: sha512-KrGhL9Q4zjj0kiUt5OO4Mr/A/jlI2jDYs5eHBpYHPcBEVSiipAvn2Ko2HnPe20rmcuuvMHNdZFp+4IlGTMF0Ow==}
     engines: {node: '>= 6'}
 
   framer-motion@11.18.2:
@@ -5041,8 +5037,8 @@ packages:
   html-parse-stringify@3.0.1:
     resolution: {integrity: sha512-KknJ50kTInJ7qIScF3jeaFRpMpE8/lfiTdzf/twXyPBLAGrLRTmkz3AdTnKeh40X8k9L2fdYwEp/42WGXIRGcg==}
 
-  html-react-parser@5.2.5:
-    resolution: {integrity: sha512-bRPdv8KTqG9CEQPMNGksDqmbiRfVQeOidry8pVetdh/1jQ1Edx4KX5m0lWvDD89Pt4CqTYjK1BLz6NoNVxN/Uw==}
+  html-react-parser@5.2.6:
+    resolution: {integrity: sha512-qcpPWLaSvqXi+TndiHbCa+z8qt0tVzjMwFGFBAa41ggC+ZA5BHaMIeMJla9g3VSp4SmiZb9qyQbmbpHYpIfPOg==}
     peerDependencies:
       '@types/react': 0.14 || 15 || 16 || 17 || 18 || 19
       react: 0.14 || 15 || 16 || 17 || 18 || 19
@@ -6664,8 +6660,8 @@ packages:
     resolution: {integrity: sha512-z6F7K9bV85EfseRCp2bzrpyQ0Gkw1uLoCel9XBVWPg/TjRj94SkJzUTGfOa4bs7iJvBWtQG0Wq7wnI0syw3EBQ==}
     engines: {node: '>=0.10.0'}
 
-  react-rx@4.1.30:
-    resolution: {integrity: sha512-O5+9CDr+yYqmPNb0Ddc6/wdc4EGpfZnZaK4h5Kf6d6ruleVb++usLUW39PmZowUH2bYCF7QnW5Gl0vLNVIlT0A==}
+  react-rx@4.1.31:
+    resolution: {integrity: sha512-wRdAh4yQ+hQkkcHRH4CC8RnyZWtTx76lhbqCEfrdXOvl65twRuTi6vmMQM/tQj7jguiPxiVN2hEJkjXsd6pstw==}
     peerDependencies:
       react: ^18.3 || >=19.0.0-0
       rxjs: ^7
@@ -7209,11 +7205,11 @@ packages:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
 
-  style-to-js@1.1.16:
-    resolution: {integrity: sha512-/Q6ld50hKYPH3d/r6nr117TZkHR0w0kGGIVfpG9N6D8NymRPM9RqCUv4pRpJ62E5DqOYx2AFpbZMyCPnjQCnOw==}
+  style-to-js@1.1.17:
+    resolution: {integrity: sha512-xQcBGDxJb6jjFCTzvQtfiPn6YvvP2O8U1MDIPNfJQlWMYfktPy+iGsHE7cssjs7y84d9fQaK4UF3RIJaAHSoYA==}
 
-  style-to-object@1.0.8:
-    resolution: {integrity: sha512-xT47I/Eo0rwJmaXC4oilDGDWLohVhR6o/xAQcPQN8q6QBuZVL8qMYL85kLmST5cPjAorwvqIA4qXTRQoYHaL6g==}
+  style-to-object@1.0.9:
+    resolution: {integrity: sha512-G4qppLgKu/k6FwRpHiGiKPaPTFcG3g4wNVX/Qsfu+RqQM30E7Tyu/TEgxcL9PNLF5pdRLwQdE3YKKf+KF2Dzlw==}
 
   styled-components@6.1.15:
     resolution: {integrity: sha512-PpOTEztW87Ua2xbmLa7yssjNyUF9vE7wdldRfn1I2E6RTkqknkBYpj771OxM/xrvRGinLy2oysa7GOd7NcZZIA==}
@@ -12789,8 +12785,6 @@ snapshots:
 
   entities@4.5.0: {}
 
-  entities@6.0.0: {}
-
   entities@6.0.1: {}
 
   error-ex@1.3.2:
@@ -13383,7 +13377,7 @@ snapshots:
       cross-spawn: 7.0.6
       signal-exit: 4.1.0
 
-  form-data@4.0.3:
+  form-data@4.0.4:
     dependencies:
       asynckit: 0.4.0
       combined-stream: 1.0.8
@@ -13724,13 +13718,13 @@ snapshots:
     dependencies:
       void-elements: 3.1.0
 
-  html-react-parser@5.2.5(@types/react@18.3.23)(react@18.3.1):
+  html-react-parser@5.2.6(@types/react@18.3.23)(react@18.3.1):
     dependencies:
       domhandler: 5.0.3
       html-dom-parser: 5.1.1
       react: 18.3.1
       react-property: 2.0.2
-      style-to-js: 1.1.16
+      style-to-js: 1.1.17
     optionalDependencies:
       '@types/react': 18.3.23
 
@@ -13739,7 +13733,7 @@ snapshots:
       domelementtype: 2.3.0
       domhandler: 5.0.3
       domutils: 3.2.2
-      entities: 6.0.0
+      entities: 6.0.1
 
   http-proxy-agent@7.0.2:
     dependencies:
@@ -14474,7 +14468,7 @@ snapshots:
       cssstyle: 4.6.0
       data-urls: 5.0.0
       decimal.js: 10.6.0
-      form-data: 4.0.3
+      form-data: 4.0.4
       html-encoding-sniffer: 4.0.0
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.6
@@ -15462,7 +15456,7 @@ snapshots:
 
   react-refresh@0.17.0: {}
 
-  react-rx@4.1.30(react@18.3.1)(rxjs@7.8.2):
+  react-rx@4.1.31(react@18.3.1)(rxjs@7.8.2):
     dependencies:
       observable-callback: 1.0.3(rxjs@7.8.2)
       react: 18.3.1
@@ -15818,7 +15812,7 @@ snapshots:
       esbuild-register: 3.6.0(esbuild@0.21.5)
       execa: 2.1.0
       exif-component: 1.0.1
-      form-data: 4.0.3
+      form-data: 4.0.4
       framer-motion: 11.18.2(@emotion/is-prop-valid@1.2.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       get-it: 8.6.10(debug@4.4.1)
       get-random-values-esm: 1.0.2
@@ -15858,7 +15852,7 @@ snapshots:
       react-i18next: 14.0.2(i18next@23.16.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-is: 18.3.1
       react-refractor: 2.2.0(react@18.3.1)
-      react-rx: 4.1.30(react@18.3.1)(rxjs@7.8.2)
+      react-rx: 4.1.31(react@18.3.1)(rxjs@7.8.2)
       read-pkg-up: 7.0.1
       refractor: 3.6.0
       resolve-from: 5.0.0
@@ -16281,11 +16275,11 @@ snapshots:
 
   strip-json-comments@3.1.1: {}
 
-  style-to-js@1.1.16:
+  style-to-js@1.1.17:
     dependencies:
-      style-to-object: 1.0.8
+      style-to-object: 1.0.9
 
-  style-to-object@1.0.8:
+  style-to-object@1.0.9:
     dependencies:
       inline-style-parser: 0.2.4
 
