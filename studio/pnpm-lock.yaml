@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@sanity/code-input':
         specifier: ^5.0.0
-        version: 5.1.3(@babel/runtime@7.28.2)(@codemirror/lint@6.8.4)(@codemirror/theme-one-dark@6.1.2)(@emotion/is-prop-valid@1.2.2)(codemirror@6.0.1)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(sanity@4.2.0(@emotion/is-prop-valid@1.2.2)(@types/node@22.13.1)(@types/react@19.0.8)(immer@10.1.1)(jiti@2.4.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(terser@5.38.2)(yaml@2.7.0))(styled-components@6.1.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
+        version: 5.2.0(@babel/runtime@7.28.2)(@codemirror/lint@6.8.5)(@codemirror/theme-one-dark@6.1.2)(@emotion/is-prop-valid@1.2.2)(codemirror@6.0.1)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(sanity@4.2.0(@emotion/is-prop-valid@1.2.2)(@types/node@22.13.1)(@types/react@19.0.8)(immer@10.1.1)(jiti@2.4.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(terser@5.38.2)(yaml@2.7.0))(styled-components@6.1.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       '@sanity/document-internationalization':
         specifier: ^3.0.0
         version: 3.3.3(@emotion/is-prop-valid@1.2.2)(@types/react@19.0.8)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(rxjs@7.8.2)(sanity@4.2.0(@emotion/is-prop-valid@1.2.2)(@types/node@22.13.1)(@types/react@19.0.8)(immer@10.1.1)(jiti@2.4.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(terser@5.38.2)(yaml@2.7.0))(styled-components@6.1.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
@@ -19,7 +19,7 @@ importers:
         version: 4.0.5(@emotion/is-prop-valid@1.2.2)(@types/react@19.0.8)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(sanity@4.2.0(@emotion/is-prop-valid@1.2.2)(@types/node@22.13.1)(@types/react@19.0.8)(immer@10.1.1)(jiti@2.4.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(terser@5.38.2)(yaml@2.7.0))(styled-components@6.1.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       '@sanity/vision':
         specifier: 4.2.0
-        version: 4.2.0(@babel/runtime@7.28.2)(@codemirror/lint@6.8.4)(@codemirror/theme-one-dark@6.1.2)(@emotion/is-prop-valid@1.2.2)(codemirror@6.0.1)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
+        version: 4.2.0(@babel/runtime@7.28.2)(@codemirror/lint@6.8.5)(@codemirror/theme-one-dark@6.1.2)(@emotion/is-prop-valid@1.2.2)(codemirror@6.0.1)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       eslint:
         specifier: ^8.6.0
         version: 8.57.1
@@ -711,11 +711,8 @@ packages:
   '@codemirror/lang-php@6.0.2':
     resolution: {integrity: sha512-ZKy2v1n8Fc8oEXj0Th0PUMXzQJ0AIR6TaZU+PbDHExFwdu+guzOA4jmCHS1Nz4vbFezwD7LyBdDnddSJeScMCA==}
 
-  '@codemirror/lang-sql@6.9.0':
-    resolution: {integrity: sha512-xmtpWqKSgum1B1J3Ro6rf7nuPqf2+kJQg5SjrofCAcyCThOe0ihSktSoXfXuhQBnwx1QbmreBbLJM5Jru6zitg==}
-
-  '@codemirror/language@6.11.1':
-    resolution: {integrity: sha512-5kS1U7emOGV84vxC+ruBty5sUgcD0te6dyupyRVG2zaSjhTDM73LhVKUtVwiqSe6QwmEoA4SCiU8AKPFyumAWQ==}
+  '@codemirror/lang-sql@6.9.1':
+    resolution: {integrity: sha512-ecSk3gm/mlINcURMcvkCZmXgdzPSq8r/yfCtTB4vgqGGIbBC2IJIAy7GqYTy5pgBEooTVmHP2GZK6Z7h63CDGg==}
 
   '@codemirror/language@6.11.2':
     resolution: {integrity: sha512-p44TsNArL4IVXDTbapUmEkAlvWs2CFQbcfc0ymDsis1kH2wh0gcY96AS29c/vp2d0y2Tquk1EDSaawpzilUiAw==}
@@ -723,8 +720,8 @@ packages:
   '@codemirror/legacy-modes@6.5.1':
     resolution: {integrity: sha512-DJYQQ00N1/KdESpZV7jg9hafof/iBNp9h7TYo1SLMk86TWl9uDsVdho2dzd81K+v4retmK6mdC7WpuOQDytQqw==}
 
-  '@codemirror/lint@6.8.4':
-    resolution: {integrity: sha512-u4q7PnZlJUojeRe8FJa/njJcMctISGgPQ4PnWsd9268R4ZTtU+tfFYmwkBvgcrK2+QQ8tYFVALVb5fVJykKc5A==}
+  '@codemirror/lint@6.8.5':
+    resolution: {integrity: sha512-s3n3KisH7dx3vsoeGMxsbRAgKe4O1vbrnKBClm99PU0fWxmxsx5rR2PfqQgIt+2MMJBHbiJ5rfIdLYfB9NNvsA==}
 
   '@codemirror/search@6.5.11':
     resolution: {integrity: sha512-KmWepDE6jUdL6n8cAAqIpRmLPBZ5ZKnicE8oGU/s3QrAVID+0VhLFrzUucVKHG5035/BSykhExDL/Xm7dHthiA==}
@@ -735,11 +732,11 @@ packages:
   '@codemirror/theme-one-dark@6.1.2':
     resolution: {integrity: sha512-F+sH0X16j/qFLMAfbciKTxVOwkdAS336b7AXTKOZhy8BR3eH/RelsnLgLFINrpST63mmN2OuwUt0W2ndUgYwUA==}
 
-  '@codemirror/view@6.37.2':
-    resolution: {integrity: sha512-XD3LdgQpxQs5jhOOZ2HRVT+Rj59O4Suc7g2ULvZ+Yi8eCkickrkZ5JFuoDhs2ST1mNI5zSsNYgR3NGa4OUrbnw==}
-
   '@codemirror/view@6.38.0':
     resolution: {integrity: sha512-yvSchUwHOdupXkd7xJ0ob36jdsSR/I+/C+VbY0ffBiL5NiSTEBDfB1ZGWbbIlDd5xgdUkody+lukAdOxYrOBeg==}
+
+  '@codemirror/view@6.38.1':
+    resolution: {integrity: sha512-RmTOkE7hRU3OVREqFVITWHz6ocgBjv08GoePscAakgVQfciA3SGCEk7mb9IzwW61cKKmlTpHXG6DUE5Ubx+MGQ==}
 
   '@csstools/color-helpers@5.0.1':
     resolution: {integrity: sha512-MKtmkA0BX87PKaO1NFRTFH+UnkgnmySQOvNxJubsadusqPEC2aJ9MOQiMceZJJ6oitUl/i0L6u0M1IrmAOmgBA==}
@@ -993,11 +990,23 @@ packages:
   '@floating-ui/core@1.7.2':
     resolution: {integrity: sha512-wNB5ooIKHQc+Kui96jE/n69rHFWAVoxn5CAzL1Xdd8FG03cgY3MLO+GF9U3W737fYDSgPWA6MReKhBQBop6Pcw==}
 
+  '@floating-ui/core@1.7.3':
+    resolution: {integrity: sha512-sGnvb5dmrJaKEZ+LDIpguvdX3bDlEllmv4/ClQ9awcmCZrlx5jQyyMWFM5kBI+EyNOCDDiKk8il0zeuX3Zlg/w==}
+
   '@floating-ui/dom@1.7.2':
     resolution: {integrity: sha512-7cfaOQuCS27HD7DX+6ib2OrnW+b4ZBwDNnCcT0uTyidcmyWb03FnQqJybDBoCnpdxwBSfA94UAYlRCt7mV+TbA==}
 
+  '@floating-ui/dom@1.7.3':
+    resolution: {integrity: sha512-uZA413QEpNuhtb3/iIKoYMSK07keHPYeXF02Zhd6e213j+d1NamLix/mCLxBUDW/Gx52sPH2m+chlUsyaBs/Ag==}
+
   '@floating-ui/react-dom@2.1.4':
     resolution: {integrity: sha512-JbbpPhp38UmXDDAu60RJmbeme37Jbgsm7NrHGgzYYFKmblzRUh6Pa641dII6LsjwF4XlScDrde2UAzDo/b9KPw==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+
+  '@floating-ui/react-dom@2.1.5':
+    resolution: {integrity: sha512-HDO/1/1oH9fjj4eLgegrlH3dklZpHtUYYFiVwMUwfGvk9jWDRWqkklA2/NFScknrcNSspbV868WjXORvreDX+Q==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
@@ -1181,8 +1190,8 @@ packages:
   '@lezer/java@1.1.3':
     resolution: {integrity: sha512-yHquUfujwg6Yu4Fd1GNHCvidIvJwi/1Xu2DaKl/pfWIA2c1oXkVvawH3NyXhCaFx4OdlYBVX5wvz2f7Aoa/4Xw==}
 
-  '@lezer/javascript@1.4.21':
-    resolution: {integrity: sha512-lL+1fcuxWYPURMM/oFZLEDm0XuLN128QPV+VuGtKpeaOGdcl9F2LYC3nh1S9LkPqx9M0mndZFdXCipNAZpzIkQ==}
+  '@lezer/javascript@1.5.1':
+    resolution: {integrity: sha512-ATOImjeVJuvgm3JQ/bpo2Tmv55HSScE2MTPnKRMRIPx2cLhHGyX2VnqpHhtIV1tVzIjZDbcWQm+NCTF40ggZVw==}
 
   '@lezer/json@1.0.3':
     resolution: {integrity: sha512-BP9KzdF9Y35PDpv04r0VeSTKDeox5vVr3efE7eBbx3r4s3oNLfunchejZhjArmeieBH+nVOpgIiBJpEAv8ilqQ==}
@@ -1193,8 +1202,8 @@ packages:
   '@lezer/markdown@1.4.3':
     resolution: {integrity: sha512-kfw+2uMrQ/wy/+ONfrH83OkdFNM0ye5Xq96cLlaCy7h5UT9FO54DU4oRoIc0CSBh5NWmWuiIJA7NGLMJbQ+Oxg==}
 
-  '@lezer/php@1.0.3':
-    resolution: {integrity: sha512-NDwgktd5qh/EfEn7Dogf2N6eNnC5WPJ5NslB8nKhgXSuH2uSJamCEom1g4VGo+ibfoADK8D69NMCMhuuYbVskg==}
+  '@lezer/php@1.0.4':
+    resolution: {integrity: sha512-D2dJ0t8Z28/G1guztRczMFvPDUqzeMLSQbdWQmaiHV7urc8NlEOnjYk9UrZ531OcLiRxD4Ihcbv7AsDpNKDRaQ==}
 
   '@marijn/find-cluster-break@1.0.2':
     resolution: {integrity: sha512-l0h88YhZFyKdXIFNfSWpyjStDjGHwZ/U7iobcK1cQQD8sejsONdQtTVU+1wVN1PBw40PiiHB1vA5S7VTfQiP9g==}
@@ -1473,8 +1482,8 @@ packages:
     resolution: {integrity: sha512-jz/IizNHGrss7BG+wFzhI2l2f2avayM4dsBcxKRW4T3HSP4MP7T3oA6vgSDRX1N6KfQfFVILNq6bBE0ut8cHUA==}
     engines: {node: '>=20'}
 
-  '@sanity/code-input@5.1.3':
-    resolution: {integrity: sha512-KFAKULQNEPOI2AoY26rhDwZKeD5iTSyaQdQO6ZbjJybD6VJt3reHuaFsQC3t/6zd4r0lPdwuSEmPA2WXzwQwaA==}
+  '@sanity/code-input@5.2.0':
+    resolution: {integrity: sha512-ncKRlXItahlTR7WVWzNUWSGjnhcbTc8IP5a53EEE9E9AVdbbePHwW9cux75/WuptotVQ8r0toZk5pcnIRqktqw==}
     engines: {node: '>=18'}
     peerDependencies:
       react: ^18 || >=19.0.0-0
@@ -1682,6 +1691,15 @@ packages:
       react-is: ^18 || >=19.0.0-0
       styled-components: ^5.2 || ^6
 
+  '@sanity/ui@3.0.5':
+    resolution: {integrity: sha512-TnE4FM1ROn1cq6lywJDqdYpRVhGyKXT2K8a4jFpycgX90HXg5yLMBxuzZwnzRCJr/oB+NOevWZGZZY1fSlDTKg==}
+    engines: {node: '>=20.19'}
+    peerDependencies:
+      react: ^18 || >=19.0.0-0
+      react-dom: ^18 || >=19.0.0-0
+      react-is: ^18 || >=19.0.0-0
+      styled-components: ^5.2 || ^6
+
   '@sanity/util@3.68.3':
     resolution: {integrity: sha512-J4Ov75oUvMqx221VEJkKNSibzF0D8VyCzejtwftW+jP80XguYFqBz7bAcTmwJ5vnxNUoAUCeAdZBoOYVpgew4g==}
     engines: {node: '>=18'}
@@ -1841,17 +1859,6 @@ packages:
   '@types/which@3.0.4':
     resolution: {integrity: sha512-liyfuo/106JdlgSchJzXEQCVArk0CvevqPote8F8HgWgJ3dRCcTHgJIsLDuee0kxk/mhbInzIZk3QWSZJ8R+2w==}
 
-  '@uiw/codemirror-extensions-basic-setup@4.24.0':
-    resolution: {integrity: sha512-4luEfmmwJDAoIjzcDksqnc3B1TNWA/AIIU8f6h9KFujjBFE5BxKxv3deyx1vtIpELTkzcWRgy4fl6tZn6veLXw==}
-    peerDependencies:
-      '@codemirror/autocomplete': '>=6.0.0'
-      '@codemirror/commands': '>=6.0.0'
-      '@codemirror/language': '>=6.0.0'
-      '@codemirror/lint': '>=6.0.0'
-      '@codemirror/search': '>=6.0.0'
-      '@codemirror/state': '>=6.0.0'
-      '@codemirror/view': '>=6.0.0'
-
   '@uiw/codemirror-extensions-basic-setup@4.24.1':
     resolution: {integrity: sha512-o1m1a8eUS3fWERMbDFvN8t8sZUFPgDKNemmlQ5Ot2vKm+Ax84lKP1dhEFgkiOaZ1bDHk4T5h6SjHuTghrJHKww==}
     peerDependencies:
@@ -1863,23 +1870,23 @@ packages:
       '@codemirror/state': '>=6.0.0'
       '@codemirror/view': '>=6.0.0'
 
-  '@uiw/codemirror-themes@4.24.0':
-    resolution: {integrity: sha512-Bsq/j7ASqNcdboacM9KVdxnBlkiMZEk4rpq1FLTnYNULqGUVuP1BoUNoMEZ/CaxQAlUez6m5MskMxPKj3YEa3A==}
+  '@uiw/codemirror-extensions-basic-setup@4.24.2':
+    resolution: {integrity: sha512-wW/gjLRvVUeYyhdh2TApn25cvdcR+Rhg6R/j3eTOvXQzU1HNzNYCVH4YKVIfgtfdM/Xs+N8fkk+rbr1YvBppCg==}
+    peerDependencies:
+      '@codemirror/autocomplete': '>=6.0.0'
+      '@codemirror/commands': '>=6.0.0'
+      '@codemirror/language': '>=6.0.0'
+      '@codemirror/lint': '>=6.0.0'
+      '@codemirror/search': '>=6.0.0'
+      '@codemirror/state': '>=6.0.0'
+      '@codemirror/view': '>=6.0.0'
+
+  '@uiw/codemirror-themes@4.24.2':
+    resolution: {integrity: sha512-0fQusJE08APL+1WM0xYqvampVM2RpABHjvZbcJWHdRc+teZbrP8907VW1ZX1tO/7/xgRRt4Fc3RHPCcTs7b0NQ==}
     peerDependencies:
       '@codemirror/language': '>=6.0.0'
       '@codemirror/state': '>=6.0.0'
       '@codemirror/view': '>=6.0.0'
-
-  '@uiw/react-codemirror@4.24.0':
-    resolution: {integrity: sha512-eZR5vEOlFtd2nSIU1lBUV0TLQXo5BmXcjzCX4QsoQM1KGzgnTFWvPibk962W2rfnrMqP0VjqVgGurQSLFJezyA==}
-    peerDependencies:
-      '@babel/runtime': '>=7.11.0'
-      '@codemirror/state': '>=6.0.0'
-      '@codemirror/theme-one-dark': '>=6.0.0'
-      '@codemirror/view': '>=6.0.0'
-      codemirror: '>=6.0.0'
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
 
   '@uiw/react-codemirror@4.24.1':
     resolution: {integrity: sha512-BivF4NLqbuBQK5gPVhSkOARi9nPXw8X5r25EnInPeY+I9l1dfEX8O9V6+0xHTlGHyUo0cNfGEF9t1KHEicUfJw==}
@@ -1891,6 +1898,17 @@ packages:
       codemirror: '>=6.0.0'
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
+
+  '@uiw/react-codemirror@4.24.2':
+    resolution: {integrity: sha512-kp7DhTq4RR+M2zJBQBrHn1dIkBrtOskcwJX4vVsKGByReOvfMrhqRkGTxYMRDTX6x75EG2mvBJPDKYcUQcHWBw==}
+    peerDependencies:
+      '@babel/runtime': '>=7.11.0'
+      '@codemirror/state': '>=6.0.0'
+      '@codemirror/theme-one-dark': '>=6.0.0'
+      '@codemirror/view': '>=6.0.0'
+      codemirror: '>=6.0.0'
+      react: '>=17.0.0'
+      react-dom: '>=17.0.0'
 
   '@ungap/structured-clone@1.3.0':
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
@@ -2898,6 +2916,20 @@ packages:
       react-dom:
         optional: true
 
+  framer-motion@12.23.12:
+    resolution: {integrity: sha512-6e78rdVtnBvlEVgu6eFEAgG9v3wLnYEboM8I5O5EXvfKC8gxGQB8wXJdhkMy10iVcn05jl6CNw7/HTsTCfwcWg==}
+    peerDependencies:
+      '@emotion/is-prop-valid': '*'
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@emotion/is-prop-valid':
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+
   framer-motion@12.23.3:
     resolution: {integrity: sha512-llmLkf44zuIZOPSrE4bl4J0UTg6bav+rlKEfMRKgvDMXqBrUtMg6cspoQeRVK3nqRLxTmAJhfGXk39UDdZD7Kw==}
     peerDependencies:
@@ -3792,6 +3824,9 @@ packages:
 
   moment@2.30.1:
     resolution: {integrity: sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==}
+
+  motion-dom@12.23.12:
+    resolution: {integrity: sha512-RcR4fvMCTESQBD/uKQe49D5RUeDOokkGRmz4ceaJKDBgHYtZtntC/s2vLvY38gqGaytinij/yi3hMcWVcEF5Kw==}
 
   motion-dom@12.23.2:
     resolution: {integrity: sha512-73j6xDHX/NvVh5L5oS1ouAVnshsvmApOq4F3VZo5MkYSD/YVsVLal4Qp9wvVgJM9uU2bLZyc0Sn8B9c/MMKk4g==}
@@ -6192,14 +6227,14 @@ snapshots:
     dependencies:
       '@codemirror/language': 6.11.2
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.38.0
+      '@codemirror/view': 6.38.1
       '@lezer/common': 1.2.3
 
   '@codemirror/commands@6.8.1':
     dependencies:
       '@codemirror/language': 6.11.2
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.38.0
+      '@codemirror/view': 6.38.1
       '@lezer/common': 1.2.3
 
   '@codemirror/lang-css@6.3.1':
@@ -6217,7 +6252,7 @@ snapshots:
       '@codemirror/lang-javascript': 6.2.4
       '@codemirror/language': 6.11.2
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.38.0
+      '@codemirror/view': 6.38.1
       '@lezer/common': 1.2.3
       '@lezer/css': 1.3.0
       '@lezer/html': 1.3.10
@@ -6230,12 +6265,12 @@ snapshots:
   '@codemirror/lang-javascript@6.2.4':
     dependencies:
       '@codemirror/autocomplete': 6.18.6
-      '@codemirror/language': 6.11.1
-      '@codemirror/lint': 6.8.4
+      '@codemirror/language': 6.11.2
+      '@codemirror/lint': 6.8.5
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.37.2
+      '@codemirror/view': 6.38.1
       '@lezer/common': 1.2.3
-      '@lezer/javascript': 1.4.21
+      '@lezer/javascript': 1.5.1
 
   '@codemirror/lang-json@6.0.2':
     dependencies:
@@ -6248,7 +6283,7 @@ snapshots:
       '@codemirror/lang-html': 6.4.9
       '@codemirror/language': 6.11.2
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.38.0
+      '@codemirror/view': 6.38.1
       '@lezer/common': 1.2.3
       '@lezer/markdown': 1.4.3
 
@@ -6258,9 +6293,9 @@ snapshots:
       '@codemirror/language': 6.11.2
       '@codemirror/state': 6.5.2
       '@lezer/common': 1.2.3
-      '@lezer/php': 1.0.3
+      '@lezer/php': 1.0.4
 
-  '@codemirror/lang-sql@6.9.0':
+  '@codemirror/lang-sql@6.9.1':
     dependencies:
       '@codemirror/autocomplete': 6.18.6
       '@codemirror/language': 6.11.2
@@ -6269,19 +6304,10 @@ snapshots:
       '@lezer/highlight': 1.2.1
       '@lezer/lr': 1.4.2
 
-  '@codemirror/language@6.11.1':
-    dependencies:
-      '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.38.0
-      '@lezer/common': 1.2.3
-      '@lezer/highlight': 1.2.1
-      '@lezer/lr': 1.4.2
-      style-mod: 4.1.2
-
   '@codemirror/language@6.11.2':
     dependencies:
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.38.0
+      '@codemirror/view': 6.38.1
       '@lezer/common': 1.2.3
       '@lezer/highlight': 1.2.1
       '@lezer/lr': 1.4.2
@@ -6291,16 +6317,16 @@ snapshots:
     dependencies:
       '@codemirror/language': 6.11.2
 
-  '@codemirror/lint@6.8.4':
+  '@codemirror/lint@6.8.5':
     dependencies:
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.38.0
+      '@codemirror/view': 6.38.1
       crelt: 1.0.6
 
   '@codemirror/search@6.5.11':
     dependencies:
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.38.0
+      '@codemirror/view': 6.38.1
       crelt: 1.0.6
 
   '@codemirror/state@6.5.2':
@@ -6311,17 +6337,17 @@ snapshots:
     dependencies:
       '@codemirror/language': 6.11.2
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.38.0
+      '@codemirror/view': 6.38.1
       '@lezer/highlight': 1.2.1
 
-  '@codemirror/view@6.37.2':
+  '@codemirror/view@6.38.0':
     dependencies:
       '@codemirror/state': 6.5.2
       crelt: 1.0.6
       style-mod: 4.1.2
       w3c-keyname: 2.2.8
 
-  '@codemirror/view@6.38.0':
+  '@codemirror/view@6.38.1':
     dependencies:
       '@codemirror/state': 6.5.2
       crelt: 1.0.6
@@ -6499,14 +6525,29 @@ snapshots:
     dependencies:
       '@floating-ui/utils': 0.2.10
 
+  '@floating-ui/core@1.7.3':
+    dependencies:
+      '@floating-ui/utils': 0.2.10
+
   '@floating-ui/dom@1.7.2':
     dependencies:
       '@floating-ui/core': 1.7.2
       '@floating-ui/utils': 0.2.10
 
+  '@floating-ui/dom@1.7.3':
+    dependencies:
+      '@floating-ui/core': 1.7.3
+      '@floating-ui/utils': 0.2.10
+
   '@floating-ui/react-dom@2.1.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@floating-ui/dom': 1.7.2
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
+  '@floating-ui/react-dom@2.1.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@floating-ui/dom': 1.7.3
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
@@ -6699,7 +6740,7 @@ snapshots:
       '@lezer/highlight': 1.2.1
       '@lezer/lr': 1.4.2
 
-  '@lezer/javascript@1.4.21':
+  '@lezer/javascript@1.5.1':
     dependencies:
       '@lezer/common': 1.2.3
       '@lezer/highlight': 1.2.1
@@ -6720,7 +6761,7 @@ snapshots:
       '@lezer/common': 1.2.3
       '@lezer/highlight': 1.2.1
 
-  '@lezer/php@1.0.3':
+  '@lezer/php@1.0.4':
     dependencies:
       '@lezer/common': 1.2.3
       '@lezer/highlight': 1.2.1
@@ -7064,7 +7105,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  '@sanity/code-input@5.1.3(@babel/runtime@7.28.2)(@codemirror/lint@6.8.4)(@codemirror/theme-one-dark@6.1.2)(@emotion/is-prop-valid@1.2.2)(codemirror@6.0.1)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(sanity@4.2.0(@emotion/is-prop-valid@1.2.2)(@types/node@22.13.1)(@types/react@19.0.8)(immer@10.1.1)(jiti@2.4.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(terser@5.38.2)(yaml@2.7.0))(styled-components@6.1.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1))':
+  '@sanity/code-input@5.2.0(@babel/runtime@7.28.2)(@codemirror/lint@6.8.5)(@codemirror/theme-one-dark@6.1.2)(@emotion/is-prop-valid@1.2.2)(codemirror@6.0.1)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(sanity@4.2.0(@emotion/is-prop-valid@1.2.2)(@types/node@22.13.1)(@types/react@19.0.8)(immer@10.1.1)(jiti@2.4.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(terser@5.38.2)(yaml@2.7.0))(styled-components@6.1.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1))':
     dependencies:
       '@codemirror/autocomplete': 6.18.6
       '@codemirror/commands': 6.8.1
@@ -7074,19 +7115,19 @@ snapshots:
       '@codemirror/lang-json': 6.0.2
       '@codemirror/lang-markdown': 6.3.3
       '@codemirror/lang-php': 6.0.2
-      '@codemirror/lang-sql': 6.9.0
+      '@codemirror/lang-sql': 6.9.1
       '@codemirror/language': 6.11.2
       '@codemirror/legacy-modes': 6.5.1
       '@codemirror/search': 6.5.11
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.38.0
+      '@codemirror/view': 6.38.1
       '@juggle/resize-observer': 3.4.0
       '@lezer/highlight': 1.2.1
       '@sanity/icons': 3.7.4(react@18.3.1)
       '@sanity/incompatible-plugin': 1.0.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@sanity/ui': 2.16.4(@emotion/is-prop-valid@1.2.2)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
-      '@uiw/codemirror-themes': 4.24.0(@codemirror/language@6.11.2)(@codemirror/state@6.5.2)(@codemirror/view@6.38.0)
-      '@uiw/react-codemirror': 4.24.0(@babel/runtime@7.28.2)(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.11.2)(@codemirror/lint@6.8.4)(@codemirror/search@6.5.11)(@codemirror/state@6.5.2)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.38.0)(codemirror@6.0.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@sanity/ui': 3.0.5(@emotion/is-prop-valid@1.2.2)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.11.2)(@codemirror/state@6.5.2)(@codemirror/view@6.38.1)
+      '@uiw/react-codemirror': 4.24.2(@babel/runtime@7.28.2)(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.11.2)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.11)(@codemirror/state@6.5.2)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.38.1)(codemirror@6.0.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       sanity: 4.2.0(@emotion/is-prop-valid@1.2.2)(@types/node@22.13.1)(@types/react@19.0.8)(immer@10.1.1)(jiti@2.4.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(terser@5.38.2)(yaml@2.7.0)
@@ -7506,6 +7547,24 @@ snapshots:
     transitivePeerDependencies:
       - '@emotion/is-prop-valid'
 
+  '@sanity/ui@3.0.5(@emotion/is-prop-valid@1.2.2)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1))':
+    dependencies:
+      '@floating-ui/react-dom': 2.1.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@juggle/resize-observer': 3.4.0
+      '@sanity/color': 3.0.6
+      '@sanity/icons': 3.7.4(react@18.3.1)
+      csstype: 3.1.3
+      framer-motion: 12.23.12(@emotion/is-prop-valid@1.2.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react: 18.3.1
+      react-compiler-runtime: 19.1.0-rc.2(react@18.3.1)
+      react-dom: 18.3.1(react@18.3.1)
+      react-is: 18.3.1
+      react-refractor: 4.0.0(react@18.3.1)
+      styled-components: 6.1.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      use-effect-event: 2.0.3(react@18.3.1)
+    transitivePeerDependencies:
+      - '@emotion/is-prop-valid'
+
   '@sanity/util@3.68.3(@types/react@19.0.8)(debug@4.4.1)':
     dependencies:
       '@sanity/client': 6.29.1(debug@4.4.1)
@@ -7548,7 +7607,7 @@ snapshots:
       '@types/uuid': 8.3.4
       uuid: 8.3.2
 
-  '@sanity/vision@4.2.0(@babel/runtime@7.28.2)(@codemirror/lint@6.8.4)(@codemirror/theme-one-dark@6.1.2)(@emotion/is-prop-valid@1.2.2)(codemirror@6.0.1)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1))':
+  '@sanity/vision@4.2.0(@babel/runtime@7.28.2)(@codemirror/lint@6.8.5)(@codemirror/theme-one-dark@6.1.2)(@emotion/is-prop-valid@1.2.2)(codemirror@6.0.1)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1))':
     dependencies:
       '@codemirror/autocomplete': 6.18.6
       '@codemirror/commands': 6.8.1
@@ -7565,7 +7624,7 @@ snapshots:
       '@sanity/icons': 3.7.4(react@18.3.1)
       '@sanity/ui': 3.0.3(@emotion/is-prop-valid@1.2.2)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       '@sanity/uuid': 3.0.2
-      '@uiw/react-codemirror': 4.24.1(@babel/runtime@7.28.2)(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.11.2)(@codemirror/lint@6.8.4)(@codemirror/search@6.5.11)(@codemirror/state@6.5.2)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.38.0)(codemirror@6.0.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@uiw/react-codemirror': 4.24.1(@babel/runtime@7.28.2)(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.11.2)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.11)(@codemirror/state@6.5.2)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.38.0)(codemirror@6.0.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       is-hotkey-esm: 1.0.0
       json-2-csv: 5.5.8
       json5: 2.2.3
@@ -7724,40 +7783,40 @@ snapshots:
 
   '@types/which@3.0.4': {}
 
-  '@uiw/codemirror-extensions-basic-setup@4.24.0(@codemirror/autocomplete@6.18.6)(@codemirror/commands@6.8.1)(@codemirror/language@6.11.2)(@codemirror/lint@6.8.4)(@codemirror/search@6.5.11)(@codemirror/state@6.5.2)(@codemirror/view@6.38.0)':
+  '@uiw/codemirror-extensions-basic-setup@4.24.1(@codemirror/autocomplete@6.18.6)(@codemirror/commands@6.8.1)(@codemirror/language@6.11.2)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.11)(@codemirror/state@6.5.2)(@codemirror/view@6.38.0)':
     dependencies:
       '@codemirror/autocomplete': 6.18.6
       '@codemirror/commands': 6.8.1
       '@codemirror/language': 6.11.2
-      '@codemirror/lint': 6.8.4
+      '@codemirror/lint': 6.8.5
       '@codemirror/search': 6.5.11
       '@codemirror/state': 6.5.2
       '@codemirror/view': 6.38.0
 
-  '@uiw/codemirror-extensions-basic-setup@4.24.1(@codemirror/autocomplete@6.18.6)(@codemirror/commands@6.8.1)(@codemirror/language@6.11.2)(@codemirror/lint@6.8.4)(@codemirror/search@6.5.11)(@codemirror/state@6.5.2)(@codemirror/view@6.38.0)':
+  '@uiw/codemirror-extensions-basic-setup@4.24.2(@codemirror/autocomplete@6.18.6)(@codemirror/commands@6.8.1)(@codemirror/language@6.11.2)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.11)(@codemirror/state@6.5.2)(@codemirror/view@6.38.1)':
     dependencies:
       '@codemirror/autocomplete': 6.18.6
       '@codemirror/commands': 6.8.1
       '@codemirror/language': 6.11.2
-      '@codemirror/lint': 6.8.4
+      '@codemirror/lint': 6.8.5
       '@codemirror/search': 6.5.11
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.38.0
+      '@codemirror/view': 6.38.1
 
-  '@uiw/codemirror-themes@4.24.0(@codemirror/language@6.11.2)(@codemirror/state@6.5.2)(@codemirror/view@6.38.0)':
+  '@uiw/codemirror-themes@4.24.2(@codemirror/language@6.11.2)(@codemirror/state@6.5.2)(@codemirror/view@6.38.1)':
     dependencies:
       '@codemirror/language': 6.11.2
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.38.0
+      '@codemirror/view': 6.38.1
 
-  '@uiw/react-codemirror@4.24.0(@babel/runtime@7.28.2)(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.11.2)(@codemirror/lint@6.8.4)(@codemirror/search@6.5.11)(@codemirror/state@6.5.2)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.38.0)(codemirror@6.0.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@uiw/react-codemirror@4.24.1(@babel/runtime@7.28.2)(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.11.2)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.11)(@codemirror/state@6.5.2)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.38.0)(codemirror@6.0.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.28.2
       '@codemirror/commands': 6.8.1
       '@codemirror/state': 6.5.2
       '@codemirror/theme-one-dark': 6.1.2
       '@codemirror/view': 6.38.0
-      '@uiw/codemirror-extensions-basic-setup': 4.24.0(@codemirror/autocomplete@6.18.6)(@codemirror/commands@6.8.1)(@codemirror/language@6.11.2)(@codemirror/lint@6.8.4)(@codemirror/search@6.5.11)(@codemirror/state@6.5.2)(@codemirror/view@6.38.0)
+      '@uiw/codemirror-extensions-basic-setup': 4.24.1(@codemirror/autocomplete@6.18.6)(@codemirror/commands@6.8.1)(@codemirror/language@6.11.2)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.11)(@codemirror/state@6.5.2)(@codemirror/view@6.38.0)
       codemirror: 6.0.1
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -7767,14 +7826,14 @@ snapshots:
       - '@codemirror/lint'
       - '@codemirror/search'
 
-  '@uiw/react-codemirror@4.24.1(@babel/runtime@7.28.2)(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.11.2)(@codemirror/lint@6.8.4)(@codemirror/search@6.5.11)(@codemirror/state@6.5.2)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.38.0)(codemirror@6.0.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@uiw/react-codemirror@4.24.2(@babel/runtime@7.28.2)(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.11.2)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.11)(@codemirror/state@6.5.2)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.38.1)(codemirror@6.0.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.28.2
       '@codemirror/commands': 6.8.1
       '@codemirror/state': 6.5.2
       '@codemirror/theme-one-dark': 6.1.2
-      '@codemirror/view': 6.38.0
-      '@uiw/codemirror-extensions-basic-setup': 4.24.1(@codemirror/autocomplete@6.18.6)(@codemirror/commands@6.8.1)(@codemirror/language@6.11.2)(@codemirror/lint@6.8.4)(@codemirror/search@6.5.11)(@codemirror/state@6.5.2)(@codemirror/view@6.38.0)
+      '@codemirror/view': 6.38.1
+      '@uiw/codemirror-extensions-basic-setup': 4.24.2(@codemirror/autocomplete@6.18.6)(@codemirror/commands@6.8.1)(@codemirror/language@6.11.2)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.11)(@codemirror/state@6.5.2)(@codemirror/view@6.38.1)
       codemirror: 6.0.1
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -8198,10 +8257,10 @@ snapshots:
       '@codemirror/autocomplete': 6.18.6
       '@codemirror/commands': 6.8.1
       '@codemirror/language': 6.11.2
-      '@codemirror/lint': 6.8.4
+      '@codemirror/lint': 6.8.5
       '@codemirror/search': 6.5.11
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.38.0
+      '@codemirror/view': 6.38.1
 
   color-convert@1.9.3:
     dependencies:
@@ -8941,6 +9000,16 @@ snapshots:
   framer-motion@12.23.11(@emotion/is-prop-valid@1.2.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       motion-dom: 12.23.9
+      motion-utils: 12.23.6
+      tslib: 2.8.1
+    optionalDependencies:
+      '@emotion/is-prop-valid': 1.2.2
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
+  framer-motion@12.23.12(@emotion/is-prop-valid@1.2.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      motion-dom: 12.23.12
       motion-utils: 12.23.6
       tslib: 2.8.1
     optionalDependencies:
@@ -9866,6 +9935,10 @@ snapshots:
   module-alias@2.2.3: {}
 
   moment@2.30.1: {}
+
+  motion-dom@12.23.12:
+    dependencies:
+      motion-utils: 12.23.6
 
   motion-dom@12.23.2:
     dependencies:
