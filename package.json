@@ -6,7 +6,7 @@
     "name": "Guido Lange",
     "url": "https://github.com/gylxan"
   },
-  "packageManager": "pnpm@10.14.0",
+  "packageManager": "pnpm@10.15.0",
   "scripts": {
     "dev": "next dev",
     "prebuild": "echo 'Building Sanity to public/studio' && pnpm run sanity:build && echo 'Done building Sanity'",
@@ -30,7 +30,7 @@
     "@vercel/analytics": "^1.0.0",
     "clsx": "^2.0.0",
     "html-react-parser": "^5.0.0",
-    "next": "15.4.7",
+    "next": "15.5.0",
     "next-intl": "^4.0.0",
     "next-pwa": "^5.6.0",
     "next-sanity": "^10.0.0",
