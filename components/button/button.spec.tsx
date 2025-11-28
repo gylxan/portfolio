@@ -1,5 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import Button from 'components/button/button';
+import { describe, expect, it, vi } from 'vitest';
+
+vi.mock('next-sanity')
 
 describe('<Button />', () => {
   it('should render as button', () => {

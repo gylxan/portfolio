@@ -1,14 +1,16 @@
 import type { WelcomeProps } from 'components/welcome/welcome';
-import { act, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { Welcome } from 'components';
 import useSanityImage from 'hooks/useSanityImage';
+import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest';
 
-jest.mock('hooks/useSanityImage');
+vi.mock('hooks/useSanityImage');
+vi.mock('next-sanity');
+vi.mock('use-intl');
+vi.mock('next/router');
 
-const mockUseSanityImage = useSanityImage as jest.MockedFunction<
-  typeof useSanityImage
->;
+const mockUseSanityImage = vi.mocked(useSanityImage);
 
 describe('<Welcome />', () => {
   const props: WelcomeProps = {
@@ -29,26 +31,20 @@ describe('<Welcome />', () => {
   };
 
   beforeEach(() => {
-    mockUseSanityImage.mockReturnValue({
+    mockUseSanityImage.mockReset().mockReturnValue({
       src: 'https://domain.com/image',
-      loader: jest.fn(),
+      loader: vi.fn().mockReturnValue('https://domain.image.com?w=10'),
       width: 10,
       height: 10,
     });
   });
 
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
-
   afterAll(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
   });
 
   it('should render', async () => {
-    await act(() => {
-      render(<Welcome {...props} />);
-    });
+    render(<Welcome {...props} />);
 
     expect(screen.getByText(props.introduction)).toBeInTheDocument();
     expect(screen.getByRole('heading')).toBeInTheDocument();
@@ -62,9 +58,7 @@ describe('<Welcome />', () => {
 
   it('should not render link for profile image, when useSanityImage returns null', () => {
     mockUseSanityImage.mockReturnValue(null);
-    act(() => {
-      render(<Welcome {...props} />);
-    });
+    render(<Welcome {...props} />);
 
     expect(screen.getAllByRole('link').length).toBe(1);
     expect(screen.getByRole('link').textContent).toBe(props.buttonText);

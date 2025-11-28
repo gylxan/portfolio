@@ -5,26 +5,37 @@ import {
   getUrlFromSlugs,
   isSlugMatchingCurrentUrl,
 } from 'utils/url';
-jest.mock('utils/i18n', () => {
-  const originalI18n = jest.requireActual('utils/i18n');
+import {
+  afterAll,
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
+
+vi.mock('utils/i18n', async (actualImport) => {
+  const originalI18n = await vi.importActual('utils/i18n');
   return {
     ...originalI18n,
-    isDefaultLanguage: jest.fn(),
+    isDefaultLanguage: vi.fn(),
   };
 });
+
 describe('URL utils', () => {
-  const isDefaultLanguageSpy = jest.spyOn(i18nUtils, 'isDefaultLanguage');
+  const isDefaultLanguageSpy = vi.spyOn(i18nUtils, 'isDefaultLanguage');
 
   beforeEach(() => {
     isDefaultLanguageSpy.mockReturnValue(true);
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   afterAll(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
   });
 
   describe('getUrlFromSlugs', () => {
@@ -86,14 +97,13 @@ describe('URL utils', () => {
 
   describe('getLanguageUrlPrefix', () => {
     it('returns an empty string, when language is default language', () => {
-      expect(getLanguageUrlPrefix('en')).toBe('')
+      expect(getLanguageUrlPrefix('en')).toBe('');
     });
-
 
     it('returns /language, when language is not default language', () => {
       isDefaultLanguageSpy.mockReturnValue(false);
 
-      expect(getLanguageUrlPrefix('de')).toBe('/de')
+      expect(getLanguageUrlPrefix('de')).toBe('/de');
     });
   });
 });

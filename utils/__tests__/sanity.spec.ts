@@ -1,9 +1,10 @@
 import { getBlurDataUrl, getSanitizedSiteConfig } from 'utils/sanity';
 import type { SanityImage } from 'types/image';
 import { blurImageUrl } from 'constants/image';
-import { mockSiteConfig } from 'constants/mock';
-import { restructureTranslations } from 'utils/i18n';
+import { mockSiteConfig, mockTranslationNamespaces } from 'constants/mock';
+import { describe, expect, it, vi } from 'vitest';
 
+vi.mock('next-sanity');
 describe('Sanity utils', () => {
   describe('getBlurDataUrl', () => {
     const image = {
@@ -37,10 +38,12 @@ describe('Sanity utils', () => {
 
   describe('getSanitizedSiteConfig', () => {
     it('returns site config with restructured translations', () => {
-      expect(getSanitizedSiteConfig(mockSiteConfig)).toStrictEqual({
-        ...mockSiteConfig,
-        translations: restructureTranslations(mockSiteConfig.translations),
-      });
+      expect(
+        getSanitizedSiteConfig({
+          ...mockSiteConfig,
+          translations: mockTranslationNamespaces,
+        }),
+      ).toStrictEqual(mockSiteConfig);
     });
   });
 });

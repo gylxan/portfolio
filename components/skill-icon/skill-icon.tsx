@@ -26,7 +26,11 @@ const SkillIcon = ({ url, name, image }: SkillIconProps) => {
   );
 
   return url ? (
-    <a href={url} aria-label={`${t('link_label')} ${name}`} className="inline-flex">
+    <a
+      href={url}
+      aria-label={`${t('link_label')} ${name}`}
+      className="inline-flex"
+    >
       {iconImage}
     </a>
   ) : (

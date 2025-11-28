@@ -1,25 +1,25 @@
 import EndlessScrollingItem, {
-  EndlessLoadingItemProps,
+  EndlessScrollingItemProps,
 } from 'components/endless-scrolling-item/endless-scrolling-item';
 import { render, screen } from '@testing-library/react';
 import { InViewHookResponse, useInView } from 'react-intersection-observer';
+import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest';
 
-jest.mock('react-intersection-observer', () => {
-  const actual = jest.requireActual('react-intersection-observer');
+vi.mock('react-intersection-observer', async (importOriginal) => {
   return {
-    ...actual,
-    useInView: jest.fn().mockReturnValue({
-      ref: jest.fn(),
+    ...(await importOriginal()),
+    useInView: vi.fn().mockReturnValue({
+      ref: vi.fn(),
       inView: true,
     }),
   };
 });
 
-const mockUseInView = useInView as jest.MockedFunction<typeof useInView>;
+const mockUseInView = vi.mocked(useInView);
 
 describe('<EndlessScrollingItem />', () => {
-  const props: EndlessLoadingItemProps = {
-    onLoad: jest.fn(),
+  const props: EndlessScrollingItemProps = {
+    onLoad: vi.fn(),
     enabled: true,
   };
 
@@ -27,11 +27,11 @@ describe('<EndlessScrollingItem />', () => {
   const children = <div>{text}</div>;
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   afterAll(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
   });
 
   it('renders', () => {
@@ -41,14 +41,14 @@ describe('<EndlessScrollingItem />', () => {
   });
 
   describe('onLoad', () => {
-    const onLoad = jest.fn();
+    const onLoad = vi.fn();
 
     beforeEach(() => {
-      jest.clearAllMocks();
+      vi.clearAllMocks();
     });
 
     afterAll(() => {
-      jest.resetAllMocks();
+      vi.resetAllMocks();
     });
 
     it('triggers onLoad, when element in view and enabled', () => {

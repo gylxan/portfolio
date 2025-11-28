@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import Tabs from 'components/tabs/tabs';
 import Tab from 'components/tabs/tab/tab';
+import { describe, expect, it } from 'vitest';
 
 describe('<Tabs />', () => {
   const renderTabs = () =>

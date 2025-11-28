@@ -2,30 +2,41 @@ import * as i18nUtils from 'utils/i18n';
 import { renderHook } from '@testing-library/react';
 import { usePath } from 'hooks/usePath';
 import { routerConfig } from '__mocks__/next/router';
+import {
+  afterAll,
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
 
-jest.mock('utils/i18n', () => {
+vi.mock('next/router')
+
+vi.mock('utils/i18n', async (actualImport) => {
   return {
-    ...jest.requireActual('utils/i18n'),
-    isDefaultLanguage: jest.fn(),
+    ...await actualImport(),
+    isDefaultLanguage: vi.fn(),
   };
 });
 
 describe('usePath', () => {
-  const isDefaultLanguageSpy = jest.spyOn(i18nUtils, 'isDefaultLanguage');
+  const isDefaultLanguageSpy = vi.spyOn(i18nUtils, 'isDefaultLanguage');
 
   beforeEach(() => {
     isDefaultLanguageSpy.mockReturnValue(true);
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   afterAll(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
   });
 
-  it('returns the curren path', () => {
+  it('returns the current path', () => {
     const { result } = renderHook(() => usePath());
 
     expect(result.current).toBe(routerConfig.asPath);

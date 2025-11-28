@@ -64,6 +64,7 @@ const Menu = ({ links, resume }: MenuProps) => {
     }
   }
 
+  const state = isMenuOpen ? "open" : "closed"
   return (
     <nav className="flex" ref={ref}>
       <MenuButton
@@ -75,7 +76,7 @@ const Menu = ({ links, resume }: MenuProps) => {
         className={clsx(styles.menu, isMenuOpen && styles.open)}
         aria-hidden={!isMenuOpen}
       >
-        <ul role="menu" className={styles.list}>
+        <ul role="menu" className={styles.list} data-state={state}>
           {links.map(({ slug, title }) => {
             const href = `/${slug.current}`;
             return (

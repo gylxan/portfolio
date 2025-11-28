@@ -65,8 +65,8 @@ const useEndlessScrolling = <T extends object>({
       const results = await client.fetch(
         groq`
       *[${documentQuery}${
-          !!lastId ? ` && ${sortField} ${checkOperator} $${sortField}` : ''
-        }]${orderQuery ? ` | ${orderQuery}` : ''} [0..$limit] {
+        !!lastId ? ` && ${sortField} ${checkOperator} $${sortField}` : ''
+      }]${orderQuery ? ` | ${orderQuery}` : ''} [0..$limit] {
       ${fields}
       }`,
         {
@@ -79,7 +79,7 @@ const useEndlessScrolling = <T extends object>({
       handleOnLoaded(
         results,
         results.length === limit
-          ? results[results.length - 1]?.[sortField] ?? null
+          ? (results[results.length - 1]?.[sortField] ?? null)
           : null,
       );
     } catch (error) {
@@ -94,7 +94,17 @@ const useEndlessScrolling = <T extends object>({
     } finally {
       setState((prevState) => ({ ...prevState, loading: false }));
     }
-  }, [lastId, documentQuery, sortField, checkOperator, orderQuery, fields, limit, locale, handleOnLoaded]);
+  }, [
+    lastId,
+    documentQuery,
+    sortField,
+    checkOperator,
+    orderQuery,
+    fields,
+    limit,
+    locale,
+    handleOnLoaded,
+  ]);
 
   useEffect(() => {
     // When there was no initial load yet, or we change the language and lastId has been reset, load new page

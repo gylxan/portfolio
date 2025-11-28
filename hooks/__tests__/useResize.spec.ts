@@ -1,19 +1,20 @@
 import { renderHook } from '@testing-library/react';
 import useResize from 'hooks/useResize';
+import { afterAll, afterEach, describe, expect, it, vi } from 'vitest';
 
 describe('useResize', () => {
-  const addEventListenerSpy = jest.spyOn(window, 'addEventListener');
-  const removeEventListenerSpy = jest.spyOn(window, 'removeEventListener');
-  const callback = jest.fn();
+  const addEventListenerSpy = vi.spyOn(window, 'addEventListener');
+  const removeEventListenerSpy = vi.spyOn(window, 'removeEventListener');
+  const callback = vi.fn();
 
   afterEach(() => {
     addEventListenerSpy.mockClear();
     removeEventListenerSpy.mockClear();
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   afterAll(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
   });
 
   it('should register document listener', () => {

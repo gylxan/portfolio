@@ -1,4 +1,4 @@
-import { ListItemBuilder, StructureBuilder } from 'sanity/desk';
+import { type ListItemBuilder, type StructureBuilder } from 'sanity/structure';
 import { i18nConfig } from '../config/i18n';
 import { documentTypeIcons } from '../constants/sanity';
 
@@ -27,7 +27,9 @@ export const getLocalizedObject = (fieldType: string, fieldOptions?: any) => {
 
 // Helper function to solve problem of document internationalization of disabling base translation document
 // @see https://github.com/sanity-io/document-internationalization/issues/96
-export const withActivatable = (schemaDefinition) => ({
+export const withActivatable = <T, F>(
+  schemaDefinition: T & { fields: F[] },
+) => ({
   ...schemaDefinition,
   fields: [
     {

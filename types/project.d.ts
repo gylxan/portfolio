@@ -1,4 +1,4 @@
-import type { SanityImage } from "types/image";
+import type { SanityImage } from 'types/image';
 
 export interface Project {
   name: string;

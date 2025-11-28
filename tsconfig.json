@@ -10,13 +10,19 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "typeRoots": ["./types", "node_modules/@types"]
+    "typeRoots": ["./types", "node_modules/@types"],
+    "types": ["vitest", "vitest/globals"]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "node_modules/.pnpm/vitest@4.0.10_@types+node@24.10.1_jiti@2.6.1_jsdom@27.2.0_lightningcss@1.30.2_terser@5.44.1_yaml@2.8.1/node_modules/vitest/globals.d.ts"
+  ],
   "exclude": ["node_modules", "studio"]
 }

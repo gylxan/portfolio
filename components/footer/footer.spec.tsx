@@ -2,6 +2,9 @@ import { render, screen } from '@testing-library/react';
 import Footer, { FooterProps } from 'components/footer/footer';
 import { mockSiteConfig } from 'constants/mock';
 import type { SocialMedia } from 'types/siteConfig';
+import { describe, expect, it, vi } from 'vitest';
+
+vi.mock('next-sanity')
 
 describe('<Footer />', () => {
   const props: FooterProps = {

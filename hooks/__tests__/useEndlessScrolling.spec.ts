@@ -7,19 +7,30 @@ import client from 'utils/sanity';
 import { routerConfig } from '__mocks__/next/router';
 import * as AppContext from 'contexts/app-context';
 import { initialState } from 'contexts/app-context';
-import { NextRouter, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
+import {
+  afterEach,
+  afterAll,
+  describe,
+  vi,
+  expect,
+  beforeEach,
+  it,
+} from 'vitest';
 
-const mockUseRouter = useRouter as jest.MockedFunction<typeof useRouter>;
+vi.mock('next/router');
+const mockUseRouter = vi.mocked(useRouter);
 
-jest.mock('utils/sanity', () => ({
-  fetch: jest.fn(),
+vi.mock('utils/sanity', () => ({
+  default: {
+    fetch: vi.fn(),
+  }
 }));
 
-jest.mock('contexts/app-context', () => {
-  const originalAppContext = jest.requireActual('contexts/app-context');
+vi.mock('contexts/app-context', async (actualImport) => {
   return {
-    ...originalAppContext,
-    useAppContext: jest.fn(),
+    ...await actualImport(),
+    useAppContext: vi.fn(),
   };
 });
 
@@ -31,24 +42,23 @@ describe('useEndlessScrolling', () => {
     contextKey: 'post',
   };
 
-  const useAppContextSpy = jest.spyOn(AppContext, 'useAppContext');
-  const setData = jest.fn();
-  const fetchSpy = jest.spyOn(client, 'fetch');
-  const onLoadedMock = jest.fn();
+  const useAppContextSpy = vi.spyOn(AppContext, 'useAppContext');
+  const setData = vi.fn();
+  const fetchSpy = vi.spyOn(client, 'fetch');
+  const onLoadedMock = vi.fn();
 
   beforeEach(() => {
     fetchSpy.mockResolvedValue([]);
-
 
     useAppContextSpy.mockReturnValue({ data: initialState, setData });
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   afterAll(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
   });
 
   it('fetches the next page on mount', async () => {
@@ -188,7 +198,7 @@ describe('useEndlessScrolling', () => {
         fetchNextPage: () => Promise<void>;
       },
       UseEndlessScrollingProps<Post[]>
-    >;
+    > | null = null
     await act(async () => {
       render = await renderHook(() =>
         useEndlessScrolling({ ...props, onLoaded: onLoadedMock }),
@@ -215,7 +225,8 @@ describe('useEndlessScrolling', () => {
         fetchNextPage: () => Promise<void>;
       },
       UseEndlessScrollingProps<Post[]>
-    >;
+    > | null = null
+
     await act(async () => {
       render = await renderHook((props) => useEndlessScrolling(props), {
         initialProps: props,

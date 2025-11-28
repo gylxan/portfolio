@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, {PropsWithChildren} from 'react';
+import React, { PropsWithChildren } from 'react';
 
 export interface RowProps extends PropsWithChildren {
   space?: number;

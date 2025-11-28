@@ -9,7 +9,14 @@ import { useTranslations } from 'use-intl';
 import { useRouter } from 'next/router';
 
 export type PostListItemProps = Post;
-const PostListItem = ({ categories, slug, title, description, _createdAt, mainImage }: PostListItemProps) => {
+const PostListItem = ({
+  categories,
+  slug,
+  title,
+  description,
+  _createdAt,
+  mainImage,
+}: PostListItemProps) => {
   const imageProps = useSanityImage(mainImage);
   const t = useTranslations('post');
   const { locale } = useRouter();
@@ -40,9 +47,10 @@ const PostListItem = ({ categories, slug, title, description, _createdAt, mainIm
       <p>{description}</p>
       <div className="flex justify-between">
         <div className="mt-auto flex flex-wrap gap-1">
-          {!!categories && categories.map((category) => (
-            <Badge key={category.name}>{category.name}</Badge>
-          ))}
+          {!!categories &&
+            categories.map((category) => (
+              <Badge key={category.name}>{category.name}</Badge>
+            ))}
         </div>
         <span className="self-end text-sm">
           {getFormattedPostDate(_createdAt, locale)}

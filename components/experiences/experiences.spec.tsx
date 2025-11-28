@@ -1,6 +1,11 @@
 import type { ExperiencesProps } from 'components/experiences/experiences';
 import { Experiences } from 'components';
 import { render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
+vi.mock('next-sanity')
+vi.mock('use-intl')
+vi.mock('next/router')
 
 describe('<Experiences />', () => {
   const props: ExperiencesProps = {

@@ -1,45 +1,55 @@
-import { act, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { PostList } from 'components';
 import * as useSanityImageHook from 'hooks/useSanityImage';
 import * as useEndlessScrollingHook from 'hooks/useEndlessScrolling';
 import type { ImageLoader } from 'next/image';
 import * as AppContext from 'contexts/app-context';
 import { mockPosts } from 'constants/mock';
+import {
+  afterAll,
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
 
-jest.mock('hooks/useSanityImage');
-jest.mock('hooks/useEndlessScrolling');
+vi.mock('hooks/useSanityImage');
+vi.mock('hooks/useEndlessScrolling');
+vi.mock('next-sanity');
+vi.mock('use-intl');
+vi.mock('next/router');
 
-jest.mock('contexts/app-context', () => {
-  const originalAppContext = jest.requireActual('contexts/app-context');
+vi.mock('contexts/app-context', async (importOriginal) => {
   return {
-    ...originalAppContext,
-    useAppContext: jest.fn(),
+    ...(await importOriginal()),
+    useAppContext: vi.fn(),
   };
 });
 
-jest.mock('react-intersection-observer', () => {
-  const actual = jest.requireActual('react-intersection-observer');
+vi.mock('react-intersection-observer', async (importOriginal) => {
   return {
-    ...actual,
-    useInView: jest.fn().mockReturnValue({
-      ref: jest.fn(),
+    ...(await importOriginal()),
+    useInView: vi.fn().mockReturnValue({
+      ref: vi.fn(),
       inView: false,
     }),
   };
 });
 
 describe('<PostList/>', () => {
-  const useAppContextSpy = jest.spyOn(AppContext, 'useAppContext');
-  const setData = jest.fn();
+  const useAppContextSpy = vi.spyOn(AppContext, 'useAppContext');
+  const setData = vi.fn();
 
-  jest.spyOn(useSanityImageHook, 'default').mockReturnValue({
+  vi.spyOn(useSanityImageHook, 'default').mockReturnValue({
     loader: undefined as unknown as ImageLoader,
     src: 'http://url/image.png',
     width: 123,
     height: 123,
   });
 
-  const useEndlessScrollingHookSpy = jest.spyOn(
+  const useEndlessScrollingHookSpy = vi.spyOn(
     useEndlessScrollingHook,
     'default',
   );
@@ -56,25 +66,23 @@ describe('<PostList/>', () => {
     useEndlessScrollingHookSpy.mockReturnValue({
       hasMore: false,
       loading: false,
-      fetchNextPage: jest.fn(),
+      fetchNextPage: vi.fn(),
       error: null,
     });
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   afterAll(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
   });
 
   it('should render', async () => {
-    await act(() => {
-      render(<PostList />);
-    });
+    render(<PostList />);
 
-    expect(screen.getAllByRole('link')).toHaveLength(mockPosts.length);
+    expect(await screen.findAllByRole('link')).toHaveLength(mockPosts.length);
   });
 
   it('should render a message, when there are no posts', async () => {
@@ -85,10 +93,10 @@ describe('<PostList/>', () => {
       },
       setData,
     });
-    await act(() => {
-      render(<PostList />);
-    });
+    render(<PostList />);
 
-    expect(screen.getByText('post.no_posts_available')).toBeInTheDocument();
+    expect(
+      await screen.findByText('post.no_posts_available'),
+    ).toBeInTheDocument();
   });
 });

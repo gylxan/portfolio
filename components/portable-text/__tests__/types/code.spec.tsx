@@ -11,7 +11,7 @@ describe('<Code />', () => {
     index: 0,
     isInline: false,
     value,
-    renderNode: jest.fn(),
+    renderNode: vi.fn(),
   };
 
   it('should render', () => {

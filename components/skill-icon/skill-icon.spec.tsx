@@ -1,17 +1,18 @@
 import SkillIcon, { SkillIconProps } from 'components/skill-icon/skill-icon';
 import { render, screen } from '@testing-library/react';
-import useSanityImage from "../../hooks/useSanityImage";
+import useSanityImage from '../../hooks/useSanityImage';
+import { describe, expect, it, vi } from 'vitest';
 
-jest.mock('hooks/useSanityImage');
+vi.mock('hooks/useSanityImage');
+vi.mock('next-sanity');
+vi.mock('use-intl');
 
-const mockUseSanityImage = useSanityImage as jest.MockedFunction<
-    typeof useSanityImage
->;
+const mockUseSanityImage = vi.mocked(useSanityImage);
 
 describe('<SkillIcon />', () => {
   mockUseSanityImage.mockReturnValue({
     src: 'https://domain.image.com',
-    loader: jest.fn(),
+    loader: vi.fn().mockReturnValue('https://domain.image.com?w=123'),
     width: 123,
     height: 123,
   });

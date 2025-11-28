@@ -1,19 +1,27 @@
 import { getFormattedMonthAndYear, getFormattedPostDate } from 'utils/date';
+import {
+  afterAll,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
 
 describe('Date utils', () => {
-
   const originalDefaultLanguage = process.env.NEXT_PUBLIC_DEFAULT_LANGUAGE;
 
   beforeEach(() => {
-    process.env.NEXT_PUBLIC_DEFAULT_LANGUAGE = 'en'
-  })
+    process.env.NEXT_PUBLIC_DEFAULT_LANGUAGE = 'en';
+  });
 
   beforeAll(() => {
-    jest.useFakeTimers().setSystemTime(new Date('2022-11-22'));
+    vi.useFakeTimers().setSystemTime(new Date('2022-11-22'));
   });
 
   afterAll(() => {
-    jest.useRealTimers();
+    vi.useRealTimers();
     process.env.NEXT_PUBLIC_DEFAULT_LANGUAGE = originalDefaultLanguage;
   });
 
@@ -23,7 +31,9 @@ describe('Date utils', () => {
     });
 
     it('returns date with long month and day in specified language', () => {
-      expect(getFormattedPostDate('2022-12-22', 'de')).toBe('22. Dezember 2022');
+      expect(getFormattedPostDate('2022-12-22', 'de')).toBe(
+        '22. Dezember 2022',
+      );
     });
   });
 
@@ -33,7 +43,9 @@ describe('Date utils', () => {
     });
 
     it('returns date with long month and year for given date in specified locale', () => {
-      expect(getFormattedMonthAndYear('2022-12-22', 'de')).toBe('Dezember 2022');
+      expect(getFormattedMonthAndYear('2022-12-22', 'de')).toBe(
+        'Dezember 2022',
+      );
     });
 
     it('returns date with long month and year for today, when not date given', () => {

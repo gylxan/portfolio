@@ -37,10 +37,7 @@ export default defineType({
           key: 'key',
           value: 'value',
         },
-        prepare: ({
-          key,
-          value,
-        }) => {
+        prepare: ({ key, value }) => {
           return {
             title: key,
             subtitle: value?.[i18nConfig.base] || '',

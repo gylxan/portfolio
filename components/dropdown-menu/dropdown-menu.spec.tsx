@@ -1,6 +1,8 @@
 import type { DropdownMenuProps } from 'components/dropdown-menu/dropdown-menu';
-import { DropdownMenu, DropdownMenuItem } from 'components';
+import  DropdownMenu from 'components/dropdown-menu/dropdown-menu';
+import DropdownMenuItem  from 'components/dropdown-menu/dropdown-menu-item/dropdown-menu-item';
 import { fireEvent, render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
 
 describe('<DropdownMenu />', () => {
   const entries = [
@@ -15,7 +17,7 @@ describe('<DropdownMenu />', () => {
   const props: DropdownMenuProps = {
     value: entries[1].value,
     label: 'My label',
-    onChange: jest.fn(),
+    onChange: vi.fn(),
   };
 
   it('should render', () => {
@@ -42,7 +44,7 @@ describe('<DropdownMenu />', () => {
   });
 
   it('should call onChange, when another option is clicked', () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     render(
       <DropdownMenu {...props} onChange={onChange}>
         {children}
@@ -57,7 +59,7 @@ describe('<DropdownMenu />', () => {
   });
 
   it('should not call onChange, when selected option is clicked', () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     render(
       <DropdownMenu {...props} onChange={onChange}>
         {children}

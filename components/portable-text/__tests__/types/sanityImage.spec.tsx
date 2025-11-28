@@ -1,8 +1,20 @@
-import { act, render, screen } from '@testing-library/react';
-import SanityImage, { ImageProps } from 'components/portable-text/types/sanityImage';
+import { render, screen } from '@testing-library/react';
+import SanityImage, {
+  ImageProps,
+} from 'components/portable-text/types/sanityImage';
 import * as hooks from 'hooks/useSanityImage';
+import {
+  afterAll,
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
 
-jest.mock('hooks/useSanityImage');
+vi.mock('hooks/useSanityImage');
+vi.mock('next-sanity')
 
 describe('<SanityImage />', () => {
   const value = {
@@ -19,34 +31,32 @@ describe('<SanityImage />', () => {
     index: 0,
     isInline: false,
     value,
-    renderNode: jest.fn(),
+    renderNode: vi.fn(),
   };
 
   const imageProps = {
-    loader: jest.fn(),
-    src: 'http://url/image.png',
+    loader: vi.fn().mockReturnValue("https://cdn.sanity.io/image.png?w=123"),
+    src: 'https://cdn.sanity.io/image.png',
     width: 123,
     height: 123,
   };
 
-  const useSanityMock = jest.spyOn(hooks, 'default');
+  const useSanityMock = vi.spyOn(hooks, 'default');
 
   beforeEach(() => {
     useSanityMock.mockReturnValue(imageProps);
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   afterAll(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
   });
 
   it('should render', async () => {
-    await act(() => {
-      render(<SanityImage {...props} />);
-    });
+    render(<SanityImage {...props} />);
 
     expect(screen.getByRole('img')).toBeInTheDocument();
     expect(screen.getByRole('img').getAttribute('alt')).toBe(value.alt);
@@ -55,22 +65,18 @@ describe('<SanityImage />', () => {
 
   it('should render null, when imageProps are null', async () => {
     useSanityMock.mockReturnValue(null);
-    await act(() => {
-      render(<SanityImage {...props} />);
-    });
+    render(<SanityImage {...props} />);
 
     expect(screen.queryByRole('img')).not.toBeInTheDocument();
   });
 
   it('should render with default values', async () => {
-    await act(() => {
-      render(
-        <SanityImage
-          {...props}
-          value={{ ...value, alt: '', asset: { ...value.asset, metadata: {} } }}
-        />,
-      );
-    });
+    render(
+      <SanityImage
+        {...props}
+        value={{ ...value, alt: '', asset: { ...value.asset, metadata: {} } }}
+      />,
+    );
 
     expect(screen.getByRole('img')).toBeInTheDocument();
     expect(screen.getByRole('img').getAttribute('alt')).toBe(' ');

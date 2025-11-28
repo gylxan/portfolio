@@ -1,4 +1,5 @@
 import { NextRouter } from 'next/router';
+import { vi } from 'vitest';
 
 export const routerConfig: NextRouter = {
   asPath: '/test',
@@ -10,8 +11,9 @@ export const routerConfig: NextRouter = {
     slug: ['test'],
   },
   isLocaleDomain: false,
-  push: jest.fn(),
-  replace: jest.fn(),
-  reload: jest.fn(),
+  push: vi.fn(),
+  replace: vi.fn(),
+  reload: vi.fn(),
 } as unknown as NextRouter;
-export const useRouter = jest.fn().mockReturnValue(routerConfig);
+
+export const useRouter = vi.fn().mockReturnValue(routerConfig);

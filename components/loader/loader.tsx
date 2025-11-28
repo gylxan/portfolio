@@ -1,5 +1,6 @@
 import styles from './loader.module.css';
 import clsx from 'clsx';
+
 export interface LoaderProps {
   className?: string;
 }

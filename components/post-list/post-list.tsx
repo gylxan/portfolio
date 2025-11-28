@@ -5,7 +5,11 @@ import {
   postPaginatedLimit,
 } from 'constants/groq';
 import React from 'react';
-import { EndlessLoadingList, PostListItem, PostListItemSkeleton } from 'components';
+import {
+  EndlessLoadingList,
+  PostListItem,
+  PostListItemSkeleton,
+} from 'components';
 
 const PostList = () => {
   return (

@@ -1,5 +1,6 @@
 import Row from 'components/row/row';
 import { render, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
 
 describe('<Row />', () => {
   const children = <span data-testid="children">test</span>;

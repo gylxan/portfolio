@@ -1,27 +1,26 @@
 import { renderHook } from '@testing-library/react';
 import useSanityImage from 'hooks/useSanityImage';
 import { SanityImageObject } from '@sanity/image-url/lib/types/types';
-import { useNextSanityImage } from 'next-sanity-image';
+import { useNextSanityImage, UseNextSanityImageProps } from 'next-sanity-image';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-jest.mock('next-sanity-image', () => ({
-  useNextSanityImage: jest.fn(),
+vi.mock('next-sanity')
+vi.mock('next-sanity-image', () => ({
+  useNextSanityImage: vi.fn(),
 }));
 
-const useNextSanityImageMock = useNextSanityImage as jest.Mock;
+const useNextSanityImageMock = vi.mocked(useNextSanityImage);
 
 describe('useSanityImage', () => {
   const imageProps = { src: '/image-src' };
 
   beforeEach(() => {
-    useNextSanityImageMock.mockReturnValue(imageProps);
+    useNextSanityImageMock.mockReturnValue(imageProps as UseNextSanityImageProps);
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
-  });
-
-  afterEach(() => {
-    jest.resetAllMocks();
+    vi.clearAllMocks();
+    vi.resetAllMocks();
   });
 
   it('should return imageProps', () => {

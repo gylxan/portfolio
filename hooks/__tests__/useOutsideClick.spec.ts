@@ -1,17 +1,18 @@
 import { renderHook } from '@testing-library/react';
 import useOutsideClick from 'hooks/useOutsideClick';
 import { RefObject } from 'react';
+import { afterAll, afterEach, describe, expect, it, vi } from 'vitest';
 
 describe('useOutsideClick', () => {
   let clickListener: null | EventListenerOrEventListenerObject = null;
-  const addEventListenerSpy = jest
+  const addEventListenerSpy = vi
     .spyOn(document, 'addEventListener')
     .mockImplementation((_, handler) => (clickListener = handler));
-  const removeEventListenerSpy = jest.spyOn(document, 'removeEventListener');
-  const callback = jest.fn();
-  const refContains = jest.fn();
+  const removeEventListenerSpy = vi.spyOn(document, 'removeEventListener');
+  const callback = vi.fn();
+  const refContains = vi.fn();
   const ref = { current: { contains: refContains } } as RefObject<any>;
-  const stopPropagationSpy = jest.fn();
+  const stopPropagationSpy = vi.fn();
   const event = { stopPropagation: stopPropagationSpy } as unknown as Event;
 
   afterEach(() => {
@@ -20,11 +21,11 @@ describe('useOutsideClick', () => {
     removeEventListenerSpy.mockClear();
     stopPropagationSpy.mockClear();
     refContains.mockReturnValue(true);
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   afterAll(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
   });
 
   it('should register document listener', () => {

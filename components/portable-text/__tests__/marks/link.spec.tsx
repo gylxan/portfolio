@@ -6,7 +6,7 @@ describe('<Link />', () => {
     text: 'text',
     markType: 'link',
     children: 'link text',
-    renderNode: jest.fn(),
+    renderNode: vi.fn(),
   };
 
   const value = {

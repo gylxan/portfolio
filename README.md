@@ -5,6 +5,7 @@ My portfolio website with Next.js, Tailwind CSS and [Sanity](https://sanity.io/)
 ![Tests](https://github.com/gylxan/portfolio/actions/workflows/main.yml/badge.svg)
 
 # Quick start
+
 - Signup/Login to Sanity CMS (if not already)
 - Create a Sanity Project
 - Add required CORS & API settings in the project
@@ -26,12 +27,12 @@ Create a `.env.local` file in the root of your project to configure.
 The `.env` file can contain following configurations:
 
 | Key name                       | Description                                 | Example                 |
-|--------------------------------|---------------------------------------------|-------------------------|
+| ------------------------------ | ------------------------------------------- | ----------------------- | --- | --- |
 | NEXT_PUBLIC_URL                | URL the frontend is running on              | `http://localhost:3000` |
-| NEXT_PUBLIC_SANITY_PROJECT_ID  | ID of your Sanity project                   | `5m2a40us`              |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| NEXT_PUBLIC_SANITY_DATASET     | Dataset to use for from your sanity project | `production`            |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| NEXT_PUBLIC_SANITY_API_VERSION | API version of Sanity to use                | `v2021-10-21`           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| NEXT_PUBLIC_DEFAULT_LANGUAGE   | Default language for next                   | `en`                    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| NEXT_PUBLIC_SANITY_PROJECT_ID  | ID of your Sanity project                   | `5m2a40us`              |     |     |
+| NEXT_PUBLIC_SANITY_DATASET     | Dataset to use for from your sanity project | `production`            |     |     |
+| NEXT_PUBLIC_SANITY_API_VERSION | API version of Sanity to use                | `v2021-10-21`           |     |     |
+| NEXT_PUBLIC_DEFAULT_LANGUAGE   | Default language for next                   | `en`                    |     |     |
 
 ## Colors
 
@@ -46,6 +47,7 @@ To customize the portfolio for your needs, you have to adjust the `manifest.json
 Check also the `_document.tsx` for your customizations.
 
 ## Sanity
+
 Configure sanity like described [here](./studio/README.md).
 
 # Start developing
@@ -94,7 +96,7 @@ npm run build
 yarn build
 ```
 
-Before building the portfolio, Sanity studio dependencies are installed, we build the studio and copy the output to `public/studio`. 
+Before building the portfolio, Sanity studio dependencies are installed, we build the studio and copy the output to `public/studio`.
 Like this it can be accessed later via `https://NEXT_PUBLIC_URL/studio`.
 
 After building the portfolio, we also create a sitemap for the portfolio with `next-sitemap`.

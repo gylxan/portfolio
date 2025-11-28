@@ -13,7 +13,10 @@ export const getFormattedMonthAndYear = (
   locale?: string,
 ) => {
   const date = dateString ? new Date(dateString) : new Date();
-  return `${date.toLocaleString(locale ?? process.env.NEXT_PUBLIC_DEFAULT_LANGUAGE, {
-    month: 'long',
-  })} ${date.getFullYear()}`;
+  return `${date.toLocaleString(
+    locale ?? process.env.NEXT_PUBLIC_DEFAULT_LANGUAGE,
+    {
+      month: 'long',
+    },
+  )} ${date.getFullYear()}`;
 };

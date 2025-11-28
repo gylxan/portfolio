@@ -1,19 +1,19 @@
 import { render, screen } from '@testing-library/react';
 import DocumentCreator from 'components/document-creator/document-creator';
 import { mockSkills } from 'constants/mock';
-import useSanityImage from "../../hooks/useSanityImage";
+import useSanityImage from '../../hooks/useSanityImage';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
-jest.mock('hooks/useSanityImage');
+vi.mock('hooks/useSanityImage');
+vi.mock('next-sanity')
+vi.mock('use-intl')
 
-const mockUseSanityImage = useSanityImage as jest.MockedFunction<
-    typeof useSanityImage
->;
-
+const mockUseSanityImage = vi.mocked(useSanityImage);
 
 describe('<DocumentCreator />', () => {
   mockUseSanityImage.mockReturnValue({
     src: 'https://domain.image.com',
-    loader: jest.fn(),
+    loader: vi.fn().mockReturnValue('https://domain.image.com?w=123'),
     width: 123,
     height: 123,
   });
@@ -56,11 +56,12 @@ describe('<DocumentCreator />', () => {
     expect(
       document.querySelector(`.flex.flex-col.gap-2.items-center`),
     ).toBeInTheDocument();
+
     expect(screen.getByTestId('skills')).toBeInTheDocument();
   });
 
   it('should render nothing, when _type is not existing', () => {
-    console.warn = jest.fn();
+    console.warn = vi.fn();
     const { container } = render(<DocumentCreator _type="invalid" />);
 
     expect(container.children).toHaveLength(0);

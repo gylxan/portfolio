@@ -16,5 +16,4 @@ export const restructureTranslations = (translations: TranslationNamespace[]) =>
   );
 
 export const isDefaultLanguage = (language: string | undefined) =>
-    language === process.env.NEXT_PUBLIC_DEFAULT_LANGUAGE;
-
+  language === process.env.NEXT_PUBLIC_DEFAULT_LANGUAGE;
