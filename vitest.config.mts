@@ -5,7 +5,11 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 export default defineConfig({
   plugins: [tsconfigPaths(), react()],
   test: {
-    css: true,
+    css: {
+      modules: {
+        classNameStrategy: "stable"
+      }
+    },
     globals: true,
     setupFiles: ['./setup-tests.ts'],
     environment: 'jsdom',
