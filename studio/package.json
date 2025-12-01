@@ -25,10 +25,10 @@
     "@sanity/language-filter": "^4.0.0",
     "@sanity/vision": "4.19.0",
     "eslint": "^8.6.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-icons": "^5.0.0",
-    "react-is": "^18.2.0",
+    "react-is": "^19.0.0",
     "sanity": "4.19.0",
     "styled-components": "^6.1.8"
   },
