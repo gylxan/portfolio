@@ -4,7 +4,7 @@ import { SanityImageObject } from '@sanity/image-url/lib/types/types';
 import { useNextSanityImage, UseNextSanityImageProps } from 'next-sanity-image';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-vi.mock('next-sanity')
+vi.mock('next-sanity');
 vi.mock('next-sanity-image', () => ({
   useNextSanityImage: vi.fn(),
 }));
@@ -15,7 +15,9 @@ describe('useSanityImage', () => {
   const imageProps = { src: '/image-src' };
 
   beforeEach(() => {
-    useNextSanityImageMock.mockReturnValue(imageProps as UseNextSanityImageProps);
+    useNextSanityImageMock.mockReturnValue(
+      imageProps as UseNextSanityImageProps,
+    );
   });
 
   afterEach(() => {

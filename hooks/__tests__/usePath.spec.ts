@@ -12,11 +12,11 @@ import {
   vi,
 } from 'vitest';
 
-vi.mock('next/router')
+vi.mock('next/router');
 
 vi.mock('utils/i18n', async (actualImport) => {
   return {
-    ...await actualImport(),
+    ...(await actualImport()),
     isDefaultLanguage: vi.fn(),
   };
 });

@@ -10,9 +10,9 @@ const compat = new FlatCompat({
 });
 
 const config = [
-    ...compat.extends('next/core-web-vitals', 'next/typescript', 'prettier'),
-    {
-        ignores: ['studio/*', 'node_modules', "public/", ".next/"],
-    },
+  ...compat.extends('next/core-web-vitals', 'next/typescript', 'prettier'),
+  {
+    ignores: ['studio/*', 'node_modules', 'public/', '.next/'],
+  },
 ];
-export default config
+export default config;

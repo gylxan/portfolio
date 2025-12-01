@@ -64,7 +64,7 @@ const Menu = ({ links, resume }: MenuProps) => {
     }
   }
 
-  const state = isMenuOpen ? "open" : "closed"
+  const state = isMenuOpen ? 'open' : 'closed';
   return (
     <nav className="flex" ref={ref}>
       <MenuButton

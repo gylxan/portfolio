@@ -5,8 +5,8 @@ import useSanityImage from '../../hooks/useSanityImage';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 vi.mock('hooks/useSanityImage');
-vi.mock('next-sanity')
-vi.mock('use-intl')
+vi.mock('next-sanity');
+vi.mock('use-intl');
 
 const mockUseSanityImage = vi.mocked(useSanityImage);
 

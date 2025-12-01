@@ -19,9 +19,8 @@ import {
 } from 'vitest';
 
 vi.mock('hooks/useSanityImage');
-vi.mock('next-sanity')
-vi.mock('use-intl')
-
+vi.mock('next-sanity');
+vi.mock('use-intl');
 
 const mockUseRouter = vi.mocked(useRouter);
 
@@ -98,7 +97,6 @@ describe('<PostListItem />', () => {
 
   it('should render', async () => {
     render(<PostListItem {...props} />);
-
 
     expect(screen.getByRole('link')).toBeInTheDocument();
     expect(screen.getByRole('link').getAttribute('href')).toBe(

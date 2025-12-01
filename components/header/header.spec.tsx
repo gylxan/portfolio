@@ -13,9 +13,9 @@ import {
 } from 'vitest';
 
 vi.mock('hooks/useSanityImage');
-vi.mock('next-sanity')
-vi.mock('next/router')
-vi.mock('use-intl')
+vi.mock('next-sanity');
+vi.mock('next/router');
+vi.mock('use-intl');
 
 const mockUseSanityImage = vi.mocked(useSanityImage);
 

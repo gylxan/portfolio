@@ -11,9 +11,7 @@ const Skills = ({ title, skills }: SkillsProps) => {
     <div className="flex flex-col gap-4" data-testid="skills">
       <h2 className="text-xl">{title}</h2>
       <div className="flex flex-row flex-wrap gap-6">
-        {skills?.map((skill) => (
-          <SkillIcon key={skill.name} {...skill} />
-        ))}
+        {skills?.map((skill) => <SkillIcon key={skill.name} {...skill} />)}
       </div>
     </div>
   );

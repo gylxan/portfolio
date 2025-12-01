@@ -14,8 +14,8 @@ import {
   vi,
 } from 'vitest';
 
-vi.mock('next-sanity')
-vi.mock('use-intl')
+vi.mock('next-sanity');
+vi.mock('use-intl');
 
 const mockUseRouter = vi.mocked(useRouter);
 vi.mock('next/router', async (importOriginal) => {

@@ -1,6 +1,9 @@
 const PostListItemSkeleton = () => {
   return (
-    <div role="status" className="flex animate-pulse flex-col gap-2 rounded-md p-3">
+    <div
+      role="status"
+      className="flex animate-pulse flex-col gap-2 rounded-md p-3"
+    >
       <div className="aspect-video rounded-md bg-skeleton" />
       <div className="mt-4 h-7 rounded-md bg-skeleton" />
       <div className="h-4 mt-2 rounded-md bg-skeleton" />

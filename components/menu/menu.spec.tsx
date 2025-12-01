@@ -55,7 +55,6 @@ describe('<Menu />', () => {
 
     fireEvent.click(screen.getByRole('button'));
 
-
     expect(document.querySelector('body')).toHaveClass('menu-open');
     expect(screen.getByRole('menu')).toHaveAttribute('data-state', 'open');
   });
@@ -69,7 +68,10 @@ describe('<Menu />', () => {
 
     fireEvent.click(screen.getByRole('button'));
     expect(document.querySelector('body')).not.toHaveClass('menu-open');
-    expect(screen.getByRole('menu', {hidden: true})).toHaveAttribute('data-state', 'closed');
+    expect(screen.getByRole('menu', { hidden: true })).toHaveAttribute(
+      'data-state',
+      'closed',
+    );
   });
 
   it('removes the menu-open class on resize for md and up screens', () => {
@@ -109,7 +111,10 @@ describe('<Menu />', () => {
     fireEvent.click(screen.getAllByRole('menuitem')[0]);
 
     expect(document.querySelector('body')).not.toHaveClass('menu-open');
-    expect(screen.getByRole('menu', { hidden: true })).toHaveAttribute('data-state', 'closed')
+    expect(screen.getByRole('menu', { hidden: true })).toHaveAttribute(
+      'data-state',
+      'closed',
+    );
   });
 
   it('should close the burger menu, when useOutsideClick is triggered', () => {
@@ -124,6 +129,9 @@ describe('<Menu />', () => {
     });
 
     expect(document.querySelector('body')).not.toHaveClass('menu-open');
-    expect(screen.getByRole('menu', {hidden: true})).toHaveAttribute('data-state', 'closed');
+    expect(screen.getByRole('menu', { hidden: true })).toHaveAttribute(
+      'data-state',
+      'closed',
+    );
   });
 });

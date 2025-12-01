@@ -14,7 +14,7 @@ import {
 } from 'vitest';
 
 vi.mock('hooks/useSanityImage');
-vi.mock('next-sanity')
+vi.mock('next-sanity');
 
 describe('<SanityImage />', () => {
   const value = {
@@ -35,7 +35,7 @@ describe('<SanityImage />', () => {
   };
 
   const imageProps = {
-    loader: vi.fn().mockReturnValue("https://cdn.sanity.io/image.png?w=123"),
+    loader: vi.fn().mockReturnValue('https://cdn.sanity.io/image.png?w=123'),
     src: 'https://cdn.sanity.io/image.png',
     width: 123,
     height: 123,

@@ -1,6 +1,6 @@
 import type { DropdownMenuProps } from 'components/dropdown-menu/dropdown-menu';
-import  DropdownMenu from 'components/dropdown-menu/dropdown-menu';
-import DropdownMenuItem  from 'components/dropdown-menu/dropdown-menu-item/dropdown-menu-item';
+import DropdownMenu from 'components/dropdown-menu/dropdown-menu';
+import DropdownMenuItem from 'components/dropdown-menu/dropdown-menu-item/dropdown-menu-item';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 

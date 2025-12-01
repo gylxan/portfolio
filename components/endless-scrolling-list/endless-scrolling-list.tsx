@@ -3,7 +3,7 @@ import { useAppContext } from 'contexts/app-context';
 import useEndlessScrolling, {
   UseEndlessScrollingProps,
 } from 'hooks/useEndlessScrolling';
-import EndlessScrollingItem from 'components/endless-scrolling-item/endless-scrolling-item'
+import EndlessScrollingItem from 'components/endless-scrolling-item/endless-scrolling-item';
 import { useTranslations } from 'use-intl';
 import Loader from '../loader/loader';
 

@@ -26,9 +26,9 @@ import PostListItem from '../post-list-item/post-list-item';
 
 vi.mock('hooks/useSanityImage');
 vi.mock('hooks/useEndlessScrolling');
-vi.mock('next-sanity')
-vi.mock('use-intl')
-vi.mock('next/router')
+vi.mock('next-sanity');
+vi.mock('use-intl');
+vi.mock('next/router');
 
 vi.mock('contexts/app-context', async (importOriginal) => {
   return {

@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import PortableText from 'components/portable-text/portable-text';
 import { describe, expect, it, vi } from 'vitest';
 
-vi.mock('next-sanity')
+vi.mock('next-sanity');
 
 describe('<PortableText />', () => {
   const value = [
