@@ -11,7 +11,7 @@ describe('useOutsideClick', () => {
   const removeEventListenerSpy = vi.spyOn(document, 'removeEventListener');
   const callback = vi.fn();
   const refContains = vi.fn();
-  const ref = { current: { contains: refContains } } as RefObject<any>;
+  const ref = { current: { contains: refContains } } as unknown as RefObject<HTMLElement>;
   const stopPropagationSpy = vi.fn();
   const event = { stopPropagation: stopPropagationSpy } as unknown as Event;
 

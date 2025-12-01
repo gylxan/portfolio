@@ -1,8 +1,4 @@
-import type {
-  SanitySiteConfig,
-  SiteConfig,
-  TranslationNamespace,
-} from 'types/siteConfig';
+import type { SiteConfig, TranslationNamespace } from 'types/siteConfig';
 import type { SanityAltImage, SanityImage } from 'types/image';
 import { Project } from 'types/project';
 import { SanityFile } from 'types/file';
@@ -103,12 +99,17 @@ export const mockSiteConfig: SiteConfig = {
     },
   ],
   resume: mockSanityFile,
-  translations: mockTranslationNamespaces.reduce((accu, currentValue) => {
-    return {
-      ...accu,
-      [currentValue.namespace]: Object.fromEntries(currentValue.translations.map(entry => [entry.key, entry.value]))
-    }
-  }, {} as SiteConfig['translations']),
+  translations: mockTranslationNamespaces.reduce(
+    (accu, currentValue) => {
+      return {
+        ...accu,
+        [currentValue.namespace]: Object.fromEntries(
+          currentValue.translations.map((entry) => [entry.key, entry.value]),
+        ),
+      };
+    },
+    {} as SiteConfig['translations'],
+  ),
 };
 
 export const mockSkills = [

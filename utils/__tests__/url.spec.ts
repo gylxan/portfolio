@@ -16,9 +16,8 @@ import {
 } from 'vitest';
 
 vi.mock('utils/i18n', async (actualImport) => {
-  const originalI18n = await vi.importActual('utils/i18n');
   return {
-    ...originalI18n,
+    ...(await actualImport()),
     isDefaultLanguage: vi.fn(),
   };
 });

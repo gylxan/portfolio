@@ -16,7 +16,6 @@
     "jsx": "preserve",
     "incremental": true,
     "typeRoots": ["./types", "node_modules/@types"],
-    "types": ["vitest", "vitest/globals"]
   },
   "include": [
     "next-env.d.ts",

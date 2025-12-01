@@ -1,12 +1,9 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Layout, { LayoutProps } from 'components/layout/layout';
 import React from 'react';
-import * as hooks from 'hooks/useSanityImage';
-import type { ImageLoader } from 'next/image';
 import * as nextRouter from 'next/router';
 import { mockSiteConfig } from 'constants/mock';
 import { routerConfig } from '__mocks__/next/router';
-import ReactDOM from 'react-dom'
 import {
   afterAll,
   afterEach,
@@ -17,13 +14,10 @@ import {
   vi,
 } from 'vitest';
 
-
-vi.mock('next-sanity')
-vi.mock('use-intl')
+vi.mock('next-sanity');
+vi.mock('use-intl');
 
 vi.mock('hooks/useSanityImage');
-
-const useSanityMock = vi.spyOn(hooks, 'default').mockReturnValue(null);
 
 describe('<Layout />', () => {
   const originalProcessEnv = process.env;
@@ -32,7 +26,7 @@ describe('<Layout />', () => {
     siteConfig: mockSiteConfig,
     slug: '/',
   };
-  const childText ="I am a test child"
+  const childText = 'I am a test child';
   const mockChild = <span>{childText}</span>;
   const useRouterMock = vi.spyOn(nextRouter, 'useRouter');
 
@@ -50,7 +44,7 @@ describe('<Layout />', () => {
   });
 
   it('should render', async () => {
-    const { container } = render(<Layout {...props}>{mockChild}</Layout>);
+    render(<Layout {...props}>{mockChild}</Layout>);
 
     expect(screen.getByRole('main').children[0]).toHaveClass(
       'container mx-auto max-w-(--breakpoint-lg) px-4 md:px-8',

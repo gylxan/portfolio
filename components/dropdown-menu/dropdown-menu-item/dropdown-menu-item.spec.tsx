@@ -2,6 +2,7 @@ import DropdownMenuItem, {
   DropdownMenuItemProps,
 } from 'components/dropdown-menu/dropdown-menu-item/dropdown-menu-item';
 import { render, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
 
 describe('<DropdownMenuItem />', () => {
   const props: DropdownMenuItemProps = {

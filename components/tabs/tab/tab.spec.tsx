@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import Tab from 'components/tabs/tab/tab';
+import { describe, expect, it } from 'vitest';
 
 describe('<Tab />', () => {
   it('should render', () => {

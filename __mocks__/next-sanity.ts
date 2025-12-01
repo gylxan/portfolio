@@ -1,6 +1,6 @@
 import { vi } from 'vitest';
 
-export const fetchMock: <R = any>(query: string, params: any) => Promise<R> =
+export const fetchMock: <R>(query: string, params: Record<string, never> | undefined) => Promise<R> =
   vi.fn();
 export const groq = vi
   .fn()

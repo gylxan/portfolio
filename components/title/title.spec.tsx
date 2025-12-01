@@ -9,7 +9,7 @@ describe('<Title />', () => {
   } as const satisfies TitleProps;
 
   it('should render title', () => {
-    const { container } = render(<Title {...props} />);
+    render(<Title {...props} />);
 
     expect(screen.getByRole('heading')).toBeInTheDocument();
     expect(screen.getByRole('heading')).toHaveTextContent(props.children)
