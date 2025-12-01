@@ -4,8 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import type { NextLinkType } from 'components/link/link';
 
-export interface DropdownMenuItemProps
-  extends PropsWithChildren<Omit<NextLinkType, 'href'>> {
+export interface DropdownMenuItemProps extends PropsWithChildren<
+  Omit<NextLinkType, 'href'>
+> {
   selected?: boolean;
   value: string;
   href?: string;

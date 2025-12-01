@@ -94,7 +94,9 @@ const Project = ({
       </div>
       <p className={styles.description}>{description}</p>
       <div className="mt-auto flex flex-wrap gap-1">
-        {keywords?.map((keyword) => <Badge key={keyword}>{keyword}</Badge>)}
+        {keywords?.map((keyword) => (
+          <Badge key={keyword}>{keyword}</Badge>
+        ))}
       </div>
     </div>
   );

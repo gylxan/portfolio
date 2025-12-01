@@ -7,8 +7,10 @@ import EndlessScrollingItem from 'components/endless-scrolling-item/endless-scro
 import { useTranslations } from 'use-intl';
 import Loader from '../loader/loader';
 
-export interface EndlessScrollingListProps<T>
-  extends Omit<UseEndlessScrollingProps<T>, 'lastId'> {
+export interface EndlessScrollingListProps<T> extends Omit<
+  UseEndlessScrollingProps<T>,
+  'lastId'
+> {
   idField: keyof T;
   noEntryAvailableTranslationKey: string;
   className?: string;
