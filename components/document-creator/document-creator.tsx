@@ -17,7 +17,7 @@ import PostList from 'components/post-list/post-list';
 interface DocumentCreatorProps {
   _type: string;
 
-  content?: ContentBlock[];
+  content?: (ContentBlock & DocumentCreatorType)[];
 }
 
 type DocumentCreatorType = DocumentCreatorProps &
