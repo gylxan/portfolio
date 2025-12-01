@@ -1,7 +1,7 @@
 import { PropsWithChildren, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-export interface EndlessLoadingItemProps {
+export interface EndlessScrollingItemProps {
   enabled: boolean;
   onLoad: () => void;
 }
@@ -9,7 +9,7 @@ const EndlessScrollingItem = ({
   enabled,
   onLoad,
   children,
-}: PropsWithChildren<EndlessLoadingItemProps>) => {
+}: PropsWithChildren<EndlessScrollingItemProps>) => {
   const { ref, inView } = useInView({
     threshold: 1,
     triggerOnce: true,

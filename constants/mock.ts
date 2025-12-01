@@ -1,4 +1,4 @@
-import type { SanitySiteConfig, TranslationNamespace } from 'types/siteConfig';
+import type { SiteConfig, TranslationNamespace } from 'types/siteConfig';
 import type { SanityAltImage, SanityImage } from 'types/image';
 import { Project } from 'types/project';
 import { SanityFile } from 'types/file';
@@ -64,7 +64,7 @@ export const mockTranslationNamespaces: TranslationNamespace[] = [
   },
 ];
 
-export const mockSiteConfig: SanitySiteConfig = {
+export const mockSiteConfig: SiteConfig = {
   description: 'Site description',
   keywords: ['React', 'Next.js', 'Javascript'],
   title: 'My site',
@@ -99,7 +99,17 @@ export const mockSiteConfig: SanitySiteConfig = {
     },
   ],
   resume: mockSanityFile,
-  translations: mockTranslationNamespaces,
+  translations: mockTranslationNamespaces.reduce(
+    (accu, currentValue) => {
+      return {
+        ...accu,
+        [currentValue.namespace]: Object.fromEntries(
+          currentValue.translations.map((entry) => [entry.key, entry.value]),
+        ),
+      };
+    },
+    {} as SiteConfig['translations'],
+  ),
 };
 
 export const mockSkills = [

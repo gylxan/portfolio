@@ -3,12 +3,12 @@ import { RefObject, useCallback, useEffect } from 'react';
 export interface UseOutsideClickProps {
   active: boolean;
   callback: () => void;
-  ref: RefObject<any>;
+  ref: RefObject<HTMLElement | null>;
 }
 const useOutsideClick = ({ active, ref, callback }: UseOutsideClickProps) => {
   const handleClickOutside = useCallback(
     (event: Event) => {
-      if (!ref.current?.contains(event.target)) {
+      if (!ref.current?.contains(event.target as HTMLElement)) {
         event.stopPropagation();
         callback();
       }

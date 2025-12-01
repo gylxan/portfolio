@@ -5,8 +5,7 @@ import type {
   PropsWithChildren,
 } from 'react';
 import clsx from 'clsx';
-import { Link } from 'components';
-import type { LinkProps } from 'components/link/link';
+import Link, { type LinkProps } from 'components/link/link';
 
 export type LinkOrButtonType =
   | LinkProps

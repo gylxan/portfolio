@@ -1,6 +1,5 @@
 import { groq } from 'next-sanity';
 
-
 export const postListFields = `
    _id,
   _type,
@@ -19,9 +18,10 @@ export const postListFields = `
       metadata
     }
   }
-`
+`;
 export const postPaginatedLimit = 6;
-export const paginatedPostDocumentQuery = '_type == "post" && language == $lang';
+export const paginatedPostDocumentQuery =
+  '_type == "post" && language == $lang';
 export const paginatedPostOrderQuery = 'order(_createdAt desc)';
 
 export const singlePostQuery = groq`
@@ -85,7 +85,7 @@ export const projectFields = `
     }
   },
   "description": description[$lang]
-`
+`;
 
 export const allTranslationQuery = groq`
 *[_type == "translation"]{

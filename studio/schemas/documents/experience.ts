@@ -61,11 +61,7 @@ export default defineType({
               startDate: 'startDate',
               endDate: 'endDate',
             },
-            prepare: ({
-              role,
-              startDate,
-              endDate,
-            }) => {
+            prepare: ({ role, startDate, endDate }) => {
               return {
                 title: role[i18nConfig.base],
                 subtitle: `${startDate} - ${endDate || 'Today'}`,

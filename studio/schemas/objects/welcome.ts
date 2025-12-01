@@ -43,7 +43,7 @@ export default defineType({
       description: 'Link for the button and image',
       name: 'link',
       type: 'slug',
-    }
+    },
   ],
   preview: {
     select: {

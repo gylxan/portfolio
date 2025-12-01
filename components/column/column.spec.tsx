@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import Column from 'components/column/column';
+import { describe, expect, it } from 'vitest';
 
 describe('<Column />', () => {
   const children = <span data-testid="children">test</span>;

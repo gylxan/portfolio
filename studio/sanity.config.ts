@@ -67,10 +67,10 @@ export default defineConfig({
         'translation',
       ],
     }),
-      documentInternationalization({
-          supportedLanguages: i18nConfig.languages,
-          schemaTypes: i18nDocuments,
-      })
+    documentInternationalization({
+      supportedLanguages: i18nConfig.languages,
+      schemaTypes: i18nDocuments,
+    }),
   ],
   schema: {
     types: schemaTypes,

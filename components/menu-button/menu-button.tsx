@@ -14,6 +14,7 @@ const MenuButton = ({ open, className, ...otherProps }: MenuButtonProps) => {
       {...otherProps}
       type="button"
       aria-label={`${t(`${open ? 'close' : 'open'}_menu`)}`}
+      data-state={open ? 'open' : 'closed'}
       className={clsx(styles.menuButton, open && styles.open, className)}
     >
       <div className={styles.lineBox}>

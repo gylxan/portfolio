@@ -1,9 +1,15 @@
+import { vi } from 'vitest';
 
-export const fetchMock: <R = any>(query: string, params: any) => Promise<R> = jest.fn();
-export const groq = jest.fn().mockImplementation((stringLiteral: string) => stringLiteral);
+export const fetchMock: <R>(
+  query: string,
+  params: Record<string, never> | undefined,
+) => Promise<R> = vi.fn();
+export const groq = vi
+  .fn()
+  .mockImplementation((stringLiteral: string) => stringLiteral);
 const client = {
   fetch: fetchMock,
-  groq
+  groq,
 };
 
-export const createClient = jest.fn(() => client);
+export const createClient = vi.fn(() => client);

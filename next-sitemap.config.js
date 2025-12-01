@@ -18,9 +18,9 @@ module.exports = {
     alternateRefs: [
       {
         href: `${siteUrl}/de`,
-        hreflang: 'de'
-      }
-    ]
+        hreflang: 'de',
+      },
+    ],
   },
   transform: (config, path) => {
     // Remove entries from static sitemap which are contained in the server-sitemap.xml

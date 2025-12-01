@@ -1,21 +1,33 @@
 import PostListItem, {
   PostListItemProps,
 } from 'components/post-list-item/post-list-item';
-import { act, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import * as hooks from 'hooks/useSanityImage';
 import { getFormattedPostDate } from 'utils/date';
 import { ImageLoader } from 'next/image';
 import { Post } from 'types/post';
 import { NextRouter, useRouter } from 'next/router';
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
 
-jest.mock('hooks/useSanityImage');
+vi.mock('hooks/useSanityImage');
+vi.mock('next-sanity');
+vi.mock('use-intl');
 
-const mockUseRouter = useRouter as jest.MockedFunction<typeof useRouter>;
-jest.mock('next/router', () => {
-  const router = jest.requireActual('next/router');
+const mockUseRouter = vi.mocked(useRouter);
+
+vi.mock('next/router', async (importOriginal) => {
   return {
-    ...router,
-    useRouter: jest.fn(),
+    ...(await importOriginal()),
+    useRouter: vi.fn(),
   };
 });
 
@@ -53,7 +65,7 @@ describe('<PostListItem />', () => {
 
   const props: PostListItemProps = post;
 
-  const useSanityMock = jest.spyOn(hooks, 'default').mockReturnValue({
+  const useSanityMock = vi.spyOn(hooks, 'default').mockReturnValue({
     loader: undefined as unknown as ImageLoader,
     src: 'http://url/image.png',
     width: 123,
@@ -64,29 +76,27 @@ describe('<PostListItem />', () => {
     locale: 'en',
     locales: ['en', 'de'],
     asPath: '/test',
-  } as NextRouter;
+  } as unknown as NextRouter;
 
   beforeEach(() => {
     mockUseRouter.mockReturnValue(router);
   });
 
   beforeAll(() => {
-    jest.useFakeTimers().setSystemTime(new Date('2022-01-12'));
+    vi.useFakeTimers().setSystemTime(new Date('2022-01-12'));
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   afterAll(() => {
-    jest.resetAllMocks();
-    jest.useRealTimers();
+    vi.resetAllMocks();
+    vi.useRealTimers();
   });
 
   it('should render', async () => {
-    await act(() => {
-      render(<PostListItem {...props} />);
-    });
+    render(<PostListItem {...props} />);
 
     expect(screen.getByRole('link')).toBeInTheDocument();
     expect(screen.getByRole('link').getAttribute('href')).toBe(
@@ -95,7 +105,9 @@ describe('<PostListItem />', () => {
     expect(screen.getByRole('img')).toBeInTheDocument();
     expect(screen.getByRole('heading').textContent).toBe(post.title);
     expect(screen.getByText(post.description)).toBeInTheDocument();
-    expect(screen.getAllByTestId('badge')).toHaveLength(post.categories?.length ?? 0);
+    expect(screen.getAllByTestId('badge')).toHaveLength(
+      post.categories?.length ?? 0,
+    );
     expect(
       screen.getByText(getFormattedPostDate(post._createdAt, router.locale)),
     ).toBeInTheDocument();
@@ -103,17 +115,14 @@ describe('<PostListItem />', () => {
 
   it('should not render mainImage, when not given', async () => {
     useSanityMock.mockReturnValue(null);
-    await act(() => {
-      render(<PostListItem {...props} />);
-    });
+    render(<PostListItem {...props} />);
 
     expect(screen.queryByRole('img')).not.toBeInTheDocument();
   });
 
   it('should render without badges, when no categories are specified', async () => {
-    await act(() => {
-      render(<PostListItem {...props} categories={null}/>);
-    });
-    expect(screen.queryAllByTestId('badge')).toHaveLength(0)
-  })
+    render(<PostListItem {...props} categories={null} />);
+
+    expect(screen.queryAllByTestId('badge')).toHaveLength(0);
+  });
 });

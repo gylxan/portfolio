@@ -1,12 +1,13 @@
 import Link, { LinkProps } from 'components/portable-text/marks/link';
 import { render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
 
 describe('<Link />', () => {
   const props: LinkProps = {
     text: 'text',
     markType: 'link',
     children: 'link text',
-    renderNode: jest.fn(),
+    renderNode: vi.fn(),
   };
 
   const value = {

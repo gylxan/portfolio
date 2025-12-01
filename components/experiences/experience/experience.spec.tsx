@@ -4,6 +4,10 @@ import React from 'react';
 import { Experience } from 'components';
 import { getFormattedMonthAndYear } from 'utils/date';
 import { routerConfig } from '__mocks__/next/router';
+import { describe, expect, it, vi } from 'vitest';
+
+vi.mock('next-sanity');
+vi.mock('next/router');
 
 describe('<Experience />', () => {
   const props: ExperienceProps = {

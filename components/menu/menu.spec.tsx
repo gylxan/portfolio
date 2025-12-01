@@ -2,13 +2,18 @@ import { act, fireEvent, render, screen } from '@testing-library/react';
 import Menu, { MD_WIDTH, MenuProps } from 'components/menu/menu';
 import { mockSanityFile, mockSiteConfig } from 'constants/mock';
 import { UseOutsideClickProps } from 'hooks/useOutsideClick';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 let useOutsideClickProps: Partial<UseOutsideClickProps> = {};
-jest.mock('hooks/useOutsideClick', () =>
-  jest.fn().mockImplementation((props) => {
+vi.mock('hooks/useOutsideClick', () => ({
+  default: vi.fn().mockImplementation((props) => {
     useOutsideClickProps = props;
   }),
-);
+}));
+
+vi.mock('next-sanity');
+vi.mock('use-intl');
+vi.mock('next/router');
 
 describe('<Menu />', () => {
   const originalInnerWidth = global.innerWidth;
@@ -51,7 +56,7 @@ describe('<Menu />', () => {
     fireEvent.click(screen.getByRole('button'));
 
     expect(document.querySelector('body')).toHaveClass('menu-open');
-    expect(document.querySelector('.menu')).toHaveClass('open');
+    expect(screen.getByRole('menu')).toHaveAttribute('data-state', 'open');
   });
 
   it('should close burger menu on second click on menu button', () => {
@@ -59,11 +64,14 @@ describe('<Menu />', () => {
 
     fireEvent.click(screen.getByRole('button'));
     expect(document.querySelector('body')).toHaveClass('menu-open');
-    expect(document.querySelector('.menu')).toHaveClass('open');
+    expect(screen.getByRole('menu')).toHaveAttribute('data-state', 'open');
 
     fireEvent.click(screen.getByRole('button'));
     expect(document.querySelector('body')).not.toHaveClass('menu-open');
-    expect(document.querySelector('.menu')).not.toHaveClass('open');
+    expect(screen.getByRole('menu', { hidden: true })).toHaveAttribute(
+      'data-state',
+      'closed',
+    );
   });
 
   it('removes the menu-open class on resize for md and up screens', () => {
@@ -103,7 +111,10 @@ describe('<Menu />', () => {
     fireEvent.click(screen.getAllByRole('menuitem')[0]);
 
     expect(document.querySelector('body')).not.toHaveClass('menu-open');
-    expect(screen.getByRole('menu', { hidden: true })).not.toHaveClass('open');
+    expect(screen.getByRole('menu', { hidden: true })).toHaveAttribute(
+      'data-state',
+      'closed',
+    );
   });
 
   it('should close the burger menu, when useOutsideClick is triggered', () => {
@@ -111,13 +122,16 @@ describe('<Menu />', () => {
     fireEvent.click(screen.getByRole('button'));
 
     expect(document.querySelector('body')).toHaveClass('menu-open');
-    expect(document.querySelector('.menu')).toHaveClass('open');
+    expect(screen.getByRole('menu')).toHaveAttribute('data-state', 'open');
 
     act(() => {
-      useOutsideClickProps.callback();
+      useOutsideClickProps?.callback?.();
     });
 
     expect(document.querySelector('body')).not.toHaveClass('menu-open');
-    expect(document.querySelector('.menu')).not.toHaveClass('open');
+    expect(screen.getByRole('menu', { hidden: true })).toHaveAttribute(
+      'data-state',
+      'closed',
+    );
   });
 });

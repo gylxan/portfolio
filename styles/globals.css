@@ -43,10 +43,12 @@
   }
 
   @keyframes glitch {
-    2%, 64% {
+    2%,
+    64% {
       transform: translate(2px, 0) skew(0deg);
     }
-    4%, 60% {
+    4%,
+    60% {
       transform: translate(-2px, 0) skew(0deg);
     }
     62% {
@@ -55,10 +57,12 @@
   }
 
   @keyframes glitch-top {
-    2%, 64% {
+    2%,
+    64% {
       transform: translate(2px, -2px);
     }
-    4%, 60% {
+    4%,
+    60% {
       transform: translate(-2px, 2px);
     }
     62% {
@@ -67,10 +71,12 @@
   }
 
   @keyframes glitch-bottom {
-    2%, 64% {
+    2%,
+    64% {
       transform: translate(-2px, 0);
     }
-    4%, 60% {
+    4%,
+    60% {
       transform: translate(-2px, 0);
     }
     62% {
@@ -107,7 +113,6 @@
       animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
     }
   }
-
 }
 
 @utility button {
@@ -128,7 +133,6 @@
     --secondary: var(--red);
     --secondary-ghost: var(--red-ghost);
     --tertiary: var(--white);
-
   }
 
   html,

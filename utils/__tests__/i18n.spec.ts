@@ -1,5 +1,6 @@
 import { isDefaultLanguage, restructureTranslations } from 'utils/i18n';
 import { mockTranslationNamespaces } from 'constants/mock';
+import { afterAll, beforeEach, describe, expect, it } from 'vitest';
 
 describe('i18n utils', () => {
   const originalDefaultLanguage = process.env.NEXT_PUBLIC_DEFAULT_LANGUAGE;

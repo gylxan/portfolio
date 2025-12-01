@@ -1,4 +1,5 @@
 import { setCookie } from 'utils/cookie';
+import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest';
 
 describe('Cookie utils', () => {
   describe('setCookie', () => {
@@ -30,10 +31,10 @@ describe('Cookie utils', () => {
       expect(cookieValue).toBe('Cookie=value; path=/');
     });
 
-      it('should use the specified maxAge', () => {
-          setCookie('Cookie2', 'value2',12);
+    it('should use the specified maxAge', () => {
+      setCookie('Cookie2', 'value2', 12);
 
-          expect(cookieValue).toBe('Cookie2=value2; max-age=12; path=/');
-      });
+      expect(cookieValue).toBe('Cookie2=value2; max-age=12; path=/');
+    });
   });
 });

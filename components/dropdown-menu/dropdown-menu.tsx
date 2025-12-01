@@ -1,8 +1,9 @@
-import { Button } from 'components/index';
+import Button from 'components/button/button';
 import {
   Children,
   cloneElement,
-  MouseEvent, PropsWithChildren,
+  MouseEvent,
+  PropsWithChildren,
   ReactElement,
   ReactNode,
   useRef,

@@ -2,15 +2,26 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import Header, { HeaderProps } from 'components/header/header';
 import { mockSiteConfig } from 'constants/mock';
 import useSanityImage from 'hooks/useSanityImage';
-jest.mock('hooks/useSanityImage');
+import {
+  afterAll,
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
 
-const mockUseSanityImage = useSanityImage as jest.MockedFunction<
-  typeof useSanityImage
->;
+vi.mock('hooks/useSanityImage');
+vi.mock('next-sanity');
+vi.mock('next/router');
+vi.mock('use-intl');
+
+const mockUseSanityImage = vi.mocked(useSanityImage);
 
 describe('<Header />', function () {
-  const addEventListenerSpy = jest.spyOn(window, 'addEventListener');
-  const removeEventListenerSpy = jest.spyOn(window, 'removeEventListener');
+  const addEventListenerSpy = vi.spyOn(window, 'addEventListener');
+  const removeEventListenerSpy = vi.spyOn(window, 'removeEventListener');
 
   const props: HeaderProps = {
     menuLinks: mockSiteConfig.menuLinks,
@@ -20,18 +31,18 @@ describe('<Header />', function () {
   beforeEach(() => {
     mockUseSanityImage.mockReturnValue({
       src: 'https://domain/image.png',
-      loader: jest.fn(),
+      loader: vi.fn().mockReturnValue('https://domain.image.com?w=123'),
       width: 123,
       height: 123,
     });
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   afterAll(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
   });
 
   it('renders', async () => {
@@ -56,8 +67,7 @@ describe('<Header />', function () {
 
     fireEvent.scroll(window, { target: { scrollY: 100 } });
 
-    expect(screen.getByRole('banner').className).toContain("shadow-lg")
-
+    expect(screen.getByRole('banner').className).toContain('shadow-lg');
   });
 
   it('registers event listener for scrolling', () => {

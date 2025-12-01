@@ -1,5 +1,5 @@
 import NextImage from 'next/image';
-import { PortableTextTypeComponentProps } from '@portabletext/react/src';
+import { PortableTextTypeComponentProps } from '@portabletext/react';
 import useSanityImage from 'hooks/useSanityImage';
 import { getBlurDataUrl } from 'utils/sanity';
 import type { SanityAltImage } from 'types/image';

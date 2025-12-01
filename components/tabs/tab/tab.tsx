@@ -19,7 +19,7 @@ export const Tab = ({
         enter: 'opacity-0',
         enterActive: 'opacity-100 transition-opacity duration-300 ease-in',
         exit: 'opacity-100',
-        exitActive: 'opacity-0 transition-opacity duration-300 ease-in'
+        exitActive: 'opacity-0 transition-opacity duration-300 ease-in',
       }}
       in={active}
       appear={true}

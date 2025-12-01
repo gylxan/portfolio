@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
 import Code, { CodeProps } from 'components/portable-text/types/code';
+import { describe, expect, it, vi } from 'vitest';
 
 describe('<Code />', () => {
   const value = {
@@ -11,7 +12,7 @@ describe('<Code />', () => {
     index: 0,
     isInline: false,
     value,
-    renderNode: jest.fn(),
+    renderNode: vi.fn(),
   };
 
   it('should render', () => {

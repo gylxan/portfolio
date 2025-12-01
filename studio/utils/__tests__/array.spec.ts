@@ -9,11 +9,11 @@ describe('Array utils', () => {
     });
 
     it('should return the complete list, when list length is lower then maxElements', () => {
-        expect(getShortenedJoinedList([list[0], list[1]], 3)).toBe('1, 2');
+      expect(getShortenedJoinedList([list[0], list[1]], 3)).toBe('1, 2');
     });
 
-      it('should return empty string, when list is empty', () => {
-          expect(getShortenedJoinedList([], 3)).toBe('');
-      });
+    it('should return empty string, when list is empty', () => {
+      expect(getShortenedJoinedList([], 3)).toBe('');
+    });
   });
 });

@@ -1,20 +1,28 @@
-import { act, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Project, { ProjectProps } from 'components/project/project';
 import useSanityImage from 'hooks/useSanityImage';
 import { mockSanityImage } from 'constants/mock';
+import {
+  afterAll,
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
 
-jest.mock('hooks/useSanityImage');
+vi.mock('hooks/useSanityImage');
+vi.mock('next-sanity');
+vi.mock('use-intl');
 
-const mockUseSanityImage = useSanityImage as jest.MockedFunction<
-  typeof useSanityImage
->;
+const mockUseSanityImage = vi.mocked(useSanityImage);
 
-jest.mock('react-intersection-observer', () => {
-  const actual = jest.requireActual('react-intersection-observer');
+vi.mock('react-intersection-observer', async (importOriginal) => {
   return {
-    ...actual,
-    useInView: jest.fn().mockReturnValue({
-      ref: jest.fn(),
+    ...(await importOriginal()),
+    useInView: vi.fn().mockReturnValue({
+      ref: vi.fn(),
       inView: false,
     }),
   };
@@ -33,11 +41,11 @@ describe('<Project />', () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   afterAll(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
   });
 
   it('should render', () => {
@@ -63,13 +71,11 @@ describe('<Project />', () => {
   it('should render background image, when specified', async () => {
     mockUseSanityImage.mockReturnValue({
       src: 'https://domain.image.com',
-      loader: jest.fn(),
+      loader: vi.fn().mockReturnValue('https://domain.image.com?w=123'),
       width: 123,
       height: 123,
     });
-    await act(() => {
-      render(<Project {...props} backgroundImage={mockSanityImage} />);
-    });
+    render(<Project {...props} backgroundImage={mockSanityImage} />);
 
     expect(screen.getByRole('img')).toBeInTheDocument();
     expect(
@@ -96,9 +102,7 @@ describe('<Project />', () => {
     render(<Project {...props} githubUrl="https://githuburl" />);
 
     expect(
-      screen.getByLabelText(
-        `project.preview_or_project ${props.name}`,
-      ),
+      screen.getByLabelText(`project.preview_or_project ${props.name}`),
     ).toBeInTheDocument();
     expect(
       screen.getByLabelText(`project.github_repo_of ${props.name}`),
@@ -109,9 +113,7 @@ describe('<Project />', () => {
     render(<Project {...props} previewUrl="https://previewUrl" />);
 
     expect(
-      screen.getByLabelText(
-        `project.preview_or_project ${props.name}`,
-      ),
+      screen.getByLabelText(`project.preview_or_project ${props.name}`),
     ).toBeInTheDocument();
     expect(
       screen.getByLabelText(`project.preview_of ${props.name}`),

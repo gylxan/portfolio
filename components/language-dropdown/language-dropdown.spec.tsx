@@ -4,28 +4,37 @@ import { LanguageDropdown } from 'components';
 import * as cookieUtils from 'utils/cookie';
 import * as AppContext from 'contexts/app-context';
 import { initialState } from 'contexts/app-context';
+import {
+  afterAll,
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
 
-const mockUseRouter = useRouter as jest.MockedFunction<typeof useRouter>;
-jest.mock('next/router', () => {
-  const router = jest.requireActual('next/router');
+vi.mock('next-sanity');
+vi.mock('use-intl');
+
+const mockUseRouter = vi.mocked(useRouter);
+vi.mock('next/router', async (importOriginal) => {
   return {
-    ...router,
-    useRouter: jest.fn(),
+    ...(await importOriginal()),
+    useRouter: vi.fn(),
   };
 });
-jest.mock('utils/cookie', () => {
-  const utils = jest.requireActual('utils/cookie');
+vi.mock('utils/cookie', async (importOriginal) => {
   return {
-    ...utils,
-    setCookie: jest.fn(),
+    ...(await importOriginal()),
+    setCookie: vi.fn(),
   };
 });
 
-jest.mock('contexts/app-context', () => {
-  const originalAppContext = jest.requireActual('contexts/app-context');
+vi.mock('contexts/app-context', async (importOriginal) => {
   return {
-    ...originalAppContext,
-    useAppContext: jest.fn(),
+    ...(await importOriginal()),
+    useAppContext: vi.fn(),
   };
 });
 
@@ -34,11 +43,11 @@ describe('<LanguageDropdown />', () => {
     locale: 'de',
     locales: ['en', 'de'],
     asPath: '/test',
-  } as NextRouter;
+  } as unknown as NextRouter;
 
-  const setCookieSpy = jest.spyOn(cookieUtils, 'setCookie');
-  const useAppContextSpy = jest.spyOn(AppContext, 'useAppContext');
-  const setAppContextDataMock = jest.fn();
+  const setCookieSpy = vi.spyOn(cookieUtils, 'setCookie');
+  const useAppContextSpy = vi.spyOn(AppContext, 'useAppContext');
+  const setAppContextDataMock = vi.fn();
 
   beforeEach(() => {
     mockUseRouter.mockReturnValue(router);
@@ -50,11 +59,11 @@ describe('<LanguageDropdown />', () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   afterAll(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
   });
 
   it('should render', () => {

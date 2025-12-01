@@ -1,15 +1,17 @@
 import Title, { TitleProps } from 'components/title/title';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
 
+vi.mock('next/router');
 describe('<Title />', () => {
-  const props: TitleProps = {
+  const props = {
     children: 'My title',
-  };
+  } as const satisfies TitleProps;
 
   it('should render title', () => {
-    const { container } = render(<Title {...props} />);
+    render(<Title {...props} />);
 
-    expect(container.querySelector('h1')).toBeInTheDocument();
-    expect(container.querySelector('h1')?.textContent).toBe(props.children);
+    expect(screen.getByRole('heading')).toBeInTheDocument();
+    expect(screen.getByRole('heading')).toHaveTextContent(props.children);
   });
 });
