@@ -7,8 +7,8 @@ export default defineConfig({
   test: {
     css: {
       modules: {
-        classNameStrategy: "stable"
-      }
+        classNameStrategy: 'stable',
+      },
     },
     globals: true,
     setupFiles: ['./setup-tests.ts'],
