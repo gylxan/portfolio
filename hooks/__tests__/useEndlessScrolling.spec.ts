@@ -151,7 +151,9 @@ describe('useEndlessScrolling', () => {
       lang: routerConfig.locale,
       [props.sortField]: '',
     });
-    expect(render?.result.current.error).toBe('My error');
+    await waitFor(() => {
+      expect(render?.result.current.error).toBe('My error');
+    });
     expect(render?.result.current.loading).toBeFalsy();
   });
 
