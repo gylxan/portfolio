@@ -112,7 +112,7 @@ const useEndlessScrolling = <T extends object>({
       !isInitialLoaded.current ||
       (previousLocale.current !== locale && lastId === '')
     ) {
-      fetchNextPage();
+      void fetchNextPage();
     }
     isInitialLoaded.current = true;
   }, [fetchNextPage, lastId, loading, locale]);
