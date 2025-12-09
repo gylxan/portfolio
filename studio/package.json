@@ -23,13 +23,13 @@
     "@sanity/code-input": "^6.0.0",
     "@sanity/document-internationalization": "^4.0.0",
     "@sanity/language-filter": "^4.0.0",
-    "@sanity/vision": "4.20.3",
+    "@sanity/vision": "4.21.0",
     "eslint": "^8.6.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.0.0",
     "react-is": "^19.0.0",
-    "sanity": "4.20.3",
+    "sanity": "4.21.0",
     "styled-components": "^6.1.8"
   },
   "devDependencies": {
