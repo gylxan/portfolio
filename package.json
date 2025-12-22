@@ -50,7 +50,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
     "@portabletext/types": "^4.0.0",
-    "@sanity/types": "^4.0.0",
+    "@sanity/types": "^5.0.0",
     "@tailwindcss/postcss": "^4.1.4",
     "@testing-library/dom": "^10.0.0",
     "@testing-library/jest-dom": "^6.0.0",
