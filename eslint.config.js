@@ -12,7 +12,7 @@ const compat = new FlatCompat({
 const config = [
   ...compat.extends('next/core-web-vitals', 'next/typescript', 'prettier'),
   {
-    ignores: ['studio/*', 'node_modules', 'public/', '.next/'],
+    ignores: ['studio/*', 'node_modules', 'public/', '.next/', "next-env.d.ts", "sanity.config.ts"],
   },
 ];
 export default config;
