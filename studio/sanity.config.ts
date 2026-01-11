@@ -1,5 +1,5 @@
 import { defineConfig } from 'sanity';
-import { deskTool } from 'sanity/desk';
+import { structureTool } from 'sanity/structure';
 import { schemaTypes } from './schemas/schema';
 import { codeInput } from '@sanity/code-input';
 import { visionTool } from '@sanity/vision';
@@ -23,7 +23,7 @@ export default defineConfig({
   basePath: '/studio',
 
   plugins: [
-    deskTool({
+    structureTool({
       structure: (S) => {
         const documentTypesWithIcons = S.documentTypeListItems().map(
           (element) =>

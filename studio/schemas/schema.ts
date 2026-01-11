@@ -15,6 +15,8 @@ import projects from './objects/projects';
 import translation from './documents/translation';
 import welcome from './objects/welcome';
 import { getLocalizedObject } from '../utils/schema';
+import { SchemaTypeDefinition } from '@sanity/types';
+import { SchemaPluginOptions } from 'sanity';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export const schemaTypes = [
@@ -36,4 +38,4 @@ export const schemaTypes = [
   welcome,
   getLocalizedObject('text'),
   getLocalizedObject('string'),
-];
+] as unknown as SchemaTypeDefinition[];
