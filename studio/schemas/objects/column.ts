@@ -2,28 +2,29 @@ import { pageContentTypes } from '../../constants/page';
 import { getShortenedJoinedList } from '../../utils/array';
 import { defineType } from 'sanity';
 
-const spaces: Record<number, { title: string; value: number }> = {
+const spaces = {
   10: { title: '10', value: 10 },
   8: { title: '8', value: 8 },
   6: { title: '6', value: 6 },
   4: { title: '4', value: 4 },
   2: { title: '2', value: 2 },
   0: { title: '0', value: 0 },
-};
+} as const;
 
-const alignments: Record<string, { title: string; value: string }> = {
+const alignments = {
   start: { title: 'left', value: 'start' },
   center: { title: 'center', value: 'center' },
   end: { title: 'right', value: 'end' },
-};
+} as const;
 
-const rowSwitchSizes: Record<string, { title: string; value: string }> = {
+const rowSwitchSizes = {
   never: { title: 'never', value: 'never' },
   sm: { title: 'Small', value: 'sm' },
   md: { title: 'Medium', value: 'md' },
   lg: { title: 'Large', value: 'lg' },
   xl: { title: 'Extra large', value: 'xl' },
-};
+} as const;
+
 export default defineType({
   name: 'column',
   type: 'object',
@@ -79,9 +80,9 @@ export default defineType({
       content,
       rowSwitchSize,
     }: {
-      space: number;
-      alignment: string;
-      rowSwitchSize: string;
+      space: keyof typeof spaces;
+      alignment: keyof typeof alignments;
+      rowSwitchSize: keyof typeof rowSwitchSizes;
       content: { _type: string }[];
     }) => {
       const contentTypes = content?.map(({ _type }) => _type) ?? [];

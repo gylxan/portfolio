@@ -3,7 +3,6 @@ import { Button, Link, MenuButton } from 'components';
 import clsx from 'clsx';
 import useOutsideClick from 'hooks/useOutsideClick';
 import useResize from 'hooks/useResize';
-import styles from 'components/menu/menu.module.css';
 import type { MenuLink } from 'types/siteConfig';
 import type { SanityFile } from 'types/file';
 import { useTranslations } from 'use-intl';
@@ -70,13 +69,23 @@ const Menu = ({ links, resume }: MenuProps) => {
       <MenuButton
         open={isMenuOpen}
         onClick={handleMenuButtonClick}
-        className={styles.menuButton}
+        className="z-10 md:hidden"
       />
       <div
-        className={clsx(styles.menu, isMenuOpen && styles.open)}
+        className={clsx(
+          'fixed top-0 bottom-0 right-0 z-9 flex h-screen  flex-col items-center justify-center gap-8 bg-background px-4 py-12 font-mono text-xl outline-0 transition-all duration-300 w-[min(75vw,400px)]',
+          'md:relative md:z-auto md:w-auto  md:h-auto md:top-auto md:bottom-auto md:transform-none md:flex-row md:p-0 md:text-sm md:shadow-none md:transition-none',
+          isMenuOpen
+            ? 'visible translate-x-0 md:translate-none'
+            : 'invisible translate-x-[100vw] md:visible md:translate-none',
+        )}
         aria-hidden={!isMenuOpen}
       >
-        <ul role="menu" className={styles.list} data-state={state}>
+        <ul
+          role="menu"
+          className="flex flex-col gap-8 md:flex-row"
+          data-state={state}
+        >
           {links.map(({ slug, title }) => {
             const href = `/${slug.current}`;
             return (

@@ -1,25 +1,25 @@
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
-import { schemaTypes } from './schemas/schema';
+import { schemaTypes } from './studio/schemas/schema';
 import { codeInput } from '@sanity/code-input';
 import { visionTool } from '@sanity/vision';
 import { HiOutlineCog } from 'react-icons/hi';
 import { documentInternationalization } from '@sanity/document-internationalization';
 import { languageFilter } from '@sanity/language-filter';
-import { i18nConfig, i18nDocuments } from './config/i18n';
+import { i18nConfig, i18nDocuments } from './studio/config/i18n';
 import {
   applyIconOnListItemBuilder,
   filterChildrenForBaseLanguage,
   getBlogTypes,
   getHiddenDocumentTypes,
   getPageType,
-} from './utils/schema';
+} from './studio/utils/schema';
 
 export default defineConfig({
   name: 'portfolio',
   title: 'Portfolio',
-  projectId: import.meta.env.SANITY_STUDIO_PROJECT_ID,
-  dataset: import.meta.env.SANITY_STUDIO_DATASET,
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? '',
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? '',
   basePath: '/studio',
 
   plugins: [
@@ -54,7 +54,7 @@ export default defineConfig({
     visionTool({
       // Note: These are both optional
       defaultApiVersion: 'v2021-10-21',
-      defaultDataset: import.meta.env.SANITY_STUDIO_DATASET,
+      defaultDataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
     }),
     languageFilter({
       supportedLanguages: i18nConfig.languages,
