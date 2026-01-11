@@ -159,7 +159,7 @@
 
   body.menu-open main,
   body.menu-open footer {
-    @apply transition-all duration-[250ms] ease-[cubic-bezier(0.645,_0.045,_0.355,_1)] pointer-events-none select-none;
+    @apply transition-all duration-250 ease-[cubic-bezier(0.645,0.045,0.355,1)] pointer-events-none select-none;
     filter: blur(5px) brightness(0.7);
   }
 
