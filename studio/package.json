@@ -9,7 +9,7 @@
     "url": "https://github.com/gylxan"
   },
   "license": "UNLICENSED",
-  "packageManager": "pnpm@10.28.0",
+  "packageManager": "pnpm@10.28.1",
   "scripts": {
     "start": "sanity start",
     "dev": "sanity dev",
@@ -23,7 +23,7 @@
     "@sanity/code-input": "^7.0.0",
     "@sanity/document-internationalization": "^4.0.0",
     "@sanity/language-filter": "^4.0.0",
-    "@sanity/vision": "5.2.0",
+    "@sanity/vision": "5.5.0",
     "eslint": "^8.6.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
