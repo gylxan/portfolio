@@ -6,9 +6,8 @@ import { AppState, useAppContext } from 'contexts/app-context';
 
 export enum IdCheckOperator {
   LowerThen = '<',
-  // GreaterThen = '>',
 }
-export interface UseEndlessScrollingProps<T> {
+export interface UseEndlessScrollingProps {
   sortField: string;
   lastId: string | null;
   limit?: number;
@@ -18,7 +17,8 @@ export interface UseEndlessScrollingProps<T> {
   checkOperator?: IdCheckOperator;
   contextKey: keyof AppState;
 }
-const useEndlessScrolling = <T extends object>({
+
+const useEndlessScrolling = ({
   limit = 10,
   lastId,
   sortField,
@@ -27,7 +27,7 @@ const useEndlessScrolling = <T extends object>({
   fields = '...',
   checkOperator = IdCheckOperator.LowerThen,
   contextKey,
-}: UseEndlessScrollingProps<T>) => {
+}: UseEndlessScrollingProps) => {
   const isInitialLoaded = useRef(false);
   const [state, setState] = useState<{
     loading: boolean;
@@ -42,7 +42,7 @@ const useEndlessScrolling = <T extends object>({
   const { setData } = useAppContext();
 
   const handleOnLoaded = useCallback(
-    (results: T[], lastId: string | null) =>
+    (results: [], lastId: string | null) =>
       setData((prevData) => ({
         ...prevData,
         [contextKey]: {
