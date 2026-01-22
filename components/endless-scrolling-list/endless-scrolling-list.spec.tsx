@@ -1,10 +1,7 @@
-import type { Post } from 'types/post';
 import { act, render, screen } from '@testing-library/react';
 import * as useSanityImageHook from 'hooks/useSanityImage';
 import * as useEndlessScrollingHook from 'hooks/useEndlessScrolling';
-import EndlessScrollingList, {
-  EndlessScrollingListProps,
-} from 'components/endless-scrolling-list/endless-scrolling-list';
+import EndlessScrollingList from 'components/endless-scrolling-list/endless-scrolling-list';
 import type { ImageLoader } from 'next/image';
 import * as AppContext from 'contexts/app-context';
 import { mockPosts } from 'constants/mock';
@@ -65,7 +62,7 @@ describe('<EndlessScrollingList />', () => {
 
   const skeleton = () => <div data-testid="skeleton">Skeleton</div>;
 
-  const props: EndlessScrollingListProps<Post> = {
+  const props = {
     idField: '_id',
     fields: postListFields,
     orderQuery: paginatedPostOrderQuery,
@@ -76,7 +73,7 @@ describe('<EndlessScrollingList />', () => {
     noEntryAvailableTranslationKey: 'no_post_available',
     component: PostListItem,
     skeleton,
-  };
+  } as const;
 
   beforeEach(() => {
     useAppContextSpy.mockReturnValue({

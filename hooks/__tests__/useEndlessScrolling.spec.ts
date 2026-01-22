@@ -1,8 +1,5 @@
-import useEndlessScrolling, {
-  UseEndlessScrollingProps,
-} from 'hooks/useEndlessScrolling';
+import useEndlessScrolling from 'hooks/useEndlessScrolling';
 import { act, renderHook, waitFor } from '@testing-library/react';
-import { Post } from 'types/post';
 import client from 'utils/sanity';
 import { routerConfig } from '__mocks__/next/router';
 import * as AppContext from 'contexts/app-context';
@@ -35,12 +32,12 @@ vi.mock('contexts/app-context', async (actualImport) => {
 });
 
 describe('useEndlessScrolling', () => {
-  const props: UseEndlessScrollingProps<Post[]> = {
+  const props = {
     sortField: 'id',
     documentQuery: '_type == "post"',
     lastId: '',
     contextKey: 'post',
-  };
+  } as const;
 
   const useAppContextSpy = vi.spyOn(AppContext, 'useAppContext');
   const setData = vi.fn();
