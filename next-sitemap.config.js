@@ -1,7 +1,7 @@
 /** @type {import('next-sitemap').IConfig} */
 const siteUrl = process.env.NEXT_PUBLIC_URL || 'https://example.com';
 const ignoredPaths = ['/server-sitemap.xml', '/post'];
-export default {
+const config = {
   siteUrl,
   generateRobotsTxt: true,
   robotsTxtOptions: {
@@ -37,3 +37,5 @@ export default {
     };
   },
 };
+
+export default config;

@@ -19,6 +19,9 @@ export interface AppState {
   project: ListAppState<Project>;
 }
 
+export type AppStateEntity<Key extends keyof AppState> =
+  AppState[Key] extends ListAppState<infer T> ? T : never;
+
 interface AppContextValue {
   data: AppState;
   setData: Dispatch<SetStateAction<AppState>>;

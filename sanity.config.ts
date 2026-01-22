@@ -1,5 +1,5 @@
 import { defineConfig } from 'sanity';
-import { structureTool } from 'sanity/structure';
+import { StructureBuilder, structureTool } from 'sanity/structure';
 import { schemaTypes } from './studio/schemas/schema';
 import { codeInput } from '@sanity/code-input';
 import { visionTool } from '@sanity/vision';
@@ -24,7 +24,7 @@ export default defineConfig({
 
   plugins: [
     structureTool({
-      structure: (S) => {
+      structure: (S: StructureBuilder) => {
         const documentTypesWithIcons = S.documentTypeListItems().map(
           (element) =>
             filterChildrenForBaseLanguage(
