@@ -195,7 +195,9 @@ describe('useEndlessScrolling', () => {
       lang: 'de',
       [props.sortField]: '',
     });
-    expect(render?.result.current.error).toBeNull();
-    expect(render?.result.current.loading).toBeFalsy();
+    await waitFor(() => {
+      expect(render?.result.current.error).toBeNull();
+      expect(render?.result.current.loading).toBeFalsy();
+    });
   });
 });
