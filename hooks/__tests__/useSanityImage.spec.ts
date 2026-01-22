@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import useSanityImage from 'hooks/useSanityImage';
-import { SanityImageObject } from '@sanity/image-url/lib/types/types';
+import { SanityImageObject } from '@sanity/image-url';
 import { useNextSanityImage, UseNextSanityImageProps } from 'next-sanity-image';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
