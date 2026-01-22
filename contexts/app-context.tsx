@@ -19,8 +19,8 @@ export interface AppState {
   project: ListAppState<Project>;
 }
 
-export type AppStateEntity =
-  AppState[keyof AppState] extends ListAppState<infer T> ? T : never;
+export type AppStateEntity<Key extends keyof AppState> =
+  AppState[Key] extends ListAppState<infer T> ? T : never;
 
 interface AppContextValue {
   data: AppState;

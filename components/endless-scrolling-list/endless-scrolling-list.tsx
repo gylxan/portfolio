@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppStateEntity, useAppContext } from 'contexts/app-context';
+import { AppState, AppStateEntity, useAppContext } from 'contexts/app-context';
 import useEndlessScrolling, {
   UseEndlessScrollingProps,
 } from 'hooks/useEndlessScrolling';
@@ -7,18 +7,16 @@ import EndlessScrollingItem from 'components/endless-scrolling-item/endless-scro
 import { useTranslations } from 'use-intl';
 import Loader from '../loader/loader';
 
-export interface EndlessScrollingListProps extends Omit<
-  UseEndlessScrollingProps,
-  'lastId'
-> {
-  idField: string;
-  noEntryAvailableTranslationKey: string;
-  className?: string;
-  component: React.FC<AppStateEntity>;
-  skeleton: React.FC;
-}
+export type EndlessScrollingListProps<AppStateKey extends keyof AppState> =
+  Omit<UseEndlessScrollingProps<AppStateKey>, 'lastId'> & {
+    idField: string;
+    noEntryAvailableTranslationKey: string;
+    className?: string;
+    component: React.FC<AppStateEntity<AppStateKey>>;
+    skeleton: React.FC;
+  };
 
-const EndlessScrollingList = ({
+const EndlessScrollingList = <AppStateKey extends keyof AppState>({
   contextKey,
   idField,
   noEntryAvailableTranslationKey,
@@ -27,7 +25,7 @@ const EndlessScrollingList = ({
   skeleton: Skeleton,
   limit = 10,
   ...endlessScrollingProps
-}: EndlessScrollingListProps) => {
+}: EndlessScrollingListProps<AppStateKey>) => {
   const { data } = useAppContext();
   const {
     [contextKey]: { entries, lastId },
@@ -39,7 +37,7 @@ const EndlessScrollingList = ({
     lastId,
   });
 
-  const t = useTranslations(contextKey);
+  const t = useTranslations(contextKey as string);
   if (!hasMore && entries.length === 0) {
     return <>{t(noEntryAvailableTranslationKey)}</>;
   }
@@ -55,6 +53,7 @@ const EndlessScrollingList = ({
             enabled={index === entries.length - 1}
             onLoad={fetchNextPage}
           >
+            {/*@ts-expect-error - Props are correctly assignable*/}
             <Component {...entry} />
           </EndlessScrollingItem>
         ))}
