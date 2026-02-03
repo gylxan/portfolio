@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@sanity/code-input':
         specifier: ^7.0.0
-        version: 7.0.7(@babel/runtime@7.28.2)(@codemirror/lint@6.9.3)(@codemirror/theme-one-dark@6.1.2)(@emotion/is-prop-valid@1.4.0)(codemirror@6.0.1)(react-dom@19.2.4(react@19.2.4))(react-is@19.2.4)(react@19.2.4)(styled-components@6.3.8(react-dom@19.2.4(react@19.2.4))(react@19.2.4))
+        version: 7.0.8(@babel/runtime@7.28.2)(@codemirror/lint@6.9.3)(@codemirror/theme-one-dark@6.1.2)(@emotion/is-prop-valid@1.4.0)(codemirror@6.0.1)(react-dom@19.2.4(react@19.2.4))(react-is@19.2.4)(react@19.2.4)(styled-components@6.3.8(react-dom@19.2.4(react@19.2.4))(react@19.2.4))
       '@sanity/document-internationalization':
         specifier: ^4.0.0
         version: 4.1.1(@emotion/is-prop-valid@1.4.0)(@types/react@19.0.8)(react-dom@19.2.4(react@19.2.4))(react-is@19.2.4)(react@19.2.4)(rxjs@7.8.2)(styled-components@6.3.8(react-dom@19.2.4(react@19.2.4))(react@19.2.4))
@@ -241,8 +241,8 @@ packages:
     resolution: {integrity: sha512-bXuQGWgrpkSInZy8lfCMmOgdTNpsoZ7PORW0+zXss8qVpNo1DC002l1c8to6kfxNF0OaL9v7LwsPqKcTZ/VWrw==}
     engines: {node: '>=20'}
 
-  '@sanity/code-input@7.0.7':
-    resolution: {integrity: sha512-b9WtOTwrFZLVhrE1K4HIxclfzA9TfG8kqjm/BJl7Suq6U/Xiopgpf42oGq2cS6YqtJDg7p4uyfJ2jLACrg3gRw==}
+  '@sanity/code-input@7.0.8':
+    resolution: {integrity: sha512-1X2yWc/c4DfBAhtzXO/DmMiSStZReEnLjNcF3kfSF4KCTiNYjAbpnDICC5wL3y+rkZykzLMygicY6ywqXJ3lcw==}
     engines: {node: '>=20.19 <22 || >=22.12'}
     peerDependencies:
       react: ^19.2
@@ -733,8 +733,8 @@ packages:
     resolution: {integrity: sha512-dKx12eRCVIzqCxFGplyFKJMPvLEWgmNtUrpTiJIR5u97zEhRG8ySrtboPHZXx7daLxQVrl643cTzbab2tkQjxg==}
     engines: {node: '>= 0.4'}
 
-  framer-motion@12.29.2:
-    resolution: {integrity: sha512-lSNRzBJk4wuIy0emYQ/nfZ7eWhqud2umPKw2QAQki6uKhZPKm2hRQHeQoHTG9MIvfobb+A/LbEWPJU794ZUKrg==}
+  framer-motion@12.30.1:
+    resolution: {integrity: sha512-nt3NMBb9wrsC/TlPi6Blg3Zzzf8DkSidCT8dFa3ha3ierU8AF20tqP0eQ3CyGVZdwytVjd4vF/fWE0Uoa+qzdg==}
     peerDependencies:
       '@emotion/is-prop-valid': '*'
       react: ^18.0.0 || ^19.0.0
@@ -1029,14 +1029,14 @@ packages:
   minimatch@3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
 
-  motion-dom@12.29.2:
-    resolution: {integrity: sha512-/k+NuycVV8pykxyiTCoFzIVLA95Nb1BFIVvfSu9L50/6K6qNeAYtkxXILy/LRutt7AzaYDc2myj0wkCVVYAPPA==}
+  motion-dom@12.30.1:
+    resolution: {integrity: sha512-QXB+iFJRzZTqL+Am4a1CRoHdH+0Nq12wLdqQQZZsfHlp9AMt6PA098L/61oVZsDA+Ep3QSGudzpViyRrhYhGcQ==}
 
   motion-utils@12.29.2:
     resolution: {integrity: sha512-G3kc34H2cX2gI63RqU+cZq+zWRRPSsNIOjpdl9TN4AQwC4sgwYPl/Q/Obf/d53nOm569T0fYK+tcoSV50BWx8A==}
 
-  motion@12.29.2:
-    resolution: {integrity: sha512-jMpHdAzEDF1QQ055cB+1lOBLdJ6ialVWl6QQzpJI2OvmHequ7zFVHM2mx0HNAy+Tu4omUlApfC+4vnkX0geEOg==}
+  motion@12.30.1:
+    resolution: {integrity: sha512-rA2yo/2e2n/KG8xizZDfds32jldoq3DTosKpru5UUQdmPCFsGHPZ3p5PLFKjeVdEsbLOk/aJdpzWnKU9umzDcQ==}
     peerDependencies:
       '@emotion/is-prop-valid': '*'
       react: ^18.0.0 || ^19.0.0
@@ -1754,7 +1754,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  '@sanity/code-input@7.0.7(@babel/runtime@7.28.2)(@codemirror/lint@6.9.3)(@codemirror/theme-one-dark@6.1.2)(@emotion/is-prop-valid@1.4.0)(codemirror@6.0.1)(react-dom@19.2.4(react@19.2.4))(react-is@19.2.4)(react@19.2.4)(styled-components@6.3.8(react-dom@19.2.4(react@19.2.4))(react@19.2.4))':
+  '@sanity/code-input@7.0.8(@babel/runtime@7.28.2)(@codemirror/lint@6.9.3)(@codemirror/theme-one-dark@6.1.2)(@emotion/is-prop-valid@1.4.0)(codemirror@6.0.1)(react-dom@19.2.4(react@19.2.4))(react-is@19.2.4)(react@19.2.4)(styled-components@6.3.8(react-dom@19.2.4(react@19.2.4))(react@19.2.4))':
     dependencies:
       '@codemirror/autocomplete': 6.20.0
       '@codemirror/commands': 6.10.1
@@ -1870,7 +1870,7 @@ snapshots:
       '@sanity/color': 3.0.6
       '@sanity/icons': 3.7.4(react@19.2.4)
       csstype: 3.2.3
-      motion: 12.29.2(@emotion/is-prop-valid@1.4.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      motion: 12.30.1(@emotion/is-prop-valid@1.4.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react: 19.2.4
       react-compiler-runtime: 1.0.0(react@19.2.4)
       react-dom: 19.2.4(react@19.2.4)
@@ -2481,9 +2481,9 @@ snapshots:
     dependencies:
       is-callable: 1.2.7
 
-  framer-motion@12.29.2(@emotion/is-prop-valid@1.4.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
+  framer-motion@12.30.1(@emotion/is-prop-valid@1.4.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
     dependencies:
-      motion-dom: 12.29.2
+      motion-dom: 12.30.1
       motion-utils: 12.29.2
       tslib: 2.8.1
     optionalDependencies:
@@ -2793,15 +2793,15 @@ snapshots:
     dependencies:
       brace-expansion: 1.1.11
 
-  motion-dom@12.29.2:
+  motion-dom@12.30.1:
     dependencies:
       motion-utils: 12.29.2
 
   motion-utils@12.29.2: {}
 
-  motion@12.29.2(@emotion/is-prop-valid@1.4.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
+  motion@12.30.1(@emotion/is-prop-valid@1.4.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
     dependencies:
-      framer-motion: 12.29.2(@emotion/is-prop-valid@1.4.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      framer-motion: 12.30.1(@emotion/is-prop-valid@1.4.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       tslib: 2.8.1
     optionalDependencies:
       '@emotion/is-prop-valid': 1.4.0
