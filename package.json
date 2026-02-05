@@ -72,7 +72,7 @@
     "eslint-config-next": "^15.1.2",
     "eslint-config-prettier": "^10.0.0",
     "identity-obj-proxy": "^3.0.0",
-    "jsdom": "^27.2.0",
+    "jsdom": "^28.0.0",
     "postcss": "^8.4.19",
     "prettier": "^3.0.0",
     "prettier-plugin-tailwindcss": "^0.7.0",
