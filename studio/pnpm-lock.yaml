@@ -18,8 +18,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.6(@emotion/is-prop-valid@1.4.0)(@types/react@19.0.8)(react-dom@19.2.4(react@19.2.4))(react-is@19.2.4)(react@19.2.4)(styled-components@6.3.8(react-dom@19.2.4(react@19.2.4))(react@19.2.4))
       '@sanity/vision':
-        specifier: 5.8.0
-        version: 5.8.0(@babel/runtime@7.28.2)(@codemirror/lint@6.9.3)(@codemirror/theme-one-dark@6.1.2)(@emotion/is-prop-valid@1.4.0)(codemirror@6.0.1)(react-dom@19.2.4(react@19.2.4))(react-is@19.2.4)(react@19.2.4)(styled-components@6.3.8(react-dom@19.2.4(react@19.2.4))(react@19.2.4))
+        specifier: 5.8.1
+        version: 5.8.1(@babel/runtime@7.28.2)(@codemirror/lint@6.9.3)(@codemirror/theme-one-dark@6.1.2)(@emotion/is-prop-valid@1.4.0)(codemirror@6.0.1)(react-dom@19.2.4(react@19.2.4))(react-is@19.2.4)(react@19.2.4)(styled-components@6.3.8(react-dom@19.2.4(react@19.2.4))(react@19.2.4))
       eslint:
         specifier: ^9.0.0
         version: 9.39.2
@@ -312,8 +312,8 @@ packages:
   '@sanity/uuid@3.0.2':
     resolution: {integrity: sha512-vzdhqOrX7JGbMyK40KuIwwyXHm7GMLOGuYgn3xlC09e4ZVNofUO5mgezQqnRv0JAMthIRhofqs9f6ufUjMKOvw==}
 
-  '@sanity/vision@5.8.0':
-    resolution: {integrity: sha512-+i4A4aEp7POF4vPQ7ubJKy1sEhtofvxCLpwdHVYdI64t78GxcCJ8e94zp3XU16kd63m3yEjqgXN8b3TiWCt2Cg==}
+  '@sanity/vision@5.8.1':
+    resolution: {integrity: sha512-Wnv8U+jgqYHo5s1ABiQECA1P0ICPVYQpiy9P+n3gR46lIbfQOqFCgC4/uJLPXfZg6BOasydttAI+AMc43v3ASQ==}
     peerDependencies:
       react: ^19.2.2
       sanity: ^4.0.0-0 || ^5.0.0-0
@@ -1888,7 +1888,7 @@ snapshots:
       '@types/uuid': 8.3.4
       uuid: 8.3.2
 
-  '@sanity/vision@5.8.0(@babel/runtime@7.28.2)(@codemirror/lint@6.9.3)(@codemirror/theme-one-dark@6.1.2)(@emotion/is-prop-valid@1.4.0)(codemirror@6.0.1)(react-dom@19.2.4(react@19.2.4))(react-is@19.2.4)(react@19.2.4)(styled-components@6.3.8(react-dom@19.2.4(react@19.2.4))(react@19.2.4))':
+  '@sanity/vision@5.8.1(@babel/runtime@7.28.2)(@codemirror/lint@6.9.3)(@codemirror/theme-one-dark@6.1.2)(@emotion/is-prop-valid@1.4.0)(codemirror@6.0.1)(react-dom@19.2.4(react@19.2.4))(react-is@19.2.4)(react@19.2.4)(styled-components@6.3.8(react-dom@19.2.4(react@19.2.4))(react@19.2.4))':
     dependencies:
       '@codemirror/autocomplete': 6.20.0
       '@codemirror/commands': 6.10.1
