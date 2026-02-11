@@ -23,7 +23,7 @@
     "@sanity/code-input": "^7.0.0",
     "@sanity/document-internationalization": "^4.0.0",
     "@sanity/language-filter": "^4.0.0",
-    "@sanity/vision": "5.8.1",
+    "@sanity/vision": "5.9.0",
     "eslint": "^9.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
