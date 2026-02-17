@@ -6,7 +6,7 @@
     "name": "Guido Lange",
     "url": "https://github.com/gylxan"
   },
-  "packageManager": "pnpm@10.29.3",
+  "packageManager": "pnpm@10.30.0",
   "type": "module",
   "scripts": {
     "dev": "next dev",
@@ -33,7 +33,7 @@
     "@sanity/code-input": "^7.0.0",
     "@sanity/document-internationalization": "^4.0.0",
     "@sanity/language-filter": "^4.0.0",
-    "@sanity/vision": "5.9.0",
+    "@sanity/vision": "5.10.0",
     "@vercel/analytics": "^1.0.0",
     "clsx": "^2.0.0",
     "html-react-parser": "^5.0.0",
@@ -49,7 +49,7 @@
     "react-icons": "^5.0.0",
     "react-intersection-observer": "^10.0.0",
     "react-transition-group": "^4.4.5",
-    "sanity": "5.9.0",
+    "sanity": "5.10.0",
     "use-intl": "^4.1.0"
   },
   "devDependencies": {
