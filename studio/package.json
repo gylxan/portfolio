@@ -21,7 +21,7 @@
   ],
   "dependencies": {
     "@sanity/code-input": "^7.0.0",
-    "@sanity/document-internationalization": "^4.0.0",
+    "@sanity/document-internationalization": "^5.0.0",
     "@sanity/language-filter": "^4.0.0",
     "@sanity/vision": "5.11.0",
     "eslint": "^9.0.0",
